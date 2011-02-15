@@ -1,0 +1,9 @@
+! Assign the functionality of the fabled Multi_key (international characters) to the Super_L (left windows) key
+clear Mod4
+!clear Mod5
+!clear ISO_Level3_Shift
+!keycode 115 = Multi_key Super_L
+!keysym Multi_key = Multi_key Super_L
+keysym Super_L = Multi_key
+!keysym Mod5 = Alt_R
+keysym ISO_Level3_Shift = Alt_R
