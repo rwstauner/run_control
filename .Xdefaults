@@ -1,0 +1,149 @@
+!Aterm*cutchars: !"$%'()*+,;<>[\]^`
+!Aterm*scrollBar: false
+!Aterm*borderLess: true
+!Aterm*loginShell: true
+!Aterm*transparent: true
+!Aterm*tintingType: true
+!Aterm*scrollTtyOutput: false
+!Aterm*background: black
+!Aterm*foreground: white
+!Aterm*shading: 40
+!Aterm*fading: 70
+!Aterm*font: -misc-fixed-medium-r-normal-*-*-120-*-*-c-*-iso8859-2
+!Aterm*pasteMouseOutside: true
+
+xterm*background:	black
+xterm*foreground:	lightgray
+
+aterm*background:	black
+aterm*foreground:	green
+aterm*shading:		30
+!aterm*font:		-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso8859-9
+!term*boldfont:		-misc-fixed-bold-r-normal--15-140-75-75-c-90-iso8859-9
+!aterm*font:		-nil-profont-medium-r-normal--11-110-72-72-c-60-iso8859-1
+!aterm*boldFont:		-nil-profont-medium-r-normal--11-110-72-72-c-60-iso8859-1
+aterm*termName:		xterm
+aterm*saveLines:	200
+aterm*fading:		65
+aterm*transparent:	true
+!aterm*borderLess: 	true
+!aterm*borderwidth: 	29
+!aterm*transpscrollbar:	true
+aterm*scrollBar:	false
+!aterm*scrollBar_right:	true
+!aterm*scrollBar_floating:	true
+!aterm*geometry:		255x83
+!aterm*truetintingType:  true
+!aterm*textType:  	nand
+aterm*loginShell:	true
+!aterm*scrollKey:	true
+aterm*colorBD:  	rgb:ff/ff/ff
+!aterm*backgroundType:	scale
+!aterm*backgroundPixmap:	/downloads/images/bunny-acid-neg.jpg
+!aterm*backgroundPixmap:	/downloads/images/graveyard.xpm
+
+!*VT100.Translations: #override \
+!             <Key>BackSpace: string(0x7F)\n\
+!             <Key>Delete:    string("\033[3~")\n\
+!             <Key>Home:      string("\033[1~")\n\
+!             <Key>End:       string("\033[4~")
+!*ttyModes: erase ^? 
+
+!*VT100.Translations: #override\n\
+!             <KeyPress>BackSpace: string(0x7F)\n\
+!             <KeyPress>Delete:    string("\033[3~")\n\
+!             <KeyPress>Home:      string("\033[1~")\n\
+!             <KeyPress>End:       string("\033[4~")
+!*ttyModes: erase ^? 
+
+!aterm*color0:  rgb:c9/df/ea
+!aterm*color1:  rgb:2d/66/84
+!aterm*color2:  rgb:00/e6/ee
+!aterm*color3:  rgb:81/b1/c7
+!aterm*color4:  rgb:54/71/82
+!aterm*color5:  rgb:56/90/a6
+!aterm*color6:  rgb:2c/d9/db
+!aterm*color7:  rgb:d0/d0/d0
+!aterm*color8:  rgb:50/50/50
+!aterm*color9:  rgb:28/6d/92
+!aterm*color10:  rgb:00/ff/00
+!aterm*color11:  rgb:ea/ff/7d
+!aterm*color12:  rgb:76/cf/76
+!aterm*color13:  rgb:2d/b8/ff
+!aterm*color14:  rgb:00/ff/ff
+!aterm*color15:  rgb:ff/ff/ff
+
+
+!colors: #000000:#FF3E3E:#00CD00:#CDCD00:#8888FF:#E515E5:#00CDCD:#FAEBD7:#404040:#FF0000:#00FF00:#FFFF00:#0000FF:#FF00FF:#00FFFF:#FFFFFF
+
+!::colors
+!black
+aterm*color0:  rgb:66/66/66
+aterm*color8:  rgb:33/33/33
+
+!red
+aterm*color1:  rgb:cc/00/00
+aterm*color9:  rgb:ff/44/44
+
+!yellow
+aterm*color3:  rgb:ff/ee/11
+aterm*color11: rgb:ff/e6/66
+
+!green
+aterm*color2:  rgb:00/cc/33
+aterm*color10: rgb:00/ff/22
+
+!blue
+aterm*color4:  rgb:66/88/ff
+aterm*color12:  rgb:22/77/ff
+
+!magenta
+aterm*color5:  rgb:dd/66/ee
+aterm*color13: rgb:ee/88/ff
+
+!cyan
+aterm*color6:  rgb:66/cc/cc
+aterm*color14: rgb:99/ff/ff
+
+!white
+aterm*color7:  rgb:bf/bf/bf
+aterm*color15: rgb:e3/e3/e3
+
+XTerm*color0:			#666666
+XTerm*color1:			#cc0000
+XTerm*color2:			#00cc33
+XTerm*color3:			#ffee11
+XTerm*color4:			#6688ff
+XTerm*color5:			#dd66ee
+XTerm*color6:			#66cccc
+XTerm*color7:			#bfbfbf
+XTerm*color8:			#333333
+XTerm*color9:			#ff4444
+XTerm*color10:			#00ff22
+XTerm*color11:			#ffe666
+XTerm*color12:			#2277ff
+XTerm*color13:			#ee88ff
+XTerm*color14:			#99ffff
+XTerm*color15:			#e3e3e3
+
+XTerm*cursorBlink:	on
+XTerm*cursorOnTime:	1000
+XTerm*cursorOffTime:	500
+XTerm*cursorColor:	White
+
+!XTerm*color0:			#000000
+!XTerm*color1:			#c00000
+!XTerm*color2:			#008000
+!XTerm*color3:			#808000
+!XTerm*color4:			#0000c0
+!XTerm*color5:			#c000c0
+!XTerm*color6:			#008080
+!XTerm*color7:			#c0c0c0
+!XTerm*color8:			#808080
+!XTerm*color9:			#ff6060
+!XTerm*color10:			#00ff00
+!XTerm*color11:			#ffff00
+!XTerm*color12:			#8080ff
+!XTerm*color13:			#ff40ff
+!XTerm*color14:			#00ffff
+!XTerm*color15:			#ffffff
