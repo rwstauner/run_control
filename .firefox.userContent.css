@@ -1,0 +1,69 @@
+/*
+ * Edit this file and copy it as userContent.css into your
+ * profile-directory/chrome/
+ */
+
+/*
+ * This file can be used to apply a style to all web pages you view
+ * Rules without !important are overruled by author rules if the
+ * author sets any.  Rules with !important overrule author rules.
+ */
+
+/*
+ * example: turn off "blink" element blinking
+ *
+ * blink { text-decoration: none ! important; }
+ *
+ */
+
+/*
+ * example: give all tables a 2px border
+ *
+ * table { border: 2px solid; }
+ */
+
+/*
+ * example: turn off "marquee" element
+ *
+ * marquee { -moz-binding: none; }
+ *
+ */
+ 
+/* 
+ * For more examples see http://www.mozilla.org/unix/customizing.html
+ */
+
+
+ /* Change cursor for links that open in new window */
+form[target="_blank"], form[target="_new"],
+:link[target="_blank"], :visited[target="_blank"],
+:link[target="_new"], :visited[target="_new"] {
+  cursor: crosshair;
+}
+
+ /* Change cursor for JavaScript links */
+a[href^="javascript:"], a[onclick], a[onmousedown], a[onmouseup] {
+  cursor: move;
+}
+
+input[type=""],
+input[type="text"] {
+	background-image: url('http://localhost:65080/images/input_text.png');
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+}
+input[type="password"] {
+	background-image: url('http://localhost:65080/images/input_pass.png');
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+}
+input:focus, textarea:focus {
+	-moz-box-shadow:0 0 5px rgba(256,68,36, .7);
+	-webkit-box-shadow:0 0 5px rgba(256,68,36, .7);
+}
+
+/* Courier New is gross (and hard to read b/c it's too light) */
+@font-face {font-family:  Courier New;  src:local("Liberation Mono")}
+@font-face {font-family:  Courier;      src:local("Liberation Mono")}
+@font-face {font-family: "Courier New"; src:local("Liberation Mono")}
+@font-face {font-family: 'courier new'; src:local("Liberation Mono")}
