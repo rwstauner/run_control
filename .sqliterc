@@ -1,0 +1,8 @@
+.explain ON
+.headers ON
+
+-- these are the non-default values
+-- PRAGMA case_sensitive_like = 1; 	-- 'a' LIKE 'A'
+-- PRAGMA count_changes = 1; 		-- return affected counts for action queries
+-- PRAGMA full_column_names = 1; 	-- always prefix column with tablename
+-- PRAGMA read_uncommitted = 1; 	-- cache sharing (SERIALIZABLE is default)
