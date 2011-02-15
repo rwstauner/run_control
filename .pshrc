@@ -1,0 +1,30 @@
+## psh
+
+use Env;
+#use strict;
+
+foreach( qx(grep '^[:space:]*alias' ~/.bashrc) ){
+	if( /\;/ ){
+		#Psh::evl(qq/$alias='echo "Sorry, this command will not work in psh, yet."'/);
+		chomp;
+		print(qq/Sorry, "$_" will not work in psh, yet.\n/);
+	}else{
+		Psh::evl($_);
+	}
+}
+foreach my $i ( qw( rm cp mv ) ){
+	Psh::evl("alias $i $i -vi");
+}
+
+## like perldb
+use Data::Dumper;
+use YAML;
+alias x print Dumper \\
+alias y print YAML::Dump \\
+
+# haven't figured out what's doing it, but the lesspipe.sh filter ends up processing the rc file again, then errors
+alias perldoc env LESS=-L  perldoc
+
+($ENV{PS1} =~ s/36/\\0/g);
+($ENV{PS1} =~ s/35/36/g);
+($ENV{PS1} =~ s/\\0/35/g);
