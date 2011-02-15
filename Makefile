@@ -11,8 +11,8 @@ SOURCEDIR = $(HOME)/$(DIRNAME)
 
 # TODO: use readlink to compare
 define LINK_RC
-	dest="$(HOME)/$(2)"; \
 	source="$(DIRNAME)/$(1)"; \
+	dest="$(HOME)/$(2)"; \
 	if [ -e "$$dest" ]; then \
 		if [ "`readlink "$$dest"`" == "$$source" ]; then \
 			echo -e " \033[33m already linked: $$dest \033[00m " 1>&2; \
