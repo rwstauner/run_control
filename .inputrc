@@ -1,0 +1,67 @@
+# meta direct display vs. escape
+		# prefix with escape seq
+	set convert-meta off
+		# enable 8th-bit input
+	set meta-flag on
+	set input-meta on
+		# display directly rather than w/ prefix
+	set output-meta on
+
+# completion
+		# do not bell on tab-completion
+	set bell-style none
+		# append slash on directories
+	set mark-directories on
+		# precede modified lines with asterisk
+	set mark-modified-lines on
+		# append slash on symlinks to directories
+	set mark-symlinked-directories on
+		# single tab will display possibilities (instead of double)
+	set show-all-if-ambiguous off
+		# use pager with completion possibilites
+	set page-completions on
+		# suffix possibilities with class character (ls -F)
+	set visible-stats on
+
+$if mode=emacs
+
+#"": redraw-current-line
+
+# for linux console and RH/Debian xterm
+	# number pad buttons: home, end, pgup/down...
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+	# control-arrow
+# screen
+"\eO5C": forward-word
+"\eO5D": backward-word
+# gnome-terminal
+"\e[5C": forward-word
+"\e[5D": backward-word
+# xfce4-terminal
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+#"\eOc": forward-word
+#"\eOd": backward-word
+#"\e[c": forward-word
+#"\e[d": backward-word
+
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+
+# for freebsd console
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+$endif
+
+# Quote the current or previous word
+$if Bash
+"\C-xq": "\eb\"\ef\""
+$endif
