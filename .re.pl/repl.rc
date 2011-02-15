@@ -1,0 +1,38 @@
+# vim:set ft=perl:
+
+# required modules
+
+=head1 CONTENTS
+
+	B:::Keywords
+	File::Next
+
+=cut
+
+# allow saving/loading history
+$_REPL->load_plugin($_) for
+	qw(Colors FancyPrompt Interrupt ReadLineHistory),
+	qw(Completion), map { "CompletionDriver::$_" } qw(Methods LexEnv Keywords INC Globals);
+
+# disable history expansion (bang)
+$_REPL->term->Attribs->{do_expand} = 0;
+
+=pod
+$_REPL->fancy_prompt(sub {
+	my $self = shift;
+	require Term::ANSIColor;
+	sprintf 're.pl(%s):%03d%s> ',
+		("\[\033[36m\]" . ($self->can('current_package') ? $self->current_package : 'main') . "\[\033[00m\]"),
+		$self->lines_read,
+		("\[\033[34m\]" . ($self->can('line_depth') ? ':' . $self->line_depth : '') . "\[\033[00m\]")
+});
+=cut
+
+# don't start in Devel::REPL::Plugin::Packages::DefaultScratchpad;
+package main;
+
+# aliases
+use YAML::Any;
+sub yaml { YAML::Any::Dump(@_) }
+*x = *yaml;
+*Y = *yaml;
