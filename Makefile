@@ -1,4 +1,5 @@
 SHELL=/bin/bash
+DIFF = git diff --no-index
 
 # everything but . and ..
 ALL_RC_FILES = $(wildcard .[^.]*)
@@ -29,6 +30,24 @@ define LINK_RC
 	fi
 endef
 
+define EXISTS_OR
+	source="$(SOURCEDIR)/$(1)"; \
+	dest="$(HOME)/$(2)"; \
+	ifexists='$(3)'; \
+	notexists='$(4)'; \
+	if [ -e "$$dest" ]; then \
+		case "$$ifexists" in \
+			w) echo -e "  \033[01;41m file exists: $$dest \033[00m " 1>&2;; \
+			d) $(DIFF) "$$source" "$$dest";; \
+		esac; \
+	else \
+		case "$$notexists" in \
+			c) /bin/cp -vin "$$source" "$$dest";; \
+			e) echo " == '$$dest' does not exist == ";; \
+		esac; \
+	fi
+endef
+
 all:
 	@if [ "`pwd`" != "$(SOURCEDIR)" ]; then \
 		echo "link to $(SOURCEDIR) and try again"; \
@@ -43,5 +62,13 @@ all:
 		$(call LINK_RC,$$scrloc,.screenrc.local); \
 	else \
 		touch $(HOME)/.screenrc.local; \
-	fi
+	fi; \
+	for rc in $(CP_RC_FILES); do \
+		$(call EXISTS_OR,$$rc,$$rc,w,c); \
+	done;
 	@echo -e "\033[0044mTODO:\033[00m dzil"
+
+diff:
+	@for rc in $(CP_RC_FILES); do \
+		$(call EXISTS_OR,$$rc,$$rc,d,e); \
+	done;
