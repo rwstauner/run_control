@@ -1,3 +1,4 @@
 --column
+--ignore-dir=.build
 --sort-files
 --show-types
