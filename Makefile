@@ -3,7 +3,7 @@ SHELL=/bin/bash
 # everything but . and ..
 ALL_RC_FILES = $(wildcard .[^.]*)
 # files I'm not using anymore
-EXCLUDE_RC = .git .pork .ratpoisonrc $(wildcard .screenrc.*)
+EXCLUDE_RC = $(wildcard .*.css) .git .pork .ratpoisonrc $(wildcard .screenrc.*)
 RC_FILES = $(filter-out $(EXCLUDE_RC),$(ALL_RC_FILES))
 
 DIRNAME = run_control
