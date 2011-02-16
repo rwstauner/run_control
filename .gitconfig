@@ -1,0 +1,34 @@
+[color]
+	ui = auto
+[merge]
+	log = true
+[instaweb]
+	local = true
+	httpd = /usr/sbin/apache2 -f
+	port = 4321
+	modulepath = /usr/lib/apache2/modules
+[web]
+	browser = firefox
+[push]
+	default = tracking
+[alias]
+	# NOTE: git uses 'sh'
+	describe-version = "!perl -MGit::DescribeVersion::App -erun"
+	diffcw = diff --color-words=.
+	diffcww = diff --color-words=\\\\w+
+	diffwithsubs = "!git submodule summary; git diff"
+	grep-todo = grep -iE 'to.?do'
+	last-tag = "!git describe --tags --long | sed -re 's/-[0-9]+-g[a-f0-9]+$//'"
+	log-since-tag = "!_git_log_since_tag () { tag=`git last-tag`; revs=$tag..HEAD; git log $* $revs; echo '\n=== '$revs' ===\n'; git tag-summary $tag; }; _git_log_since_tag"
+	branch-to-remote = "!_git_branch_to_remote () { branch=${1:-master} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch; }; _git_branch_to_remote"
+	tag-summary = "!_git_tag_summary () { git show --summary ${1:-`git last-tag`}; }; _git_tag_summary"
+# #
+# NOTE: above file copied from git repo. make changes there.
+# NOTE: append custom local config below
+#
+# [user] name, email
+# [url work] insteadOf
+# [url private] insteadOf
+# [github] user, token
+# [url github] insteadOf
+# #
