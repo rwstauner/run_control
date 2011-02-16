@@ -2,9 +2,14 @@ SHELL=/bin/bash
 
 # everything but . and ..
 ALL_RC_FILES = $(wildcard .[^.]*)
+# files to copy instead of link (files include additional instructions
+CP_RC_FILES = .gitconfig
 # files I'm not using anymore
-EXCLUDE_RC = $(wildcard .*.css) .git .pork .ratpoisonrc $(wildcard .screenrc.*)
-RC_FILES = $(filter-out $(EXCLUDE_RC),$(ALL_RC_FILES))
+ARCHIVED_RC = .pork .ratpoisonrc
+# files that don't need to go anywhere
+EXCLUDE_RC = $(ARCHIVED_RC) $(wildcard .*.css) .git $(wildcard .screenrc.*)
+# everything else
+LN_RC_FILES = $(filter-out $(CP_RC_FILES) $(EXCLUDE_RC),$(ALL_RC_FILES))
 
 DIRNAME = run_control
 SOURCEDIR = $(HOME)/$(DIRNAME)
@@ -29,7 +34,7 @@ all:
 		echo "link to $(SOURCEDIR) and try again"; \
 		exit 1; \
 	fi; \
-	for rc in $(RC_FILES); do \
+	for rc in $(LN_RC_FILES); do \
 		$(call LINK_RC,$$rc,$$rc); \
 	done; \
 	host=`hostname -s`; \
