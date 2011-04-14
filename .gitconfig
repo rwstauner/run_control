@@ -14,6 +14,7 @@
 [alias]
 	# NOTE: git uses 'sh'
 	describe-version = "!perl -MGit::DescribeVersion::App -erun"
+	current-branch = "!git branch | awk '/^[*] / { print $2 }'"
 	diffcw = diff --color-words=.
 	diffcww = diff --color-words=\\\\w+
 	diffwithsubs = "!git submodule summary; git diff"
