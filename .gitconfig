@@ -22,6 +22,7 @@
 	last-tag = "!git describe --tags --long | sed -re 's/-[0-9]+-g[a-f0-9]+$//'"
 	log-since-tag = "!_git_log_since_tag () { tag=`git last-tag`; revs=$tag..HEAD; git log $* $revs; echo '\n=== '$revs' ===\n'; git tag-summary $tag; }; _git_log_since_tag"
 	branch-to-remote = "!_git_branch_to_remote () { branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch; }; _git_branch_to_remote"
+	branch-track = "!_git_branch_track () { branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch; }; _git_branch_track"
 	tag-summary = "!_git_tag_summary () { git show --summary ${1:-`git last-tag`}; }; _git_tag_summary"
 # #
 # NOTE: above file copied from git repo. make changes there.
