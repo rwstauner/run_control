@@ -23,7 +23,8 @@ define LINK_RC
 		if [ "`readlink "$$dest"`" == "$$source" ]; then \
 			echo -e " \033[33m already linked: $$dest \033[00m " 1>&2; \
 		else \
-			echo "  skipping pre-existing file: $$dest"; \
+			[[ -e "$$dest" ]] && ! [[ -s "$$dest" ]] && filedesc="empty"; \
+			echo "  skipping pre-existing $$filedesc file: $$dest"; \
 		fi; \
 	else \
 		echo ln -s "$$source" "$$dest"; \
