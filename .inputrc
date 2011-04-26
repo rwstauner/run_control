@@ -1,4 +1,5 @@
 # meta direct display vs. escape
+	set enable-keypad on
 		# prefix with escape seq
 	set convert-meta off
 		# enable 8th-bit input
@@ -49,6 +50,13 @@ $if mode=emacs
 "\e[1;5D": backward-word
 #"\eOc": forward-word
 #"\eOd": backward-word
+
+# tmux
+#"\eOA": up
+#"\eOB": down
+#"\eOD": left
+#"\eOC": right
+
 #"\e[c": forward-word
 #"\e[d": backward-word
 
