@@ -8,7 +8,7 @@ CP_RC_FILES = .gitconfig
 # files I'm not using anymore
 ARCHIVED_RC = .pork .ratpoisonrc
 # files that don't need to go anywhere
-EXCLUDE_RC = $(ARCHIVED_RC) $(wildcard .*.css) .git $(wildcard .screenrc.*)
+EXCLUDE_RC = $(ARCHIVED_RC) $(wildcard .*.css) .git $(wildcard .tmux.conf.*)
 # everything else
 LN_RC_FILES = $(filter-out $(CP_RC_FILES) $(EXCLUDE_RC),$(ALL_RC_FILES))
 
@@ -58,11 +58,11 @@ all:
 		$(call LINK_RC,$$rc,$$rc); \
 	done; \
 	host=`hostname -s`; \
-	scrloc=.screenrc.$$host; \
-	if [ -e $$scrloc ]; then \
-		$(call LINK_RC,$$scrloc,.screenrc.local); \
+	termloc=.tmux.conf.$$host; \
+	if [ -e $$termloc ]; then \
+		$(call LINK_RC,$$termloc,.tmux.conf.local); \
 	else \
-		touch $(HOME)/.screenrc.local; \
+		touch $(HOME)/.tmux.conf.local; \
 	fi; \
 	for rc in $(CP_RC_FILES); do \
 		$(call EXISTS_OR,$$rc,$$rc,w,c); \
