@@ -15,7 +15,6 @@ LN_RC_FILES = $(filter-out $(CP_RC_FILES) $(EXCLUDE_RC),$(ALL_RC_FILES))
 DIRNAME = run_control
 SOURCEDIR = $(HOME)/$(DIRNAME)
 
-# TODO: use readlink to compare
 define LINK_RC
 	source="$(DIRNAME)/$(1)"; \
 	dest="$(HOME)/$(2)"; \
@@ -49,6 +48,7 @@ define EXISTS_OR
 	fi
 endef
 
+# NOTE: $(call X,$$shvar) needs doubled $'s ($$$$shvar) in older make
 all:
 	@if [ "`pwd`" != "$(SOURCEDIR)" ]; then \
 		echo "link to $(SOURCEDIR) and try again"; \
