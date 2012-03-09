@@ -1,0 +1,16 @@
+if [ -z "$BASH_COMPLETION" ]; then
+	shopt -s extglob progcomp
+
+	complete -d pushd cd
+	/bin/which neko &> /dev/null && complete -f -X '!*.n' neko
+	/bin/which dzil &> /dev/null && complete -W "installm $(dzil commands | awk -F : '/^ / { print $1 }')" dzil
+
+	bc_etc=/etc/bash_completion
+	bc_user=~/.bash_completion_borrowed
+	if [ -f $bc_etc ]; then
+		. $bc_etc
+	elif [ -f $bc_user ]; then
+		. $bc_user
+	fi
+	unset bc_etc bc_user
+fi
