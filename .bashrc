@@ -283,3 +283,7 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   fi
 
 fi
+
+for rc in ~/.bashrc.d/*; do
+  [[ -f "$rc" ]] && [[ -r "$rc" ]] && source "$rc"
+done
