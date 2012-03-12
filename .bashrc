@@ -60,9 +60,11 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   export PYTHONSTARTUP=~/.python_startup
   export XML_CATALOG_FILES="$HOME/devel/xml/catalog /etc/xml/catalog"
 
-## bash history
-  #HISTIGNORE=lf
-  export HISTCONTROL=ignoredups HISTFILESIZE=3000 HISTSIZE=3000
+  # bash history
+  shopt -s histreedit histverify
+  HISTIGNORE=lf
+  HISTCONTROL=ignoredups
+  HISTFILESIZE=3000 HISTSIZE=3000
   #export HISTTIMEFORMAT='%H:%M:%S '
 
 ## time
@@ -71,9 +73,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   TIME="$TIME\n  mem: %K:avgtotal(data+stack+text) %M:max %t:avg %D:data+%p:stack+%X:text in Kbytes"
   TIME="$TIME\n m/io: %I:in+%O:out (%F:maj+%R:min)pagefaults +%W:swaps %c:switched %w:waits %r/%s:sockets i/o"
   export TIME
-
-## bash shell options
-  shopt -s histreedit histverify extglob progcomp
 
 ## aliases (hooray!)
 
