@@ -50,9 +50,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   }
 
 ## [terminal/login shell] environment variables
-  # /usr/lib/locale/en_US.utf8
-  export LANG=en_US.utf8
-  export LANGUAGE=$LANG LOCALE=$LANG LC_ALL=$LANG LC_CTYPE=$LANG
   export PAGER=less LESS=FRX
 
   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/:/usr/lib/pkgconfig/
