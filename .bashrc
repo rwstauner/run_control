@@ -7,6 +7,16 @@
   export BROWSER=firefox
   export FTP_PASSIVE=1; # used by Net::FTP, and maybe possibly hopefully some other things
 
+function source_rc_files () {
+  local rc
+  for rc in "$@"; do
+    [[ -f "$rc" ]] && [[ -r "$rc" ]] && source "$rc"
+  done
+}
+
+# Source global definitions
+source_rc_files /etc/bash.bashrc /etc/bashrc
+
 # different semantics than the typical pathmunge()
 function add_to_path () {
   local after=0 dir
@@ -61,13 +71,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   TIME="$TIME\n  mem: %K:avgtotal(data+stack+text) %M:max %t:avg %D:data+%p:stack+%X:text in Kbytes"
   TIME="$TIME\n m/io: %I:in+%O:out (%F:maj+%R:min)pagefaults +%W:swaps %c:switched %w:waits %r/%s:sockets i/o"
   export TIME
-
-## Source global definitions
-  for etc_bashrc in /etc/bash.bashrc /etc/bashrc; do
-    if [ -f $etc_bashrc ]; then
-      . $etc_bashrc
-    fi
-  done
 
 ## bash shell options
   shopt -s histreedit histverify extglob progcomp
@@ -148,8 +151,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 
 fi
 
-for rc in ~/.bashrc.d/* $EXTRA_BASHRC; do
-  [[ -f "$rc" ]] && [[ -r "$rc" ]] && source "$rc"
-done
+source_rc_files ~/.bashrc.d/* $EXTRA_BASHRC
 
-unset -f add_to_path
+unset -f add_to_path source_rc_files
