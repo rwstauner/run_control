@@ -55,7 +55,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   export LANGUAGE=$LANG LOCALE=$LANG LC_ALL=$LANG LC_CTYPE=$LANG
   export PAGER=less LESS=FRX
 
-  export JAVA_HOME=`ls -d $HOME/java/jdk* | head -n1`
   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/:/usr/lib/pkgconfig/
   export PYTHONSTARTUP=~/.python_startup
   export XML_CATALOG_FILES="$HOME/devel/xml/catalog /etc/xml/catalog"
