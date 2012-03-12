@@ -16,8 +16,10 @@
 	describe-version = "!perl -MGit::DescribeVersion::App -erun"
 	civ = commit -v
 	current-branch = "!git branch | awk '/^[*] / { print $2 }'"
-	diffcw = diff --color-words=.
-	diffcww = diff --color-words=\\\\w+
+	diffcw  = diff   --color-words=.
+	diffcww = diff   --color-words=\\\\w+
+	logpcw  = log -p --color-words=.
+	logpcww = log -p --color-words=\\\\w+
 	diffwithsubs = "!git submodule summary; git diff"
 	grep-todo = grep -iE 'to.?do'
 	last-tag = "!git describe --tags --long | sed -re 's/-[0-9]+-g[a-f0-9]+$//'"
