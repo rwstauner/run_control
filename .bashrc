@@ -75,11 +75,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 ## bash shell options
   shopt -s histreedit histverify extglob progcomp
 
-## programmable completion
-  if [ -f ~/.bash_completion ]; then
-    . ~/.bash_completion
-  fi
-
 ## aliases (hooray!)
 
   # interactive (confirmation prompt)
