@@ -7,12 +7,6 @@
   export BROWSER=firefox
   export FTP_PASSIVE=1; # used by Net::FTP, and maybe possibly hopefully some other things
 
-## editor of choice (Vim!)
-  EDITOR=/usr/bin/vim
-  [ -e '/usr/local/bin/vim' ] && EDITOR=/usr/local/bin/vim
-  FCEDIT=$EDITOR
-  VISUAL=$EDITOR
-  export EDITOR FCEDIT VISUAL
 
 ## my personl path
   for dir in /opt/*/bin "$HOME/perl5/bin" "/monster/devel/linux" "$HOME/bin"; {
