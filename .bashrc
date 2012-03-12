@@ -70,6 +70,9 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   TIME="$TIME\n m/io: %I:in+%O:out (%F:maj+%R:min)pagefaults +%W:swaps %c:switched %w:waits %r/%s:sockets i/o"
   export TIME
 
+  function timed () { echo " :[timing from `date`]: " 1>&2; /usr/bin/time "$@"; }
+  #alias time=timed
+
 ## aliases (hooray!)
 
   # interactive (confirmation prompt)
@@ -77,55 +80,47 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 
   # commands
   alias caly='cal `date +%Y`'
-  #alias cd='echo -ne "\007"; cd'; # i've learned this by now
+
   alias diffpatch='diff -uprN'
   alias diffgit='git diff --no-index'
   alias diffgitcw='git diff --no-index --color-words=.'
+
   alias external_ip_address='dig +short myip.opendns.com @resolver1.opendns.com'
   alias ftp='/usr/bin/ftp' # kerberos ftp bothers me
+
   alias grep='env LC_ALL=POSIX grep --color=auto'
   alias Grep='grep'
-  alias grepsvn='grep --exclude=\*.svn\* -R'
   alias zgrep='zgrep --color=auto'
-  alias irb='nice -n 15 irb'
+
   alias ll='ls -l --color=auto'
   alias lf='ll -aF'
   alias lh='lf -h'
   alias lft='lf --time-style=full-iso'
-  test -n "$LS_COLORS" || { eval `dircolors`;
+  if ! [[ -n "$LS_COLORS" ]]; then
+    eval `dircolors`;
     #export LS_COLORS="$LS_COLORS*.svg=00;35:*.xcf=00;35:*.html=00;33:*.css=00;33:*.js=00;33:";
     export LS_COLORS="$LS_COLORS*.svg=00;35:*.xcf=00;35:*.html=00;33:*.css=00;33:`for i in pl py rb lua tcl sh bash bsh; { echo -n "*.$i=00;32:"; }`";
-  }
+  fi
+
   alias pseo='ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command'
   alias psoe='pseo'
   alias psgrep='pseo | head -n1; pseo | grep'
   alias psvgrep='psgrep -v grep | grep'
+
   alias rename='rename -v'
   alias rmdir='rmdir -v'
-  alias screencolor='woundedrc screencolor = "`grabc`"'
-  #alias svndiff='svn diff --diff-cmd diff -x -iwBd'
-  #alias svndiffu='svn diff --diff-cmd diff -x -iwBdu'
-  #alias svnvimdiff="svn diff --diff-cmd arg_drop -x \"vimdiff -4-7 -R -s $HOME/.vim/svnvimdiff.vim\""
 
   # let me use my aliases when delaying commands
   for i in xargs watch sudo; { eval "alias $i='$i '"; }
-  #alias sudo='echo " -- sudoing -- " 1>&2; sudo '
-
-  function timed () { echo " :[timing from `date`]: " 1>&2; /usr/bin/time "$@"; }
-  alias time=timed
-
-## find psql w/o putting it in my path
-  #pre_psql='env PAGER=less'
-  for i in local/pgsql/ local/ '' ; {
-    psql_bin="/usr/${i}bin/psql"; if [ -e "$psql_bin" ]; then alias psql="$psql_bin"; break; fi; }
-  unset i pre_psql psql_bin
 
 ## commands more complex than aliases
   function astronomy_picture() { pushd /monster/media/images/astronomy/; wget "$*"; display `basename "$*"`; popd; }
   function browse_local_file() { local u="$1"; [[ ${u:0:1} == "/" ]] || u="$PWD/$u"; firefox "file://$u"; }
+
   if test -x $HOME/bin/extract_archive; then
     function extract_pushd(){ pushd "`extract_archive "$@"`"; }
   fi
+
   function eog { `which eog` "$@" &> /dev/null & }
   function math { if [[ $# -gt 0 ]]; then echo $'scale=2\n' "$*" | bc -l; else bc -l; fi; } #BC_ENV_ARGS=
   function mkdirpushd() { mkdir "$@"; pushd "$@"; }
