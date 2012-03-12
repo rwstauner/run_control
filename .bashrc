@@ -106,9 +106,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   #alias svndiff='svn diff --diff-cmd diff -x -iwBd'
   #alias svndiffu='svn diff --diff-cmd diff -x -iwBdu'
   #alias svnvimdiff="svn diff --diff-cmd arg_drop -x \"vimdiff -4-7 -R -s $HOME/.vim/svnvimdiff.vim\""
-  alias vi='echo -e "use vim \007"; sleep 2; echo vim'
-  alias vimXcat='ex -c w\ !\ cat -c :q'
-  alias :sp='vim'
 
   # let me use my aliases when delaying commands
   for i in xargs watch sudo; { eval "alias $i='$i '"; }
