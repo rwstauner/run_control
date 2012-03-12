@@ -147,6 +147,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 
 fi
 
-for rc in ~/.bashrc.d/*; do
+for rc in ~/.bashrc.d/* $EXTRA_BASHRC; do
   [[ -f "$rc" ]] && [[ -r "$rc" ]] && source "$rc"
 done
