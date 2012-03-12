@@ -7,13 +7,20 @@
   export BROWSER=firefox
   export FTP_PASSIVE=1; # used by Net::FTP, and maybe possibly hopefully some other things
 
+# different semantics than the typical pathmunge()
+function add_to_path () {
+  local after=0 dir
+  if [[ "$1" == "--after" ]]; then after=1; shift; fi
+  for dir in "$@"; do
+    if [[ -d "$dir" ]] && ! echo "$PATH" | grep -qE "(^|:)$dir(:|$)"; then
+      if [[ "$after" ]]; then PATH="$PATH:$dir"; else PATH="$dir:$PATH"; fi
+    fi
+  done
+}
 
-## my personl path
-  for dir in /opt/*/bin "$HOME/perl5/bin" "/monster/devel/linux" "$HOME/bin"; {
-    if ! echo "$PATH" | grep -qE "(^|:)$dir(:|$)" && [[ -e "$dir" ]]; then
-      export PATH="$dir:$PATH"
-    fi;
-  }
+# add_to_path /opt/*/bin
+add_to_path /opt/imagemagick/bin
+add_to_path $HOME/devel/linux $HOME/bin
 
 ## only do these when in a terminal:
 
@@ -144,3 +151,5 @@ fi
 for rc in ~/.bashrc.d/* $EXTRA_BASHRC; do
   [[ -f "$rc" ]] && [[ -r "$rc" ]] && source "$rc"
 done
+
+unset -f add_to_path
