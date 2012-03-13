@@ -2,3 +2,4 @@
 --ignore-dir=.build
 --sort-files
 --show-types
+--type-set=json=.json
