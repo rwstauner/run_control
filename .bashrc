@@ -113,6 +113,11 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   # let me use my aliases when delaying commands
   for i in xargs watch sudo; { eval "alias $i='$i '"; }
 
+  # add readline support
+  for i in pacmd; {
+    which $i &> /dev/null && alias $i="rlwrap $i";
+  }
+
 ## commands more complex than aliases
   function astronomy_picture() { pushd /monster/media/images/astronomy/; wget "$*"; display `basename "$*"`; popd; }
   function browse_local_file() { local u="$1"; [[ ${u:0:1} == "/" ]] || u="$PWD/$u"; firefox "file://$u"; }
