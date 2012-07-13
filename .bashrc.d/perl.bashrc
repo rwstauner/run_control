@@ -54,6 +54,11 @@ function mversion() { if [ $# -eq 0 ]; then m=${PWD##*/}; else m="$1"; fi; `whic
 
 function grep_pm() { zgrep --color=auto "$@" ~/perl5/cpan/mini/modules/02packages.details.txt.gz; }
 
+# tests
+if [[ ~/perl5/prove-lib/.proverc ]]; then
+  # play sounds on pass/fail, but only when i run prove from my command line directly
+  alias prove="prove --rc=$HOME/perl5/prove-lib/.proverc"
+fi
 # test coverage
 function cover_tests () {
   cover -delete; #rm -rf cover_db/;
