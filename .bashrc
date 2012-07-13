@@ -1,12 +1,6 @@
 # vim: set ts=2 sts=2 sw=2 expandtab smarttab:
 # .bashrc
 
-## always do these things:
-
-## environment variables for always [even when not in terminal]
-  export BROWSER=firefox
-  export FTP_PASSIVE=1; # used by Net::FTP, and maybe possibly hopefully some other things
-
 function source_rc_files () {
   local rc
   for rc in "$@"; do
@@ -48,12 +42,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 #    echo "| $msg |"
 #    echo "$border"
   }
-
-## [terminal/login shell] environment variables
-  export PAGER=less LESS=FRX
-
-  export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/:/usr/lib/pkgconfig/
-  export XML_CATALOG_FILES="$HOME/devel/xml/catalog /etc/xml/catalog"
 
   # bash history
   shopt -s histreedit histverify
