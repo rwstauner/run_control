@@ -1,14 +1,16 @@
+/*
 input[type=""],
 input[type="text"] {
-	background-image: url('http://localhost:65080/images/input_text.png');
+	background-image: url('http://localhost/images/input_text.png');
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
 }
 input[type="password"] {
-	background-image: url('http://localhost:65080/images/input_pass.png');
+	background-image: url('http://localhost/images/input_pass.png');
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
 }
+*/
 input:focus, textarea:focus {
 	-moz-box-shadow:0 0 5px rgba(256,68,36, .7);
 	-webkit-box-shadow:0 0 5px rgba(256,68,36, .7);

@@ -48,12 +48,12 @@ a[href^="javascript:"], a[onclick], a[onmousedown], a[onmouseup] {
 
 input[type=""],
 input[type="text"] {
-	background-image: url('http://localhost:65080/images/input_text.png');
+	background-image: url('http://localhost/images/input_text.png');
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
 }
 input[type="password"] {
-	background-image: url('http://localhost:65080/images/input_pass.png');
+	background-image: url('http://localhost/images/input_pass.png');
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
 }
