@@ -45,9 +45,6 @@ alias perl1='perl -CSDLA -Mcharnames=:full -MData::Printer -MData::Dumper -MYAML
 # sometimes perldoc doesn't like en_US.utf8
 #alias perldoc='env LANG=en_US perldoc'
 
-# alias podspelltest='perl -MTest::More -MTest::Spelling -e "set_spell_cmd(q[aspell list]); all_pod_files_spelling_ok(@ARGV)"'
-alias podspelltest='perl -MTest::More -MTest::Spelling -MPod::Wordlist::hanekomu -e "all_pod_files_spelling_ok(@ARGV)"'
-
 #alias podserver='{ sleep 2; $BROWSER http://localhost:8088/@frames; } & pgrep pod_server || { pod_server -s left -f ${1:-perl}; sleep 1; };'
 #alias podserver='{ sleep 2; $BROWSER http://localhost:4998; } & plackup -p 4998 -e "my \$app = require Pod::POM::Web::PSGI"'
 
