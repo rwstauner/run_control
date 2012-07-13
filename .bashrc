@@ -53,7 +53,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   export PAGER=less LESS=FRX
 
   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/:/usr/lib/pkgconfig/
-  export PYTHONSTARTUP=~/.python_startup
   export XML_CATALOG_FILES="$HOME/devel/xml/catalog /etc/xml/catalog"
 
   # bash history
