@@ -11,7 +11,7 @@
 
   # vary main prompt color by hostname if we're at work (judged by having more than 1 dot in hostname)
   PS1_MAIN_COLOR=`perl -e '$h=$ARGV[0]; print 30 + (($h =~ tr/.//) >= 2 ? (ord(substr($ARGV[0], 0, 1)) % 6) + 1 : 6)' $(hostname)`
-  PS1='\[ \033[0000m\033[${PS1_MAIN_COLOR}m\u\033[37m@\033[$PS1_MAIN_COLOR;01m\h\033[00;37m:\033[00;${PS1_MAIN_COLOR}m\w\033[37m #\033[33m\l \033[34m[\033[33m&\033[36m\j\033[34m \t \033[36m$?\033[33m?\033[34m] \033[35m\s \V\033[32m/\033[33m'$MULTIPLEXER'\033[34m $PERLBREW_PERL\033[00m \]\n\$ '
+  PS1='\[ \033[0000m\033[${PS1_MAIN_COLOR}m\u\033[37m@\033[$PS1_MAIN_COLOR;01m\h\033[00;37m:\033[00;${PS1_MAIN_COLOR}m\w\033[37m #\033[33m\l \033[34m[\033[33m&\033[36m\j\033[34m \t \033[36m$?\033[33m?\033[34m] \033[35m\s \V\033[32m/\033[33m${MULTIPLEXER}\033[34m $PERLBREW_PERL\033[00m \]\n\$ '
 #fi
 
 # use "set -x" to show the commands about to be executed (prefixed by PS4)
