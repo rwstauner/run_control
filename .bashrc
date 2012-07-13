@@ -33,7 +33,8 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 
   function box_msg () {
 #    if [[ $# -ne 1 ]]; then
-      perl -MList::Util=max -e '@lines = @ARGV ? @ARGV : <STDIN>; chomp(@lines); $len = max map { length } @lines; print $b = "-" x ($len + 4) . "\n"; printf("| %-${len}s |\n",$_) for @lines; print $b;' "$@"
+      # TODO: wrap to $COLUMNS
+      perl -MList::Util=max,min -e 'chomp(@lines = @ARGV ? @ARGV : <STDIN>); $len = max map { length } @lines; $len = min($ENV{COLUMNS}, $len) if $ENV{COLUMNS}; print $b = "-" x ($len + 4) . "\n"; printf("| %-${len}s |\n",$_) for @lines; print $b;' "$@"
 #    fi
 #    local msg="$1" border="------------------------------------------------------------"
 #    local len=$((${#msg}+4))
