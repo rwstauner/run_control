@@ -1,0 +1,34 @@
+-w
+--indent-columns=2
+
+# TODO: review 2012-06-19 release (https://rt.cpan.org/Public/Bug/Display.html?id=68872)
+# i usually have blanks before block comments anyway, this prevents doing it after the opening of a block
+--no-blanks-before-comments
+
+--continuation-indentation=2
+
+--closing-token-indentation=0
+
+-nicb
+
+--paren-tightness=1
+--brace-tightness=1
+--block-brace-tightness=0
+
+-nsts
+
+-isbc    # Don't indent comments without leading space
+-nce
+-nbl
+-bar
+
+--opening-token-right
+-vt=0    # less vertical tightness
+-vtc=0
+-bbvt=0
+
+#--stack-opening-tokens
+#--stack-closing-tokens
+
+# ?
+-ndnl
