@@ -37,8 +37,8 @@ alias gmstamp='perl -e "use Time::Stamp gmstamp => {@ARGV}; print gmstamp, qq[\n
 
 alias alternate='perl -ne "print( qq/\033[/ . ( \$. % 2 ? q/33/ : q/36/ ). q/m/ . \$_ . qq/\033[0m/ );"'
 
-which bas64 || \
-  alias base64='perl -MMIME::Base64 -0777 -ne "print shift eq q[-d] ? decode_base64($_) : encode_base64(\$_)"'
+which base64 &> /dev/null || \
+  alias base64='perl -MMIME::Base64 -0777 -sne "print \$d ? decode_base64(\$_) : encode_base64(\$_)" --'
 
 alias perl1='perl -CSDLA -Mcharnames=:full -MData::Printer -MData::Dumper -MYAML::Any -MClass::Autouse=:superloader -E "sub D(\$){ print Dumper(shift) } sub Y(\$){ print Dump(shift) } sub P(\$) { &p(shift) }"'
 
