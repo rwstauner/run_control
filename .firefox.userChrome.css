@@ -78,3 +78,35 @@ tab[selected="true"],
 	opacity: 1.0 !important;
 }
 
+/* firefox 4 */
+/* make the url preview (on link hover) easier to see) */
+statuspanel {
+  /* normal */
+	bottom: 2px !important;
+    /* above vimperator bar */
+    /* bottom: 20px !important; */
+	/* -moz-box-shadow: 0 0 5px 5px #111 !important; */
+	left: 2px !important;
+}
+.statuspanel-label:not([value=""]) {
+	background: #111 !important;
+	color: #0f0 !important;
+	opacity: 1 !important;
+/* 	-moz-transition-property: opacity: 0 !important;
+	-moz-transition-delay: 2000ms !important; */
+}
+
+/* Make Link Box Transparent */
+/*
+.statuspanel-label[value=""] {
+	display: none !important;
+}
+#main-window[sizemode="normal"]:not([inFullscreen]) .statuspanel-inner{
+	margin: 0 1px !important;
+}
+.statuspanel-label {
+	color: Windows Text !important;
+	border-color: Transparent !important;
+	background: Transparent !important;
+}
+*/
