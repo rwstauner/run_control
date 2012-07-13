@@ -43,7 +43,7 @@ which base64 &> /dev/null || \
 alias perl1='perl -CSDLA -Mcharnames=:full -MData::Printer -MData::Dumper -MYAML::Any -MClass::Autouse=:superloader -E "sub D(\$){ print Dumper(shift) } sub Y(\$){ print Dump(shift) } sub P(\$) { &p(shift) }"'
 
 # sometimes perldoc doesn't like en_US.utf8
-alias perldoc='env LANG=en_US perldoc'
+#alias perldoc='env LANG=en_US perldoc'
 
 # alias podspelltest='perl -MTest::More -MTest::Spelling -e "set_spell_cmd(q[aspell list]); all_pod_files_spelling_ok(@ARGV)"'
 alias podspelltest='perl -MTest::More -MTest::Spelling -MPod::Wordlist::hanekomu -e "all_pod_files_spelling_ok(@ARGV)"'
