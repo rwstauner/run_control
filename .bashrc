@@ -87,10 +87,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   alias external_ip_address='dig +short myip.opendns.com @resolver1.opendns.com'
   alias ftp='/usr/bin/ftp' # kerberos ftp bothers me
 
-  alias grep='env LC_ALL=POSIX grep --color=auto'
-  alias Grep='grep'
-  alias zgrep='zgrep --color=auto'
-
   alias ll='ls -l --color=auto'
   alias lf='ll -aF'
   alias lh='lf -h'
