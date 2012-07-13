@@ -86,3 +86,6 @@ function vim_pm () {
     vim -c 'set ft=perl' -c "norm iuse $1;" -c 'norm B\f' -c 'bunload! 1';
   fi
 }
+
+# exuberant ctags: http://ctags.sourceforge.net/
+alias ctags-perl='ctags -f tags --recurse --totals --languages=Perl --langmap=Perl:+.t lib t/lib'
