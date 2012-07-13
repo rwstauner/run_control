@@ -68,7 +68,8 @@ function cover_tests () {
 function prove_coverage () {
   cover -delete;
   # hide Devel::Cover warnings about Moose, et al.
-  HARNESS_PERL_SWITCHES="-I$HOME/perl5/local-lib-5.14-devel-cover/lib/perl5 -MDevel::Cover" prove --color "$@" 2>&1 | grep -v "Devel::Cover: Can't open";
+  #HARNESS_PERL_SWITCHES="-I$HOME/perl5/local-lib-5.14-devel-cover/lib/perl5 -MDevel::Cover" prove --color "$@" 2>&1 | grep -v "Devel::Cover: Can't open";
+  HARNESS_PERL_SWITCHES="-MDevel::Cover\\ 0.89" prove --color "$@" 2>&1 | grep -v "Devel::Cover: Warning: can't open";
   cover;
 }
 
