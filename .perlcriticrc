@@ -1,2 +1,7 @@
 # what else should go here?
 theme = core
+
+[BuiltinFunctions::ProhibitStringyEval]
+allow_includes = 1
+
+[Bangs::ProhibitBitwiseOperators]
