@@ -15,6 +15,7 @@
 	# NOTE: git uses 'sh'
 	adp = add -p
 	civ = commit -v
+	# clone repo, make remote "origin" for first arg and "upstream" for second
 	clone-fork = "!_git_clone_fork () { fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream; }; _git_clone_fork"
 	current-branch = "!git branch | awk '/^[*] / { print $2 }'"
 	diffcw  = diff   --color-words=.
@@ -22,7 +23,10 @@
 	logpcw  = log -p --color-words=.
 	logpcww = log -p --color-words=\\\\w+
 	diffwithsubs = "!git submodule summary; git diff"
+	# change github username
+	#fix-github-remote = "!sed -i -re 's/(github.com:)magnificent-tears/\\1rwstauner/' .git/config"
 	grep-todo = grep -iE 'to.?do|fix.?me'
+	#homepage-metacpan = "!curl -v -d \"login=`git config github.user`&token=`git config github.token`&values[homepage]=http://metacpan.org/release/${PWD##*/}\" \"https://github.com/api/v2/json/repos/show/rwstauner/${PWD##*/}\""
 	# there must be a better way
 	last-sha = "!git show HEAD --oneline | head -n1 | awk '{print $1}'"
 	last-tag = "!git describe --tags --long | sed -re 's/-[0-9]+-g[a-f0-9]+$//'"
