@@ -13,16 +13,30 @@
 	default = tracking
 [alias]
 	# NOTE: git uses 'sh'
+
+	add-p = add -p
 	adp = add -p
 	civ = commit -v
 	# clone repo, make remote "origin" for first arg and "upstream" for second
 	clone-fork = "!_git_clone_fork () { fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream; }; _git_clone_fork"
 	current-branch = "!git branch | awk '/^[*] / { print $2 }'"
+
+	vimdiff = !vim +Gdiff
+
+	ix      = diff --cached
+
+	diffstat = diff --stat
+	diffst   = diff --stat
+
+	# show char-by-char (or word-by-word) differences instead of whole lines
+	ixcw    = diff   --color-words=. --cached
+	ixcww   = diff   --color-words=\\\\w+ --cached
 	diffcw  = diff   --color-words=.
 	diffcww = diff   --color-words=\\\\w+
 	logpcw  = log -p --color-words=.
 	logpcww = log -p --color-words=\\\\w+
 	diffwithsubs = "!git submodule summary; git diff"
+
 	# change github username
 	#fix-github-remote = "!sed -i -re 's/(github.com:)magnificent-tears/\\1rwstauner/' .git/config"
 	grep-todo = grep -iE 'to.?do|fix.?me'
@@ -30,7 +44,14 @@
 	# there must be a better way
 	last-sha = "!git show HEAD --oneline | head -n1 | awk '{print $1}'"
 	last-tag = "!git describe --tags --long | sed -re 's/-[0-9]+-g[a-f0-9]+$//'"
+
+	logstat = log --stat
+	logst   = log --stat
+
 	log-since-tag = "!_git_log_since_tag () { tag=`git last-tag`; revs=$tag..HEAD; git log $* $revs; echo '\n=== '$revs' ===\n'; git tag-summary $tag; }; _git_log_since_tag"
+
+	prune-all = !git remote | xargs -n 1 git remote prune
+
 	branch-to-remote = "!_git_branch_to_remote () { branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch; }; _git_branch_to_remote"
 	branch-track = "!_git_branch_track () { branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch; }; _git_branch_track"
 	st = status -s -b -u
