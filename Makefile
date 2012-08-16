@@ -4,9 +4,10 @@ DIFF = git diff --no-index
 # everything but . and ..
 ALL_RC_FILES = $(wildcard .[^.]*)
 # files to copy instead of link (files include additional instructions)
-CP_RC_FILES = .gitconfig .curlrc
+CP_RC_FILES = .curlrc
 # files I'm not using anymore
 ARCHIVED_RC = .pork .ratpoisonrc
+
 # files that don't need to go anywhere
 EXCLUDE_RC = $(ARCHIVED_RC) $(wildcard .*.css) .git $(wildcard .tmux.conf.*)
 # everything else
@@ -48,6 +49,8 @@ define EXISTS_OR
 	fi
 endef
 
+.PHONY: all diff scripts
+
 # NOTE: $(call X,$$shvar) needs doubled $'s ($$$$shvar) in older make
 all:
 	@if [ "`pwd`" != "$(SOURCEDIR)" ]; then \
@@ -73,3 +76,6 @@ diff:
 	@for rc in $(CP_RC_FILES); do \
 		$(call EXISTS_OR,$$rc,$$rc,d,e); \
 	done;
+
+scripts:
+	@for script in scripts/*; do ./$$script; done
