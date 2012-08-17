@@ -3,8 +3,6 @@ DIFF = git diff --no-index
 
 # everything but . and ..
 ALL_RC_FILES = $(wildcard .[^.]*)
-# files to copy instead of link (files include additional instructions)
-CP_RC_FILES = .curlrc
 # files I'm not using anymore
 ARCHIVED_RC = .pork .ratpoisonrc
 
