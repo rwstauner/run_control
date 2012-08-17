@@ -71,7 +71,8 @@ $gc alias.intercommit     $'!_() { git show "$1" > .git/commit1 && git show "$2"
 
 # gitk
 $gc alias.k               $'!gitk'
-$gc alias.kv              $'!vim +Gitv'
+# Gitv (from the command line seems to require an argument)
+$gc alias.kv              $'!vim -c "silent Gitv" `if test "$#" -gt 0; then echo "$@"; else echo .; fi`'
 
 # there must be a better way
 $gc alias.last-sha        $'!git show HEAD --oneline | head -n1 | awk \047{print $1}\047'
