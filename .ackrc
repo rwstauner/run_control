@@ -1,5 +1,6 @@
 #--column
 --ignore-dir=.build
+--ignore-dir=.cache
 --sort-files
 #--show-types
 --type-set=json=.json
