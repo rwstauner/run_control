@@ -1,5 +1,15 @@
 #!/bin/bash
 
+file="$HOME/.gitconfig"
+umask 0077
+touch "$file"
+
+# if there's no modeline put one there
+if ! grep -qE '^# vim: .+:$' "$file"; then
+  # set ro to remind me not to edit the file
+  sed -i -e '1 i# vim: set ro ts=2:' "$file"
+fi
+
 gc="git config --global"
 
 $gc color.ui             auto
