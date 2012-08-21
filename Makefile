@@ -26,6 +26,7 @@ define LINK_RC
 		fi; \
 	else \
 		echo ln -s "$$source" "$$dest"; \
+		ln -s "$$source" "$$dest"; \
 	fi
 endef
 
