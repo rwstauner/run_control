@@ -33,7 +33,7 @@ endef
 .PHONY: all scripts
 
 # NOTE: $(call X,$$shvar) needs doubled $'s ($$$$shvar) in older make
-all:
+all: scripts
 	@if [ "`pwd`" != "$(SOURCEDIR)" ]; then \
 		echo "link to $(SOURCEDIR) and try again"; \
 		exit 1; \
@@ -51,4 +51,5 @@ all:
 	@echo -e "\033[0044mTODO:\033[00m dzil"
 
 scripts:
-	@for script in scripts/*; do ./$$script; done
+	@umask 0377; \
+	for script in scripts/*; do echo $$script; ./$$script; done
