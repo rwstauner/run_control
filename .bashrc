@@ -45,9 +45,9 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   }
 
   # bash history
-  shopt -s histreedit histverify
+  shopt -s histappend histreedit histverify
   HISTIGNORE=lf
-  HISTCONTROL=ignoredups
+  HISTCONTROL=ignoreboth:erasedups
   HISTFILESIZE=3000 HISTSIZE=3000
   #export HISTTIMEFORMAT='%H:%M:%S '
 
