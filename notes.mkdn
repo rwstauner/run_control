@@ -80,6 +80,7 @@ compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
     psutils pdftk cups-pdf
     xclip xsel xsane xsensors
     autokey-gtk
+    clamz
     flac vorbis-tools mpg123 lame normalize-audio sox paprefs paman mplayer mplayer-fonts mplayer-gui mencoder ffmpeg ffmpeg2theora abcde cdparanoia cheese cd-discid audacity
     gmusicbrowser libgstreamer-interfaces-perl libgtk2-perl libgnome2-wnck-perl
     curl lynx midori elinks
@@ -155,8 +156,9 @@ http://www.imagemagick.org/script/install-source.php
 # run_control
 
 * link git dir; make
-* copy: `.xchat2/ .xscreensaver .dzil/ .vimperator* ~/`
+* copy: `.xchat2/ .xscreensaver .dzil/ .vimperator* .clamz ~/`
 * copy: `autokey/ gmusicbrowser/ google-* inkscape/ libreoffice/ Skype/ transmission/ ~/.config/`
+* check `~/.config/autokey/autokey.json` for compatibility
 
 # fonts
 
