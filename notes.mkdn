@@ -1,0 +1,186 @@
+> vim: set ts=4 sts=4 sw=4 et sta:
+
+# New linux install
+
+## create bootable usb
+
+https://help.ubuntu.com/community/Installation/FromUSBStick
+
+    sudo apt-get install usb-creator-gtk
+    usb-creator-gtk -i xubuntu-12.04-desktop-amd64.iso
+
+## installation
+
+* use advanced partition manager
+* modify desired partition (/dev/sda6 or /dev/sda7)
+    * format ext4
+    * mount /
+
+# grub
+
+* copy splash image from old partition
+* add env lines to top of /etc/grub.d/05_debian_theme:
+
+    # rando:
+    WALLPAPER=/boot/grub/.splash.tga
+    COLOR_NORMAL="green/black"
+    COLOR_HIGHLIGHT="magenta/black"
+
+## if the MBR doesn't get rewritten
+
+* boot to old OS
+* sudo update-grub (to rebuild the menu)
+* boot to new OS
+* sudo grub-install /dev/sda (NOTE: no number)
+* sudo update-grub (to rebuild the menu)
+
+# upgrade ubuntu
+
+## if apt is messed up (likely b/c of skype):
+
+    sudo apt-get install libxss1:i386 libqtcore4:i386 libqt4-dbus:i386
+    sudo apt-get install --reinstall libc6-i386
+
+# hardware
+
+## backlight
+
+nvidiabl:
+
+    make dkms-install
+
+/etc/default/grub: change var:
+
+    #GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+    GRUB_CMDLINE_LINUX_DEFAULT="acpi_backlight=vendor"
+
+copy `/etc/pm/sleep.d/21_custom-backlight_reset`
+
+## suspend/hibernate
+
+compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
+
+## packages
+
+    aptitude
+    vim vim-doc vim-nox vim-gtk ctags
+    build-essential autotools-dev automake libtool
+    moreutils patchutils diffstat icoutils
+    libevent-dev libncurses-dev libcurl4-openssl-dev
+    openssh-server sshfs
+    git git-core git-doc git-cvs git-email git-gui git-svn gitk gitweb
+    bash bash-completion zsh zsh-doc
+    libperl-dev gcc libjpeg-dev libbz2-dev libtiff4-dev libwmf-dev libz-dev libpng12-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev perl libjasper-dev libltdl3-dev graphviz pkg-config liblzma-dev libwebp-dev
+    gimp gimp-data gimp-data-extras gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gimp-texturize
+    imagemagick inkscape qrencode jhead eog
+    libreoffice
+    irssi xchat
+    sqlite3 sqlite3-doc sqlite3-pcre
+    postgresql-client-8.4
+    psutils pdftk cups-pdf
+    xclip xsel xsane xsensors
+    autokey-gtk
+    flac vorbis-tools mpg123 lame normalize-audio sox paprefs paman mplayer mplayer-fonts mplayer-gui mencoder ffmpeg ffmpeg2theora abcde cdparanoia cheese cd-discid audacity
+    gmusicbrowser libgstreamer-interfaces-perl libgtk2-perl libgnome2-wnck-perl
+    curl lynx midori elinks
+    clamav
+    libreadline-dev rlwrap
+    samba samba-tools libsmbclient-dev smbfs cifs-utils
+    apache2 apache2-mpm-prefork apache2-utils apache2.2-bin apache2.2-common
+    libapache2-mod-fcgid
+    libapache2-mod-php5 php-geshi php5-cli php5-common php5-gd
+    nodejs
+    xmlstarlet
+    python-setuptools python-avahi
+    unrar unzip tnef
+    xfce4-sensors-plugin xfce4-artwork xfce4-clipman xfce4-clipman-plugin
+    xbacklight
+    cmatrix fortune-mod fortunes-min
+    wireshark socat nmap gftp
+    wine winetricks cabextract
+    unicode-screensaver xscreensaver-data-extra xscreensaver-gl-extra xscreensaver-screensaver-bsod
+
+### skype
+
+if necessary:
+
+    #sudo apt-get install skype:i386
+
+better:
+https://help.ubuntu.com/community/Skype
+
+    sudo add-apt-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+    sudo apt-get update && sudo apt-get install skype
+
+copy ~/.Skype
+
+### browsers
+
+* google chrome
+    * download
+    * re-link ~/.config/google-chrome
+* firefox
+    * download: [64bit](ftp://ftp.mozilla.org/pub/firefox/releases/14.0.1/linux-x86_64/en-US/)
+    * re-link profile dir
+
+#### flash video
+
+http://askubuntu.com/questions/117127/flash-video-appears-blue
+
+    sudo add-apt-repository ppa:tikhonov/misc
+    sudo apt-get update
+    sudo apt-get install libvdpau1
+
+### perl
+
+* cpan autobundle on old OS
+* perlbrew
+    * curl -L install.perlbrew.pl | bash
+    * copy ~/perl5/perlbrew/dists
+    * copy .cpanreporter/ .cpantesters/ .metabase/
+    * copy .cpan/patches/ .cpan/prefs/
+
+    perlbrew install perl-5.14.2 --as 5.14.2-st -Dusethreads -Duseshrplib -Dlddlflags='-shared -O2 -L/home/rando/perl5/perlbrew/perls/5.14.2-st/lib/5.14.2/x86_64-linux-thread-multi/CORE'
+
+## imagemagick
+
+http://www.imagemagick.org/script/install-source.php
+
+--with-perl-options?
+
+    ./configure --with-perl=`which perl | xargs readlink -f` --with-x --enable-zero-configuration --enable-hdri --with-modules --prefix=$HOME/opt/imagemagick
+    make
+    make install
+
+# run_control
+
+* link git dir; make
+* copy: `.xchat2/ .xscreensaver .dzil/ .vimperator* ~/`
+* copy: `autokey/ gmusicbrowser/ google-* inkscape/ libreoffice/ Skype/ transmission/ ~/.config/`
+
+# fonts
+
+    ~/.fonts/Symbola605.ttf
+
+# sound
+
+compare ~/.pulse/default.pa
+
+    load-module module-alsa-sink device=hw:1,9 sink_name=NVidia_HDMI
+
+compare ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-mixer.xml
+
+# window manager
+
+wade through settings looking for new things
+
+# web servers
+
+copy local vhost confs
+
+    a2dissite default
+    a2ensite shared_hosting
+    a2enmod proxy
+    a2enmod proxy_http
+    a2enmod headers
+    a2enmod rewrite
