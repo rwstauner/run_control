@@ -5,6 +5,7 @@
 
 file="$HOME/.curlrc"
 
+rm -f "$file"
 cat <<CURLRC > "$file"
 # NOTE: this file is generated
 # vim: set ro:
