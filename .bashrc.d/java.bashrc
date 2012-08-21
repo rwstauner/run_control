@@ -1,3 +1,5 @@
+[[ -d "$HOME/java" ]] || return
+
   # prefer jdk
   JAVA_HOME="`ls -d $HOME/java/jdk* | head -n1`"
 
