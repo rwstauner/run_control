@@ -35,6 +35,7 @@ $gc alias.adp             $'add -p'
 #$gc alias.bunch           $'!gitbunch'
 
 $gc alias.civ             $'commit -v'
+$gc alias.amend           $'commit -v --amend'
 
 # clone repo, make remote "origin" for first arg and "upstream" for second
 $gc alias.clone-fork      $'!_() { fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream; }; _'
