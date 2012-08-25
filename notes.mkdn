@@ -85,6 +85,7 @@ compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
     gmusicbrowser libgstreamer-interfaces-perl libgtk2-perl libgnome2-wnck-perl
     curl lynx midori elinks
     clamav
+    hp-lip python-qt4 hplip-gui
     libreadline-dev rlwrap
     samba samba-tools libsmbclient-dev smbfs cifs-utils
     apache2 apache2-mpm-prefork apache2-utils apache2.2-bin apache2.2-common
@@ -173,6 +174,10 @@ compare ~/.pulse/default.pa
     load-module module-alsa-sink device=hw:1,9 sink_name=NVidia_HDMI
 
 compare ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-mixer.xml
+
+# printer
+
+hp-setup -i
 
 # window manager
 
