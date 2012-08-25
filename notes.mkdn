@@ -65,6 +65,7 @@ compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
     aptitude
     vim vim-doc vim-nox vim-gtk ctags
     build-essential autotools-dev automake libtool
+    libexpat-dev libxml2-dev
     moreutils patchutils diffstat icoutils
     libevent-dev libncurses-dev libcurl4-openssl-dev
     openssh-server sshfs
