@@ -86,10 +86,10 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
     export LS_COLORS="$LS_COLORS*.svg=00;35:*.xcf=00;35:*.html=00;33:*.css=00;33:`for i in pl py rb lua tcl sh bash bsh; { echo -n "*.$i=00;32:"; }`";
   fi
 
-  alias pseo='ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command'
-  alias psoe='pseo'
-  alias psgrep='pseo | head -n1; pseo | grep'
-  alias psvgrep='psgrep -v grep | grep'
+  function psgrep () {
+    ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command | \
+      { read; echo "$REPLY"; cat | grep "$@"; };
+  }
 
   alias rename='rename -v'
   alias rmdir='rmdir -v'
