@@ -32,6 +32,8 @@ $gc push.default         tracking
 $gc alias.add-p           $'add -p'
 $gc alias.adp             $'add -p'
 
+$gc alias.bnm             branch --no-merged
+
 #$gc alias.bunch           $'!env FILE_LOG_LEVEL=off gitbunch'
 #$gc alias.bunch           $'!gitbunch'
 
@@ -88,10 +90,15 @@ $gc alias.logst           $'log --stat'
 
 $gc alias.log-since-tag   $'!_() { tag=`git last-tag`; revs=$tag..HEAD; git log $* $revs; echo "\n=== $revs ===\n"; git tag-summary $tag; }; _'
 
+# condense log output (http://coderwall.com/p/euwpig?p=1&q=)
+$gc alias.lg               "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+$gc alias.lgpcw           $'!git lg -p --color-words=.'
+
 # what new commits have been created by the last command (like "git pull")
 $gc alias.new             $'!_() { git log $1@{1}..$1@{0} "$@"; }; _'
 
 $gc alias.prune-all       $'!git remote | xargs -n 1 git remote prune'
+$gc alias.pum             $'pull upstream master'
 
 $gc alias.branch-to-remote       $'!_() { branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch; }; _'
 $gc alias.branch-track    $'!_() { branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch; }; _'
