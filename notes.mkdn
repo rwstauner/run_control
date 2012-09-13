@@ -88,6 +88,7 @@ compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
     curl lynx midori elinks
     clamav
     hp-lip python-qt4 hplip-gui
+    puppet puppetmaster puppet-lint vim-puppet vagrant
     libreadline-dev rlwrap
     samba samba-tools libsmbclient-dev smbfs cifs-utils
     apache2 apache2-mpm-prefork apache2-utils apache2.2-bin apache2.2-common
