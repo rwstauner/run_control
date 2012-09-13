@@ -100,7 +100,7 @@ compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
     xfce4-sensors-plugin xfce4-artwork xfce4-clipman xfce4-clipman-plugin
     xbacklight
     cmatrix fortune-mod fortunes-min
-    wireshark socat nmap gftp
+    wireshark socat nmap gftp traceroute
     wine winetricks cabextract
     unicode-screensaver xscreensaver-data-extra xscreensaver-gl-extra xscreensaver-screensaver-bsod
 
