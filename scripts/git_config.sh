@@ -3,6 +3,7 @@
 file="$HOME/.gitconfig"
 umask 0077
 touch "$file"
+chmod 0600 "$file"
 
 # if there's no modeline put one there
 if ! grep -qE '^# vim: .+:$' "$file"; then
@@ -119,3 +120,5 @@ lgc="$HOME/.gitconfig.local.sh"
 if [[ -f "$lgc" ]]; then
   "$lgc"
 fi
+
+chmod 0600 "$file"
