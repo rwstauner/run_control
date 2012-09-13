@@ -7,7 +7,7 @@ ALL_RC_FILES = $(wildcard .[^.]*)
 ARCHIVED_RC = .pork .ratpoisonrc
 
 # files that don't need to go anywhere
-EXCLUDE_RC = $(ARCHIVED_RC) $(wildcard .*.css) .git $(wildcard .tmux.conf.*)
+EXCLUDE_RC = $(ARCHIVED_RC) $(wildcard .*.css) .git .gitignore $(wildcard .tmux.conf.*)
 # everything else
 LN_RC_FILES = $(filter-out $(EXCLUDE_RC),$(ALL_RC_FILES))
 
