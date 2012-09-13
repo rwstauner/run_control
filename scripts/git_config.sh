@@ -48,8 +48,8 @@ $gc alias.current-branch  $'!git branch | awk \047/^[*] / { print $2 }\047'
 $gc alias.vimdiff         $'!vim +Gdiff'
 $gc alias.ix              $'diff --cached'
 
-$gc alias.diffstat        $'diff --stat'
-$gc alias.diffst          $'diff --stat'
+$gc alias.diffstat        $'diff --stat -r'
+$gc alias.diffst          $'diff --stat -r'
 
 # show char-by-char (or word-by-word) differences instead of whole lines
 $gc alias.ixcw            $'diff   --color-words=. --cached'
