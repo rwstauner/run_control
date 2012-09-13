@@ -98,7 +98,8 @@ $gc alias.branch-track    $'!_() { branch=${1} remote=${2:-origin}; git branch -
 # run daemon (use !git to run from repo root) then try git ls-remote
 $gc alias.serve           $'!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
-$gc alias.st              $'status -s -b -u'
+$gc alias.st              $'status'
+$gc alias.s               $'status -s -b -u'
 $gc alias.tag-summary     $'!_() { git show --summary ${1:-`git last-tag`}; }; _'
 
 # whois takes a name or email
