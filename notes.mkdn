@@ -65,13 +65,14 @@ compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
     aptitude
     vim vim-doc vim-nox vim-gtk ctags
     build-essential autotools-dev automake libtool
+    perl libperl-dev perl-doc liblocal-lib-perl
     libexpat-dev libxml2-dev
     moreutils patchutils diffstat icoutils
     libevent-dev libncurses-dev libcurl4-openssl-dev
     openssh-server sshfs
     git git-core git-doc git-cvs git-email git-gui git-svn gitk gitweb
     bash bash-completion zsh zsh-doc
-    libperl-dev gcc libjpeg-dev libbz2-dev libtiff4-dev libwmf-dev libz-dev libpng12-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev perl libjasper-dev libltdl3-dev graphviz pkg-config liblzma-dev libwebp-dev
+    gcc libjpeg-dev libbz2-dev libtiff4-dev libwmf-dev libz-dev libpng12-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev libjasper-dev libltdl3-dev graphviz pkg-config liblzma-dev libwebp-dev
     gimp gimp-data gimp-data-extras gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gimp-texturize
     imagemagick inkscape qrencode jhead eog
     libreoffice
