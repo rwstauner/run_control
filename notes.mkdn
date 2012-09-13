@@ -145,6 +145,7 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
     * copy .cpan/patches/ .cpan/prefs/
 
     perlbrew install perl-5.14.2 --as 5.14.2-st -Dusethreads -Duseshrplib -Dlddlflags='-shared -O2 -L/home/rando/perl5/perlbrew/perls/5.14.2-st/lib/5.14.2/x86_64-linux-thread-multi/CORE'
+    perlbrew alias -f create perl-5.14.2-st local
 
     sudo ln -s ~/perl5/perlbrew/perls/local/bin/perl /usr/local/bin/
 
