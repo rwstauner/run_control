@@ -58,7 +58,13 @@ copy `/etc/pm/sleep.d/21_custom-backlight_reset`
 
 ## suspend/hibernate
 
-compare /etc/pm/sleep.d/ (custom scripts: backlight? usb3? metabase-relayd?)
+compare /etc/pm/sleep.d/
+
+* backlight
+* usb3
+* metabase-relayd?
+
+[re-authorize hibernate](https://help.ubuntu.com/12.04/ubuntu-help/power-hibernate.html)
 
 ## packages
 
