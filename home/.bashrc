@@ -108,6 +108,13 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   alias rename='rename -v'
   alias rmdir='rmdir -v'
 
+  if which notify-send &> /dev/null; then
+    # copied from ubu 12.04 default .bashrc:
+    # Add an "alert" alias for long running commands.  Use like so:
+    #   sleep 10; alert
+    alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+  fi
+
   # let me use my aliases when delaying commands
   for i in xargs watch sudo; { eval "alias $i='$i '"; }
 
