@@ -2,12 +2,10 @@ SHELL=/bin/bash
 DIFF = git diff --no-index
 
 # everything but . and ..
-ALL_RC_FILES = $(wildcard .[^.]*)
-# files I'm not using anymore
-ARCHIVED_RC = .pork .ratpoisonrc
+ALL_RC_FILES = $(shell ls -A home/)
 
 # files that don't need to go anywhere
-EXCLUDE_RC = $(ARCHIVED_RC) $(wildcard .*.css) .git .gitignore $(wildcard .tmux.conf.*)
+EXCLUDE_RC = $(subst home/,,$(wildcard home/.tmux.conf.*))
 # everything else
 LN_RC_FILES = $(filter-out $(EXCLUDE_RC),$(ALL_RC_FILES))
 
@@ -15,7 +13,7 @@ DIRNAME = run_control
 SOURCEDIR = $(HOME)/$(DIRNAME)
 
 define LINK_RC
-	source="$(DIRNAME)/$(1)"; \
+	source="$(DIRNAME)/home/$(1)"; \
 	dest="$(HOME)/$(2)"; \
 	if [ -e "$$dest" ]; then \
 		if [ "`readlink "$$dest"`" == "$$source" ]; then \
@@ -25,6 +23,10 @@ define LINK_RC
 			echo "  skipping pre-existing $$filedesc file: $$dest"; \
 		fi; \
 	else \
+		if [[ -h "$$dest" ]]; then \
+			echo "removing broken symlink $$dest (`readlink $$dest`)"; \
+			rm -vf "$$dest"; \
+		fi; \
 		echo ln -s "$$source" "$$dest"; \
 		ln -s "$$source" "$$dest"; \
 	fi
