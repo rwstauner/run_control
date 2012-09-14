@@ -30,14 +30,10 @@ define LINK_RC
 	fi
 endef
 
-.PHONY: all scripts
+.PHONY: all in_home scripts
 
 # NOTE: $(call X,$$shvar) needs doubled $'s ($$$$shvar) in older make
-all: scripts
-	@if [ "`pwd`" != "$(SOURCEDIR)" ]; then \
-		echo "link to $(SOURCEDIR) and try again"; \
-		exit 1; \
-	fi; \
+all: in_home scripts
 	for rc in $(LN_RC_FILES); do \
 		$(call LINK_RC,$$rc,$$rc); \
 	done; \
@@ -50,6 +46,12 @@ all: scripts
 	fi;
 	@echo -e "\033[0044mTODO:\033[00m dzil"
 
-scripts:
+in_home:
+	@if [ "`pwd`" != "$(SOURCEDIR)" ]; then \
+		echo "link to $(SOURCEDIR) and try again"; \
+		exit 1; \
+	fi;
+
+scripts: in_home
 	@umask 0377; \
 	for script in scripts/*; do echo $$script; ./$$script; done
