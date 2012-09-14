@@ -131,7 +131,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
     function extract_pushd(){ pushd "`extract_archive "$@"`"; }
   fi
 
-  function eog { `which eog` "$@" &> /dev/null & }
   function math { if [[ $# -gt 0 ]]; then echo $'scale=2\n' "$*" | bc -l; else bc -l; fi; } #BC_ENV_ARGS=
   function mkdirpushd() { mkdir "$@"; pushd "$@"; }
   function my_ip(){ /sbin/ip addr show wlan0 | grep -oE '^\s*inet ([0-9.]+)' | awk '{print $2}'; }
@@ -140,6 +139,11 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
     mv "$1" "$tmp"; mv "$tmp" "`echo "$1" | tr '[A-Z]' '[a-z]'`"; unset tmp;
   }
   #perl -C -E 'say"i \x{2764} ",($^X =~ m#([^/\\]+)$#)'
+
+  # don't barf all over my terminal and make me 'reset'
+  for cmd in evince eog; do
+    eval "function $cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
+  done
 
 fi
 
