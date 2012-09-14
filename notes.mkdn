@@ -158,6 +158,8 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
 ### tmux
 
 rebuild from source for latest features
+https://github.com/ThomasAdam/tmux
+git://tmux.git.sourceforge.net/gitroot/tmux/tmux
 
 ### imagemagick
 
