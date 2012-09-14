@@ -83,14 +83,21 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   alias external_ip_address='dig +short myip.opendns.com @resolver1.opendns.com'
   alias ftp='/usr/bin/ftp' # kerberos ftp bothers me
 
-  alias ll='ls -l --color=auto'
+  alias ls='ls --color=auto'
+  alias ll='ls -l'
   alias lf='ll -aF'
   alias lh='lf -h'
   alias lft='lf --time-style=full-iso'
   if ! [[ -n "$LS_COLORS" ]]; then
-    eval `dircolors`;
-    #export LS_COLORS="$LS_COLORS*.svg=00;35:*.xcf=00;35:*.html=00;33:*.css=00;33:*.js=00;33:";
-    export LS_COLORS="$LS_COLORS*.svg=00;35:*.xcf=00;35:*.html=00;33:*.css=00;33:`for i in pl py rb lua tcl sh bash bsh; { echo -n "*.$i=00;32:"; }`";
+    if which dircolors &> /dev/null; then
+      eval `dircolors`
+      if [[ -r ~/.dircolors ]]; then
+        _def_ls_colors="$LS_COLORS"
+        eval `dircolors ~/.dircolors`
+        LS_COLORS="${_def_ls_colors}$LS_COLORS"
+        unset _def_ls_colors
+      fi
+    fi
   fi
 
   function psgrep () {

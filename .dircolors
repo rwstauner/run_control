@@ -1,0 +1,18 @@
+# image formats
+.svg   00;35
+.xcf   00;35
+
+# scripts
+.pl    00;32
+.py    00;32
+.rb    00;32
+.lua   00;32
+.tcl   00;32
+.sh    00;32
+.bash  00;32
+.bsh   00;32
+
+# web files
+.html  00;33
+.css   00;33
+.js    00;33
