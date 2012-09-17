@@ -84,7 +84,7 @@ compare /etc/pm/sleep.d/
     libreoffice
     irssi xchat
     sqlite3 sqlite3-doc sqlite3-pcre
-    postgresql-client-8.4
+    postgresql-client-8.4 libpq-dev
     psutils pdftk cups-pdf
     xclip xsel xsane xsensors
     autokey-gtk
