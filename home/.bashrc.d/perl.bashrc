@@ -1,6 +1,11 @@
 export NOPASTE_NICK=rwstauner
 export NOPASTE_SERVICES='Gist Shadowcat Pastie Snitch'
 
+function shadowpaste () {
+  # TODO: connect to channel and /invite shadowpaste
+  nopaste -s Shadowcat -c "$1" ${2:+-d "$2"};
+}
+
 # LWP 6.00 breaks CPAN::Reporter (when using Metabase Transport)
 # cert purchased on 2011/03/15
 #alias cpan='env PERL_LWP_SSL_VERIFY_HOSTNAME=0 cpan'
