@@ -140,6 +140,12 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   }
   #perl -C -E 'say"i \x{2764} ",($^X =~ m#([^/\\]+)$#)'
 
+  function scan_pdf () {
+    scan_dir=`mktemp -d /tmp/scan.XXXXXX`
+    (cd "$scan_dir"; hp-scan --grey --size=letter --adf -r 200)
+    mv  "$scan_dir/hpscan001.pdf" "$1"
+  }
+
   # don't barf all over my terminal and make me 'reset'
   for cmd in evince eog; do
     eval "function $cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
