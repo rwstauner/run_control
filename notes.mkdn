@@ -72,6 +72,8 @@ compare /etc/pm/sleep.d/
     vim vim-doc vim-nox vim-gtk ctags
     build-essential autotools-dev automake libtool
     perl libperl-dev perl-doc liblocal-lib-perl
+    libtry-tiny-perl libapp-nopaste-perl libgtk2-perl perlmagick
+    libgtk2.0-dev
     libexpat-dev libxml2-dev libxml2-util xmlstarlet
     moreutils patchutils diffstat icoutils
     libevent-dev libncurses-dev libcurl4-openssl-dev
@@ -90,7 +92,7 @@ compare /etc/pm/sleep.d/
     autokey-gtk
     clamz
     flac vorbis-tools mpg123 lame normalize-audio sox paprefs paman mplayer mplayer-fonts mplayer-gui mencoder ffmpeg ffmpeg2theora abcde cdparanoia cheese cd-discid audacity
-    gmusicbrowser libgstreamer-interfaces-perl libgtk2-perl libgnome2-wnck-perl
+    gmusicbrowser libgstreamer-interfaces-perl libgnome2-wnck-perl
     curl lynx midori elinks
     clamav
     hp-lip python-qt4 hplip-gui
