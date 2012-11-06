@@ -4,3 +4,4 @@
 --sort-files
 #--show-types
 --type-set=json=.json
+--type-set=puppet=.pp
