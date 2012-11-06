@@ -127,6 +127,8 @@ $gc alias.whatis          $'show -s --pretty="tformat:%h (%s, %ad)" --date=short
 lgc="$HOME/.gitconfig.local.sh"
 if [[ -f "$lgc" ]]; then
   "$lgc"
+else
+  echo "No '$lgc' script found" 1>&2
 fi
 
 chmod 0600 "$file"
