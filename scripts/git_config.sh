@@ -31,6 +31,7 @@ $gc push.default         tracking
 
 $gc alias.add-p           $'add -p'
 $gc alias.adp             $'add -p'
+$gc alias.touch           $'add -N'
 
 $gc alias.bnm             branch --no-merged
 
