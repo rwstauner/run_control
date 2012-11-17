@@ -100,6 +100,11 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
     fi
   fi
 
+  # sometimes my finger can't let go of the shift key used to make the pipe
+  alias Wc=wc
+
+  # show child process hierarchy with indentation
+  alias ps='ps -H'
   function psgrep () {
     ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command | \
       { read; echo "$REPLY"; cat | grep "$@"; };
