@@ -167,4 +167,4 @@ fi
 
 source_rc_files ~/.bashrc.d/* $EXTRA_BASHRC
 
-unset -f add_to_path source_rc_files
+#unset -f add_to_path source_rc_files
