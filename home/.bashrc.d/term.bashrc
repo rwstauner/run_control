@@ -1,4 +1,4 @@
-if [[ "$PS1" ]] && [[ "${TERM:-dumb}" != "dumb" ]]; then
+if [[ "${TERM:-dumb}" != "dumb" ]]; then
 # always use a terminal mutliplexer
 
 # NOTE: tmux is particular about $TERM ("xterm" outside, "screen" inside)
