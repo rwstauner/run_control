@@ -69,23 +69,29 @@ compare /etc/pm/sleep.d/
 ## packages
 
     aptitude
+    most
     vim vim-doc vim-nox vim-gtk ctags
     build-essential autotools-dev automake libtool
     perl libperl-dev perl-doc liblocal-lib-perl
     libtry-tiny-perl libapp-nopaste-perl libgtk2-perl perlmagick
     libgtk2.0-dev
-    libexpat-dev libxml2-dev libxml2-util xmlstarlet
+    libxml2 libexpat-dev libxml2-dev libxml2-utils libxslt-dev xmlstarlet
+    libyaml-dev
     moreutils patchutils diffstat icoutils
+    tree
     libevent-dev libncurses-dev libcurl4-openssl-dev
     openssh-server sshfs
-    git git-core git-doc git-cvs git-email git-gui git-svn gitk gitweb
+    git git-doc git-cvs git-email git-gui git-svn gitk gitweb
     bash bash-completion zsh zsh-doc
     gcc libjpeg-dev libbz2-dev libtiff4-dev libwmf-dev libz-dev libpng12-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev libjasper-dev libltdl3-dev graphviz pkg-config liblzma-dev libwebp-dev
     gimp gimp-data gimp-data-extras gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gimp-texturize
     imagemagick inkscape qrencode jhead eog
     libreoffice
+    pandoc
+    lyx
+    festival
     irssi xchat
-    sqlite3 sqlite3-doc sqlite3-pcre
+    sqlite3 sqlite3-doc sqlite3-pcre libsqlite3-dev
     postgresql-client-8.4 libpq-dev
     psutils pdftk cups-pdf
     xclip xsel xsane xsensors
@@ -96,19 +102,19 @@ compare /etc/pm/sleep.d/
     curl lynx midori elinks
     clamav
     hp-lip python-qt4 hplip-gui
-    puppet puppetmaster puppet-lint vim-puppet vagrant
+    puppet puppet-lint vim-puppet vagrant
     libreadline-dev rlwrap
     samba samba-tools libsmbclient-dev smbfs cifs-utils
     apache2 apache2-mpm-prefork apache2-utils apache2.2-bin apache2.2-common
     libapache2-mod-fcgid
     libapache2-mod-php5 php-geshi php5-cli php5-common php5-gd
     nodejs
-    python-setuptools python-avahi python-gpgme
+    python-setuptools python-pip python-avahi python-gpgme
     unrar unzip tnef
     xfce4-sensors-plugin xfce4-artwork xfce4-clipman xfce4-clipman-plugin
     xbacklight
     cmatrix fortune-mod fortunes-min
-    wireshark socat nmap gftp traceroute
+    wireshark socat nmap gftp traceroute whois
     wine winetricks cabextract
     unicode-screensaver xscreensaver-data-extra xscreensaver-gl-extra xscreensaver-screensaver-bsod
 
