@@ -162,6 +162,16 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
 
     sudo ln -s ~/perl5/perlbrew/perls/local/bin/perl /usr/local/bin/
 
+### ruby
+
+* rvm
+    * \curl -L https://get.rvm.io | bash -s stable --ruby
+
+install 1.9.3
+gem install puppet --version 2.7.13
+gem install vagrant
+gem install bundler
+
 ### tmux
 
 rebuild from source for latest features
