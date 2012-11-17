@@ -132,8 +132,12 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   }
 
 ## commands more complex than aliases
+  function full_path () { local f="$1"; [[ ${f:0:1} == "/" ]] || f="$PWD/$f"; echo "$f"; }
+
   function astronomy_picture() { pushd /monster/media/images/astronomy/; wget "$*"; display `basename "$*"`; popd; }
-  function browse_local_file() { local u="$1"; [[ ${u:0:1} == "/" ]] || u="$PWD/$u"; firefox "file://$u"; }
+
+  # TODO: url-encoding
+  function browse_local_file() { firefox "file://`full_path $1`"; }
 
   if test -x $HOME/bin/extract_archive; then
     function extract_pushd(){ pushd "`extract_archive "$@"`"; }
