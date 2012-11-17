@@ -44,6 +44,8 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 #    echo "$border"
   }
 
+  shopt -s checkwinsize
+
   # bash history
   shopt -s histappend histreedit histverify
 
