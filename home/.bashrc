@@ -13,11 +13,11 @@ source_rc_files /etc/bash.bashrc /etc/bashrc
 
 # different semantics than the typical pathmunge()
 function add_to_path () {
-  local after=0 dir
-  if [[ "$1" == "--after" ]]; then after=1; shift; fi
+  local after=false dir
+  if [[ "$1" == "--after" ]]; then after=true; shift; fi
   for dir in "$@"; do
     if [[ -d "$dir" ]] && ! echo "$PATH" | grep -qE "(^|:)$dir(:|$)"; then
-      if [[ "$after" ]]; then PATH="$PATH:$dir"; else PATH="$dir:$PATH"; fi
+      if $after; then PATH="$PATH:$dir"; else PATH="$dir:$PATH"; fi
     fi
   done
 }
