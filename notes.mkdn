@@ -62,7 +62,6 @@ compare /etc/pm/sleep.d/
 
 * backlight
 * usb3
-* metabase-relayd?
 
 [re-authorize hibernate](https://help.ubuntu.com/12.04/ubuntu-help/power-hibernate.html)
 
