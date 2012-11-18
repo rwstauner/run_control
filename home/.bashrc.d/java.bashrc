@@ -1,12 +1,25 @@
-[[ -d "$HOME/java" ]] || return
+function _find_home () {
+  var="$1"
+  shift
+  while [[ $# -gt 0 ]]; do
+    found="`ls -d $1 2> /dev/null | tail -n 1`"
+    if [[ -n "$found" ]]; then
+      while test -h "$found"; do
+        found="`readlink "$found"`"
+      done
+      eval "export $var='$found'"
+      add_to_path ${!var}/bin
+      break
+    fi
+    shift
+  done
+}
 
-  # prefer jdk
-  JAVA_HOME="`ls -d $HOME/java/jdk* 2> /dev/null | head -n1`"
+  # prefer jdk, accept jre
+  _find_home JAVA_HOME $HOME/java/{jdk,jre}\*
 
-  # accept jre
-[[ "$JAVA_HOME" ]] && [[ -e "$JAVA_HOME/bin/java" ]] || \
-  JAVA_HOME="`ls -d $HOME/java/j*   2> /dev/null | head -n1`"
+  _find_home GROOVY_HOME {$HOME/java,/opt}/groovy-\*
 
-  # found any?
-[[ "$JAVA_HOME" ]] && [[ -e "$JAVA_HOME/bin/java" ]] && \
-  export JAVA_HOME && add_to_path $JAVA_HOME/bin
+  _find_home GRAILS_HOME {$HOME/java,/opt}/grails-\*
+
+unset -f _find_home
