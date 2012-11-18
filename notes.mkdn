@@ -193,6 +193,10 @@ http://www.imagemagick.org/script/install-source.php
 copy dir
 [dl/install](https://www.dropbox.com/install?os=lnx)
 
+### virtualbox
+
+[deb packages](https://www.virtualbox.org/wiki/Linux_Downloads)
+
 # run_control
 
 * link git dir; make
