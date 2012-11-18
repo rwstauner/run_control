@@ -13,6 +13,7 @@ function shadowpaste () {
 # get the PERL5LIB, but don't set the install paths (cpanm handles that)
 # usage of local::lib is currently undecided thanks to perlbrew...
 #eval $(perl -Mlocal::lib | grep PERL5LIB)
+#eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
 
 #export PERL_UNICODE=AS
 
@@ -39,6 +40,9 @@ fi
 # shell aliases for perl commands
 alias buzzword='perl -MAcme::MetaSyntactic=buzzwords -le "print metaname"'
 alias gmstamp='perl -e "use Time::Stamp gmstamp => {@ARGV}; print gmstamp, qq[\n]"'
+
+# thanks oalders!
+alias penv='perl -MDDP -e "p(%ENV)"'
 
 alias alternate='perl -ne "print( qq/\033[/ . ( \$. % 2 ? q/33/ : q/36/ ). q/m/ . \$_ . qq/\033[0m/ );"'
 
@@ -82,13 +86,12 @@ function perltidydiff () {   perltidy < "$1" | git diffcw --no-index "$1" - | pe
 
 # get the pm file rather than the pod file (if they're different)
 function vim_pm () {
-  pm=`module_info "$@" | awk '/^File:/ { print $2 }'`;
-  [[ -n "$pm" ]] || pm=`perldoc -l "$@"`
-  pm="${pm/.pod/.pm}"
+  pm=`perldoc -ml "$@"`
   if [[ -e "$pm" ]]; then
     vim "$pm"
   else
-    vim -c 'set ft=perl' -c "norm iuse $1;" -c 'norm B\f' -c 'bunload! 1';
+    # check if the module exists and just isn't installed
+    grep_pm "$@" || echo " $* not found"
   fi
 }
 
