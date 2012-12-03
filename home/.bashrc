@@ -165,6 +165,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 
 fi
 
-source_rc_files ~/.bashrc.d/* $EXTRA_BASHRC
+source_rc_files ~/.bashrc.d/* ~/.bashrc.local $EXTRA_BASHRC
 
 #unset -f add_to_path source_rc_files
