@@ -24,7 +24,7 @@ $gc instaweb.modulepath  /usr/lib/apache2/modules
 
 $gc web.browser          firefox
 
-$gc push.default         tracking
+$gc push.default         upstream
 
 # NOTE: git uses 'sh'
 # find some nice examples at: https://git.wiki.kernel.org/index.php/Aliases
