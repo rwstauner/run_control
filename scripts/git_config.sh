@@ -29,7 +29,7 @@ $gc instaweb.modulepath  /usr/lib/apache2/modules
 
 $gc web.browser          firefox
 
-if have_git_version 1.7; then
+if have_git_version 1.7.5; then
   $gc push.default         upstream
 else
   # deprecated synonym
