@@ -11,6 +11,11 @@ if ! grep -qE '^# vim: .+:$' "$file"; then
   sed -i -e '1 i# vim: set ro ts=2:' "$file"
 fi
 
+git_version=`git --version`
+
+. "${0%/*}/.helpers.sh"
+function have_git_version () { version_ge "$git_version" "$1"; }
+
 gc="git config --global"
 
 $gc color.ui             auto
@@ -24,7 +29,12 @@ $gc instaweb.modulepath  /usr/lib/apache2/modules
 
 $gc web.browser          firefox
 
-$gc push.default         upstream
+if have_git_version 1.7; then
+  $gc push.default         upstream
+else
+  # deprecated synonym
+  $gc push.default         tracking
+fi
 
 # NOTE: git uses 'sh'
 # find some nice examples at: https://git.wiki.kernel.org/index.php/Aliases
