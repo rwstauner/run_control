@@ -2,6 +2,9 @@
 
 # lesskey takes input and dumps binary output into ~/.less
 
+touch      ~/.less
+chmod 0600 ~/.less
+
 cat <<LESSKEY | lesskey -
 #command
 
