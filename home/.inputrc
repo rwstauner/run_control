@@ -48,6 +48,14 @@ $if mode=emacs
 # xfce4-terminal
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+
+# [https://coderwall.com/p/oqtj8w] {
+"\eOA": history-search-backward
+"\eOB": history-search-forward
+#set show-all-if-ambiguous on
+#set completion-ignore-case on
+# }
+
 #"\eOc": forward-word
 #"\eOd": backward-word
 
