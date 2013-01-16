@@ -23,8 +23,9 @@ function add_to_path () {
 }
 
 # add_to_path /opt/*/bin
+add_to_path /opt/vagrant/bin
 add_to_path /opt/imagemagick/bin
-add_to_path $HOME/devel/linux $HOME/bin
+add_to_path $HOME/devel/linux $HOME/bin/contrib $HOME/bin
 
 ## only do these when in a terminal:
 
