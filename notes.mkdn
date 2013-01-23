@@ -70,7 +70,7 @@ compare /etc/pm/sleep.d/
     aptitude
     most
     vim vim-doc vim-nox vim-gtk ctags
-    build-essential autotools-dev automake libtool
+    build-essential autotools-dev automake autoconf libtool
     perl libperl-dev perl-doc liblocal-lib-perl
     libtry-tiny-perl libapp-nopaste-perl libgtk2-perl perlmagick
     libgtk2.0-dev
@@ -78,13 +78,16 @@ compare /etc/pm/sleep.d/
     libyaml-dev
     moreutils patchutils diffstat icoutils
     tree
-    libevent-dev libncurses-dev libcurl4-openssl-dev
+    libevent-dev libncurses-dev libssl-dev libcurl4-openssl-dev
     openssh-server sshfs
+    mtp-tools mtpfs
     git git-doc git-cvs git-email git-gui git-svn gitk gitweb
     bash bash-completion zsh zsh-doc
     gcc libjpeg-dev libbz2-dev libtiff4-dev libwmf-dev libz-dev libpng12-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev libjasper-dev libltdl3-dev graphviz pkg-config liblzma-dev libwebp-dev
     gimp gimp-data gimp-data-extras gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gimp-texturize
     imagemagick inkscape qrencode jhead eog
+    libmagickwand-dev
+    libfcgi-dev
     libreoffice
     pandoc
     lyx
