@@ -50,7 +50,7 @@ $gc alias.add-p           $'add -p'
 $gc alias.adp             $'add -p'
 $gc alias.touch           $'add -N'
 
-$gc alias.bnm             branch --no-merged
+$gc alias.bnm             $'branch --no-merged'
 
 #$gc alias.bunch           $'!env FILE_LOG_LEVEL=off gitbunch'
 #$gc alias.bunch           $'!gitbunch'
@@ -116,7 +116,9 @@ $gc alias.lgpcw           $'!git lg -p --color-words=.'
 $gc alias.new             $'!_() { git log $1@{1}..$1@{0} "$@"; }; _'
 
 $gc alias.prune-all       $'!git remote | xargs -n 1 git remote prune'
-$gc alias.pum             $'pull upstream master'
+
+# pum doesn't seem to be storing the fetch, so do both
+$gc alias.pum             $'!git fetch upstream; git pull upstream master'
 
 $gc alias.branch-to-remote       $'!_() { branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch; }; _'
 $gc alias.branch-track    $'!_() { branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch; }; _'
