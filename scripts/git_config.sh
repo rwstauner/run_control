@@ -18,6 +18,7 @@ function have_git_version () { version_ge "$git_version" "$1"; }
 
 gc="git config --global"
 
+# [settings]
 $gc color.ui             auto
 
 $gc merge.log            true
@@ -36,6 +37,12 @@ else
   $gc push.default         tracking
 fi
 
+# [diff helpers]
+# use with ".gitattributes": '*.png diff=exif'
+
+$gc diff.exif.textconv    exiftool
+
+# [aliases]
 # NOTE: git uses 'sh'
 # find some nice examples at: https://git.wiki.kernel.org/index.php/Aliases
 
