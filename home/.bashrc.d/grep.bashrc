@@ -1,7 +1,8 @@
+# putting color in GREP_OPTIONS makes it work for (b)zgrep, too
 GREP_OPTIONS="--color=auto"
 GREP_COLORS="ms=01;31:mc=01;33:sl=:cx=34:fn=35:ln=32:bn=32:se=36"
 export GREP_OPTIONS GREP_COLORS
 
-alias grep='env LC_ALL=POSIX grep --color=auto'
+# http://savannah.gnu.org/bugs/index.php?31389
+#alias grep='env LC_ALL=POSIX grep'
 alias Grep='grep'
-alias zgrep='zgrep --color=auto'
