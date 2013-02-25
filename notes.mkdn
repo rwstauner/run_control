@@ -97,6 +97,8 @@ compare /etc/pm/sleep.d/
     postgresql-client-8.4 libpq-dev
     psutils pdftk cups-pdf
     xclip xsel xsane xsensors
+    zenity
+    dict aspell
     autokey-gtk
     clamz
     flac vorbis-tools mpg123 lame normalize-audio sox paprefs paman mplayer mplayer-fonts mplayer-gui mencoder ffmpeg ffmpeg2theora abcde cdparanoia cheese cd-discid audacity
