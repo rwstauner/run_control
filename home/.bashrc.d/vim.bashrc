@@ -7,4 +7,6 @@ alias vimXcat='ex -c w\ !\ cat -c :q'
 alias :sp='vim'
 
 function vim_ack ()   { vim "+Ack $*"; }
+
 function vim_which () { vim `which "$1"`; }
+complete -c vim_which
