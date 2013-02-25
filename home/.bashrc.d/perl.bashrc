@@ -17,8 +17,10 @@ function shadowpaste () {
 
 #export PERL_UNICODE=AS
 
-perlbrewrc="$HOME/perl5/perlbrew/etc/bashrc"
-[[ -r "$perlbrewrc" ]] && source "$perlbrewrc"
+for pbparent in $HOME/perl5 /opt/perl5 /opt /usr/local/; {
+  perlbrewrc="$pbparent/perlbrew/etc/bashrc"
+  [[ -r "$perlbrewrc" ]] && source "$perlbrewrc";
+}
 
 # after perlbrew
 which setup-bash-complete &> /dev/null && . setup-bash-complete
@@ -49,8 +51,6 @@ alias alternate='perl -ne "print( qq/\033[/ . ( \$. % 2 ? q/33/ : q/36/ ). q/m/ 
 which base64 &> /dev/null || \
   alias base64='perl -MMIME::Base64 -0777 -sne "print \$d ? decode_base64(\$_) : encode_base64(\$_)" --'
 
-alias perl1='perl -CSDLA -Mcharnames=:full -MData::Printer -MData::Dumper -MYAML::Any -MClass::Autouse=:superloader -E "sub D(\$){ print Dumper(shift) } sub Y(\$){ print Dump(shift) } sub P(\$) { &p(shift) }"'
-
 # sometimes perldoc doesn't like en_US.utf8
 #alias perldoc='env LANG=en_US perldoc'
 
@@ -68,6 +68,7 @@ if [[ ~/perl5/prove-lib/.proverc ]]; then
   # play sounds on pass/fail, but only when i run prove from my command line directly
   alias prove="prove --rc=$HOME/perl5/prove-lib/.proverc"
 fi
+
 # test coverage
 function cover_tests () {
   cover -delete; #rm -rf cover_db/;
@@ -82,6 +83,7 @@ function prove_coverage () {
   cover;
 }
 
+# move fg to bg so we can see whitespace changes
 function perltidydiff () {   perltidy < "$1" | git diffcw --no-index "$1" - | perl -pe 's/\033\[3(\d)m/\033[4$1m/g'; }
 
 # get the pm file rather than the pod file (if they're different)
