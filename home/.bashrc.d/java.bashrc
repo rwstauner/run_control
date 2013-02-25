@@ -23,3 +23,8 @@ function _find_home () {
   _find_home GRAILS_HOME {$HOME/java,/opt}/grails-\*
 
 unset -f _find_home
+
+mvel_jar=`ls $JAVA_HOME/jars/mvel*.jar 2> /dev/null | tail -n 1`
+if [[ -n "$mvel_jar" ]]; then
+  alias mvel="rlwrap -C mvel java -jar $mvel_jar"
+fi
