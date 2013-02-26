@@ -19,10 +19,11 @@ function shadowpaste () {
 
 #export PERL_UNICODE=AS
 
-for pbparent in $HOME/perl5 /opt/perl5 /opt /usr/local/; {
+for pbparent in $HOME/perl5 /opt/perl5 /opt /usr/local; {
   perlbrewrc="$pbparent/perlbrew/etc/bashrc"
-  [[ -r "$perlbrewrc" ]] && source "$perlbrewrc";
+  [[ -r "$perlbrewrc" ]] && { source "$perlbrewrc"; break; }
 }
+unset pbparent
 
 # after perlbrew
 which setup-bash-complete &> /dev/null && . setup-bash-complete
