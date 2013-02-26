@@ -1,3 +1,5 @@
+#perl -C -le 'print map{chr}0151,32,0x2764,040,map{ord}split//,($^X=~m#([^/\\]+)$#)[0]'
+
 export NOPASTE_NICK=rwstauner
 export NOPASTE_SERVICES='Gist Shadowcat Pastie Snitch'
 
