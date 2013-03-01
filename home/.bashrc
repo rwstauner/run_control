@@ -45,23 +45,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
 #    echo "$border"
   }
 
-  shopt -s checkwinsize
-
-  # bash history
-  shopt -s histappend histreedit histverify
-
-  HISTCONTROL='ignoreboth:erasedups'
-
-  # with erasedups ignoring these doesn't seem all that useful:
-  # # forget commands that are simple and generic (no args)
-  # HISTIGNORE='fc *:history:l[slfh]:cd:[bf]g:vim:pushd:popd'
-  # #_hist_ignore_git=":amend:civ:status:st:s:adp:add -p:log:lg:logst:log -p:ls-files:push:pull:pum"
-  # HISTIGNORE="$HISTIGNORE${_hist_ignore_git//:/:git }"
-  # unset _hist_ignore_git
-
-  HISTFILESIZE=3000 HISTSIZE=3000
-  #export HISTTIMEFORMAT='%H:%M:%S '
-
 ## time
   # use full path to use this variable (/usr/bin/time) otherwise the bash built-in takes over
   TIME="     \n time: %E %e:elapsed %U:user %S:system %P:cpu(u+s/e)"
