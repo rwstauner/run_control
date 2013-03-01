@@ -22,11 +22,13 @@ function add_to_path () {
   done
 }
 
+# build $PATH
 # add_to_path /opt/*/bin
 add_to_path /opt/vagrant/bin
 add_to_path /opt/imagemagick/bin
-add_to_path $HOME/devel/linux $HOME/bin/contrib $HOME/bin
+add_to_path $HOME/bin/contrib $HOME/bin
 
+# load the rest
 source_rc_files ~/.bashrc.d/* ~/.bashrc.local $EXTRA_BASHRC
 
 #unset -f add_to_path source_rc_files
