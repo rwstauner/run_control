@@ -8,9 +8,6 @@ function source_rc_files () {
   done
 }
 
-# Source global definitions
-source_rc_files /etc/bash.bashrc /etc/bashrc
-
 # different semantics than the typical pathmunge()
 function add_to_path () {
   local after=false dir
@@ -22,6 +19,12 @@ function add_to_path () {
   done
 }
 
+# source global definitions
+source_rc_files /etc/bash.bashrc /etc/bashrc
+
+TERM_IS_INTERACTIVE=false
+[[ -n "$PS1" ]] && [[ "${TERM:-dumb}" != "dumb" ]] && TERM_IS_INTERACTIVE=true
+
 # build $PATH
 # add_to_path /opt/*/bin
 add_to_path /opt/vagrant/bin
@@ -30,5 +33,3 @@ add_to_path $HOME/bin/contrib $HOME/bin
 
 # load the rest
 source_rc_files ~/.bashrc.d/* ~/.bashrc.local $EXTRA_BASHRC
-
-#unset -f add_to_path source_rc_files

@@ -5,6 +5,9 @@ function mkdirpushd () { mkdir "$@"; pushd "$@"; }
 # print the full path to a relative file
 function full_path () { local f="$1"; [[ ${f:0:1} == "/" ]] || f="$PWD/$f"; echo "$f"; }
 
+# can haz command?
+function have_command () { which "$@" &> /dev/null; }
+
 # function rename_to_lowercase() {
 #   tmp=`mktemp -u "$1".XXXXXXXXXXX`;
 #   mv "$1" "$tmp"; mv "$tmp" "`echo "$1" | tr '[A-Z]' '[a-z]'`"; unset tmp;
