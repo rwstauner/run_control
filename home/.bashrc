@@ -55,50 +55,10 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
   function timed () { echo " :[timing from `date`]: " 1>&2; /usr/bin/time "$@"; }
   #alias time=timed
 
-## aliases (hooray!)
-
-  # interactive (confirmation prompt)
-  for i in rm mv cp ; { alias $i="$i -iv" ; }
-
-  # commands
-  alias caly='cal `date +%Y`'
-
-  alias diffpatch='diff -uprN'
-  alias diffgit='git diff --no-index'
-  alias diffgitcw='git diff --no-index --color-words=.'
-
-  alias external_ip_address='dig +short myip.opendns.com @resolver1.opendns.com'
-  alias ftp='/usr/bin/ftp' # kerberos ftp bothers me
-
-  alias ls='ls --color=auto'
-  alias ll='ls -l'
-  alias lf='ll -aF'
-  alias lh='lf -h'
-  alias lft='lf --time-style=full-iso'
-  if ! [[ -n "$LS_COLORS" ]]; then
-    if which dircolors &> /dev/null; then
-      eval `dircolors`
-      if [[ -r ~/.dircolors ]]; then
-        _def_ls_colors="$LS_COLORS"
-        eval `dircolors ~/.dircolors`
-        LS_COLORS="${_def_ls_colors}$LS_COLORS"
-        unset _def_ls_colors
-      fi
-    fi
-  fi
-
-  # sometimes my finger can't let go of the shift key used to make the pipe
-  alias Wc=wc
-
-  # show child process hierarchy with indentation
-  alias ps='ps -H'
   function psgrep () {
     ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command | \
       { read; echo "$REPLY"; cat | grep "$@"; };
   }
-
-  alias rename='rename -v'
-  alias rmdir='rmdir -v'
 
   if which notify-send &> /dev/null; then
     # copied from ubu 12.04 default .bashrc:
@@ -106,14 +66,6 @@ if [ -n "$PS1" ] && [ "$TERM" != "dumb" ]; then
     #   sleep 10; alert
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
   fi
-
-  # let me use my aliases when delaying commands
-  for i in xargs watch sudo; { eval "alias $i='$i '"; }
-
-  # add readline support
-  for i in pacmd; {
-    which $i &> /dev/null && alias $i="rlwrap $i";
-  }
 
 ## commands more complex than aliases
   function full_path () { local f="$1"; [[ ${f:0:1} == "/" ]] || f="$PWD/$f"; echo "$f"; }
