@@ -41,7 +41,7 @@ alias lft='lf --time-style=full-iso'
 
 # TODO: eval?
 if ! [[ -n "$LS_COLORS" ]]; then
-  if have_command dircolors; then
+  if which dircolors &> /dev/null; then
     eval `dircolors`
     if [[ -r ~/.dircolors ]]; then
       _def_ls_colors="$LS_COLORS"
