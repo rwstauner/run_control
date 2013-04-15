@@ -123,6 +123,11 @@ $gc alias.pum             $'!git fetch upstream; git pull upstream master'
 $gc alias.branch-to-remote       $'!_() { branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch; }; _'
 $gc alias.branch-track    $'!_() { branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch; }; _'
 
+# load pull requests as remote branches (github++)
+# https://gist.github.com/piscisaureus/3342247
+$gc alias.fetch-pr        $'!_() { remote="${1:-origin}"; git fetch "$remote" "+refs/pull/*/head:refs/remotes/$remote/pr/*"; }; _'
+$gc alias.branch-pr       $'!_() { branch="$1"; pr="$2"; remote="${3:-origin}"; git co -b "$branch" -t "refs/remotes/$remote/pr/$pr"; }; _'
+
 # run daemon (use !git to run from repo root) then try git ls-remote
 $gc alias.serve           $'!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
