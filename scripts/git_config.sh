@@ -50,6 +50,8 @@ $gc alias.add-p           $'add -p'
 $gc alias.adp             $'add -p'
 $gc alias.touch           $'add -N'
 
+$gc alias.b               $'branch'
+$gc alias.bav             $'branch -av'
 $gc alias.bnm             $'branch --no-merged'
 
 #$gc alias.bunch           $'!env FILE_LOG_LEVEL=off gitbunch'
@@ -57,6 +59,10 @@ $gc alias.bnm             $'branch --no-merged'
 
 $gc alias.civ             $'commit -v'
 $gc alias.amend           $'commit -v --amend'
+
+$gc alias.co              $'checkout'
+$gc alias.cob             $'checkout -b'
+$gc alias.com             $'checkout master'
 
 # clone repo, make remote "origin" for first arg and "upstream" for second
 $gc alias.clone-fork      $'!_() { fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream; }; _'
