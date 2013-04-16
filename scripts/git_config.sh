@@ -116,8 +116,8 @@ $gc alias.logst           $'log --stat'
 
 $gc alias.log-since-tag   $'!_() { tag=`git last-tag`; revs=$tag..HEAD; git log $* $revs; echo "\n=== $revs ===\n"; git tag-summary $tag; }; _'
 
-# condense log output (http://coderwall.com/p/euwpig?p=1&q=)
-$gc alias.lg               "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# condense log output (modified from http://coderwall.com/p/euwpig)
+$gc alias.lg               "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN%Creset %C(blue)<%aE>%Creset' --abbrev-commit"
 $gc alias.lgpcw           $'!git lg -p --color-words=.'
 
 # what new commits have been created by the last command (like "git pull")
