@@ -64,6 +64,8 @@ $gc alias.co              $'checkout'
 $gc alias.cob             $'checkout -b'
 $gc alias.com             $'checkout master'
 
+$gc alias.cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { print tolower($2) }\047 ~/.pause`@cpan.org> <`git config user.email`>"'
+
 # clone repo, make remote "origin" for first arg and "upstream" for second
 $gc alias.clone-fork      $'!_() { fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream; }; _'
 $gc alias.current-branch  $'!git branch | awk \047/^[*] / { print $2 }\047'
