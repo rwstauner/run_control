@@ -1,2 +1,6 @@
 [FORMAT]
 indent-string='  '
+
+[BASIC]
+# any use of single-char vars is rare and deliberate
+variable-rgx=[a-z_][a-z0-9_]*$
