@@ -110,6 +110,7 @@ $gc alias.last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-
 
 # show new commits after last fetch
 $gc alias.lc              $'log ORIG_HEAD.. --stat --no-merges'
+$gc alias.log-fetched     $'log ..FETCH_HEAD --stat --no-merges'
 
 $gc alias.logstat         $'log --stat'
 $gc alias.logst           $'log --stat'
