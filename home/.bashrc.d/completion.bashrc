@@ -12,6 +12,3 @@ if [ -z "$BASH_COMPLETION" ]; then
   fi
   unset bc_etc bc_user
 fi
-
-# custom completions
-source_rc_files ~/.bashrc.d/completion/*

@@ -33,3 +33,5 @@ add_to_path $HOME/bin/contrib $HOME/bin
 
 # load the rest
 source_rc_files ~/.bashrc.d/* ~/.bashrc.local $EXTRA_BASHRC
+# completion after the others (so PATH is built, etc)
+source_rc_files ~/.bashrc.d/completion.d/contrib/* ~/.bashrc.d/completion.d/*
