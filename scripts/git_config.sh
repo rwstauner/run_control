@@ -111,9 +111,11 @@ $gc alias.last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-
 # show new commits after last fetch
 $gc alias.lc              $'log ORIG_HEAD.. --stat --no-merges'
 $gc alias.log-fetched     $'log ..FETCH_HEAD --stat --no-merges'
+# this should probably be log-remote and figure out the tracking remote
+$gc alias.log-origin      $'log ..origin --stat --no-merges'
 
 $gc alias.logstat         $'log --stat'
-$gc alias.logst           $'log --stat'
+$gc alias.logst           $'log --stat --no-merges'
 
 $gc alias.log-since-tag   $'!_() { tag=`git last-tag`; revs=$tag..HEAD; git log $* $revs; echo "\n=== $revs ===\n"; git tag-summary $tag; }; _'
 
