@@ -92,6 +92,7 @@ $gc alias.empty-tree-sha1 $'hash-object -t tree /dev/null'
 
 #$gc alias.change-github-username $'!sed -i -re \047s/(github.com:)magnificent-tears/\\1rwstauner/\047 .git/config'
 
+# filenames at the top: --heading --break ?
 $gc alias.grep-todo       $'grep -iE "to.?do|fix.?me"'
 
 $gc alias.homepage-metacpan      $'!curl -v -d "login=`git config github.user`&token=`git config github.token`&values[homepage]=http://metacpan.org/release/${PWD##*/}" "https://github.com/api/v2/json/repos/show/rwstauner/${PWD##*/}"'
@@ -122,6 +123,9 @@ $gc alias.log-since-tag   $'!_() { tag=`git last-tag`; revs=$tag..HEAD; git log 
 # condense log output (modified from http://coderwall.com/p/euwpig)
 $gc alias.lg               "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN%Creset %C(blue)<%aE>%Creset' --abbrev-commit"
 $gc alias.lgpcw           $'!git lg -p --color-words=.'
+
+# provide rebasing music (https://coderwall.com/p/at9bya)
+#$gc alias.mav             $'!afplay ~/Music/Danger\\ Zone.mp3 & LASTPID=$! \ngit rebase -i $1 \nkill -9 $LASTPID\n true'
 
 # what new commits have been created by the last command (like "git pull")
 $gc alias.new             $'!_() { git log $1@{1}..$1@{0} "$@"; }; _'
