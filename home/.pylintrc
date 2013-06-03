@@ -1,7 +1,7 @@
 [MESSAGES CONTROL]
 # disabling by symbolic name requires pylint 0.25.3
-#disable=I0011,W0511
-disable=locally-disabled,fixme
+#disable=I0011,W0511,W0142
+disable=locally-disabled,fixme,star-args
 
 [FORMAT]
 indent-string='  '
@@ -9,3 +9,6 @@ indent-string='  '
 [BASIC]
 # any use of single-char vars is rare and deliberate
 variable-rgx=[a-z_][a-z0-9_]*$
+
+[REPORTS]
+symbols=yes
