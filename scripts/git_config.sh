@@ -142,7 +142,7 @@ $gc alias.branch-pr       $'!_() { branch="$1"; pr="$2"; remote="${3:-origin}"; 
 # run daemon (use !git to run from repo root) then try git ls-remote
 $gc alias.serve           $'!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
-$gc alias.st              $'!_() { if [ $# -gt 0 ]; then git status "$@"; else git status; git stash list | sed -re "s/^([^:]+):/\\\033[33m\\1\\\033[00m:/"; fi; }; _'
+$gc alias.st              $'!_() { if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -re "s/^([^:]+):/\\\033[33m\\1\\\033[00m:/"; fi; }; _'
 $gc alias.s               $'status -s -b -u'
 $gc alias.tag-summary     $'!_() { git show --summary ${1:-`git last-tag`}; }; _'
 
