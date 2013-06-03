@@ -21,12 +21,18 @@ gc="git config --global"
 # [settings]
 $gc color.ui             auto
 
+# make tabs whitespace errors
+$gc core.whitespace      "trailing-space,space-before-tab,tab-in-indent"
+
 $gc merge.log            true
 
 $gc instaweb.local       true
 $gc instaweb.httpd       "/usr/sbin/apache2 -f"
 $gc instaweb.port        4321
 $gc instaweb.modulepath  /usr/lib/apache2/modules
+
+$gc sendemail.confirm    always
+$gc sendemail.multiedit  true
 
 $gc web.browser          firefox
 
