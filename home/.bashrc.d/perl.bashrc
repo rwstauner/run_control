@@ -65,7 +65,11 @@ function podhtmlview() { local u="$1"; [[ ${u:0:1} == "/" ]] || u="$PWD/$u"; fir
 
 function mversion() { if [ $# -eq 0 ]; then m=${PWD##*/}; else m="$1"; fi; `which mversion` ${m//-/::}; }
 
-function grep_pm() { zgrep --color=auto "$@" ~/perl5/cpan/mini/modules/02packages.details.txt.gz; }
+function grep_pm() {
+  #zgrep --color=auto "$@" ~/perl5/cpan/mini/modules/02packages.details.txt.gz;
+  zcat ~/perl5/cpan/mini/modules/02packages.details.txt.gz | \
+    perl -MTerm::ANSIColor=colored -ane 'BEGIN { $re=shift(@ARGV) } if( $F[0] =~ $re ){ s/($re)/colored($1,"bold yellow")/ge; print }' "$*"
+}
 
 # tests
 if [[ ~/perl5/prove-lib/.proverc ]]; then
