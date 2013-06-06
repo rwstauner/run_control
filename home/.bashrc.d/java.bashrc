@@ -1,3 +1,4 @@
+# TODO: eval
 function _find_home () {
   var="$1"
   shift
@@ -24,7 +25,7 @@ function _find_home () {
 
 unset -f _find_home
 
-mvel_jar=`ls $JAVA_HOME/jars/mvel*.jar 2> /dev/null | tail -n 1`
+mvel_jar=`ls $JAVA_HOME/../jars/mvel*.jar 2> /dev/null | tail -n 1`
 if [[ -n "$mvel_jar" ]]; then
   alias mvel="rlwrap -C mvel java -jar $mvel_jar"
 fi
