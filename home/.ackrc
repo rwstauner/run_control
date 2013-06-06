@@ -1,7 +1,13 @@
 #--column
+
 --ignore-dir=.build
 --ignore-dir=.cache
+
+# python coverage file
+--ignore-file=is:.coverage
+
 --sort-files
+
 #--show-types
 --type-set=json=.json
 --type-set=puppet=.pp
