@@ -62,6 +62,8 @@ compare /etc/pm/sleep.d/
 
 * backlight
 * usb3
+* virtualbox
+* skype
 
 [re-authorize hibernate](https://help.ubuntu.com/12.04/ubuntu-help/power-hibernate.html)
 
