@@ -24,8 +24,8 @@ if [[ -n "$DISPLAY" ]]; then
     convert -font ~/.fonts/Symbola605.ttf -pointsize 150 label:"$text" x:
   }
 
-  # don't barf all over my terminal and make me 'reset'
-  for cmd in evince eog; do
+  # don't barf all over my terminal and make me 'reset' (nor take it hostage)
+  for cmd in evince eog acroread libreoffice; do
     eval "function $cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
   done
 
