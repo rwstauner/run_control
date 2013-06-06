@@ -27,8 +27,10 @@
 -vtc=0
 -bbvt=0
 
-#--stack-opening-tokens
-#--stack-closing-tokens
+#--stack-opening-tokens # sot
+#--stack-closing-tokens # sct
 
 # ?
 -ndnl
+
+-comma-arrow-breakpoint=5
