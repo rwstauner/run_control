@@ -25,6 +25,13 @@ function dl_completion () {
   dl "$completion/$1.bashrc" "$2"
 }
 
+dzil_repo_comp=$HOME/data/builds/github/dist-zilla/misc/dzil-bash_completion
+if [[ -e $dzil_repo_comp ]]; then
+  ln -s $dzil_repo_comp $completion/dzil.bashrc
+else
+  dl_completion dzil https://github.com/rjbs/dist-zilla/raw/master/misc/dzil-bash_completion
+fi
+
 dl_completion django https://github.com/django/django/raw/master/extras/django_bash_completion
 
 dl_bin  es      http://download.elasticsearch.org/es2unix/es
