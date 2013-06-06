@@ -29,18 +29,19 @@ unset pbparent
 which setup-bash-complete &> /dev/null && . setup-bash-complete
 
 # dzil aliases
-if which dzil &> /dev/null; then
   function dzil () {
-    local dzil="`which dzil`"
     case "$1" in
+      new)
+        echo "$*" | grep -E -- '-P .+' || { echo 'use -P!'; return 1; };
+        command dzil "$@";;
       installm)
         local dest=""
         if grep -F '@AutoLookout' dist.ini; then dest="$HOME/perl5-autolookout"; fi
-        $dzil install --install-command="cpanm -v -i . ${dest:+-l }$dest";;
-      *)        $dzil "$@";;
+        command dzil install --install-command="cpanm -v -i . ${dest:+-l }$dest";;
+      *)
+        command dzil "$@";;
     esac
   }
-fi
 
 # shell aliases for perl commands
 alias buzzword='perl -MAcme::MetaSyntactic=buzzwords -le "print metaname"'
