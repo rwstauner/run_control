@@ -115,7 +115,7 @@ compare /etc/pm/sleep.d/
     libapache2-mod-fcgid
     libapache2-mod-php5 php-geshi php5-cli php5-common php5-gd
     nodejs
-    python-setuptools python-pip python-avahi python-gpgme
+    python-setuptools python-pip python-avahi python-gpgme python-docutils python-gtk2
     unrar unzip tnef
     xfce4-sensors-plugin xfce4-artwork xfce4-clipman xfce4-clipman-plugin
     xbacklight
@@ -172,10 +172,15 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
 ### python
 
 * pip install
-    * pylint
-    * Mako
-    * Fabric
-    * PyYAML
+
+    pylint
+    Mako
+    Fabric
+    PyYAML
+    lxml
+    nose
+    -e git+git://github.com/nvie/nose-machineout.git#egg=nose_machineout
+    tox
 
 ### ruby
 
