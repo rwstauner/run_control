@@ -28,7 +28,7 @@ TERM_IS_INTERACTIVE=false
 # build $PATH
 # add_to_path /opt/*/bin
 add_to_path /opt/vagrant/bin
-add_to_path /opt/imagemagick/bin
+add_to_path {,~}/opt/imagemagick/bin
 add_to_path $HOME/bin/contrib $HOME/bin
 
 # load the rest
