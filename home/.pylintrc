@@ -8,6 +8,7 @@ indent-string='  '
 
 [BASIC]
 # any use of single-char vars is rare and deliberate
+argument-rgx=[a-z_][a-z0-9_]*$
 variable-rgx=[a-z_][a-z0-9_]*$
 
 [REPORTS]
