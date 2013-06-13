@@ -45,9 +45,14 @@ $if mode=emacs
 # gnome-terminal
 "\e[5C": forward-word
 "\e[5D": backward-word
+
 # xfce4-terminal
+# ctrl-arrow
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+# shift-arrow
+"\e[1;2C": shell-forward-word
+"\e[1;2D": shell-backward-word
 
 # [https://coderwall.com/p/oqtj8w] {
 "\eOA": history-search-backward
