@@ -1,0 +1,8 @@
+pylint
+Mako
+Fabric
+PyYAML
+lxml
+nose
+-e git+git://github.com/nvie/nose-machineout.git#egg=nose_machineout
+tox

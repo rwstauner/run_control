@@ -171,16 +171,8 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
 
 ### python
 
-* pip install
-
-    pylint
-    Mako
-    Fabric
-    PyYAML
-    lxml
-    nose
-    -e git+git://github.com/nvie/nose-machineout.git#egg=nose_machineout
-    tox
+    pyver=`python -V 2>&1 | cut -d ' ' -f 2`; virtualenv ~/python/venv/$pyver --distribute && ln -s $pyver ~/python/venv/local
+    pip install -r ~/run_control/pip-requirements.txt
 
 ### ruby
 
