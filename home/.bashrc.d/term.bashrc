@@ -1,6 +1,9 @@
 if [[ "${TERM:-dumb}" != "dumb" ]]; then
 # always use a terminal mutliplexer
 
+  # Disable XON/OFF flow control so that ctrl-s does readline history search.
+  stty -ixon
+
 # NOTE: tmux is particular about $TERM ("xterm" outside, "screen" inside)
 [[ -z "$MULTIPLEXER" ]] && [[ -n "$TMUX" ]] && export MULTIPLEXER=tmux
 

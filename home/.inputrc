@@ -54,6 +54,9 @@ $if mode=emacs
 "\e[1;2C": shell-forward-word
 "\e[1;2D": shell-backward-word
 
+# Default is C-S so it's only available when XON/XOFF flow control is disabled.
+#"\C-s": forward-search-history
+
 # [https://coderwall.com/p/oqtj8w] {
 "\eOA": history-search-backward
 "\eOB": history-search-forward
