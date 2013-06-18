@@ -27,5 +27,5 @@ fi
 
 test -h $venv_local || ln -s $pyver $venv_local
 
-test -f $activate && . $activate && \
-  pip install -r $pyrc/requirements.txt
+#test -f $activate && . $activate && \
+  #pip install -r $pyrc/requirements.txt
