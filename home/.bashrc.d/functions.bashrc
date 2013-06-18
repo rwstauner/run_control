@@ -38,6 +38,37 @@ function headgrep () {
   grep "$@";
 }
 
+function notify_result () {
+  local rv=$?
+  local dir=`pwd`
+
+  if [[ $rv -eq 0 ]]; then
+    local pf=Passed
+    local sound="$HOME/data/audio/angry_birds/angry_birds-cheer_1.ogg"
+    local player=ogg123
+  else
+    local pf=Failed
+    local sound="$HOME/data/audio/Super_Mario_Bros_Game_Over_8b6975.mp3"
+    local player=mpg123
+  fi
+
+  local img="$HOME/data/images/icons/tux.png"
+  if [[ "$1" == "-i" ]]; then
+    img="$2"; shift 2;
+  fi
+
+  if [[ -e "$sound" ]]; then
+    # play sound async without showing anything on screen
+    { $player $sound & disown; } &> /dev/null
+  fi
+
+  # show pop-up notification
+  /usr/bin/notify-send -i "$img" "Tests: $pf" "$dir"
+
+  # preserve exit status
+  return $rv
+}
+
 function psgrep () {
   command ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command | \
     headgrep -n1 "$@";

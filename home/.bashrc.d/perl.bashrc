@@ -72,10 +72,10 @@ function grep_pm() {
 }
 
 # tests
-if [[ ~/perl5/prove-lib/.proverc ]]; then
-  # play sounds on pass/fail, but only when i run prove from my command line directly
-  alias prove="prove --rc=$HOME/perl5/prove-lib/.proverc"
-fi
+function prove () {
+  command prove "$@"
+  notify_result -i "$HOME/data/images/tech/perlfoundation-sticker-logos3.png"
+}
 
 # test coverage
 function cover_tests () {
