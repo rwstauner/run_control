@@ -1,4 +1,3 @@
-# vim: set ft=python:
 # pylint: disable=unused-import, unused-variable, missing-docstring
 
 def _readline():

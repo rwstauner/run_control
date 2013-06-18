@@ -1,4 +1,4 @@
-export PYTHONSTARTUP=$HOME/.python_startup
+export PYTHONSTARTUP=$HOME/python/rc/startup.py
 
 alias json_tool='python -m json.tool'
 
