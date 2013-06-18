@@ -1,8 +1,8 @@
-pylint
-Mako
-Fabric
-PyYAML
-lxml
-nose
+Fabric               >=  1.6.1
+Mako                 >=  0.8.1
+PyYAML               >=  3.10
+lxml                 >=  3.2.1
+nose                 >=  1.3.0
 -e git+git://github.com/nvie/nose-machineout.git#egg=nose_machineout
-tox
+pylint               >=  0.28.0
+tox                  >=  1.4.3
