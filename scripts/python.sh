@@ -17,6 +17,8 @@ else
   exit 1
 fi
 
+# TODO: get-pip and/or install virtualenv if not already installed
+
 venv=$pydir/venv/$pyver
 venv_local=$pydir/venv/local
 activate=$venv/bin/activate
