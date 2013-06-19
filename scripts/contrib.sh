@@ -32,6 +32,7 @@ else
   dl_completion dzil https://github.com/rjbs/dist-zilla/raw/master/misc/dzil-bash_completion
 fi
 
+dl_completion vagrant   https://github.com/mitchellh/vagrant/raw/master/contrib/bash/completion.sh
 dl_completion django https://github.com/django/django/raw/master/extras/django_bash_completion
 
 dl_bin  es      http://download.elasticsearch.org/es2unix/es
