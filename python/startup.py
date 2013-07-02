@@ -10,7 +10,7 @@ def _readline():
     readline.parse_and_bind("tab: complete")
 
     import os
-    histfile = os.path.join(os.environ["HOME"], '.python_history')
+    histfile = os.path.join(os.environ["HOME"], 'python', '.history')
     try:
       readline.read_history_file(histfile)
     except IOError:
