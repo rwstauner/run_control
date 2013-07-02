@@ -21,7 +21,7 @@ function dl_bin () {
   chmod 0755 "$dest"
 }
 
-function dl_completion () {
+function dl_cmp () {
   dl "$completion/$1.bashrc" "$2"
 }
 
@@ -29,11 +29,11 @@ dzil_repo_comp=$HOME/data/builds/github/dist-zilla/misc/dzil-bash_completion
 if [[ -e $dzil_repo_comp ]]; then
   ln -s $dzil_repo_comp $completion/dzil.bashrc
 else
-  dl_completion dzil https://github.com/rjbs/dist-zilla/raw/master/misc/dzil-bash_completion
+  dl_cmp dzil https://github.com/rjbs/dist-zilla/raw/master/misc/dzil-bash_completion
 fi
 
-dl_completion vagrant   https://github.com/mitchellh/vagrant/raw/master/contrib/bash/completion.sh
-dl_completion django https://github.com/django/django/raw/master/extras/django_bash_completion
+dl_cmp  vagrant   https://github.com/mitchellh/vagrant/raw/master/contrib/bash/completion.sh
+dl_cmp  django    https://github.com/django/django/raw/master/extras/django_bash_completion
 
 dl_bin  es      http://download.elasticsearch.org/es2unix/es
 dl_bin  jq      http://stedolan.github.io/jq/download/linux${bit}/jq
