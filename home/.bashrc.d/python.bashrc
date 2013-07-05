@@ -1,5 +1,7 @@
 export PYTHONSTARTUP=$HOME/python/rc/startup.py
 
+export PIP_DOWNLOAD_CACHE=$HOME/python/pip-downloads
+
 alias json_tool='python -m json.tool'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
