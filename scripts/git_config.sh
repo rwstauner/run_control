@@ -50,7 +50,10 @@ fi
 # [diff helpers]
 # use with ".gitattributes": '*.png diff=exif'
 
-$gc diff.exif.textconv    exiftool
+$gc diff.exif.textconv    'exiftool'; # exiv2 ?
+$gc diff.strings.textconv 'strings'
+$gc diff.ziplist.textconv 'unzip -l'
+$gc diff.pdftext.textconv 'pdftotext'
 
 # [aliases]
 # NOTE: git uses 'sh'
