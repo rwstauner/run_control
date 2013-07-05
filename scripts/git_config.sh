@@ -84,12 +84,15 @@ $gc alias.diffstat        $'diff --stat -r'
 $gc alias.diffst          $'diff --stat -r'
 
 # show char-by-char (or word-by-word) differences instead of whole lines
-$gc alias.ixcw            $'diff   --color-words=. --cached'
-$gc alias.ixcww           $'diff   --color-words=\\\\w+ --cached'
-$gc alias.diffcw          $'diff   --color-words=.'
-$gc alias.diffcww         $'diff   --color-words=\\\\w+'
-$gc alias.logpcw          $'log -p --color-words=.'
-$gc alias.logpcww         $'log -p --color-words=\\\\w+'
+function alias_diffs () {
+  alias="$1" prefix="$2" suffix="$3"
+  $gc "alias.ix$alias"     "$prefix${prefix:+ }diff --cached $suffix"
+  $gc "alias.diff$alias"   "$prefix${prefix:+ }diff $suffix"
+  $gc "alias.logp$alias"   "$prefix${prefix:+ }log -p $suffix"
+}
+
+alias_diffs cw            '' $'--color-words=.'
+alias_diffs cww           '' $'--color-words=\\\\w+'
 
 $gc alias.diffwithsubs    $'!git submodule summary; git diff'
 
