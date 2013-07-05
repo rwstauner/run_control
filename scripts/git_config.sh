@@ -141,6 +141,9 @@ $gc alias.log-since-tag   $'!_() { tag=`git last-tag`; revs=$tag..HEAD; git log 
 $gc alias.lg               "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN%Creset %C(blue)<%aE>%Creset' --abbrev-commit"
 $gc alias.lgpcw           $'!git lg -p --color-words=.'
 
+# ls-files doesn't tab-complete, so just shorten it
+$gc alias.ls              $'ls-files'
+
 $gc alias.merge-delete    $'!_() { git merge "$1"; git branch -d "$1"; }; _'
 
 # provide rebasing music (https://coderwall.com/p/at9bya)
