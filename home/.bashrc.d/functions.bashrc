@@ -38,6 +38,10 @@ function headgrep () {
   grep "$@";
 }
 
+function no_sound () {
+  NO_SOUND=1 "$@"
+}
+
 function notify_result () {
   local rv=$?
   local dir=`pwd`
@@ -57,7 +61,7 @@ function notify_result () {
     img="$2"; shift 2;
   fi
 
-  if [[ -e "$sound" ]]; then
+  if [[ -z "$NO_SOUND" ]] && [[ -e "$sound" ]]; then
     # play sound async without showing anything on screen
     { $player $sound & disown; } &> /dev/null
   fi
