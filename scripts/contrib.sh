@@ -35,6 +35,7 @@ fi
 dl_cmp  vagrant   https://github.com/mitchellh/vagrant/raw/master/contrib/bash/completion.sh
 dl_cmp  django    https://github.com/django/django/raw/master/extras/django_bash_completion
 
+dl_bin  diff-highlight  https://github.com/git/git/raw/master/contrib/diff-highlight/diff-highlight
 dl_bin  es      http://download.elasticsearch.org/es2unix/es
 dl_bin  jq      http://stedolan.github.io/jq/download/linux${bit}/jq
 dl_bin  hub     http://defunkt.io/hub/standalone

@@ -43,6 +43,10 @@ else
   $gc push.default         tracking
 fi
 
+# https://github.com/git/git/tree/master/contrib/diff-highlight
+# NOTE: this might need --color
+# for cmd in log show diff; { $gc pager.$cmd "diff-highlight | $PAGER"; }
+
 # [diff helpers]
 # use with ".gitattributes": '*.png diff=exif'
 
@@ -93,6 +97,7 @@ function alias_diffs () {
 
 alias_diffs cw            '' $'--color-words=.'
 alias_diffs cww           '' $'--color-words=\\\\w+'
+alias_diffs hl            '!_() { git ' ' --color "$@" | diff-highlight | $PAGER; }; _'
 
 $gc alias.diffwithsubs    $'!git submodule summary; git diff'
 
