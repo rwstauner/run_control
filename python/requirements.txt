@@ -9,6 +9,7 @@ distribute           >=  0.6.34
 docutils             >=  0.10
 icalendar            >=  3.4
 lxml                 >=  3.2.1
+mock                 >=  1.0.1
 nose                 >=  1.3.0
 # -e git://github.com/nvie/nose-machineout.git@903bbc46263b0bed29939d9445316a82f55b747a#egg=nose_machineout-dev
 -e git+git://github.com/nvie/nose-machineout.git#egg=nose_machineout
