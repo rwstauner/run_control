@@ -12,6 +12,7 @@ if [[ -n "$DISPLAY" ]]; then
   # TODO: url-encoding
   function browse_local_file() { ${BROWSER:-firefox} "file://`full_path $1`"; }
 
+  SYMBOLA_FONT="`ls ~/.fonts/Symbola*.ttf | tail -n 1`"
   function display_text () {
     local text=''
     if [[ $# -gt 0 ]]; then
@@ -21,7 +22,7 @@ if [[ -n "$DISPLAY" ]]; then
         text="$text${text:+$'\n'}$REPLY";
       done;
     fi
-    convert -font ~/.fonts/Symbola605.ttf -pointsize 150 label:"$text" x:
+    convert -font "$SYMBOLA_FONT" -pointsize 150 label:"$text" x:
   }
 
   # don't barf all over my terminal and make me 'reset' (nor take it hostage)
