@@ -1,35 +1,39 @@
-# meta direct display vs. escape
-	set enable-keypad on
-		# prefix with escape seq
-	set convert-meta off
-		# enable 8th-bit input
-	set meta-flag on
-	set input-meta on
-		# display directly rather than w/ prefix
-	set output-meta on
+# vim: set ft=readline ts=2 sts=2 sw=2 et sta:
 
-# completion
-		# do not bell on tab-completion
-	set bell-style none
-		# append slash on directories
-	set mark-directories on
-		# precede modified lines with asterisk
-	set mark-modified-lines on
-		# append slash on symlinks to directories
-	set mark-symlinked-directories on
-		# single tab will display possibilities (instead of double)
-	set show-all-if-ambiguous off
-		# use pager with completion possibilites
-	set page-completions on
-		# suffix possibilities with class character (ls -F)
-	set visible-stats on
+# Ensure arrow keys work as expected.
+set enable-keypad on
+
+## Direct display of meta key versus escape.
+## Not sure what effect these really have.
+# Don't change meta to escape.
+set convert-meta off
+# Enable 8-bit input (synonym: meta-flag).
+set   input-meta on
+# Display directly rather than with prefix.
+set  output-meta on
+
+## completion
+# do not bell on tab-completion
+set bell-style none
+# append slash on directories
+set mark-directories on
+# precede modified lines with asterisk
+set mark-modified-lines on
+# append slash on symlinks to directories
+set mark-symlinked-directories on
+# single tab will display possibilities (instead of double)
+set show-all-if-ambiguous off
+# use pager with completion possibilites
+set page-completions on
+# suffix possibilities with class character (ls -F)
+set visible-stats on
 
 $if mode=emacs
 
 #"": redraw-current-line
 
 # for linux console and RH/Debian xterm
-	# number pad buttons: home, end, pgup/down...
+# number pad buttons: home, end, pgup/down...
 "\e[1~": beginning-of-line
 "\e[4~": end-of-line
 "\e[5~": beginning-of-history
@@ -38,7 +42,8 @@ $if mode=emacs
 "\e[8~": end-of-line
 "\e[3~": delete-char
 "\e[2~": quoted-insert
-	# control-arrow
+
+## control-arrow
 # screen
 "\eO5C": forward-word
 "\eO5D": backward-word
@@ -46,7 +51,7 @@ $if mode=emacs
 "\e[5C": forward-word
 "\e[5D": backward-word
 
-# xfce4-terminal
+## xfce4-terminal
 # ctrl-arrow
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
