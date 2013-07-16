@@ -1,8 +1,8 @@
 #!/bin/bash
 
+# Run as vagrant user.
 [[ "`id -un`" == "vagrant" ]] || exec sudo -H -u vagrant "$0"
 
-echo "$0"
 vhome="/home/vagrant"
 vhomerc="$vhome/.vagrant.rc/rc"
 cd $vhome
@@ -12,6 +12,8 @@ function ensure_line () {
   { test -e "$file" && grep -qFx "$line" "$file"; } || \
     echo "$line" >> "$file"
 }
+
+# Use source/load commands rather than overwriting with symlinks when possible.
 
 ensure_line "source $vhomerc/.bashrc" .bashrc
 

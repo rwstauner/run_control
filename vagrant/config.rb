@@ -16,10 +16,14 @@ Vagrant.configure('2') do |config|
 
   # customize environment
   rc_dir = File.expand_path("..", __FILE__)
-  provisioners = Dir.glob(File.join(rc_dir, 'provision', '*'))
+  rc_guest = '/home/vagrant/.vagrant.rc'
 
-  config.vm.synced_folder rc_dir, '/home/vagrant/.vagrant.rc'
+  config.vm.synced_folder rc_dir, rc_guest
 
-  provisioners.each { |p| config.vm.provision :shell, :path => p }
+  config.vm.provision :shell, :inline => <<-SHELL
+    for exe in #{rc_guest}/provision/*; do
+      test -x "$exe" && echo "$exe" && "$exe"
+    done
+  SHELL
 
 end
