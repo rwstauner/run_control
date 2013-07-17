@@ -19,6 +19,6 @@ ensure_line "source $vhomerc/.bashrc" .bashrc
 
 ensure_line "source-file $vhomerc/.tmux.conf" .tmux.conf
 
-ensure_line "runtime $vhomerc/.vimrc" .vimrc
+ensure_line "source $vhomerc/.vimrc" .vimrc
 
 git config --global alias.st status

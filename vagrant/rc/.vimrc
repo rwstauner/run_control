@@ -24,7 +24,7 @@ set   tildeop
 set ignorecase smartcase
 
 set autoindent nosmartindent
-set textwidth=80 colorcolumn=+=
+set textwidth=80 colorcolumn=+0
 
 set ts=2 sts=2 sw=2 et sta
 
