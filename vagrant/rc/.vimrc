@@ -17,6 +17,7 @@ set     encoding=utf-8
 set termencoding=utf-8
 
 set   background=dark
+set   list
 set   listchars=tab:▸\ ,extends:⇢,precedes:⇠,nbsp:☐,trail:⬚ "eol:¬, " hooray for unicode
 set   showbreak=⦉  " show start of wrapped lines
 set   tildeop
