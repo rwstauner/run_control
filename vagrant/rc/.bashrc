@@ -12,3 +12,9 @@ shopt -s checkwinsize
 shopt -s histappend histreedit histverify
 HISTCONTROL='ignoreboth:erasedups'
 HISTFILESIZE=5000 HISTSIZE=5000
+
+alias ls='ls --color=auto'
+alias lf='ls -alF'
+
+for i in rm mv cp; { alias $i="$i -iv"; }
+for i in rmdir mkdir rename; { alias $i="$i -v"; }
