@@ -17,6 +17,8 @@ function ensure_line () {
 
 ensure_line "source $vhomerc/.bashrc" .bashrc
 
+ensure_line "load '$vhomerc/.irbrc'" .irbrc
+
 ensure_line "source-file $vhomerc/.tmux.conf" .tmux.conf
 
 ensure_line "source $vhomerc/.vimrc" .vimrc
