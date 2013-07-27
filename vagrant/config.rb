@@ -13,6 +13,8 @@ Vagrant.configure('2') do |config|
   # Confirm that using alternate port range works.
   config.vm.usable_port_range = (3200 .. 3250)
 
+  # Bridge a network connection without prompting for which NIC:
+  #config.vm.network :public_network, :bridge => 'wlan0'
 
   # customize environment
   rc_dir = File.expand_path("..", __FILE__)
