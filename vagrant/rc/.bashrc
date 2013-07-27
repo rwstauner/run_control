@@ -1,3 +1,5 @@
+[[ "`pwd`" == "$HOME" ]] && [[ "$SHLVL" == "1" ]] && cd /vagrant
+
 stty -ixon
 
 export VAGRANT_RC_DIR="$HOME/.vagrant.rc/rc"
