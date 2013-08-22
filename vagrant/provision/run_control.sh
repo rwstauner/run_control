@@ -22,5 +22,3 @@ ensure_line "load '$vhomerc/.irbrc'" .irbrc
 ensure_line "source-file $vhomerc/.tmux.conf" .tmux.conf
 
 ensure_line "source $vhomerc/.vimrc" .vimrc
-
-git config --global alias.st status
