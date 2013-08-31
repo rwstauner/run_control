@@ -71,7 +71,7 @@ function mversion() { if [ $# -eq 0 ]; then m=${PWD##*/}; else m="$1"; fi; `whic
 function grep_pm() {
   #zgrep --color=auto "$@" ~/perl5/cpan/mini/modules/02packages.details.txt.gz;
   zcat ~/perl5/cpan/mini/modules/02packages.details.txt.gz | \
-    perl -MTerm::ANSIColor=colored -ane 'BEGIN { $re=shift(@ARGV) } if( $F[0] =~ $re ){ s/($re)/colored($1,"bold yellow")/ge; print }' "$*"
+    perl -MTerm::ANSIColor=colored -ane 'BEGIN { $re = qr/${\shift(@ARGV)}/i } if( $F[0] =~ $re ){ s/($re)/colored($1,"bold yellow")/ge; print }' "$*"
 }
 
 # tests
