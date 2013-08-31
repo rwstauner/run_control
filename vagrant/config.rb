@@ -36,7 +36,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision :shell, :inline => <<-SHELL
     for exe in #{rc_guest}/provision/*; do
-      test -x "$exe" && echo "$exe" && "$exe"
+      test -x "$exe" && echo "# rc: $exe" && "$exe"
     done
   SHELL
 
