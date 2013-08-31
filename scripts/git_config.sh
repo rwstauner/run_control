@@ -19,6 +19,8 @@ function have_git_version () { version_ge "$git_version" "$1"; }
 gc="git config --global"
 
 # [settings]
+# TODO: figure out $gc core.autocrlf        input
+
 $gc color.ui             auto
 
 # make tabs whitespace errors
@@ -153,6 +155,8 @@ $gc alias.merge-delete    $'!_() { git merge "$1"; git branch -d "$1"; }; _'
 $gc alias.new             $'!_() { git log $1@{1}..$1@{0} "$@"; }; _'
 
 $gc alias.prune-all       $'!git remote | xargs -n 1 git remote prune'
+
+$gc alias.pulls           $'!git pull; test -f ${GIT_DIR:-.}/.gitmodules && git submodule update'
 
 # pum doesn't seem to be storing the fetch, so do both
 $gc alias.pum             $'!git fetch upstream; git pull upstream master'
