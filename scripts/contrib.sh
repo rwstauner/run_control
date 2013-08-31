@@ -40,3 +40,6 @@ dl_bin  es      http://download.elasticsearch.org/es2unix/es
 dl_bin  jq      http://stedolan.github.io/jq/download/linux${bit}/jq
 dl_bin  hub     http://defunkt.io/hub/standalone
 dl_bin  viack   https://github.com/tsibley/viack/raw/master/viack
+
+pipc="$completion/pip.bashrc"
+test -s "$pipc" || pip completion --bash > "$pipc"
