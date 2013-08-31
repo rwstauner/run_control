@@ -19,11 +19,14 @@ function shadowpaste () {
 
 #export PERL_UNICODE=AS
 
+# Only load the default perlbrew environment if perlbrew isn't already in use.
+if [[ -z "$PERLBREW_PERL" ]]; then
 for pbparent in $HOME/perl5 /opt/perl5 /opt /usr/local; {
   perlbrewrc="$pbparent/perlbrew/etc/bashrc"
   [[ -r "$perlbrewrc" ]] && { source "$perlbrewrc"; break; }
 }
 unset pbparent
+fi
 
 # after perlbrew
 which setup-bash-complete &> /dev/null && . setup-bash-complete
