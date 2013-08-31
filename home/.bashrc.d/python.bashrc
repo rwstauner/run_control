@@ -2,7 +2,7 @@ export PYTHONSTARTUP=$HOME/python/rc/startup.py
 
 export PIP_DOWNLOAD_CACHE=$HOME/python/pip-downloads
 
-alias json_tool='python -m json.tool'
+[[ -f ~/bin/contrib/json_tool ]] || alias json_tool='python -m json.tool'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source_rc_files ~/python/venv/local/bin/activate
