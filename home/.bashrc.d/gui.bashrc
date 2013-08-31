@@ -25,6 +25,10 @@ if [[ -n "$DISPLAY" ]]; then
     convert -font "$SYMBOLA_FONT" -pointsize 150 label:"$text" x:
   }
 
+  function guni () {
+    uni "$@" | display_text
+  }
+
   # don't barf all over my terminal and make me 'reset' (nor take it hostage)
   for cmd in evince eog acroread libreoffice; do
     eval "function $cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
