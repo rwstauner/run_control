@@ -6,3 +6,4 @@ let g:colors_name="deserted"
 
 " Customize.
 hi ColorColumn  ctermbg=235
+hi Search       ctermbg=Yellow ctermfg=black
