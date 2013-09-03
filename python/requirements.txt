@@ -4,6 +4,7 @@ Mako                 >=  0.8.1
 Markdown             >=  2.3.1
 PyYAML               >=  3.10
 Sphinx               >=  1.2b1
+Twisted              >=  13.1.0
 coverage             >=  3.6
 distribute           >=  0.6.34
 docutils             >=  0.10

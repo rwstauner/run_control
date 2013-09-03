@@ -16,6 +16,8 @@ IGNORE = '({0})'.format('|'.join((
   'pika',
   # fabric
   'paramiko',
+  # twisted
+  'zope.interface',
 )))
 
 class Matcher():
