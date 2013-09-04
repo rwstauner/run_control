@@ -155,6 +155,11 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
     sudo apt-get update
     sudo apt-get install libvdpau1
 
+### node
+
+    sudo npm install -g lessc
+    sudo npm install -g js-beautify
+
 ### perl
 
 * cpan autobundle on old OS
