@@ -13,5 +13,5 @@ HISTIGNORE='oplop-v ?*:tmux attach:tmux a:\:q'
 # HISTIGNORE="$HISTIGNORE${_hist_ignore_git//:/:git }"
 # unset _hist_ignore_git
 
-HISTFILESIZE=5000 HISTSIZE=5000
-#export HISTTIMEFORMAT='%H:%M:%S '
+HISTFILESIZE=9000 HISTSIZE=9000
+export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S  '
