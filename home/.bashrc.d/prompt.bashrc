@@ -4,11 +4,23 @@
 PS1=''
 
 function _prompt_ () {
+  local add='' autoreset=false
   while [[ $# -gt 0 ]]; do
-    # TODO: Simplify escape sequences.
-    PS1="$PS1""$1"
+
+    # Simplify escape sequences.
+    case "$1" in
+      -b) add='\033[01m';                ;;
+      -c) add='\033['"$2"'m'; shift;     ;;
+      -m) add='\033[${PS1_MAIN_COLOR}m'; autoreset=true;;
+      -r) add='\033[00m';;
+      *)  add="$1";;
+    esac
+
+    PS1="$PS1""$add"
+
     shift
   done
+  $autoreset && PS1="$PS1"'\033[00m'
 }
 
 # if something
@@ -20,49 +32,39 @@ function _prompt_ () {
   # Vary main prompt color by hostname (use var to allow customizing).
   PS1_MAIN_COLOR=`perl -e '$h=$ARGV[0]; print 30 + (($h =~ tr/.//) >= 2 ? (ord(substr($ARGV[0], 0, 1)) % 6) + 1 : 6)' $(hostname)`
 
+  # Embed variables in single quotes to delay interpolation until
+  # display time (so they update dynamically).
+
   # Tell readline to ignore contents (between \[ and \])..
-  _prompt_ '\['
+  _prompt_ '\[' -r
 
   # Put temporary note in a line above the prompt.
-  _prompt_   '\033[00;44;01m'
-  _prompt_     '${PS1_NOTE}'
-  _prompt_     '${PS1_NOTE:+\n}'
-  _prompt_   '\033[00;01m'
+  _prompt_   -c '44;01' '${PS1_NOTE}${PS1_NOTE:+\n}'
 
   # Put an uncommon character at the front to identify start of prompt.
   # ∷ ⎇  ⬕ 🚀 😎 🔥 🔚 💥 👻 🐧 🐾 🏁 🎃 🍪 🌵 🌉 🌀 🃟
   # 4DFE ䷾ HEXAGRAM FOR AFTER COMPLETION
-  _prompt_     '💥 '
+  _prompt_   -r -c 01 '💥 '
 
-  _prompt_   '\033[00m'
-  _prompt_   '\033[01;32m'
+  # Some information about the environment.
 
-  # Some information about ENV.
-  _prompt_     'env'
-  _prompt_   '\033[00m'
-  _prompt_     ': '
-  _prompt_   '\033[35m'
+  _prompt_   -c '01;32' 'env' -r ': '
 
   # Shell name and version.
-  _prompt_     '\s \V'
-  _prompt_   '\033[32m'
-  _prompt_     '/'
+  _prompt_   -c 35 '\s \V'
+  _prompt_   -c 32 '/'
 
   # Terminal multiplexer (tmux or screen).
-  _prompt_   '\033[33m'
-  _prompt_     '${MULTIPLEXER}'
+  _prompt_   -c 33 '${MULTIPLEXER}'
 
   # Perl (perlbrew)
-  _prompt_   '\033[34m'
-  _prompt_     ' perl/$PERLBREW_PERL'
+  _prompt_   -c 34 '${PERLBREW_PERL:+ perl/}${PERLBREW_PERL#perl-}'
 
   # Python (virtualenv)
-  _prompt_     '${VIRTUAL_ENV:+ \033[33mpy/}${VIRTUAL_ENV##*/}'
-  _prompt_   '\033[00m'
+  _prompt_   -c 33 '${VIRTUAL_ENV:+ py/}${VIRTUAL_ENV##*/}'
 
   # Ruby (rvm)
-  _prompt_     '${rvm_version:+ \033[35m${GEM_HOME##*/}}'
-  _prompt_   '\033[00m'
+  _prompt_   -c 35 '${rvm_version:+ ${GEM_HOME##*/}}'
 
 
   # Separate lines to keep prompt width short for smaller screens.
@@ -70,46 +72,29 @@ function _prompt_ () {
 
 
   # Typical prompt info (user@host:pwd)
-  _prompt_   '\033[00m\033[${PS1_MAIN_COLOR}m'
-  _prompt_     '\u'
-  _prompt_   '\033[37m'
-  _prompt_     '@'
-  _prompt_   '\033[${PS1_MAIN_COLOR};01m'
-  _prompt_     '\h'
-  _prompt_   '\033[00;37m'
-  _prompt_     ':'
-  _prompt_   '\033[00;${PS1_MAIN_COLOR}m'
-  _prompt_     '\w'
-  _prompt_   '\033[37m'
-  _prompt_     ' #'
-  _prompt_   '\033[33m'
-  _prompt_     '\l '
+  _prompt_   -m    '\u'
+  _prompt_   -c 37  '@'
+  _prompt_   -m -b '\h'
+  _prompt_   -c 37  ':'
+  _prompt_   -m    '\w'
+  _prompt_   -c 37 ' #'
+  _prompt_   -c 33 '\l'
 
   # Extra info
-  _prompt_   '\033[34m'
-  _prompt_     '['
+  _prompt_   -c 34 ' ['
 
   # Number of jobs in the background.
-  _prompt_     '\033[33m'
-  _prompt_       '&'
-  _prompt_     '\033[36m'
-  _prompt_       '\j'
+  _prompt_   -c 33 '&' -c 36 '\j'
 
   # Time (%H:%M:%S)
-  _prompt_     '\033[34m'
-  _prompt_       ' \t '
-  _prompt_     '\033[36m'
+  _prompt_   -c 34 ' \t '
 
   # Exit status of last command.
-  _prompt_       '$?'
-  _prompt_     '\033[33m'
-  _prompt_       '?'
+  _prompt_   -c 36 '$?' -c 33 '?'
 
-  _prompt_     '\033[34m'
-  _prompt_     ']'
+  _prompt_   -c 34 ']'
 
-  _prompt_   '\033[00m'
-  _prompt_ '\]'
+  _prompt_ -r '\]'
 
   # Put prompt character on a line by itself.
   _prompt_ '\n\$ '
