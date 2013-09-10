@@ -25,9 +25,10 @@ source_rc_files /etc/bash.bashrc /etc/bashrc
 TERM_IS_INTERACTIVE=false
 [[ -n "$PS1" ]] && [[ "${TERM:-dumb}" != "dumb" ]] && TERM_IS_INTERACTIVE=true
 
-# build $PATH
-# add_to_path /opt/*/bin
-add_to_path {,~}/opt/imagemagick/bin
+# Build $PATH.
+# Instead of adding /opt/*/bin to $PATH
+# consider symlinking those scripts into ~/bin/contrib
+# to keep the $PATH shorter so less searching is required.
 add_to_path $HOME/bin/contrib $HOME/bin
 
 # load the rest
