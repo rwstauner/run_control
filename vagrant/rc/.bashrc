@@ -2,6 +2,9 @@
 
 stty -ixon
 
+export EDITOR=vim VISUAL=vim
+export PAGER=less LESS=FRX
+
 export VAGRANT_RC_DIR="$HOME/.vagrant.rc/rc"
 export INPUTRC=$VAGRANT_RC_DIR/.inputrc
 
