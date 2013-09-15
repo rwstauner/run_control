@@ -25,6 +25,12 @@ function dl_cmp () {
   dl "$completion/$1.bashrc" "$2"
 }
 
+function gen_cmp () {
+  local dest="$1"; shift
+  dest="$completion/$dest.bashrc"
+  test -s "$dest" || "$@" > "$dest"
+}
+
 dzil_repo_comp=$HOME/data/builds/github/dist-zilla/misc/dzil-bash_completion
 if [[ -e $dzil_repo_comp ]]; then
   ln -s $dzil_repo_comp $completion/dzil.bashrc
@@ -43,8 +49,7 @@ dl_bin  viack   https://github.com/tsibley/viack/raw/master/viack
 
 # python
 
-pipc="$completion/pip.bashrc"
-test -s "$pipc" || pip completion --bash > "$pipc"
+gen_cmp 'pip'     pip completion --bash
 
 json_tool="$bin/json_tool"
 if ! [[ -f "$json_tool" ]]; then
