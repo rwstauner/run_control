@@ -11,12 +11,12 @@ else
 fi
 
 function dl () {
-  dest="$1" url="$2"
+  local dest="$1" url="$2"
   test -s "$dest" || wget "$url" -O "$dest"
 }
 
 function dl_bin () {
-  dest="$bin/$1"
+  local dest="$bin/$1"
   dl "$dest" "$2"
   chmod 0755 "$dest"
 }
