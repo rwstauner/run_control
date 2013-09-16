@@ -69,6 +69,9 @@ $gc alias.b               $'branch'
 $gc alias.bav             $'branch -av'
 $gc alias.bnm             $'branch --no-merged'
 
+# consider -C -C -C30
+$gc alias.blamehard       $'blame -w -C -C -C'
+
 #$gc alias.bunch           $'!env FILE_LOG_LEVEL=off gitbunch'
 #$gc alias.bunch           $'!gitbunch'
 
