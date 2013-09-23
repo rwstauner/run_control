@@ -28,3 +28,21 @@ function pip () {
   fi
   command pip "$@"
 }
+
+function vim_py () {
+  local py="${1//\.//}"
+  local pyfile=''
+  pypath=($(python -c 'import sys; print "\n".join(sys.path)'))
+  for dir in "${pypath[@]}"; {
+    for pyfile in "$dir/$py.py" "$dir/$py/__init__.py"; {
+      [[ -f "$pyfile" ]] && break
+    }
+    [[ -f "$pyfile" ]] && break
+  }
+  if [[ -f "$pyfile" ]]; then
+    vim "$pyfile";
+  else
+    echo "Not found: $py"
+    return 1
+  fi
+}
