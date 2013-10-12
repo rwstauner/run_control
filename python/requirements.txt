@@ -16,6 +16,7 @@ nose                 >=  1.3.0
 -e git+git://github.com/nvie/nose-machineout.git#egg=nose_machineout
 pylint               >=  0.28.0
 pytz                 >=  2013b
+requests             >=  2.0.0
 simplejson           >=  3.3.0
 tox                  >=  1.4.3
 virtualenv           >=  1.9.1
