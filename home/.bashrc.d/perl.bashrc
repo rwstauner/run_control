@@ -48,7 +48,8 @@ which setup-bash-complete &> /dev/null && . setup-bash-complete
 
 # shell aliases for perl commands
 alias buzzword='perl -MAcme::MetaSyntactic=buzzwords -le "print metaname"'
-alias gmstamp='perl -e "use Time::Stamp gmstamp => {@ARGV}; print gmstamp, qq[\n]"'
+alias gmstamp='perl -le '\''use Time::Stamp q[gmstamp].($ARGV[0]=~/^-/?shift(@ARGV):q[]) => @ARGV?{@ARGV}:(); print gmstamp'\'' --'
+#alias date-iso8601='perl -MTime::Stamp=gmstamp -le print+gmstamp'
 
 # thanks oalders!
 alias penv='perl -MDDP -e "p(%ENV)"'
