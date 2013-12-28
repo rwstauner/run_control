@@ -28,7 +28,12 @@
 .wsgi      00;32
 .vim       00;32
 
-# web files
-.html  00;33
-.css   00;33
-.js    00;33
+# text formats
+.xml       00;33
+.html      00;33
+.yaml      00;33
+.yml       00;33
+.json      00;33
+.mkdn      00;33
+.markdown  00;33
+.rst       00;33
