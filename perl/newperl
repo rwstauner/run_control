@@ -4,6 +4,7 @@
 use v5.10;
 use strict;
 use warnings;
+use FindBin '$Bin';
 use autodie qw/:all/;
 
 my $as = shift
@@ -18,32 +19,50 @@ my $perl = "5.$as";
 $perl =~ s/t$//; # strip trailing "t" if any
 my $lib = $as . '@std';
 
-my @problem_modules = qw(
-  JSON::XS
+my @test_reports = qw(
+  Test::Reporter::Transport::Socket
+  CPAN::Reporter
 );
 
-my @to_install = qw(
-  Task::BeLike::DAGOLDEN
+my @problem_modules = qw(
 );
+
+my @to_install = (
+  `cat $Bin/install.txt`,
+  `$ENV{HOME}/data/devel/projects/perl/my_dists.pl`
+);
+chomp(@to_install);
 
 my @no_man = qw/-D man1dir=none -D man3dir=none/;
 
+# Don't prompt me.
+close STDIN;
+
+sub run {
+  print "run: @_\n";
+  system @_; # autodie
+}
+
 # install perl and lock it down
-system( qw/perlbrew install -j 9 --as/, $as, $perl, @threads, @no_man, @args );
-system( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" );
+run( qw/perlbrew install -j 9 --as/, $as, $perl, @threads, @no_man, @args );
+run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" );
 
 # give us a local::lib for installing things
-system( qw/perlbrew lib create/, $lib );
+run( qw/perlbrew lib create/, $lib );
 
 # let's avoid any pod tests when we try to install stuff
-system( qw/perlbrew exec --with/, $lib, qw/cpanm TAP::Harness::Restricted/ );
+run( qw/perlbrew exec --with/, $lib, qw/cpanm TAP::Harness::Restricted/ );
 local $ENV{HARNESS_SUBCLASS} = "TAP::Harness::Restricted";
 
+my $cpan = 'cpan';
+
+# Setup test reports before installing anything else.
+run( qw/perlbrew exec --with/, $lib, $cpan, @test_reports );
+
 # some things need forcing
-system( qw/perlbrew exec --with/, $lib, qw/cpanm -f/, @problem_modules );
+run( qw/perlbrew exec --with/, $lib, $cpan, -f => @problem_modules )
+  if @problem_modules;
 
-# now install the rest
-system( qw/perlbrew exec --with/, $lib, qw/cpanm/, @to_install );
-
-# repeat to catch any circularity problems
-system( qw/perlbrew exec --with/, $lib, qw/cpanm/, @to_install );
+# Install the rest (retry to catch any circularity problems).
+run( qw/perlbrew exec --with/, $lib, $cpan, @to_install )
+  for 1, 2;
