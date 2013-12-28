@@ -30,7 +30,7 @@ if [[ -n "$DISPLAY" ]]; then
   }
 
   # don't barf all over my terminal and make me 'reset' (nor take it hostage)
-  for cmd in evince eog acroread libreoffice; do
+  for cmd in evince eog gthumb acroread libreoffice ristretto; do
     eval "function $cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
   done
 
