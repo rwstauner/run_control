@@ -1,16 +1,32 @@
+# vim: set ft=dircolors16 ts=8 sts=0 sw=8 noet nosta:
+
 # image formats
 .svg   00;35
 .xcf   00;35
 
 # scripts
-.pl    00;32
-.py    00;32
-.rb    00;32
-.lua   00;32
-.tcl   00;32
-.sh    00;32
-.bash  00;32
-.bsh   00;32
+.pl      00;92
+.py      00;92
+.rb      00;92
+.lua     00;92
+.tcl     00;92
+.sh      00;92
+.bash    00;92
+.bsh     00;92
+.js      00;92
+.sql     00;92
+
+# other language runtime files
+.bashrc    00;32
+.c         00;32
+.h         00;95
+.psgi      00;32
+.pm        00;32
+.rake      00;32
+.ru        00;32
+.t         00;32
+.wsgi      00;32
+.vim       00;32
 
 # web files
 .html  00;33
