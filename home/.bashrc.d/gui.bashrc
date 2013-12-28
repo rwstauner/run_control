@@ -13,7 +13,7 @@ if [[ -n "$DISPLAY" ]]; then
   function browse_local_file() { ${BROWSER:-firefox} "file://`full_path $1`"; }
 
   SYMBOLA_FONT="`ls ~/.fonts/Symbola*.ttf | tail -n 1`"
-  function display_text () {
+  function show_text () {
     local text=''
     if [[ $# -gt 0 ]]; then
       text="$*";
@@ -26,7 +26,7 @@ if [[ -n "$DISPLAY" ]]; then
   }
 
   function guni () {
-    uni "$@" | display_text
+    uni "$@" | show_text
   }
 
   # don't barf all over my terminal and make me 'reset' (nor take it hostage)
