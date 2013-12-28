@@ -186,6 +186,10 @@ $gc alias.whois           $'!_() { git log -i -1 --pretty="format:%an <%ae>\n" -
 # whatis takes a commit name
 $gc alias.whatis          $'show -s --pretty="tformat:%h (%s, %ad)" --date=short'
 
+# https://coderwall.com/p/wazznq
+# Undelete files from a COMMIT_HASH:
+# git show --name-status COMMIT_HASH | grep -P "^D\t" | sed "s/D\t//" | xargs -n 1 git checkout COMMIT_HASH~1
+
 # NOTE: things to add locally:
 #
 # [user] name, email
