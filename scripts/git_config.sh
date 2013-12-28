@@ -164,6 +164,8 @@ $gc alias.pulls           $'!git pull; test -f ${GIT_DIR:-.}/.gitmodules && git 
 # pum doesn't seem to be storing the fetch, so do both
 $gc alias.pum             $'!git fetch upstream; git pull upstream master'
 
+$gc alias.pusht           $'!_() { git push "$@"; git push --tags "$@"; }; _'
+
 $gc alias.branch-to-remote       $'!_() { branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch; }; _'
 $gc alias.branch-track    $'!_() { branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch; }; _'
 
