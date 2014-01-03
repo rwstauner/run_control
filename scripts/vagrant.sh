@@ -7,6 +7,7 @@ function ensure_line () {
   grep -qFx "$line" "$file" || echo "$line" >> "$file"
 }
 
+test -d ~/.vagrant.d && \
 ensure_line "$(cat ~/run_control/vagrant/loader.rb)" ~/.vagrant.d/Vagrantfile
 
 # TODO: /opt/vagrant/bin/* ?
