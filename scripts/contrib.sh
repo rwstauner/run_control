@@ -3,6 +3,7 @@
 bin="$HOME/bin/contrib"
 completion="$HOME/.bashrc.d/completion.d/contrib"
 mkdir -p "$bin" "$completion"
+chmod 0755 "$bin" "$completion"
 
 if uname -m -i -p | sed 's/ /\n/g' | uniq | grep -q x86_64; then
   bit=64
