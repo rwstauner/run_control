@@ -1,5 +1,6 @@
 #!/bin/bash
 
+umask 0077
 pydir=$HOME/python
 test -d "$pydir" || mkdir "$pydir"
 

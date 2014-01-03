@@ -1,9 +1,10 @@
 #!/bin/bash
 
+umask 0077
 bin="$HOME/bin/contrib"
 completion="$HOME/.bashrc.d/completion.d/contrib"
 mkdir -p "$bin" "$completion"
-chmod 0755 "$bin" "$completion"
+chmod u+rx "$bin" "$completion"
 
 if uname -m -i -p | sed 's/ /\n/g' | uniq | grep -q x86_64; then
   bit=64
@@ -19,7 +20,7 @@ function dl () {
 function dl_bin () {
   local dest="$bin/$1"
   dl "$dest" "$2"
-  chmod 0755 "$dest"
+  chmod u+x "$dest"
 }
 
 function dl_cmp () {
@@ -60,6 +61,6 @@ if ! [[ -f "$json_tool" ]]; then
     # Insert a shebang and change the indent level.
     sed -e '1 i #!/usr/bin/env python' -e 's/indent=4/indent=2/' "$jtpy" > "$json_tool"
     # Set exec bit.
-    chmod 0755 "$json_tool"
+    chmod u+x "$json_tool"
   fi
 fi

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+umask 0077
 perldir=$HOME/perl5
 test -d "$perldir" || mkdir "$perldir"
 

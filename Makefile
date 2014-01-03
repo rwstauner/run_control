@@ -55,5 +55,5 @@ in_home:
 	fi;
 
 scripts: in_home
-	@umask 0377; \
+	@umask 0077; \
 	for script in scripts/*; do echo $$script; ./$$script; done

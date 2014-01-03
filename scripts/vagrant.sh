@@ -1,5 +1,6 @@
 #!/bin/bash
 
+umask 0077
 bin=$HOME/bin/contrib
 
 function ensure_line () {
