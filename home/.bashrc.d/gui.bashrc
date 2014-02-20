@@ -25,6 +25,10 @@ if [[ -n "$DISPLAY" ]]; then
     convert -font "$SYMBOLA_FONT" -pointsize 150 label:"$text" x:
   }
 
+  function qrencode-display () {
+    qrencode -o - "$@" | display -
+  }
+
   function guni () {
     uni "$@" | show_text
   }
