@@ -10,7 +10,7 @@ if [[ -n "$DISPLAY" ]]; then
   #fi
 
   # TODO: url-encoding
-  function browse_local_file() { ${BROWSER:-firefox} "file://`full_path $1`"; }
+  function browse_local_file() { ${BROWSER:-firefox} "file://`full-path $1`"; }
 
   SYMBOLA_FONT="`ls ~/.fonts/Symbola*.ttf | tail -n 1`"
   function show_text () {
