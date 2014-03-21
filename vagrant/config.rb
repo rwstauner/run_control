@@ -1,3 +1,5 @@
+if !ENV['NO_VAGRANT_RC']
+
 # configure() can be run multiple times
 Vagrant.configure('2') do |config|
 
@@ -39,5 +41,9 @@ Vagrant.configure('2') do |config|
       test -x "$exe" && echo "# rc: $exe" && "$exe"
     done
   SHELL
+
+end
+
+#load "Vagrantfile.local" if File.exists?("Vagrantfile.local")
 
 end
