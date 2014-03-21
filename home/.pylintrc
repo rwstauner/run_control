@@ -1,3 +1,4 @@
+# vim: set ft=cfg ts=2 sts=2 sw=2 et sta:
 [MESSAGES CONTROL]
 # disabling by symbolic name requires pylint 0.25.3
 #disable=I0011,W0511,W0142
@@ -13,3 +14,8 @@ variable-rgx=[a-z_][a-z0-9_]*$
 
 [REPORTS]
 symbols=yes
+
+[MASTER]
+# pylint-nose-checker
+load-plugins=
+  nose_checker
