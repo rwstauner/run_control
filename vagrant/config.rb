@@ -47,6 +47,10 @@ Vagrant.configure('2') do |config|
     done
   SHELL
 
+  if ENV['VAGRANT_GUI']
+    config.vm.provider('virtualbox') { |vm| vm.gui = true }
+  end
+
 end
 
 #load "Vagrantfile.local" if File.exists?("Vagrantfile.local")
