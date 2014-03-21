@@ -1,13 +1,9 @@
 # vim:set ft=perl:
 
 # required modules
-
-=head1 CONTENTS
-
-	B:::Keywords
-	File::Next
-
-=cut
+#require Sys::SigAction;
+#require B::Keywords;
+#require File::Next;
 
 # allow saving/loading history
 $_REPL->load_plugin($_) for
