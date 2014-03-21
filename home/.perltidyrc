@@ -1,36 +1,59 @@
--w
---indent-columns=2
+# NOTE: For projects that use -pbp, that means:
+# -l=78 -i=4 -ci=4 -st -se -vt=2 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq
+# NOTE: -nst means no standard output (has to do with filters)
+# and may be used after -pbp which includes -st.
+
+--warning-output # -w
+--indent-columns=2 # -i=n
 
 # TODO: review 2012-06-19 release (https://rt.cpan.org/Public/Bug/Display.html?id=68872)
 # i usually have blanks before block comments anyway, this prevents doing it after the opening of a block
---no-blanks-before-comments
+--noblanks-before-comments # -nbbc
 
---continuation-indentation=2
+# Number of spaces to indent when breaking a long line.
+--continuation-indentation=2 # -ci=n
 
---closing-token-indentation=0
+# Don't indent a line that starts with a closing token.
+--closing-token-indentation=0 # -cti=n
 
--nicb
+# Don't indent code block closing brace.
+--noindent-closing-brace # -nicb
 
---paren-tightness=1
---brace-tightness=1
---block-brace-tightness=0
+--paren-tightness=1 # -pt=n
+--brace-tightness=1 # -bt=n
+--block-brace-tightness=0 # # -bbt=n
 
--nsts
+--nospace-terminal-semicolon # -nsts
 
--isbc    # Don't indent comments without leading space
--nce
--nbl
--bar
+# Don't indent comments without leading space.
+--indent-spaced-block-comments # -isbc
 
---opening-token-right
--vt=0    # less vertical tightness
--vtc=0
--bbvt=0
+--nocuddled-else # -nce
+
+# Opening brace on same line as keyword.
+--noopening-brace-on-new-line # -nbl
+# ... even if the line would be too long.
+--opening-brace-always-on-right # -bar
+
+# Don't break between comma and opening token.
+--opening-token-right # -otr
+
+
+# I want -vt* but they're not supposed to work without -lp (which I don't want).
+# However -vt=0 seems to do what i want "{\n  key => ..." vs "{ key => ..."
+
+# Always break a line after opening token.
+--vertical-tightness=0 # -vt=n
+# Always break a line after closing token.
+--vertical-tightness-closing=0 # -vtc=n
+# Break after opening block brace.
+--block-brace-vertical-tightness=0 # -bbvt=n
 
 #--stack-opening-tokens # sot
 #--stack-closing-tokens # sct
 
-# ?
--ndnl
+# Retain old line breaks.
+--nodelete-old-newlines # -ndnl
 
--comma-arrow-breakpoint=5
+# Break at comma after `=>` if container is open.
+-comma-arrow-breakpoint=5 # -cab=n
