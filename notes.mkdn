@@ -124,6 +124,26 @@ compare /etc/pm/sleep.d/
     wine winetricks cabextract
     unicode-screensaver xscreensaver-data-extra xscreensaver-gl-extra xscreensaver-screensaver-bsod
 
+### ansible
+
+    sudo add-apt-repository ppa:rquillo/ansible
+    sudo apt-get update
+    sudo apt-get install ansible
+
+### puppet
+
+
+    pkg=`mktemp puppet.deb.XXXXXX`
+    wget -O "$pkg" https://apt.puppetlabs.com/puppetlabs-release-`lsb_release -s -c`.deb
+
+    sudo dpkg -i "$pkg"
+    rm "$pkg"
+
+    sudo apt-get update
+
+    # http://docs.puppetlabs.com/guides/installation.html#debian-and-ubuntu
+    sudo apt-get -y install puppet-common
+
 ### skype
 
 if necessary:
