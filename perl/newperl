@@ -5,11 +5,12 @@ use v5.10;
 use strict;
 use warnings;
 use FindBin '$Bin';
-use autodie qw/:all/;
 
 my $as = shift
   or die "Usage: $0 <perl-version>";
 my @args = @ARGV;
+
+$SIG{INT} = sub { die $_[0] };
 
 my %flag_defs = (
   t => [qw/-D usethreads/],
@@ -61,13 +62,17 @@ my @no_man = qw/-D man1dir=none -D man3dir=none/;
 
 # Don't prompt me.
 close STDIN;
+open STDIN, '<', '/dev/null';
 
 sub run {
-  print "run: @_\n";
-  system @_; # autodie
+  print "  run: @_\n";
+  my $s = system { $_[0] } @_;
+  printf "  exit(%s): %s\n", $? >> 8, join ' ', @_;
+  return ($s == 0);
 }
 
 # install perl and lock it down
+# We ignore the exit status of cpan, but what about perlbrew install?
 run( qw/perlbrew install -j 9 --as/, $as, $perl, @no_man, @args );
 run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" );
 
