@@ -3,6 +3,10 @@
 Test::Reporter::Transport::Socket
 CPAN::Reporter
 
+# Test everything else with this installed
+# http://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Acme-Override-INET-0.004.tar.gz
+Acme::Override::INET
+
 CPAN::Meta
 CPAN
 Bundle::CPANxxl
@@ -25,12 +29,15 @@ JSON
 JSON::XS
 JSON::PP
 
+local::lib
+
 # Use
 
 autodie
 autobox::Core
 Acme::MetaSyntactic::buzzwords
 App::Ack
+App::cpangrep
 App::cpanlistchanges
 App::cpanminus
 App::cpanoutdated
@@ -40,6 +47,7 @@ App::gh
 App::HTTPThis
 App::perlbrew
 App::pmuninstall
+App::Software::License
 App::sync_cpantesters
 App::Uni
 App::Wallflower
@@ -47,10 +55,12 @@ App::Whiff
 Archive::Tar::Wrapper
 Bread::Board::Declare
 Carp::Always::Color
+Carton
 CPAN::Meta::Requirements
 CPAN::Mini
 CGI::PSGI
 Class::Autouse
+Daemon::Control
 DateTime
 DateTime::Format::Duration
 DBIx::Connector
@@ -63,7 +73,6 @@ File::Path
 File::Temp
 Image::ExifTool
 IO::Prompt::Tiny
-local::lib
 LWP::Protocol::PSGI
 MIME::Base64
 Module::CoreList
@@ -84,6 +93,7 @@ Pod::Cpandoc
 Pod::Usage
 Regexp::Common
 Template::Provider::Markdown
+Term::QRCode
 Term::ANSIColor
 Text::ASCIITable
 Text::UpsideDown
@@ -106,8 +116,12 @@ App::Metabase::Relayd
 CGI::Fast
 DBD::Mock
 DBI::Shell
+Devel::cst
 Devel::Cover
 Devel::REPL
+  Sys::SigAction
+  B::Keywords
+  File::Next
 Devel::Size
 Dist::Zilla::Plugin::Run
 Dist::Zilla::Plugin::Test::PodSpelling
@@ -117,6 +131,7 @@ Git::CPAN::Patch
 Git::Repository
 Git::DescribeVersion
 HTML::QRCode
+HTTP::Proxy
 HTTP::Throwable
 JSON::RPC::Common
 Inline
@@ -152,9 +167,11 @@ Task::Toolchain::Test
 Throwable
 Throwable::X
 Time::HiRes
+Time::Piece
 Twiggy
 XML::LibXML
 XML::TreePP
+YAML::Shell
 
 # maybe
 
