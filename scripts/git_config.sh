@@ -131,6 +131,8 @@ $gc alias.kv              $'!vim -c "silent Gitv" `if test "$#" -gt 0; then echo
 $gc alias.last-sha        $'!git show HEAD --oneline | head -n1 | awk \047{print $1}\047'
 $gc alias.last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-f0-9]+$//\047'
 
+$gc alias.log1            $'log --oneline'
+
 # show new commits after last fetch
 $gc alias.lc              $'log ORIG_HEAD.. --stat --no-merges'
 $gc alias.log-fetched     $'log ..FETCH_HEAD --stat --no-merges'
@@ -180,6 +182,18 @@ $gc alias.serve           $'!git daemon --reuseaddr --verbose  --base-path=. --e
 $gc alias.st              $'!_() { if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -re "s/^([^:]+):/\\\033[33m\\1\\\033[00m:/"; fi; }; _'
 $gc alias.s               $'status -s -b -u'
 $gc alias.tag-summary     $'!_() { git show --summary ${1:-`git last-tag`}; }; _'
+
+  $gc alias.would-update  "!_() { range=\"\${1:-..\`git remote\`}\"; { git log --color --graph --oneline \"\$range\"; git diff --color --stat \"\$range\"; git submodule-would-update; } | \${GIT_PAGER:-\${PAGER:-less -FRX}}; }; _"
+
+# Version 1.6 doesn't have git diff --submodule.
+# Using git log lets us pass more options.
+  $gc alias.submodule-would-update-simple "!_() { range=\"\${1:-..\`git remote\`}\"; git submodule -q foreach 'echo \$path' | while read path; do git diff --submodule=log \"\$range\" \$path; done; }; _"
+  $gc alias.submodule-would-update-fancy  "!_() { range=\"\${1:-..\`git remote\`}\"; git submodule -q foreach 'echo \$path' | while read path; do submod_range=\`git diff \$range \$path | perl -le ' while(<>){ if( /^[-+]Subproject commit (\\S+)/ ){ push @c, \$1 } } print join q[..], @c'\`; (test -n \"\$submod_range\" && cd \$path && echo Submodule \$path \$submod_range && git log --color --exit-code --graph --oneline \"\$@\" \$submod_range); done | LESS= /usr/bin/less -FRX; }; _"
+
+# We could do if have_git_version 1.7.0 to use 'git diff --submodule' but I
+# prefer the other options that I can pass to log.
+  $gc alias.submodule-would-update "!git submodule-would-update-fancy"
+
 
 # whois takes a name or email
 $gc alias.whois           $'!_() { git log -i -1 --pretty="format:%an <%ae>\n" --author="$1"; }; _'
