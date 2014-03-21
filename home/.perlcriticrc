@@ -6,7 +6,7 @@ allow_includes = 1
 
 [Bangs::ProhibitBitwiseOperators]
 
-# [TestingAndDebugging::RequireUseStrict]
-# equivalent_modules = SomeModuleThatImportsStrict
-# [TestingAndDebugging::RequireUseWarnings]
-# equivalent_modules = SomeModuleThatImportsWarnings
+[TestingAndDebugging::RequireUseStrict]
+equivalent_modules = Test::Routine
+[TestingAndDebugging::RequireUseWarnings]
+equivalent_modules = Test::Routine
