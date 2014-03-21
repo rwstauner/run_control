@@ -2,6 +2,7 @@
 
 --ignore-dir=.build
 --ignore-dir=.cache
+--ignore-dir=.tox
 
 # python coverage file
 --ignore-file=is:.coverage
