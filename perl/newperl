@@ -29,14 +29,33 @@ my @test_reports = qw(
   CPAN::Reporter
 );
 
+# AnyEvent uses live DNS tests and my stupid ISP DNS is overly helpful.
 my @problem_modules = qw(
+  AnyEvent
+  Net::Server::PreFork
 );
 
-my @to_install = (
-  `cat $Bin/install.txt`,
-  `$ENV{HOME}/data/devel/projects/perl/my_dists.pl`
-);
-chomp(@to_install);
+my @install_groups;
+{
+  my $group = 0;
+  local @ARGV = "$Bin/install.txt";
+  while( <> ){
+    # Use comments and blank lines to separate groups.
+    ++$group, next if /^\s*(#.+)?$/;
+
+    push @{ $install_groups[$group] ||= [] }, $_;
+  }
+  $install_groups[$group + 1] = [`$Bin/my_dists.pl -d`];
+}
+{
+  my $i = -1;
+  while( ++$i < @install_groups ){
+    next if $install_groups[$i] && @{ $install_groups[$i] };
+    splice(@install_groups, $i, 1);
+    redo;
+  }
+}
+chomp(@$_) for @install_groups;
 
 my @no_man = qw/-D man1dir=none -D man3dir=none/;
 
@@ -55,19 +74,24 @@ run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" );
 # give us a local::lib for installing things
 run( qw/perlbrew lib create/, $lib );
 
+# NOTE: We basically ignore the result of the cpan calls... most modules
+# should get installed eventually... if there's a big problem we'll notice.
+my $cpan = 'cpan';
+sub cpan {
+  run( qw/perlbrew exec --with/, $lib || $as, $cpan, @_ );
+}
+
 # let's avoid any pod tests when we try to install stuff
-run( qw/perlbrew exec --with/, $lib, qw/cpanm TAP::Harness::Restricted/ );
+cpan( qw/TAP::Harness::Restricted/ );
 local $ENV{HARNESS_SUBCLASS} = "TAP::Harness::Restricted";
 
-my $cpan = 'cpan';
-
 # Setup test reports before installing anything else.
-run( qw/perlbrew exec --with/, $lib, $cpan, @test_reports );
+cpan( @test_reports );
 
 # some things need forcing
-run( qw/perlbrew exec --with/, $lib, $cpan, -f => @problem_modules )
+cpan( -f => @problem_modules )
   if @problem_modules;
 
 # Install the rest (retry to catch any circularity problems).
-run( qw/perlbrew exec --with/, $lib, $cpan, @to_install )
-  for 1, 2;
+cpan( @$_ )
+  for (@install_groups) x 2;
