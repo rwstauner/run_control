@@ -25,7 +25,7 @@ venv_local=$pydir/venv/local
 activate=$venv/bin/activate
 
 if ! [[ -e "$activate" ]]; then
-  virtualenv $venv --distribute
+  virtualenv $venv
 fi
 
 test -h $venv_local || ln -s $pyver $venv_local
