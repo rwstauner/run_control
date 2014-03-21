@@ -1,0 +1,55 @@
+#!/bin/bash
+# https://github.com/gugod/App-perlbrew/issues/131
+# http://perltricks.com/article/57/2014/1/1/Shazam-Use-Image-Magick-with-Perlbrew-in-minutes
+# https://gist.github.com/zmughal/8264712/raw/8831e421393143c5b48f22dcfa12eeda51c5cfbf/install-imagemagick-perl
+
+# may need to have the perl configured with -Duseshrplib
+#
+#     perl -V | grep -- '-Duseshrplib'
+
+# compile perl with perlbrew:
+#
+#     perlbrew install $PERL_VERSION_HERE -D useshrplib
+#
+# may need to --force
+#
+# see <https://github.com/gugod/App-perlbrew/issues/131>
+
+PREFIX="${1:-$HOME/opt/imagemagick}"
+
+if ! [[ "${PWD##*/}" =~ "ImageMagick-" ]]; then
+
+  build=`mktemp -d /tmp/imagemagick.XXXXXX`
+  mkdir -p "$build"
+  cd "$build"
+  IM_DOWNLOAD=$HOME/ImageMagick.tar.gz
+  MAX_IM_AGE=`expr 86400 \* 7`
+  test -e "$IM_DOWNLOAD" && \
+    test `stat -c %Y "$IM_DOWNLOAD"` -gt `expr $(date +%s) - $MAX_IM_AGE`|| \
+    wget -O "$IM_DOWNLOAD" http://www.imagemagick.org/download/ImageMagick.tar.gz
+  tar xzvf "$IM_DOWNLOAD" --strip-components=1
+fi
+
+PERL_CORE=$(perl -e 'print grep { -d } map { "$_/CORE" } @INC')
+PERL_BIN=$(which perl)
+
+PERL_THREADS=$(perl -V | grep -c 'useithreads=define')
+
+THREAD_FLAG="--with-threads"
+
+if [ $PERL_THREADS = 0 ]; then
+  THREAD_FLAG="--without-threads"
+fi
+
+LDFLAGS="-L$PERL_CORE" \
+  ./configure --prefix "$PREFIX" \
+  "--with-perl=$PERL_BIN" \
+  --enable-shared "$THREAD_FLAG"
+
+make install
+
+# Test the install
+#
+#     perl -MImage::Magick -E 'say ${"$Image::Magick::ISA[0]".::VERSION}'
+#
+#     perl -MImage::Magick -e '$p = Image::Magick->new; $p->Read("magick:rose"); $p->Write("/tmp/test.png")'; display /tmp/test.png
