@@ -23,7 +23,7 @@ push @args, map { @{ $flag_defs{$_} || [] } } keys %flags;
 $as =~ s/^5\.//;
 my $perl = "5.$as";
 $perl =~ s/-?[a-z]+$//; # Strip trailing flags.
-my $lib = $as . '@std';
+my $lib = $flags{l} ? $as . '@std' : undef;
 
 my @test_reports = qw(
   Test::Reporter::Transport::Socket
@@ -74,10 +74,10 @@ sub run {
 # install perl and lock it down
 # We ignore the exit status of cpan, but what about perlbrew install?
 run( qw/perlbrew install -j 9 --as/, $as, $perl, @no_man, @args );
-run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" );
+run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" ) if $lib;
 
 # give us a local::lib for installing things
-run( qw/perlbrew lib create/, $lib );
+run( qw/perlbrew lib create/, $lib ) if $lib;
 
 # NOTE: We basically ignore the result of the cpan calls... most modules
 # should get installed eventually... if there's a big problem we'll notice.
