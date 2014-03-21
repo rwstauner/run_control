@@ -11,12 +11,17 @@ my $as = shift
   or die "Usage: $0 <perl-version>";
 my @args = @ARGV;
 
-# trailing "t" means do threads
-my @threads = ( $as =~ /t$/ ) ? (qw/-D usethreads/) : ();
+my %flag_defs = (
+  t => [qw/-D usethreads/],
+  s => [qw/-D useshrplib/],
+  f => [qw/-Dcccdlflags=-fPIC/],
+);
+my %flags = map { ($_ => 1) } grep { defined } split //, ($as =~ /-?([a-z]+)$/)[0] || '';
+push @args, map { @{ $flag_defs{$_} || [] } } keys %flags;
 
 $as =~ s/^5\.//;
 my $perl = "5.$as";
-$perl =~ s/t$//; # strip trailing "t" if any
+$perl =~ s/-?[a-z]+$//; # Strip trailing flags.
 my $lib = $as . '@std';
 
 my @test_reports = qw(
@@ -44,7 +49,7 @@ sub run {
 }
 
 # install perl and lock it down
-run( qw/perlbrew install -j 9 --as/, $as, $perl, @threads, @no_man, @args );
+run( qw/perlbrew install -j 9 --as/, $as, $perl, @no_man, @args );
 run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" );
 
 # give us a local::lib for installing things
