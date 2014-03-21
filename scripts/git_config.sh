@@ -24,7 +24,7 @@ gc="git config --global"
 $gc color.ui             auto
 
 # make tabs whitespace errors
-$gc core.whitespace      "trailing-space,space-before-tab,tab-in-indent"
+#$gc core.whitespace      "trailing-space,space-before-tab,tab-in-indent"
 
 $gc merge.log            true
 
