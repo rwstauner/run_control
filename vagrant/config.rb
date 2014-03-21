@@ -3,6 +3,19 @@ if !ENV['NO_VAGRANT_RC']
 # configure() can be run multiple times
 Vagrant.configure('2') do |config|
 
+  #if true
+    # http://tech.shantanugoel.com/2009/07/07/virtualbox-high-cpu-usage-problem-solved.html
+    config.vm.provider :virtualbox do |vb|
+      vb.customize [
+        "modifyvm", :id,
+        # Attempt to reduce idle cpu usage.
+        "--nestedpaging", "off",
+        "--ioapic",       "off",
+        # "--hwvirtex",   "on",      # VT-x
+      ]
+    end
+  #end
+
   # Overwrite default ssh port.
   config.vm.network :forwarded_port, {
     :guest        => 22,
