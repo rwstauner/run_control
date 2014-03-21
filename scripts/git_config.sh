@@ -90,7 +90,7 @@ $gc alias.current-branch  $'!git symbolic-ref HEAD | sed s-^refs/heads/--'
 
 # diff diff diff
 $gc alias.vimdiff         $'!vim +Gdiff'
-$gc alias.ix              $'diff --cached'
+$gc alias.ix              $'diff --cached -M --minimal'
 
 $gc alias.diffstat        $'diff --stat -r'
 $gc alias.diffst          $'diff --stat -r'
