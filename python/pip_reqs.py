@@ -10,12 +10,8 @@ import sys
 
 IGNORE = '({0})'.format('|'.join((
   'logilab',
-  'Jinja2',
-  # markdown ?
+  # mako
   'MarkupSafe',
-  'pika',
-  # fabric
-  'paramiko',
   # twisted
   'zope.interface',
 )))
