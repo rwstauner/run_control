@@ -90,7 +90,9 @@ $gc alias.current-branch  $'!git symbolic-ref HEAD | sed s-^refs/heads/--'
 
 # diff diff diff
 $gc alias.vimdiff         $'!vim +Gdiff'
-$gc alias.ix              $'diff --cached -M --minimal'
+
+git_ix='diff --cached -M --minimal'
+$gc alias.ix               "$git_ix"
 
 $gc alias.diffstat        $'diff --stat -r'
 $gc alias.diffst          $'diff --stat -r'
@@ -98,7 +100,7 @@ $gc alias.diffst          $'diff --stat -r'
 # show char-by-char (or word-by-word) differences instead of whole lines
 function alias_diffs () {
   alias="$1" prefix="$2" suffix="$3"
-  $gc "alias.ix$alias"     "$prefix${prefix:+ }diff --cached $suffix"
+  $gc "alias.ix$alias"     "$prefix${prefix:+ }${git_ix} ${suffix}"
   $gc "alias.diff$alias"   "$prefix${prefix:+ }diff $suffix"
   $gc "alias.logp$alias"   "$prefix${prefix:+ }log -p $suffix"
 }
