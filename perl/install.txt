@@ -91,7 +91,9 @@ Path::Tiny
 Plack
 Pod::Cpandoc
 Pod::Usage
+Promises
 Regexp::Common
+Sort::ByExample
 Template::Provider::Markdown
 Term::QRCode
 Term::ANSIColor
@@ -156,6 +158,7 @@ Proc::Daemon
 Sub::Exporter
 Sub::Import
 Task::Plack
+Test::BinaryData
 Test::Fatal
 Test::HexDifferences
 Test::MockTime
