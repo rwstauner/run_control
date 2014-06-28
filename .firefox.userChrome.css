@@ -110,3 +110,27 @@ statuspanel {
 	background: Transparent !important;
 }
 */
+
+/* Style the Location Bar/Dropdown (Awesome Bar) */
+
+/*
+.autocomplete-richlistitem[type="bookmark"] {
+  background-color: #ffe !important;
+  color: #000 !important;
+}
+
+.autocomplete-richlistitem[type="favicon"] {
+  background-color: #dfd !important;
+  color: #000 !important;
+}
+
+.autocomplete-richlistitem[type="tag"] {
+  background-color: #eef !important;
+  color: #000 !important;
+}
+
+.autocomplete-richlistitem:focus {
+  background-color: #444 !important;
+  color: #fff !important;
+}
+*/
