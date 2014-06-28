@@ -18,4 +18,11 @@ for script in vagrant; do
   ln -sf /opt/vagrant/bin/$script $bin/$script
 done
 
+if which vagrant &> /dev/null; then
+
+  # Auto-install virtualbox guest additions.
+  vagrant plugin install vagrant-vbguest
+
+fi
+
 # TODO: test -e $bin/packer || unzip
