@@ -66,7 +66,8 @@ $gc alias.adp             $'add -p'
 $gc alias.touch           $'add -N'
 
 $gc alias.b               $'branch'
-$gc alias.bav             $'branch -av'
+$gc alias.bv              $'branch  -vv'
+$gc alias.bav             $'branch -avv'
 $gc alias.bnm             $'branch --no-merged'
 
 # consider -C -C -C30
