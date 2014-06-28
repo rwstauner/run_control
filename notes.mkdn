@@ -177,9 +177,7 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
 
 ### node
 
-    sudo npm install -g lessc
-    sudo npm install -g http://registry.npmjs.org/less/-/less-1.6.3.tgz
-    sudo npm install -g js-beautify
+    sudo apt-get install nodejs
 
 ### perl
 
