@@ -62,19 +62,19 @@
 }
 
 .tabbrowser-tabs *|tab:hover {
-	background-color: #fff !important;
+	/* background-color: #fff !important; */
 }
 
 tab[selected="false"],
 .tabbrowser-tabs tab[selected="false"] {
-	background-color: #ccc !important;
+	/* background-color: #ccc !important; */
 	opacity: 0.625;
 }
 
 tab[selected="true"],
 .tabbrowser-tabs tab[selected="true"] {
-	border-color: #000;
-	background-color: #eee !important;
+	/* border-color: #000; */
+	/* background-color: #eee !important; */
 	opacity: 1.0 !important;
 }
 
