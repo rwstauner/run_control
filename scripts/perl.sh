@@ -1,13 +1,10 @@
 #!/bin/bash
 
+. `dirname "$0"`/.helpers.sh
 umask 0077
-perldir=$HOME/perl5
-test -d "$perldir" || mkdir "$perldir"
 
-perlrc=$perldir/rc
-if ! [[ -d $perlrc ]]; then
-  ln -s ~/run_control/perl $perlrc;
-fi
+perldir=$HOME/perl5
+setup_runtime_dir `basename "$perldir"` perl
 
 pbrc=$perldir/perlbrew/etc/bashrc
 # get perlbrew if it's already installed
