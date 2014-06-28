@@ -154,7 +154,7 @@ $gc alias.lgpcw           $'!git lg -p --color-words=.'
 # ls-files doesn't tab-complete, so just shorten it
 $gc alias.ls              $'ls-files'
 
-$gc alias.merge-delete    $'!_() { git merge "$1"; git branch -d "$1"; }; _'
+$gc alias.merge-delete    $'!_() { git merge "$1" && git branch -d "$1"; }; _'
 
 # provide rebasing music (https://coderwall.com/p/at9bya)
 #$gc alias.mav             $'!afplay ~/Music/Danger\\ Zone.mp3 & LASTPID=$! \ngit rebase -i $1 \nkill -9 $LASTPID\n true'
