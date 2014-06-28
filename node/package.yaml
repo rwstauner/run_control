@@ -1,0 +1,39 @@
+---
+name: _rwstauner_run_control
+version: 0.0.0
+files: []
+private: true
+preferGlobal: true
+
+peerDependencies:
+  # cli app
+  bible: x
+
+  bower: x
+
+  coffee-script: x
+
+  # js utilities
+  js-beautify: x
+  jshint: x
+  jslint: x
+  jsonlint: x
+
+  # lesscss
+  #http://registry.npmjs.org/less/-/less-1.6.3.tgz: ~
+  less: '>=1.7.0'
+
+  phantomjs: x
+
+  requirejs: '>=2.1.2'
+  # require.js "text!" plugin
+  text: x
+
+  uglify-js: '>=2'
+
+  yo: x
+
+# Define repository to silence npm warning.
+repository:
+  type: git
+  url: http://github.com/rwstauner/run_control
