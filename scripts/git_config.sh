@@ -186,7 +186,7 @@ $gc alias.st              $'!_() { if [ $# -gt 0 ]; then git status "$@"; else g
 $gc alias.s               $'status -s -b -u'
 $gc alias.tag-summary     $'!_() { git show --summary ${1:-`git last-tag`}; }; _'
 
-  $gc alias.would-update  "!_() { range=\"\${1:-..\`git remote\`}\"; { git log --color --graph --oneline \"\$range\"; git diff --color --stat \"\$range\"; git submodule-would-update; } | \${GIT_PAGER:-\${PAGER:-less -FRX}}; }; _"
+  $gc alias.would-update  "!_() { branch=\$(git symbolic-ref HEAD | sed s-^refs/heads/--); range=\"\${1:-..\`git config branch.\$branch.remote\`}/\$branch\"; { git log --color --graph --oneline \"\$range\"; git diff --color --stat \"\$range\"; git submodule-would-update; } | \${GIT_PAGER:-\${PAGER:-less -FRX}}; }; _"
 
 # Version 1.6 doesn't have git diff --submodule.
 # Using git log lets us pass more options.
