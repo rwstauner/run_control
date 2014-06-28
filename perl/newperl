@@ -21,6 +21,7 @@ my %flags = map { ($_ => 1) } grep { defined } split //, ($as =~ /-?([a-z]+)$/)[
 push @args, map { @{ $flag_defs{$_} || [] } } keys %flags;
 
 $as =~ s/^5\.//;
+$as =~ s/^(\d+)$/$1.0/; # Append ".0" if no dot ("5.20" => "5.20.0").
 my $perl = "5.$as";
 $perl =~ s/-?[a-z]+$//; # Strip trailing flags.
 my $lib = $flags{l} ? $as . '@std' : undef;
