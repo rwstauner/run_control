@@ -1,5 +1,3 @@
-if !ENV['NO_VAGRANT_RC']
-
 # configure() can be run multiple times
 Vagrant.configure('2') do |config|
 
@@ -63,9 +61,5 @@ Vagrant.configure('2') do |config|
   if ENV['VAGRANT_GUI']
     config.vm.provider('virtualbox') { |vm| vm.gui = true }
   end
-
-end
-
-#load "Vagrantfile.local" if File.exists?("Vagrantfile.local")
 
 end
