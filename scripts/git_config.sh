@@ -147,6 +147,9 @@ $gc alias.logst           $'log --stat --no-merges'
 
 $gc alias.log-since-tag   $'!_() { tag=`git last-tag`; revs=$tag..HEAD; git log $* $revs; echo "\n=== $revs ===\n"; git tag-summary $tag; }; _'
 
+# rjbs!
+$gc alias.hist            $'log --graph --all --color=always --decorate'
+
 # condense log output (modified from http://coderwall.com/p/euwpig)
 $gc alias.lg               "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN%Creset %C(blue)<%aE>%Creset' --abbrev-commit"
 $gc alias.lgpcw           $'!git lg -p --color-words=.'
