@@ -24,9 +24,6 @@ alias diffpatch='diff -uprN'
 alias diffgit='git diff --no-index'
 alias diffgitcw='git diff --no-index --color-words=.'
 
-alias external_ip_address='dig +short myip.opendns.com @resolver1.opendns.com'
-function my_ip(){ /sbin/ip addr show wlan0 | grep -oE '^\s*inet ([0-9.]+)' | awk '{print $2}'; }
-
 alias ftp='/usr/bin/ftp'; # kerberos ftp bothers me
 
 # sometimes my finger can't let go of the shift key used to make the pipe
