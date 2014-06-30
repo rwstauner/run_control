@@ -36,19 +36,6 @@ alias lf='ll -aF'
 alias lh='lf -h'
 alias lft='lf --time-style=full-iso'
 
-# TODO: eval?
-if ! [[ -n "$LS_COLORS" ]]; then
-  if which dircolors &> /dev/null; then
-    eval `dircolors`
-    if [[ -r ~/.dircolors ]]; then
-      _def_ls_colors="$LS_COLORS"
-      eval `dircolors ~/.dircolors`
-      export LS_COLORS="${_def_ls_colors}$LS_COLORS"
-      unset _def_ls_colors
-    fi
-  fi
-fi
-
 # show child process hierarchy with indentation
 alias ps='ps -H'
 
