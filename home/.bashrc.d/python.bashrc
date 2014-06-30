@@ -2,6 +2,9 @@ export PYTHONSTARTUP=$HOME/python/rc/startup.py
 
 export PIP_DOWNLOAD_CACHE=$HOME/python/pip-downloads
 
+#export PYTHONDOCS=http://localhost/docs/python-2.7.4-docs-html/
+export DJANGO_COLORS='dark'
+
 [[ -f ~/bin/contrib/json_tool ]] || alias json_tool='python -m json.tool'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
