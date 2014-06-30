@@ -1,4 +1,4 @@
-function _activate_rvm () {
+_activate_rvm () {
   unalias rvm
 
   # rvm appends this to .bashrc:

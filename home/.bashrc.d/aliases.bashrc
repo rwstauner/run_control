@@ -39,4 +39,6 @@ alias lft='lf --time-style=full-iso'
 # show child process hierarchy with indentation
 alias ps='ps -H'
 
-  function dict () { command dict "$@" | less; }
+  dict () {
+    command dict "$@" | less
+  }

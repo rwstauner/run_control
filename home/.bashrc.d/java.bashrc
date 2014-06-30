@@ -1,5 +1,5 @@
 # TODO: eval
-function _find_home () {
+_find_home () {
   var="$1"
   shift
   while [[ $# -gt 0 ]]; do

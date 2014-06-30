@@ -1,20 +1,24 @@
 # shell utilities
 
-function mkdirpushd () { mkdir "$@"; pushd "$@"; }
+mkdirpushd () {
+  mkdir "$@"
+  pushd "$@"
+}
 
 # print the full path to a relative file
-function full-path () { local f="$1"; [[ ${f:0:1} == "/" ]] || f="$PWD/$f"; echo "$f"; }
+full-path () {
+  local f="$1"
+  [[ ${f:0:1} == "/" ]] || f="$PWD/$f"
+  echo "$f"
+}
 
-# can haz command?
-function have_command () { which "$@" &> /dev/null; }
-
-# function rename_to_lowercase() {
+# rename_to_lowercase () {
 #   tmp=`mktemp -u "$1".XXXXXXXXXXX`;
 #   mv "$1" "$tmp"; mv "$tmp" "`echo "$1" | tr '[A-Z]' '[a-z]'`"; unset tmp;
 # }
 
 # draw a box around a message
-  function box_msg () {
+  box_msg () {
 #    if [[ $# -ne 1 ]]; then
       # TODO: wrap to $COLUMNS
       perl -MList::Util=max,min -e 'chomp(@lines = @ARGV ? @ARGV : <STDIN>); $len = max map { length } @lines; $len = min($ENV{COLUMNS}, $len) if $ENV{COLUMNS}; print $b = "-" x ($len + 4) . "\n"; printf("| %-${len}s |\n",$_) for @lines; print $b;' "$@"
@@ -28,7 +32,7 @@ function have_command () { which "$@" &> /dev/null; }
   }
 
 # show headers and grep the rest
-function headgrep () {
+headgrep () {
   local head="${1#-n}"; shift
   local i=0;
   for ((i=0; i<$head; ++i)); do
@@ -38,11 +42,11 @@ function headgrep () {
   grep "$@";
 }
 
-function no_sound () {
+no_sound () {
   NO_SOUND=1 "$@"
 }
 
-function notify_result () {
+notify_result () {
   local rv=$?
   local dir=`pwd`
 
@@ -73,7 +77,7 @@ function notify_result () {
   return $rv
 }
 
-function psgrep () {
+psgrep () {
   command ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command | \
     headgrep -n1 "$@";
 }
@@ -82,7 +86,7 @@ function psgrep () {
 # can put pre-ARGV in this var (useful to load other files or specify options)
 export BC_ENV_ARGS="-l"
 # if given args pipe them to the command, otherwise give a prompt
-function math () {
+math () {
   if [[ $# -gt 0 ]]; then
     local scale='scale=2;';
     if [[ "x$1" == "x-s" ]]; then
@@ -96,7 +100,7 @@ function math () {
 }
 
 #if [[ -x $HOME/bin/extract_archive ]]; then
-  function extract_pushd(){
+  extract_pushd (){
     local dir="`extract_archive "$@"`";
     if [[ -n "$dir" ]]; then
       pushd "$dir";
@@ -113,6 +117,10 @@ function math () {
   TIME="$TIME\n m/io: %I:in+%O:out (%F:maj+%R:min)pagefaults +%W:swaps %c:switched %w:waits %r/%s:sockets i/o"
   export TIME
 
-  function timed () { echo " :[timing from `date`]: " 1>&2; /usr/bin/time "$@"; }
+  timed () {
+    echo " :[timing from `date`]: " 1>&2
+    /usr/bin/time "$@"
+  }
+
   #alias time=timed
   #alias time=/usr/bin/time; # avoid bash built-in to enable $TIME format

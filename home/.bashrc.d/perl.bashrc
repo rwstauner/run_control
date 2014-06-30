@@ -5,7 +5,7 @@
 export NOPASTE_NICK=rwstauner
 export NOPASTE_SERVICES='Gist Shadowcat Pastie Snitch'
 
-function shadowpaste () {
+shadowpaste () {
   # TODO: connect to channel and /invite shadowpaste
   nopaste -s Shadowcat -c "$1" ${2:+-d "$2"};
 }
@@ -62,7 +62,7 @@ alias uni=`latest_perl_file -x bin/uni || which uni`
 alias ack=`latest_perl_file -x bin/ack || which ack`
 
 # dzil aliases
-  function dzil () {
+  dzil () {
     case "$1" in
       new)
         echo "$*" | grep -E -- '-P .+' || { echo 'use -P!'; return 1; };
@@ -95,11 +95,22 @@ which base64 &> /dev/null || \
 #alias podserver='{ sleep 2; $BROWSER http://localhost:8088/@frames; } & pgrep pod_server || { pod_server -s left -f ${1:-perl}; sleep 1; };'
 #alias podserver='{ sleep 2; $BROWSER http://localhost:4998; } & plackup -p 4998 -e "my \$app = require Pod::POM::Web::PSGI"'
 
-function podhtmlview() { local u="$1"; [[ ${u:0:1} == "/" ]] || u="$PWD/$u"; firefox "http://localhost/podhtml.cgi?pod=$u"; }
+podhtmlview () {
+  local u="$1"
+  [[ ${u:0:1} == "/" ]] || u="$PWD/$u"
+  ${BROWSER:-firefox} "http://localhost/podhtml.cgi?pod=$u"
+}
 
-function mversion() { if [ $# -eq 0 ]; then m=${PWD##*/}; else m="$1"; fi; `which mversion` ${m//-/::}; }
+mversion () {
+  if [ $# -eq 0 ]; then
+    m=${PWD##*/}
+  else
+    m="$1"
+  fi
+  command mversion ${m//-/::}
+}
 
-function grep_pm() {
+grep_pm () {
   #zgrep --color=auto "$@" ~/perl5/cpan/mini/modules/02packages.details.txt.gz;
   var='$F[0]'
   if [[ "x$1" == "x-a" ]]; then
@@ -111,18 +122,18 @@ function grep_pm() {
 }
 
 # tests
-function prove () {
+prove () {
   command prove "$@"
   notify_result -i "$HOME/data/images/tech/perlfoundation-sticker-logos3.png"
 }
 
 # test coverage
-function cover_tests () {
+cover_tests () {
   cover -delete; #rm -rf cover_db/;
   PERL5OPT=-MDevel::Cover perl -Ilib "$@" 2> /dev/null;
   cover;
 }
-function prove_coverage () {
+prove_coverage () {
   cover -delete;
   # hide Devel::Cover warnings about Moose, et al.
   #HARNESS_PERL_SWITCHES="-I$HOME/perl5/local-lib-5.14-devel-cover/lib/perl5 -MDevel::Cover" prove --color "$@" 2>&1 | grep -v "Devel::Cover: Can't open";
@@ -131,10 +142,12 @@ function prove_coverage () {
 }
 
 # move fg to bg so we can see whitespace changes
-function perltidydiff () {   perltidy < "$1" | git diffcw --no-index "$1" - | perl -pe 's/\033\[3(\d)m/\033[4$1m/g'; }
+perltidydiff () {
+  perltidy < "$1" | git diffcw --no-index "$1" - | perl -pe 's/\033\[3(\d)m/\033[4$1m/g'
+}
 
 # get the pm file rather than the pod file (if they're different)
-function vim_pm () {
+vim_pm () {
   pm=`perldoc -ml "$@"`
   if [[ -e "$pm" ]]; then
     vim "$pm"

@@ -10,10 +10,12 @@ if [[ -n "$DISPLAY" ]]; then
   #fi
 
   # TODO: url-encoding
-  function browse_local_file() { ${BROWSER:-firefox} "file://`full-path $1`"; }
+  browse_local_file () {
+    ${BROWSER:-firefox} "file://`full-path $1`"
+  }
 
   SYMBOLA_FONT="`ls ~/.fonts/Symbola*.ttf | tail -n 1`"
-  function show_text () {
+  show_text () {
     local text=''
     if [[ $# -gt 0 ]]; then
       text="$*";
@@ -25,17 +27,17 @@ if [[ -n "$DISPLAY" ]]; then
     convert -font "$SYMBOLA_FONT" -pointsize 150 label:"$text" x:
   }
 
-  function qrencode-display () {
+  qrencode-display () {
     qrencode -o - "$@" | display -
   }
 
-  function guni () {
+  guni () {
     uni "$@" | show_text
   }
 
   # don't barf all over my terminal and make me 'reset' (nor take it hostage)
   for cmd in evince eog gthumb acroread libreoffice ristretto; do
-    eval "function $cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
+    eval "$cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
   done
 
 fi

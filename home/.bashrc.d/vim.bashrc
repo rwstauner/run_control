@@ -6,7 +6,11 @@ alias vi='echo -e "use vim \007"; sleep 2; echo vim'
 alias vimXcat='ex -c w\ !\ cat -c :q'
 alias :sp='vim'
 
-function vim_ack ()   { vim "+Ack $*"; }
+vim_ack () {
+  vim "+Ack $*"
+}
 
-function vim_which () { vim `which "$1"`; }
+vim_which () {
+  vim `which "$1"`
+}
 complete -c vim_which

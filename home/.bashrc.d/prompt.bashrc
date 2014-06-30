@@ -3,7 +3,7 @@
 # Initialize to empty so we can append for readability.
 PS1=''
 
-function _prompt_ () {
+_prompt_ () {
   local add='' autoreset=false
   while [[ $# -gt 0 ]]; do
 
