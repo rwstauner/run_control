@@ -1,5 +1,7 @@
 #perl -C -le 'print map{chr}0151,32,0x2764,040,map{ord}split//,($^X=~m#([^/\\]+)$#)[0]'
 
+#export HARNESS_SUBCLASS=TAP::Harness::Restricted
+
 export NOPASTE_NICK=rwstauner
 export NOPASTE_SERVICES='Gist Shadowcat Pastie Snitch'
 
@@ -144,3 +146,8 @@ function vim_pm () {
 
 # exuberant ctags: http://ctags.sourceforge.net/
 alias ctags-perl='ctags -f tags --recurse --totals --languages=Perl --langmap=Perl:+.t lib t/lib'
+
+# Detect output encoding.
+alias mp3info2='mp3info2 -e 3'
+
+alias human_bytes='perl -MFormat::Human::Bytes -le "print Format::Human::Bytes->base2(shift)"'
