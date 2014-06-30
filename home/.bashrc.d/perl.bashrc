@@ -31,6 +31,34 @@ fi
 # after perlbrew
 which setup-bash-complete &> /dev/null && . setup-bash-complete
 
+latest_perl_file () {
+  perl -e '
+    $file = pop;
+    $exec = $ARGV[0] eq "-x" && ($file =~ m-([^/]+)$-)[0];
+    # Grab the first number.number in the path.
+    sub v { ($_[0] =~ /\b(?:5\.)? (\d+(\.\d+)?)/x)[0] }
+    sub find {
+      my ($dir) = @_;
+      chdir($dir);
+      map { [v($_), (m-([^/]+)-)[0], "$dir/$_"] } glob("*/$file")
+    }
+    # reverse sort by 5.(x.y)
+    @found = sort { $b->[0] <=> $a->[0] }
+      find("$ENV{HOME}/.perlbrew/libs"),
+      find("$ENV{PERLBREW_ROOT}/perls");
+    #use Data::Dumper; print STDERR Dumper(\@found);
+    printf( $exec
+      ? ("perlbrew exec --with %s -q -- %s\n", $found[0]->[1], $exec)
+      : ("%s\n", $found[0]->[2])
+    );
+  ' -- "$@"
+}
+
+# Always use the best App::Uni we can.
+alias uni=`latest_perl_file -x bin/uni || which uni`
+# Enable ack even if we're on a perlbrew that doesn't have it.
+alias ack=`latest_perl_file -x bin/ack || which ack`
+
 # dzil aliases
   function dzil () {
     case "$1" in
