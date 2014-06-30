@@ -5,4 +5,6 @@ export GREP_OPTIONS GREP_COLORS
 
 # http://savannah.gnu.org/bugs/index.php?31389
 #alias grep='env LC_ALL=POSIX grep'
+
+# Pipe requires shift but fingers are too fast/slow.
 alias Grep='grep'
