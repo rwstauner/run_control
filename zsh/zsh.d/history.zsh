@@ -13,10 +13,13 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 # When editing history commands let me confirm it.
 setopt hist_verify
+
 # Save history incrementally instead of at shell exit.
 setopt inc_append_history
 
-setopt share_history # share command history data
+# It's unintuitive for me to have history shared between open terminal sessions.
+# TODO: Find docs on zle's set-local-history and consider that.
+unsetopt share_history
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
