@@ -1,3 +1,5 @@
+umask 022
+
 source_rc_files () {
   local rc
   for rc in "$@"; do
