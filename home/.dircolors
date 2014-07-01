@@ -15,6 +15,7 @@
 .bsh     00;92
 .js      00;92
 .sql     00;92
+.zsh     00;92
 
 # other language runtime files
 .bashrc    00;32
@@ -27,6 +28,7 @@
 .t         00;32
 .wsgi      00;32
 .vim       00;32
+.zshrc     00;32
 
 # text formats
 .xml       00;33
