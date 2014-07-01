@@ -1,3 +1,5 @@
+alias help=run-help
+
 # -v verbose
 # -c differently verbose
 # -f show code for functions
