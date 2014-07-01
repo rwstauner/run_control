@@ -10,7 +10,6 @@ _find_home () {
     [[ -z "${!var}"   ]] || return
   fi
 
-  echo "searching for $var with $name"
   for dir in $HOME/java $HOME/opt /opt; do
   for found in $dir/$name*${ZSH_VERSION:+(N)}; do
     if [[ -d "$found" ]]; then
