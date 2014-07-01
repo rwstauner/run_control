@@ -2,8 +2,6 @@
 #   autoload zsh-newuser-install
 #     zsh-newuser-install -f
 
-bindkey -e
-
 # zshoptions(1)
 
 unsetopt menu_complete
@@ -28,19 +26,3 @@ setopt interactive_comments
 setopt pushd_minus
 
 setopt rematch_pcre
-
-# Line editing!
-setopt zle
-
-# autoload -U compinit
-# compinit
-# autoload -U incremental-complete-word
-# zle -N incremental-complete-word
-# autoload -U insert-files
-# zle -N insert-files
-# autoload -U predict-on
-# zle -N predict-on
-
-# keys
-# Esc-Q (stash, run different command, come back to previous (unfinished))
-# Esc-A (run, then bring up again)
