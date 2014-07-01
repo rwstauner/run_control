@@ -9,8 +9,3 @@ alias :sp='vim'
 vim_ack () {
   vim "+Ack $*"
 }
-
-vim_which () {
-  vim `which "$1"`
-}
-complete -c vim_which

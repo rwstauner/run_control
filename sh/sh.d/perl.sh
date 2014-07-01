@@ -57,9 +57,9 @@ latest_perl_file () {
 }
 
 # Always use the best App::Uni we can.
-alias uni=`latest_perl_file -x bin/uni || which uni`
+alias uni="`latest_perl_file -x bin/uni || which uni`"
 # Enable ack even if we're on a perlbrew that doesn't have it.
-alias ack=`latest_perl_file -x bin/ack || which ack`
+alias ack="`latest_perl_file -x bin/ack || which ack`"
 
 # dzil aliases
   dzil () {
