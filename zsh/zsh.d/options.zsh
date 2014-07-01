@@ -14,6 +14,10 @@ unsetopt auto_name_dirs
 unsetopt auto_pushd
 unsetopt cdable_vars
 
+# Error on dangerous overwrite attempts (shell redirection).
+# I'm not settled on this, but I'll try it for a while.
+unsetopt clobber
+
 setopt complete_in_word
 
 unsetopt flow_control
@@ -25,4 +29,5 @@ setopt interactive_comments
 
 setopt pushd_minus
 
+# perl!
 setopt rematch_pcre
