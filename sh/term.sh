@@ -1,4 +1,9 @@
-if [[ "${TERM:-dumb}" != "dumb" ]]; then
+TERM_IS_INTERACTIVE=false
+[[ -n "$PS1" ]] && [[ "${TERM:-dumb}" != "dumb" ]] && TERM_IS_INTERACTIVE=true
+export TERM_IS_INTERACTIVE
+
+
+if $TERM_IS_INTERACTIVE; then
 # always use a terminal mutliplexer
 
   # Disable XON/OFF flow control so that ctrl-s does readline history search.

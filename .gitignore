@@ -1,4 +1,4 @@
-/home/.bashrc.d/completion.d/contrib
+/bash/completion.d/contrib
 /vimrc
 
 *.pyc
