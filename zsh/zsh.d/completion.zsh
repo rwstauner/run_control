@@ -28,3 +28,6 @@ zstyle :compinstall filename '/home/rando/.zshrc'
 
 autoload -Uz compinit
 compinit
+
+# See Also ZBEEP.
+unsetopt list_beep
