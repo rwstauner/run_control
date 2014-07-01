@@ -69,7 +69,6 @@ ZSH_THEME="robbyrussell"
 plugins=(
   cp
   cpanm
-  colored-man
   colorize
   dircycle
   fabric
