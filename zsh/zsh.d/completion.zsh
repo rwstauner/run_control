@@ -29,5 +29,18 @@ zstyle :compinstall filename '/home/rando/.zshrc'
 autoload -Uz compinit
 compinit
 
+
 # See Also ZBEEP.
 unsetopt list_beep
+
+
+# Bind keys similar to bash for triggering specific completion types.
+# Esc ! -> command name
+# Esc $ -> environment variables
+# Esc @ -> machine names
+# Esc / -> file name
+# Esc ~ -> a user name
+for key in '!' '$' '@' '/' '~'; do
+  bindkey "\e$key" _bash_complete-word
+  bindkey "^X$key" _bash_list-choices
+done

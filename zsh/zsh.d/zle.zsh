@@ -72,7 +72,7 @@ bindkey "\e[1;2C" vi-forward-blank-word
 
 # Help
 bindkey "\e^V" describe-key-briefly
-bindkey "\e!"  which-command
+bindkey "\e\`" which-command
 
 # Like vim's :
 bindkey "\e:"  execute-named-cmd
