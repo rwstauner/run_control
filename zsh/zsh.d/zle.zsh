@@ -46,11 +46,18 @@ bindkey "\e+" predict-toggle
 # Comment line instead of executing or eliminating.
 bindkey "\e#" pound-insert
 
-
 # Up/Down searches history matching the text before the cursor.
 # https://coderwall.com/p/oqtj8w
 bindkey "\e[A" history-beginning-search-backward
 bindkey "\e[B" history-beginning-search-forward
+# The following will do the same but put the cursor at the end of the line.
+# That's consistent with bash/readline when you press up with no prefix
+# but that sometimes gets me into trouble; maybe the extra key press isn't bad.
+# autoload -Uz history-search-end
+# zle -N history-beginning-search-backward-end history-search-end
+# zle -N history-beginning-search-forward-end  history-search-end
+# bindkey "\e[A" history-beginning-search-backward-end
+# bindkey "\e[B" history-beginning-search-forward-end
 
 
 # Bring back a few things from readline.
