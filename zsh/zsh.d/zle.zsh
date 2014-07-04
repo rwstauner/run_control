@@ -89,5 +89,9 @@ bindkey "\e:"  execute-named-cmd
 
 # TODO: put Esc-? functionality into prompt?
 # TODO: Create function (omz plugin?) to display cheat sheet of zle commands.
-# TODO: use `bindkey -s` to do something like `mark, move-non-blank, kill`?
 # TODO: is there a quote-this-word function?
+
+# Kill non-blank regions backward and forward.
+# TODO: Try this with functions to see if it's faster.
+bindkey -s "\e[" "^@\e[1;2D\ew"
+bindkey -s "\e]" "^@\e[1;2C\ew"
