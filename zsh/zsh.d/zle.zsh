@@ -41,6 +41,7 @@ bindkey "\e+" predict-toggle
 # modify-current-argument
 # url-quote-magic
 # quote-and-complete-word
+# replace-string
 
 
 # Comment line instead of executing or eliminating.
