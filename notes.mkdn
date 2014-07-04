@@ -98,10 +98,12 @@ compare /etc/pm/sleep.d/
     sqlite3 sqlite3-doc sqlite3-pcre libsqlite3-dev
     postgresql-client-8.4 libpq-dev
     psutils pdftk cups-pdf
+    silversearcher-ag
     xclip xsel xsane xsensors
     zenity
     dict aspell
     autokey-gtk
+    xdotool
     clamz
     flac vorbis-tools mpg123 lame normalize-audio sox paprefs paman mplayer mplayer-fonts mplayer-gui mencoder ffmpeg ffmpeg2theora abcde cdparanoia cheese cd-discid audacity
     gmusicbrowser libgstreamer-interfaces-perl libgnome2-wnck-perl
@@ -123,6 +125,7 @@ compare /etc/pm/sleep.d/
     wireshark socat nmap gftp traceroute whois
     wine winetricks cabextract
     unicode-screensaver xscreensaver-data-extra xscreensaver-gl-extra xscreensaver-screensaver-bsod
+    icedtea-6-plugin
 
 ### ansible
 
@@ -183,7 +186,6 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
 
 * cpan autobundle on old OS
 * perlbrew
-    * curl -L install.perlbrew.pl | bash
     * copy ~/perl5/perlbrew/dists
     * copy .cpanreporter/ .cpantesters/ .metabase/
     * copy .cpan/patches/ .cpan/prefs/
@@ -232,6 +234,20 @@ http://www.imagemagick.org/script/install-source.php
 
 copy dir
 [dl/install](https://www.dropbox.com/install?os=lnx)
+
+### remark
+
+http://www.cyberciti.biz/open-source/command-line-hacks/remark-command-regex-markup-examples/
+
+### skippy-xd
+
+http://www.linux-ai.com/skippy-xd-expose-like-window-picker-for-xfce-lxde-etc/
+http://code.google.com/p/skippy-xd/
+https://github.com/richardgv/skippy-xd
+
+### the_silver_searcher
+
+https://github.com/ggreer/the_silver_searcher
 
 ### vim
 
