@@ -92,6 +92,18 @@ bindkey "\e:"  execute-named-cmd
 # TODO: is there a quote-this-word function?
 
 # Kill non-blank regions backward and forward.
-# TODO: Try this with functions to see if it's faster.
-bindkey -s "\e[" "^@\e[1;2D\ew"
-bindkey -s "\e]" "^@\e[1;2C\ew"
+backward-kill-blank-word () {
+  set-mark-command
+  # This function seems to be the slow one. :-/
+  vi-backward-blank-word
+  kill-region
+}
+forward-kill-blank-word () {
+  set-mark-command
+  vi-forward-blank-word
+  kill-region
+}
+zle -N backward-kill-blank-word
+zle -N forward-kill-blank-word
+bindkey "\e[" backward-kill-blank-word
+bindkey "\e]" forward-kill-blank-word
