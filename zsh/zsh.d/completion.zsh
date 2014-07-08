@@ -1,4 +1,4 @@
-# compinstall
+# The following lines were added by compinstall
 
 zstyle ':completion:*' auto-description '◇ specify: %d'
 #zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
@@ -24,10 +24,15 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' substitute 1
 zstyle ':completion:*' verbose true
-zstyle :compinstall filename '/home/rando/.zshrc'
+zstyle :compinstall filename "$HOME/run_control/zsh/zsh.d/completion.zsh"
 
 autoload -Uz compinit
 compinit
+# End of lines added by compinstall
+
+
+# Complete both ends of the word.
+setopt complete_in_word
 
 
 # See Also ZBEEP.

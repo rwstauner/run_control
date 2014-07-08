@@ -18,8 +18,6 @@ unsetopt cdable_vars
 # I'm not settled on this, but I'll try it for a while.
 unsetopt clobber
 
-setopt complete_in_word
-
 unsetopt flow_control
 
 # Error if glob doesn't match.  Use glob*(N) to override.
