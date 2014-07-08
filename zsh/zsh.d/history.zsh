@@ -11,6 +11,9 @@ setopt hist_ignore_all_dups
 
 # Don't save commands with leading space into history.
 setopt hist_ignore_space
+
+setopt hist_reduce_blanks
+
 # When editing history commands let me confirm it.
 setopt hist_verify
 
