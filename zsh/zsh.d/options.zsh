@@ -23,9 +23,15 @@ unsetopt flow_control
 # Error if glob doesn't match.  Use glob*(N) to override.
 setopt nomatch
 
+# Ignore Ctrl-D, require "exit" or "logout".
+#setopt ignore_eof
+
 setopt interactive_comments
 
 setopt pushd_minus
 
 # perl!
 setopt rematch_pcre
+
+# Print timing statistics for commands that take longer than this.
+REPORTTIME=10
