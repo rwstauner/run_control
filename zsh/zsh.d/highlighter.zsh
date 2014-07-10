@@ -49,7 +49,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(
   ZSH_HIGHLIGHT_STYLES[assign]='fg=211'
 
 # pattern
-ZSH_HIGHLIGHT_PATTERNS+=('rm *' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_PATTERNS+=('(#s)rm ' 'fg=white,bold,bg=red')
 ZSH_HIGHLIGHT_PATTERNS+=('sudo *'   'standout')
 
 # root
