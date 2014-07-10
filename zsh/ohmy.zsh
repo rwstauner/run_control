@@ -1,12 +1,17 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+ZSH_CUSTOM=$HOME/run_control/zsh/custom
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 
-ZSH_THEME="robbyrussell"
+# Agnoster looks cool but it requires a special font.
+#ZSH_THEME=agnoster
+#ZSH_THEME=gnzh
+: ${ZSH_THEME:=rwstauner}
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -96,3 +101,7 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Merge made by octopus.
+ZSH_THEME_GIT_PROMPT_PREFIX='%{%F{178}%}🐙 «'
+ZSH_THEME_GIT_PROMPT_SUFFIX='»%{%f%}'
