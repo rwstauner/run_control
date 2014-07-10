@@ -5,6 +5,8 @@ zshrc_dir=$rc_dir/zsh
 # Load OMZ first so that we can overwrite.
 source $zshrc_dir/ohmy.zsh
 
+# See https://github.com/zsh-users for more handy utilities.
+
 source $rc_dir/sh/loader.sh
 
 # Load everything else.
