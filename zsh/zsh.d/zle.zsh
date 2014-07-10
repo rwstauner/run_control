@@ -1,7 +1,31 @@
-bindkey -e
-
 # Line editing!
 setopt zle
+
+# Remember `bindkey -L` to print out current mappings.
+
+# Give a a key binding to switch between emacs and vi mode.
+switch-keymaps () {
+  if [[ $KEYMAP != vicmd ]]; then
+    # Switch to vicmd mode and make it apparent.
+    PREDISPLAY=': '
+    region_highlight=('P0 1 standout')
+    zle -K vicmd
+  else
+    # Use emacs mode rather than plain viins.
+    PREDISPLAY=''
+    region_highlight=()
+    zle -K emacs
+  fi
+}
+zle -N switch-keymaps
+bindkey -e "\e\e" switch-keymaps
+bindkey -a "\e\e" switch-keymaps
+# This seems to need to be rebound.
+bindkey -v "\e"   vi-cmd-mode
+# TODO: better would be to intercept vi-insert-mode and switch to emacs.
+
+# Start in emacs mode (so many more key bindings up front).
+bindkey -e
 
 # Incremental is cool, but doesn't return many suggestions.
 # autoload -U incremental-complete-word
