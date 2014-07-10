@@ -2,3 +2,26 @@
 full-path () {
   echo "$1:a"
 }
+
+# Format argument (of seconds) into separate units (up to days).
+format-elapsed-time () {
+  local -F sec=$1
+  local -a elapsed
+  local -i i top
+
+  local -a units; units=('d' 'h' 'm')
+  local -a amts;  amts=(86400 3600 60)
+
+  for ((i=1; i <= ${#units}; i++)); do
+    if (( $sec >= ${amts[$i]} )); then
+      (( top = $sec / $amts[$i] ))
+      (( sec = $sec - $top * $amts[$i] ))
+      elapsed+="${top}${units[$i]}"
+    fi
+  done
+  # Append remaining seconds to array after stripping trailing zeros.
+  # TODO: Round this to 3 or 6 decimal places?
+  elapsed+="${${sec//%0#/}%.}s"
+
+  echo "${(j, ,)elapsed}"
+}
