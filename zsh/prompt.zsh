@@ -89,7 +89,9 @@ my_prompt=(
   '%{%F{135}%}%2v%{%f%}'
 
   # Put prompt character on a line by itself.
-  $'\n$ '
+  # Zsh/zle seems much better than bash/readline about having "hidden" bytes.
+  # $ › 〉❭ ❯ ❱ ⧽
+  $'\n%(!.%{%K{red}%}#%{%k%}.%{%B%F{031}%}💥%{%f%b%}) '
 )
 
 PROMPT="${(j,,)my_prompt}"
