@@ -17,11 +17,56 @@ git_version=`git --version`
 function have_git_version () { version_ge "$git_version" "$1"; }
 
 gc="git config --global"
+config () {
+  #echo "$@"
+  $gc "$@"
+}
 
 # [settings]
 # TODO: figure out $gc core.autocrlf        input
 
 $gc color.ui             auto
+
+grep_color () {
+  local slot="$1" sgr="$2" val=""
+  for attr in ${sgr//;/ }; do
+    echo "$attr"
+    case "$attr" in
+      01) val="bold $val";;
+      31) val="$val red";;
+      32) val="$val green";;
+      33) val="$val yellow";;
+      34) val="$val blue";;
+      35) val="$val magenta";;
+      36) val="$val cyan";;
+      37) val="$val white";;
+    esac
+  done
+  config color.grep."$slot" "${val# }"
+}
+
+parse_grep_colors () {
+  # ms=01;31:mc=01;33:sl=:cx=34:fn=35:ln=32:bn=32:se=36
+  local slot color
+  for slot in ${GREP_COLORS//:/ }; do
+    color="${slot#*=}"
+    case "${slot%=*}" in
+      mt)
+          grep_color matching   $color
+          grep_color context    $color
+        ;;
+      ms) grep_color matching   $color;;
+      mc) grep_color context    $color;;
+      sl)  ;;
+      cx)  ;;
+      fn) grep_color filename   $color;;
+      ln) grep_color linenumber $color;;
+      bn)  ;;
+      se) grep_color separator  $color;;
+    esac
+  done
+}
+parse_grep_colors
 
 # make tabs whitespace errors
 #$gc core.whitespace      "trailing-space,space-before-tab,tab-in-indent"
