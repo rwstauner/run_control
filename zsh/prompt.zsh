@@ -47,6 +47,8 @@ add-zsh-hook preexec _rwstauner_before_execute
 # Some fun characters:
 # ∷ ⎇  ⬕ 🚀 😎 🔥 🔚 💥 👻 🐧 🐾 🏁 🎃 🍪 🌵 🌉 🌀 🃟 🐲 💣 ☃⛄ ⛇
 
+_rwstauner_set_prompt () {
+
 typeset -a my_prompt
 my_prompt=(
   #'💥 '
@@ -57,7 +59,7 @@ my_prompt=(
   #'%{%F{130}%}🌀'
   #'%{%F{228}%}💥 '
   # host
-  '%{%F{green}%}%m%{%f%}'
+  '%{%F{'"${PROMPT_HOST_COLOR:-green}"'}%}%m%{%f%}'
 
   #'%{%F{246}%}🐾%{%f%}'
   '%{%F{216}%}🍪%{%f%} '
@@ -96,6 +98,10 @@ my_prompt=(
 
 PROMPT="${(j,,)my_prompt}"
 unset my_prompt
+
+}
+
+_rwstauner_set_prompt
 
 RPROMPT='$(git_prompt_info)'
 
