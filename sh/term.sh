@@ -17,7 +17,10 @@ if $TERM_IS_INTERACTIVE; then
   term_plain=${TERM%%-*color}
   # do 256 if supported...
   desired_term=${TERM%%-*color}-256color
-  terminfo_entry="terminfo/${desired_term:0:1}/$desired_term"
+  # Get the first character of the string using only prefix/suffix removal:
+  # First strip the first character (with ? glob),
+  # then use the result as the suffix to strip from the original.
+  terminfo_entry="terminfo/${desired_term%"${desired_term#?}"}/$desired_term"
   if [[ -e "/lib/$terminfo_entry" ]] ||
      [[ -e "/usr/share/$terminfo_entry" ]]; then
     TERM="$desired_term"
