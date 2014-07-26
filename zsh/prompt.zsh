@@ -41,6 +41,8 @@ _rwstauner_before_execute () {
   psvar[1]="$1"
 }
 
+autoload -U add-zsh-hook
+
 add-zsh-hook precmd  _rwstauner_before_prompt
 add-zsh-hook preexec _rwstauner_before_execute
 
