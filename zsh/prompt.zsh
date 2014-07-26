@@ -103,6 +103,7 @@ unset my_prompt
 
 _rwstauner_set_prompt
 
+whence git_prompt_info &> /dev/null && \
 RPROMPT='$(git_prompt_info)'
 
 # zsh/Src/utils.c
