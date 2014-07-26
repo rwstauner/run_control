@@ -22,7 +22,7 @@ lazy_source () {
   echo "test -r $rc && source $rc"
 }
 
-dir=${0%/*/*}
+dir=${0%/*}/..
 
 # Load `term.sh` first (see sh/loader.sh).
 include $dir/sh/term.sh
