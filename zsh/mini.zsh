@@ -14,6 +14,7 @@ include_pattern () {
 }
 
 zshd_files=(
+  autoload
   completion
   functions
   history
