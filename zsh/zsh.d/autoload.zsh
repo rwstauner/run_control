@@ -1,5 +1,7 @@
 # /usr/share/zsh/function
 
+autoload -U add-zsh-hook
+
 # Calendar/age: Match file age with a glob.
 # print *(e:age 2006/10/04 2006/10/09:)
 autoload -Uz age
