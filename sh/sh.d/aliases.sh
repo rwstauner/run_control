@@ -39,6 +39,7 @@ alias lft='lf --time-style=full-iso'
 # show child process hierarchy with indentation
 alias ps='ps -H'
 
+  # Make `dict` use a PAGER.
   dict () {
     command dict "$@" | less
   }

@@ -29,7 +29,7 @@ include $dir/sh/term.sh
 # Sh doesn't do arrays.
 for rc in \
   aliases \
-  \#functions \
+  functions \
   grep \
   lang \
   less \
