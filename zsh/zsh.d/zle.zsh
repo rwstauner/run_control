@@ -140,6 +140,9 @@ bindkey "\e[" backward-kill-shell-word
 bindkey "\e]"  forward-kill-shell-word
 
 # Ctrl-arrow  moves across words ($WORDCHARS).
+bindkey "\e[1;5D" backward-word
+bindkey "\e[1;5C"  forward-word
+
 # Shift-arrow moves across shell words.
 # TODO: use terminfo?
 bindkey "\e[1;2D" backward-shell-word
