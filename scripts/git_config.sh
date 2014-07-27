@@ -30,7 +30,6 @@ $gc color.ui             auto
 grep_color () {
   local slot="$1" sgr="$2" val=""
   for attr in ${sgr//;/ }; do
-    echo "$attr"
     case "$attr" in
       01) val="bold $val";;
       31) val="$val red";;
