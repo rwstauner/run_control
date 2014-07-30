@@ -14,9 +14,7 @@
 #    echo "$border"
   }
 
-no_sound () {
-  NO_SOUND=1 "$@"
-}
+alias nosound='NO_SOUND=1'
 
 notify_result () {
   local rv=$?
