@@ -14,6 +14,7 @@ include_pattern () {
 }
 
 zshd_files=(
+  aliases
   autoload
   completion
   functions
