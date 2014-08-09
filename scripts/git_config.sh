@@ -227,6 +227,11 @@ $gc alias.branch-track    $'!_() { branch=${1} remote=${2:-origin}; git branch -
 $gc alias.fetch-pr        $'!_() { remote="${1:-origin}"; git fetch "$remote" "+refs/pull/*/head:refs/remotes/$remote/pr/*"; }; _'
 $gc alias.branch-pr       $'!_() { branch="$1"; pr="$2"; remote="${3:-origin}"; git co -b "$branch" -t "refs/remotes/$remote/pr/$pr"; }; _'
 
+# Project root dir.  The rev-parse version returns '.git' b/c git operates from
+# the project root... so we can just use pwd instead.
+#$gc alias.root            $'!_() { dir=`git rev-parse --git-dir`; echo "${dir%/?*}"; }; _'
+$gc alias.root            $'!pwd'
+
 # run daemon (use !git to run from repo root) then try git ls-remote
 $gc alias.serve           $'!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
