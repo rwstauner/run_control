@@ -32,10 +32,12 @@ define LINK_RC
 	fi
 endef
 
-.PHONY: all in_home scripts
+.PHONY: all in_home links scripts
 
 # NOTE: $(call X,$$shvar) needs doubled $'s ($$$$shvar) in older make
-all: in_home scripts
+all:
+
+links: in_home
 	for rc in $(LN_RC_FILES); do \
 		$(call LINK_RC,$$rc,$$rc); \
 	done; \
