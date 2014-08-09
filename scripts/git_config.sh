@@ -126,6 +126,7 @@ $gc alias.amend           $'commit -v --amend'
 $gc alias.co              $'checkout'
 $gc alias.cob             $'checkout -b'
 $gc alias.com             $'checkout master'
+$gc alias.cobt            $'!_() { git branch-track "$@"; git co "$1"; }; _'
 
 $gc alias.cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { print tolower($2) }\047 ~/.pause`@cpan.org> <`git config user.email`>"'
 
