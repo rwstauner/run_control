@@ -17,7 +17,7 @@ export LESS_TERMCAP_me=$'\E[0m'
 #export LESS_TERMCAP_so=$'\E[1;40;34m'
 #export LESS_TERMCAP_so=$'\E[1;43;30m'
 export LESS_TERMCAP_so=$'\E[1;44m'
-export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[22;49m'
 
 # Underline
 export LESS_TERMCAP_us=$'\E[04;95m'
