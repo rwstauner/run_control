@@ -23,11 +23,9 @@ notify_result () {
   if [[ $rv -eq 0 ]]; then
     local pf=Passed
     local sound="$HOME/data/audio/angry_birds/angry_birds-cheer_1.ogg"
-    local player=ogg123
   else
     local pf=Failed
     local sound="$HOME/data/audio/Super_Mario_Bros_Game_Over_8b6975.mp3"
-    local player=mpg123
   fi
 
   local img="$HOME/data/images/icons/tux.png"
@@ -37,7 +35,8 @@ notify_result () {
 
   if [[ -z "$NO_SOUND" ]] && [[ -e "$sound" ]]; then
     # play sound async without showing anything on screen
-    { $player $sound & disown; } &> /dev/null
+    # play(1) must be nohup(1)ed or it will pause when backgrounded.
+    { nohup play -v 0.5 $sound & disown; } &> /dev/null
   fi
 
   # show pop-up notification
