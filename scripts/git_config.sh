@@ -105,6 +105,8 @@ $gc diff.pdftext.textconv 'pdftotext'
 # NOTE: git uses 'sh'
 # find some nice examples at: https://git.wiki.kernel.org/index.php/Aliases
 
+$gc alias.exec            $'!_() { exec "$@"; }; _'
+
 $gc alias.add-p           $'add -p'
 $gc alias.adp             $'add -p'
 $gc alias.touch           $'add -N'
