@@ -203,6 +203,7 @@ $gc alias.lgpcw           $'!git lg -p --color-words=.'
 
 # ls-files doesn't tab-complete, so just shorten it
 $gc alias.ls              $'ls-files'
+$gc alias.lsgrep          $'!_() { git ls-files | grep --color=always "$@" | $PAGER; }; _'
 
 $gc alias.merge-delete    $'!_() { git merge "$1" && git branch -d "$1"; }; _'
 
