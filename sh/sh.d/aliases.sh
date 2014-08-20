@@ -39,7 +39,8 @@ alias lft='lf --time-style=full-iso'
 # show child process hierarchy with indentation
 alias ps='ps -H'
 
-  # Make `dict` use a PAGER.
-  dict () {
-    command dict "$@" | less
-  }
+# Always use a pager.
+for i in dict;
+  $i () { command $i "$@" | $PAGER; }
+
+alias ag='ag --pager=$PAGER'
