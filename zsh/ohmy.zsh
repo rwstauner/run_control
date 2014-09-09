@@ -11,10 +11,6 @@ export ZSH=$HOME/run_control/zsh/ext/oh-my-zsh
 #ZSH_THEME=gnzh
 : ${ZSH_THEME:=rwstauner}
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -30,8 +26,8 @@ export ZSH=$HOME/run_control/zsh/ext/oh-my-zsh
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to disable command auto-correction.
-# DISABLE_CORRECTION="true"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -110,11 +106,11 @@ unset -f source
 
 # User configuration
 
+
 # Remove these hooks so they don't even run (better than DISABLE_AUTO_TITLE).
 add-zsh-hook -d precmd  omz_termsupport_precmd
 add-zsh-hook -d preexec omz_termsupport_preexec
 
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
