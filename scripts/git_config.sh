@@ -134,6 +134,8 @@ $gc alias.cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { p
 
 # clone repo, make remote "origin" for first arg and "upstream" for second
 $gc alias.clone-fork      $'!_() { fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream; }; _'
+
+# git rev-parse --default master --symbolic-full-name HEAD
 $gc alias.current-branch  $'!git symbolic-ref HEAD | sed s-^refs/heads/--'
 
 # diff diff diff
@@ -193,6 +195,7 @@ $gc alias.log-fetched     $'log ..FETCH_HEAD --stat --no-merges'
 # this should probably be log-remote and figure out the tracking remote
 $gc alias.log-origin      $'log ..origin --stat --no-merges'
 
+# The --stat-name-width=${COLUMNS:-80} arg doesn't seem to help very much.
 $gc alias.logstat         $'log --stat'
 $gc alias.logst           $'log --stat --no-merges'
 
@@ -213,6 +216,11 @@ $gc alias.merge-delete    $'!_() { git merge "$1" && git branch -d "$1"; }; _'
 
 # provide rebasing music (https://coderwall.com/p/at9bya)
 #$gc alias.mav             $'!afplay ~/Music/Danger\\ Zone.mp3 & LASTPID=$! \ngit rebase -i $1 \nkill -9 $LASTPID\n true'
+
+# https://blog.afoolishmanifesto.com/posts/git-aliases-for-your-life/
+# git rebase --root --onto origin/master -i --autosquash
+# gitk $(cat .git/MERGE_HEAD) $(cat .git/ORIG_HEAD) "$@" &
+# gitk ^origin/master HEAD
 
 # what new commits have been created by the last command (like "git pull")
 $gc alias.new             $'!_() { git log $1@{1}..$1@{0} "$@"; }; _'
