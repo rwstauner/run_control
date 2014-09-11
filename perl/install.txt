@@ -60,6 +60,7 @@ CPAN::Meta::Requirements
 CPAN::Mini
 CGI::PSGI
 Class::Autouse
+Class::Date
 Daemon::Control
 DateTime
 DateTime::Format::Duration
@@ -84,7 +85,9 @@ MooX::Types::MooseLike
 Moose
 Moose::Autobox
 MooseX::Types
+MooseX::Types::PortNumber
 MooseX::AttributeShortcuts
+MooseX::Role::AttributeOverride
 MP3::Tag
 Path::Class
 Path::Tiny
@@ -93,6 +96,8 @@ Pod::Cpandoc
 Pod::Usage
 Promises
 Regexp::Common
+Regexp::Common::time
+rlib
 Sort::ByExample
 Template::Provider::Markdown
 Term::QRCode
@@ -117,6 +122,7 @@ utf8::all
 App::Metabase::Relayd
 CGI::Fast
 DBD::Mock
+DBD::PgPP
 DBI::Shell
 Devel::cst
 Devel::Cover
@@ -170,6 +176,7 @@ Task::Toolchain::Test
 Throwable
 Throwable::X
 Time::HiRes
+Time::Moment
 Time::Piece
 Twiggy
 XML::LibXML
