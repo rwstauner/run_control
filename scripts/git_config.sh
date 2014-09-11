@@ -164,6 +164,10 @@ $gc alias.empty-tree-sha1 $'hash-object -t tree /dev/null'
 
 #$gc alias.change-github-username $'!sed -i -re \047s/(github.com:)magnificent-tears/\\1rwstauner/\047 .git/config'
 
+# Create a script that can be verified and then piped to sh.
+# TODO: split args b/t log and fp with `--`.
+$gc alias.format-patch-script  $'!_() { file="$1"; shift; git log --oneline "$file" | perl -lne \'BEGIN { @opts = splice @ARGV } ($c, $s) = split / /, $_, 2; print q[git format-patch -n --start-number ], ++$patch, qq[ @opts -1 $c # $s]\' -- "$@"; }; _'
+
 # filenames at the top: --heading --break ?
 $gc alias.grep-todo       $'grep -iE "to.?do|fix.?me"'
 
