@@ -40,7 +40,8 @@ alias lft='lf --time-style=full-iso'
 alias ps='ps -H'
 
 # Always use a pager.
-for i in dict;
-  $i () { command $i "$@" | $PAGER; }
+for i in dict; {
+  eval "$i"' () { command '"$i"' "$@" | $PAGER; }'
+}
 
 alias ag='ag --pager=$PAGER'
