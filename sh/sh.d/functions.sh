@@ -5,6 +5,13 @@ mkdirpushd () {
   pushd "$@"
 }
 
+from () {
+  local dir="$1"; shift
+  pushd "$dir" >/dev/null || return
+  "$@"
+  popd >/dev/null
+}
+
 # print the full path to a relative file
 full-path () {
   local f="$1"
