@@ -1,7 +1,7 @@
 #!/bin/bash
 
 umask 0077
-bin="$HOME/bin/contrib"
+bin="$HOME/usr/bin"
 completion="$HOME/.bashrc.d/completion.d/contrib"
 mkdir -p "$bin" "$completion"
 chmod u+rx "$bin" "$completion"

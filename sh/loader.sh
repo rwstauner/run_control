@@ -27,9 +27,10 @@ source_rc_files $shrc_dir/term.sh
 
 # Build $PATH.
 # Instead of adding /opt/*/bin to $PATH
-# consider symlinking those scripts into ~/bin/contrib
+# consider symlinking those scripts into ~/usr/bin
 # to keep the $PATH shorter so less searching is required.
-add_to_path $HOME/bin/contrib $HOME/bin
+add_to_path $HOME/usr/bin
+add_to_path $HOME/bin
 
 
 # Get everything else.
