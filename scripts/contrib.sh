@@ -2,7 +2,7 @@
 
 umask 0077
 bin="$HOME/usr/bin"
-completion="$HOME/.bashrc.d/completion.d/contrib"
+completion="$HOME/usr/share/bash_completion.d/"
 mkdir -p "$bin" "$completion"
 chmod u+rx "$bin" "$completion"
 

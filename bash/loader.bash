@@ -10,6 +10,7 @@ bashrc_dir=$rc_dir/bash
 source_rc_files $bashrc_dir/bash.d/* ~/.bashrc.local $EXTRA_BASHRC
 
 # completion after the others (so PATH is built, etc)
-source_rc_files $bashrc_dir/completion.d/contrib/* $bashrc_dir/completion.d/*
+source_rc_files $HOME/usr/share/bash_completion.d/*
+source_rc_files $bashrc_dir/completion.d/*
 
 unset rc_dir bashrc_dir
