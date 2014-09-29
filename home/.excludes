@@ -1,2 +1,5 @@
 *.py[co]
 __pycache__
+.tox
+
+.vagrant
