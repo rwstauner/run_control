@@ -100,9 +100,14 @@ source () {
 }
 
 source $ZSH/oh-my-zsh.sh
+omz=$?
 
+# Always do these.
 unset skip_omz_lib
 unset -f source
+
+# If omz failed, return early and preserve exit code.
+[[ $omz -eq 0 ]] || return $omz
 
 # User configuration
 
