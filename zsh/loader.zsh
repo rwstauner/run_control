@@ -4,7 +4,7 @@ zshrc_dir=$rc_dir/zsh
 
 # Load OMZ first so that we can overwrite.
 # If OMZ fails it won't load our theme, so load prompt explicitly.
-source $zshrc_dir/ohmy.zsh \
+source $zshrc_dir/ohmy.zsh || \
   source $zshrc_dir/prompt.zsh
 
 # See https://github.com/zsh-users for more handy utilities.
