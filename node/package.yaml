@@ -23,12 +23,17 @@ peerDependencies:
   #http://registry.npmjs.org/less/-/less-1.6.3.tgz: ~
   less: '>=1.7.0'
 
+  lodash: x
+  # Customize lodash builds.
+  lodash-cli: x
+
   phantomjs: x
 
   requirejs: '>=2.1.2'
   # require.js "text!" plugin
   text: x
 
+  underscore: '>=1.6.0'
   uglify-js: '>=2'
 
   yo: x
