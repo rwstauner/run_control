@@ -178,6 +178,8 @@ $gc alias.homepage-metacpan      $'!curl -v -d "login=`git config github.user`&t
 # uses patchutils/interdiff to see upstream modifications b/t two commits (origin/master and local branch)
 $gc alias.intercommit     $'!_() { git show "$1" > .git/commit1 && git show "$2" > .git/commit2 && interdiff .git/commit[12] | less -FRS; }; _'
 
+$gc alias.initial-commit  $'!git rev-list --all | tail -n 1'
+
 # gitk
 $gc alias.k               $'!gitk'
 # Gitv (from the command line seems to require an argument)
