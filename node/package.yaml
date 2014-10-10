@@ -31,6 +31,8 @@ peerDependencies:
   # Customize lodash builds.
   lodash-cli: x
 
+  node-static: x
+
   phantomjs: x
 
   requirejs: '>=2.1.2'
