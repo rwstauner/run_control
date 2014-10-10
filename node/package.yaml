@@ -15,6 +15,7 @@ peerDependencies:
   bower: x
 
   coffee-script: x
+  coffeelint: x
 
   # js utilities
   js-beautify: x
