@@ -6,6 +6,9 @@ private: true
 preferGlobal: true
 
 peerDependencies:
+  # Let me play with Backbone in a terminal repl.
+  backbone: x
+
   # cli app
   bible: x
 
