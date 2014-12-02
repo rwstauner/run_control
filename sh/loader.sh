@@ -12,9 +12,14 @@ add_to_path () {
   local after=false dir
   if [[ "$1" == "--after" ]]; then after=true; shift; fi
   for dir in "$@"; do
-    # FIXME: Do this without piping to grep.
-    if [[ -d "$dir" ]] && ! echo "$PATH" | grep -qE "(^|:)$dir(:|$)"; then
-      if $after; then PATH="$PATH:$dir"; else PATH="$dir:$PATH"; fi
+    if [[ -d "$dir" ]]; then
+      if $after; then
+        PATH="$PATH:"
+        PATH="${PATH//$dir:/}$dir";
+      else
+        PATH=":$PATH"
+        PATH="$dir${PATH//:$dir/}";
+      fi
     fi
   done
 }
