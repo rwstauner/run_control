@@ -4,3 +4,5 @@
 umask 0077
 
 setup_runtime_dir node
+
+mkdir -p ~/node/global
