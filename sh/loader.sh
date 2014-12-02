@@ -35,6 +35,7 @@ source_rc_files $shrc_dir/term.sh
 # consider symlinking those scripts into ~/usr/bin
 # to keep the $PATH shorter so less searching is required.
 add_to_path $HOME/usr/bin
+add_to_path $HOME/homebrew/bin
 add_to_path $HOME/bin
 
 
