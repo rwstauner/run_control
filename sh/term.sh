@@ -17,12 +17,11 @@ if $TERM_IS_INTERACTIVE; then
   term_plain=${TERM%%-*color}
   # do 256 if supported...
   desired_term=${TERM%%-*color}-256color
-  # Get the first character of the string using only prefix/suffix removal:
-  # First strip the first character (with ? glob),
-  # then use the result as the suffix to strip from the original.
-  terminfo_entry="terminfo/${desired_term%"${desired_term#?}"}/$desired_term"
-  if [[ -e "/lib/$terminfo_entry" ]] ||
-     [[ -e "/usr/share/$terminfo_entry" ]]; then
+
+  # GNU/Linux this is terminfo/s/screen
+  # but bsd/darwin is some number, so just glob the parent dir.
+  if ls /lib/terminfo/*/$desired_term${ZSH_VERSION:+(N)}      &> /dev/null ||
+    ls /usr/share/terminfo/*/$desired_term${ZSH_VERSION:+(N)} &> /dev/null ; then
     TERM="$desired_term"
   else
     echo "terminfo for $desired_term not found!"
