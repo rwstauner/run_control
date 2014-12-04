@@ -12,6 +12,10 @@ if $TERM_IS_INTERACTIVE; then
 # NOTE: tmux is particular about $TERM ("xterm" outside, "screen" inside)
 [[ -z "$MULTIPLEXER" ]] && [[ -n "$TMUX" ]] && export MULTIPLEXER=tmux
 
+# Cache original TERM and only redo this if main term (minus suffix) is different.
+if [[ "${ORIG_TERM%%-*}" != "${TERM%%-*}" ]]; then
+  export ORIG_TERM="$TERM"
+
 # TODO: find an api to ask for terminfo entry (or make a function) and downgrade to plain if necessary
 
   term_plain=${TERM%%-*color}
@@ -42,4 +46,6 @@ if $TERM_IS_INTERACTIVE; then
     tmux list-sessions
     echo
   fi
+fi
+
 fi
