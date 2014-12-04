@@ -6,3 +6,4 @@ add_to_manpath () {
 }
 
 add_to_manpath $HOME/usr/share/man
+add_to_manpath $HOME/homebrew/opt/coreutils/libexec/gnuman

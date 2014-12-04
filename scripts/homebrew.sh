@@ -11,6 +11,7 @@ symlink () {
     ln -s "$src" "$dest"
 }
 
+brew install coreutils
 
 brew install gnu-sed
 symlink gsed $brewbin/sed

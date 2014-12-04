@@ -34,8 +34,16 @@ source_rc_files $shrc_dir/term.sh
 # Instead of adding /opt/*/bin to $PATH
 # consider symlinking those scripts into ~/usr/bin
 # to keep the $PATH shorter so less searching is required.
+
+# Locally compiled (without sudo).
 add_to_path $HOME/usr/bin
+
+# Homebrew.
 add_to_path $HOME/homebrew/bin
+# Get (unprefixed) GNU utils to override BSD utils.
+add_to_path $HOME/homebrew/opt/coreutils/libexec/gnubin
+
+# Personal scripts.
 add_to_path $HOME/bin
 
 
