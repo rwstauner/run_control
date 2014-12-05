@@ -1,5 +1,7 @@
 # NOTE: For projects that use -pbp, that means:
 # -l=78 -i=4 -ci=4 -st -se -vt=2 -cti=0 -pt=1 -bt=1 -sbt=1 -bbt=1 -nsfs -nolq
+# -wbb="% + - * / x != == >= <= =~ !~ < > | & =
+#       **= += *= &= <<= &&= -= /= |= >>= ||= //= .= %= ^= x="
 # NOTE: -nst means no standard output (has to do with filters)
 # and may be used after -pbp which includes -st.
 
