@@ -21,8 +21,8 @@ for i in pacmd;
 alias caly='cal `date +%Y`'
 
 alias diffpatch='diff -uprN'
-alias diffgit='git diff --no-index'
-alias diffgitcw='git diff --no-index --color-words=.'
+alias diffgit='\git diff --no-index'
+alias diffgitcw='\git diff --no-index --color-words=.'
 
 alias ftp='/usr/bin/ftp'; # kerberos ftp bothers me
 
