@@ -13,6 +13,9 @@ symlink () {
 
 brew install coreutils
 
+brew install gawk
+# gawk installs awk symlink
+
 brew install gnu-sed
 symlink gsed $brewbin/sed
 
