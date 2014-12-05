@@ -34,6 +34,11 @@ func('var',
     },
   },
 });
+
+func $thing, {
+  k => 'v',
+  k2 => 'v2',
+};
 IN
   <<'OUT',
 my $s1 = {
@@ -60,6 +65,11 @@ func(
     },
   }
 );
+
+func $thing, {
+  k  => 'v',
+  k2 => 'v2',
+};
 OUT
 );
 
