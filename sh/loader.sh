@@ -26,9 +26,6 @@ add_to_path () {
 
 shrc_dir=$HOME/run_control/sh
 
-# Setup terminal first.
-source_rc_files $shrc_dir/term.sh
-
 
 # Build $PATH.
 # Instead of adding /opt/*/bin to $PATH
@@ -46,6 +43,9 @@ add_to_path $HOME/homebrew/opt/coreutils/libexec/gnubin
 # Personal scripts.
 add_to_path $HOME/bin
 
+
+# Setup terminal first.
+source_rc_files $shrc_dir/term.sh
 
 # Get everything else.
 source_rc_files $shrc_dir/sh.d/*.sh ~/.shrc.local $EXTRA_SHRC
