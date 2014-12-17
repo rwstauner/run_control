@@ -122,10 +122,10 @@ bindkey "\e]"  forward-kill-shell-word
 bindkey "\e[1;5D" backward-word
 bindkey "\e[1;5C"  forward-word
 
-# Shift-arrow moves across shell words.
+# Ctrl-Shift-arrow moves across shell words.
 # TODO: use terminfo?
-bindkey "\e[1;2D" backward-shell-word
-bindkey "\e[1;2C"  forward-shell-word
+bindkey "\e[1;6D" backward-shell-word
+bindkey "\e[1;6C"  forward-shell-word
 
 # Edit the current command line in $EDITOR.
 autoload -Uz edit-command-line
