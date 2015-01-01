@@ -17,6 +17,9 @@ zle-keymap-select () {
 zle-line-init () {
   # Take up the same width as when the colon is present.
   PREDISPLAY=' '
+  #zle reset-prompt
+  #zle redisplay
+  zle -R
 }
 
 zle -N zle-line-init
