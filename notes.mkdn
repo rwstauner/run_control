@@ -73,6 +73,7 @@ compare /etc/pm/sleep.d/
     most
     vim vim-doc vim-nox vim-gtk ctags
     build-essential autotools-dev automake autoconf libtool
+    inotify-tools
     perl libperl-dev perl-doc liblocal-lib-perl
     libtry-tiny-perl libapp-nopaste-perl libgtk2-perl perlmagick
     libgtk2.0-dev
@@ -92,6 +93,7 @@ compare /etc/pm/sleep.d/
     libfcgi-dev
     libreoffice
     pandoc
+    recordmydesktop
     lyx
     festival
     irssi xchat
@@ -132,6 +134,10 @@ compare /etc/pm/sleep.d/
     sudo add-apt-repository ppa:rquillo/ansible
     sudo apt-get update
     sudo apt-get install ansible
+
+### boot2docker
+
+    https://github.com/boot2docker/boot2docker-cli/releases/
 
 ### puppet
 
