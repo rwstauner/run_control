@@ -1,6 +1,10 @@
 # Line editing!
 setopt zle
 
+# Time to wait (in hundredths of seconds) for bound multi-char sequences.
+# Default is 4.
+export KEYTIMEOUT=2
+
 # Remember `bindkey -L` to print out current mappings.
 
 # Start in emacs mode (so many more key bindings up front).
