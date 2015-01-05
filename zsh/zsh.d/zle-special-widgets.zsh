@@ -10,7 +10,7 @@ _gen_special_widget () {
 
   for (( i=1; i <= ${#lines}; ++i )) do
     # DRY the logic for only calling defined functions.
-    if [[ "${lines[$i]}" =~ '^[a-z_-]+\(\)$' ]]; then
+    if [[ "${lines[$i]: -2}" == '()' ]]; then
       # Make sure it's defined (ignore the trailing "()").
       if (( ${+functions[${lines[$i]%??}]} )); then
         lines[$i]="${lines[$i]%\(\)} \"\$@\""
@@ -22,7 +22,7 @@ _gen_special_widget () {
   done
 
   # Join by newlines (use g:: to process "\n").
-  eval "${(g::)${(j:\n:)lines}}"
+  eval "${(F)lines}"
   # Tell zle to assign the widget to this function.
   zle -N "$widget" "$name"
   # If there's a function left-over by this name it won't be used.
