@@ -71,7 +71,10 @@ plugins=(
   colorize
   dircycle
   fabric
-  history-substring-search
+
+  # We load this plugin later.
+  #history-substring-search
+
   jsontools
   npm
   pip
