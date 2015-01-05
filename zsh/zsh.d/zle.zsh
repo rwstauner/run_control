@@ -136,35 +136,3 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 #bindkey -M vicmd v edit-command-line
 bindkey '^X^E' edit-command-line
-
-
-# Zle widgets overwrite so at the end we need collect all the ones we want.
-
-all-zle-line-init () {
-  # Set application mode so terminfo values are valid.
-  (( ${+terminfo[smkx]} )) echoti smkx
-
-  # vim-emacs switching
-  _vim_emacs_line_init
-
-  # Syntax-highlighting loops to wrap predefined widgets
-  # but duplicating that is complicated so cheat by just calling the functions.
-  # ohmyzsh safe-paste
-  _zle_line_init
-  # zsh-syntax-highlight
-  _zsh_highlight
-}
-
-zle -N zle-line-init all-zle-line-init
-
-all-zle-line-finish () {
-  # Reset application mode.
-  (( ${+terminfo[rmkx]} )) echoti rmkx
-
-  # ohmyzsh safe-paste
-  _zle_line_finish
-  # zsh-syntax-highlighting
-  _zsh_highlight_widget_zle-line-finish
-}
-
-zle -N {,all-}zle-line-finish
