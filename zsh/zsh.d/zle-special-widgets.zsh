@@ -25,8 +25,9 @@ _gen_special_widget () {
   eval "${(F)lines}"
   # Tell zle to assign the widget to this function.
   zle -N "$widget" "$name"
+
   # If there's a function left-over by this name it won't be used.
-  unset -f "$widget"
+  (( ${+functions[$widget]} )) && unset -f "$widget"
 
 }
 
