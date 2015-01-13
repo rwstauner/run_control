@@ -20,6 +20,8 @@ zshd_files=(
   functions
   history
   options
+  vim-emacs
+  zle-special-widgets
   zle
 )
 
