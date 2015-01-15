@@ -1,6 +1,8 @@
 # Line editing!
 setopt zle
 
+zmodload zsh/terminfo
+
 # Time to wait (in hundredths of seconds) for bound multi-char sequences.
 # Default is 4.
 export KEYTIMEOUT=2
@@ -58,8 +60,8 @@ bindkey "\e#" pound-insert
 # Up/Down searches history matching the text before the cursor.
 # https://coderwall.com/p/oqtj8w
 # See https://github.com/zsh-users/zsh-history-substring-search for an alternate implementation.
-bindkey "\e[A" history-beginning-search-backward
-bindkey "\e[B" history-beginning-search-forward
+bindkey "$terminfo[kcuu1]" history-beginning-search-backward
+bindkey "$terminfo[kcud1]" history-beginning-search-forward
 
 # The following will do the same but put the cursor at the end of the line.
 # That's consistent with bash/readline when you press up with no prefix
