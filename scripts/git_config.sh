@@ -123,7 +123,7 @@ $gc alias.blamehard       $'blame -w -C -C -C'
 #$gc alias.bunch           $'!gitbunch'
 
 $gc alias.civ             $'commit -v'
-$gc alias.amend           $'commit -v --amend'
+$gc alias.amend           $'commit -v -n --amend'
 
 $gc alias.co              $'checkout'
 $gc alias.cob             $'checkout -b'
