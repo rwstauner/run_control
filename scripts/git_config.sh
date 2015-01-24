@@ -153,6 +153,7 @@ function alias_diffs () {
   $gc "alias.ix$alias"     "$prefix${prefix:+ }${git_ix} ${suffix}"
   $gc "alias.diff$alias"   "$prefix${prefix:+ }diff $suffix"
   $gc "alias.logp$alias"   "$prefix${prefix:+ }log -p $suffix"
+  $gc "alias.showp$alias"  "$prefix${prefix:+ }show -p $suffix"
 }
 
 alias_diffs cw            '' $'--color-words=.'
@@ -190,6 +191,7 @@ $gc alias.last-sha        $'!git show HEAD --oneline | head -n1 | awk \047{print
 $gc alias.last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-f0-9]+$//\047'
 
 $gc alias.log1            $'log --oneline'
+$gc alias.logp            $'log -p'
 
 $gc alias.logdiff         $'log -p --full-diff'
 
