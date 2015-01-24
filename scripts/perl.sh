@@ -4,7 +4,7 @@
 umask 0077
 
 perldir=$HOME/perl5
-setup_runtime_dir `basename "$perldir"` perl
+setup_runtime_dir perl `basename "$perldir"`
 
 pbrc=$perldir/perlbrew/etc/bashrc
 # get perlbrew if it's already installed
