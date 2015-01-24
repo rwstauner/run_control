@@ -1,6 +1,10 @@
 # configure() can be run multiple times
 Vagrant.configure('2') do |config|
 
+  # config.vm.provider :virtualbox do |vb|
+  #   vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  # end
+
   #if true
     # http://tech.shantanugoel.com/2009/07/07/virtualbox-high-cpu-usage-problem-solved.html
     config.vm.provider :virtualbox do |vb|
