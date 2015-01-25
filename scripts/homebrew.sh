@@ -16,6 +16,9 @@ brew install coreutils
 brew install gawk
 # gawk installs awk symlink
 
+# Get version 2+.
+brew install git
+
 brew install gnu-sed
 symlink gsed $brewbin/sed
 
