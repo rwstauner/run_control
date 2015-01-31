@@ -77,6 +77,11 @@ bindkey "$terminfo[kcud1]" history-beginning-search-forward
 bindkey "^U" backward-kill-line
 
 
+# Removing the next word (especially the first on a line) is super helpful...
+# bind a control-based shortcut for maximum ease (especially on the mac).
+bindkey "^B" kill-word
+
+
 # Help
 bindkey "\e^V" describe-key-briefly
 bindkey "\e\`" which-command
