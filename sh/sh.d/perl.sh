@@ -146,3 +146,7 @@ alias ctags-perl='ctags -f tags --recurse --totals --languages=Perl --langmap=Pe
 alias mp3info2='mp3info2 -e 3'
 
 alias human_bytes='perl -MFormat::Human::Bytes -le "print Format::Human::Bytes->base2(shift)"'
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  cpanm=$HOME/.cpanm/work; : ~cpanm
+fi
