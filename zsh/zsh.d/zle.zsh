@@ -143,3 +143,14 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 #bindkey -M vicmd v edit-command-line
 bindkey '^X^E' edit-command-line
+
+
+# Composed chars (for when xmodmap isn't there to map Super key for me).
+autoload -Uz insert-composed-char
+zle -N insert-composed-char
+bindkey '^Xc' insert-composed-char
+
+# Hit the key, type the hexadecimal, hit the key again.
+autoload -Uz insert-unicode-char
+zle -N insert-unicode-char
+bindkey '^Xu' insert-unicode-char
