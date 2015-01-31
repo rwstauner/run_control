@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ~/.pause: "user %s\npassword %s\n"
+
 . `dirname "$0"`/.helpers.sh
 umask 0077
 
