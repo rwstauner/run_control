@@ -120,6 +120,10 @@ perltidydiff () {
   perltidy < "$1" | git diffcw --no-index "$1" - | perl -pe 's/\033\[3(\d)m/\033[4$1m/g'
 }
 
+test_more () {
+  perl -e '$t=pop; pop if $ARGV[-1] eq "-e"; exec $^X, qw(-Ilib -MTest::More), @ARGV, -e => "subtest q[test_more].time() => sub { $t }; done_testing;"' -- "$@"
+}
+
 # get the pm file rather than the pod file (if they're different)
 vim_pm () {
   pm=`perldoc -ml "$@"`
