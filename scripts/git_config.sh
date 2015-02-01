@@ -27,6 +27,8 @@ config () {
 
 $gc color.ui             auto
 
+$gc core.excludesFile ~/.excludes
+
 grep_color () {
   local slot="$1" sgr="$2" val=""
   for attr in ${sgr//;/ }; do
