@@ -80,6 +80,8 @@ bindkey "^U" backward-kill-line
 # Removing the next word (especially the first on a line) is super helpful...
 # bind a control-based shortcut for maximum ease (especially on the mac).
 bindkey "^B" kill-word
+# Remove the original to force me to stop using it.
+bindkey -r "\ed"
 
 
 # Help
