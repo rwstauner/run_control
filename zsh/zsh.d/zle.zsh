@@ -1,6 +1,9 @@
 # Line editing!
 setopt zle
 
+_bell () { echo -n "\a"; }
+zle -N _bell
+
 zmodload zsh/terminfo
 
 # Time to wait (in hundredths of seconds) for bound multi-char sequences.
@@ -80,8 +83,8 @@ bindkey "^U" backward-kill-line
 # Removing the next word (especially the first on a line) is super helpful...
 # bind a control-based shortcut for maximum ease (especially on the mac).
 bindkey "^B" kill-word
-# Remove the original to force me to stop using it.
-bindkey -r "\ed"
+# Bell to remind me to stop using it (removing it confuses the next sequence).
+bindkey "\ed" _bell
 
 
 # Help
