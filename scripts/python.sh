@@ -19,6 +19,9 @@ else
 fi
 
 # TODO: get-pip and/or install virtualenv if not already installed
+# https://bootstrap.pypa.io/get-pip.py
+# python get-pip.py --user virtualenv
+# then add to path so we can call virtualenv
 
 venv=$pydir/venv/$pyver
 venv_local=$pydir/venv/local
