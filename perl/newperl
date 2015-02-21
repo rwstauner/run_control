@@ -68,7 +68,7 @@ open STDIN, '<', '/dev/null';
 sub run {
   print "  run: @_\n";
   my $s = system { $_[0] } @_;
-  printf "  exit(%s): %s\n", $? >> 8, join ' ', @_;
+  printf "  exit(%s/%s): %s\n", $s, $? >> 8, join ' ', @_;
   return ($s == 0);
 }
 
@@ -76,6 +76,9 @@ sub run {
 # We ignore the exit status of cpan, but what about perlbrew install?
 run( qw/perlbrew install -j 9 --as/, $as, $perl, @no_man, @args )
   or die "Failed to install $perl";
+
+run( qw/perlbrew exec --with/, $as, perl => '-V' );
+
 run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" ) if $lib;
 
 # give us a local::lib for installing things
