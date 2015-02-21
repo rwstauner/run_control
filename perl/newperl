@@ -91,9 +91,12 @@ sub cpan {
   run( qw/perlbrew exec --with/, $lib || $as, $cpan, @_ );
 }
 
+# Reset to default in case ENV specifies one we don't have installed.
+local $ENV{HARNESS_SUBCLASS} = 'TAP::Harness';
+
 # let's avoid any pod tests when we try to install stuff
-cpan( qw/TAP::Harness::Restricted/ );
-local $ENV{HARNESS_SUBCLASS} = "TAP::Harness::Restricted";
+cpan( qw/TAP::Harness::Restricted/ ) and
+  local $ENV{HARNESS_SUBCLASS} = 'TAP::Harness::Restricted';
 
 # Setup test reports before installing anything else.
 cpan( @test_reports );
