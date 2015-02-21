@@ -1,3 +1,5 @@
+add_to_path ~/usr/iojs/bin
+
 node_global=$HOME/node/global
 add_to_path $node_global/bin
 #add_to_path ./node_modules/.bin
