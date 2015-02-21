@@ -20,7 +20,7 @@ for i in pacmd;
 
 alias caly='cal `date +%Y`'
 
-alias diffpatch='diff -uprN'
+alias diffpatch='diff -Npurd'
 alias diffgit='\git diff --no-index'
 alias diffgitcw='\git diff --no-index --color-words=.'
 
