@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ~/.pause: "user %s\npassword %s\n"
+# ~/.local/share/.cpan -> ~/.cpan/
 
 . `dirname "$0"`/.helpers.sh
 umask 0077
