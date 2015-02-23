@@ -25,6 +25,7 @@ symlink gsed $brewbin/sed
 brew install mp3blaster
 
 brew install tmux
+brew install tree
 
 # Get newer version with more consistent config.
 brew install vim
