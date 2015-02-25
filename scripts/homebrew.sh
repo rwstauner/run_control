@@ -22,6 +22,8 @@ brew install git
 brew install gnu-sed
 symlink gsed $brewbin/sed
 
+brew install jq
+
 brew install tmux
 brew install tree
 
