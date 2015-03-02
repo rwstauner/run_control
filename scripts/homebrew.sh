@@ -36,3 +36,5 @@ brew install tree
 
 # Get newer version with more consistent config.
 brew install vim
+
+brew install wget
