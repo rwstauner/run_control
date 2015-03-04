@@ -40,7 +40,12 @@ notify_result () {
   fi
 
   # show pop-up notification
-  /usr/bin/notify-send -i "$img" "Tests: $pf" "$dir"
+  local title="Tests: $pf" msg="$dir"
+  if which terminal-notifier > /dev/null; then
+    terminal-notifier -message "$msg" -appIcon "$img" -title "$title"
+  else
+    /usr/bin/notify-send -i "$img" "$title" "$msg"
+  fi
 
   # preserve exit status
   return $rv
