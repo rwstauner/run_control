@@ -31,6 +31,8 @@ brew install jq
 #brew install imagesnap
 #brew install tlassemble
 
+brew install pstree
+
 brew install tmux
 brew install tree
 
