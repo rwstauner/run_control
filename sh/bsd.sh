@@ -4,5 +4,8 @@
 unalias ls
 export CLICOLOR=1
 
+# no -H
+unalias ps
+
 # no -v
 unalias rmdir
