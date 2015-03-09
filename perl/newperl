@@ -75,7 +75,7 @@ sub run {
 # install perl and lock it down
 # We ignore the exit status of cpan, but what about perlbrew install?
 run( qw/perlbrew install -j 9 --as/, $as, $perl, @no_man, @args )
-  or die "Failed to install $perl";
+  or warn "Failed to install $perl";
 
 run( qw/perlbrew exec --with/, $as, perl => '-V' );
 
