@@ -5,6 +5,18 @@ Vagrant.configure('2') do |config|
   #   vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   # end
 
+  # Use VAGRANT_MODIFYVM_* env vars to set vm hardware resources.
+  %w[cpus memory].map do |hw|
+    key = "VAGRANT_MODIFYVM_#{hw.upcase}"
+    ENV[key] ? ["--#{hw}", ENV[key]] : []
+  end.flatten.tap do |args|
+    config.vm.provider :virtualbox do |vb|
+      if not args.empty?
+        vb.customize [ "modifyvm", :id, *args ]
+      end
+    end
+  end
+
   #if true
     # http://tech.shantanugoel.com/2009/07/07/virtualbox-high-cpu-usage-problem-solved.html
     config.vm.provider :virtualbox do |vb|
