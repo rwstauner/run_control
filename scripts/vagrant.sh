@@ -18,10 +18,24 @@ for script in vagrant; do
   ln -sf /opt/vagrant/bin/$script $bin/$script
 done
 
+plugin () {
+  vagrant plugin list | grep -F "$1" || \
+  vagrant plugin install "$@"
+}
+
 if which vagrant &> /dev/null; then
 
+  # Make .env available in Vagrantfile.
+  plugin vagrant-env
+
+  # Make guest notify-send propagate to host.
+  plugin vagrant-notify
+
+  # Add functionality to vagrant commands/events.
+  plugin vagrant-triggers
+
   # Auto-install virtualbox guest additions.
-  vagrant plugin install vagrant-vbguest
+  plugin vagrant-vbguest
 
 fi
 
