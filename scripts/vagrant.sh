@@ -1,7 +1,7 @@
 #!/bin/bash
 
 umask 0077
-bin=$HOME/bin/contrib
+bin=$HOME/usr/bin
 
 function ensure_line () {
   line="$1" file="$2"
