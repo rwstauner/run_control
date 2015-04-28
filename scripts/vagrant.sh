@@ -29,7 +29,7 @@ if which vagrant &> /dev/null; then
   plugin vagrant-env
 
   # Make guest notify-send propagate to host.
-  plugin vagrant-notify
+  #plugin vagrant-notify
 
   # Add functionality to vagrant commands/events.
   plugin vagrant-triggers
