@@ -55,9 +55,14 @@ $if mode=emacs
 # ctrl-arrow
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+
+# Avoid "Unable to bind key for unsupported operation: shell-forward-word"
+# in some applications (like sbt).
+$if Bash
 # shift-arrow
 "\e[1;2C": shell-forward-word
 "\e[1;2D": shell-backward-word
+$endif
 
 # Default is C-S so it's only available when XON/XOFF flow control is disabled.
 #"\C-s": forward-search-history
