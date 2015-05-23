@@ -10,5 +10,9 @@ export SCALA_HOME=$SCALA_ROOT/local
 # Get scala.
 add_to_path $SCALA_HOME/bin
 
-# Get sbt.
-add_to_path $SCALA_ROOT/sbt/bin
+# Get sbt (lazily).
+sbt () {
+  add_to_path $SCALA_ROOT/sbt/bin
+  unset -f sbt
+  command sbt "$@"
+}
