@@ -22,10 +22,12 @@ Vagrant.configure('2') do |config|
     config.vm.provider :virtualbox do |vb|
       vb.customize [
         "modifyvm", :id,
-        # Attempt to reduce idle cpu usage.
-        "--nestedpaging", "off",
-        "--ioapic",       "off",
+        # Attempt to reduce idle cpu usage: off.
+        # More performance, features (64bit): on.
+        "--nestedpaging", "on",
+        "--ioapic",       "on",
         # "--hwvirtex",   "on",      # VT-x
+        # "--vtxvpid" and "--largepages" # Intel
       ]
     end
   #end
