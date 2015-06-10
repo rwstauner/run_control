@@ -1,15 +1,9 @@
-_activate_rvm () {
-  alias rvm &> /dev/null && unalias rvm
+RBENV_ROOT="$HOME/ruby/rbenv"
 
-  # rvm appends this to .bashrc:
-  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+if [[ -d $RBENV_ROOT ]]; then
+  export RBENV_ROOT
 
-  # rvm appends this to .bash_profile:
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-}
+  add_to_path $RBENV_ROOT/bin
 
-# lazy load
-alias rvm='_activate_rvm; rvm'
-
-# Turn it on so we have gem-installed utils in $PATH.
-[[ -z "$RUBY_VERSION" ]] && rvm use default &> /dev/null
+  eval "$(rbenv init -)"
+fi
