@@ -18,6 +18,10 @@ brew update
 # Since coreutils doesn't support --with-default-names we add to path in sh/loader.sh
 brew install coreutils
 
+# Use --with-default-names to install gnu utils without 'g' prefix
+# (also enables `man` to find them automatically).
+brew install --with-default-names findutils
+
 brew install gawk
 # gawk installs awk symlink
 
