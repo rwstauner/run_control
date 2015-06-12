@@ -15,6 +15,7 @@ symlink () {
 # Get latest formulae.
 brew update
 
+# Since coreutils doesn't support --with-default-names we add to path in sh/loader.sh
 brew install coreutils
 
 brew install gawk
@@ -23,8 +24,7 @@ brew install gawk
 # Get version 2+.
 brew install git
 
-brew install gnu-sed
-symlink gsed $brewbin/sed
+brew install --with-default-names gnu-sed
 
 # If imagemagick has removed the version in the formula:
 # SHA256=foobar URL=yo perl -p -i -e 's/(^\s+(sha256|url)\s+").+?(")/$1$ENV{"\U$2"}$3/' Library/Formula/imagemagick.rb

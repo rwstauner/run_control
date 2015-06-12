@@ -13,4 +13,8 @@ add_to_manpath () {
 # manpath will add this automatically because ~/usr/bin is in $PATH.
 #add_to_manpath $HOME/usr/share/man
 
+# Re-add this to move it up to the front of the path.
+add_to_manpath $HOME/homebrew/share/man
+
+# Get GNU coreutils without the 'g' prefix.
 add_to_manpath $HOME/homebrew/opt/coreutils/libexec/gnuman
