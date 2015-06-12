@@ -3,6 +3,7 @@
 homebrew=$HOME/homebrew
 brewbin=$homebrew/bin
 
+test -d $homebrew/.git || \
 git clone http://github.com/Homebrew/homebrew $homebrew
 
 symlink () {
@@ -10,6 +11,9 @@ symlink () {
   test -h "$dest" || \
     ln -s "$src" "$dest"
 }
+
+# Get latest formulae.
+brew update
 
 brew install coreutils
 
