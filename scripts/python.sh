@@ -18,8 +18,8 @@ else
   exit 1
 fi
 
-# TODO: get-pip and/or install virtualenv if not already installed
-# https://bootstrap.pypa.io/get-pip.py
+# Python: download source and do the usual ./c && m && m i.
+# wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
 # python get-pip.py --user virtualenv
 # then add to path so we can call virtualenv
 
