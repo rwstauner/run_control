@@ -16,6 +16,13 @@ plugin () {
   sync https://github.com/${repo}.git "${RBENV_ROOT}/plugins/${repo#*/}"
 }
 
+symlink () {
+  local src="$1" dest="$2"
+  [[ -d "$dest" ]] && dest="$dest/${src##*/}"
+  [[ -h "$dest" ]] || \
+    ln -s "$src" "$dest"
+}
+
 # Install plugins:
 PLUGINS=(
   sstephenson/ruby-build
@@ -32,4 +39,5 @@ for plugin in "${PLUGINS[@]}"; do
   plugin "$plugin"
 done
 
-ln -s $HOME/ruby/rc/default-gems $RBENV_ROOT/
+# Link version-controlled default-gems so rbenv plugin sees it.
+symlink $HOME/ruby/rc/default-gems $RBENV_ROOT/
