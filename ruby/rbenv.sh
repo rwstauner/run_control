@@ -38,6 +38,10 @@ plugin rkh/rbenv-update
 plugin rkh/rbenv-whatis
 plugin rkh/rbenv-use
 
+# Poor man's each: rbenv versions --bare | while read v; do RBENV_VERSION=$v rbenv exec ruby -e '...'; done
+# previously chriseppstein/rbenv-each
+plugin rbenv/rbenv-each
+
 
 # Link version-controlled default-gems so rbenv plugin sees it.
 symlink $HOME/ruby/rc/default-gems $RBENV_ROOT/
