@@ -4,6 +4,7 @@ RBENV_ROOT="$HOME/ruby/rbenv"
 
 sync () {
   local repo="$1" dir="$2"
+  printf "%-55s ... " "$repo"
   if ! [[ -d "$dir/.git" ]]; then
     git clone "$repo" "$dir"
   else
@@ -23,21 +24,20 @@ symlink () {
     ln -s "$src" "$dest"
 }
 
-# Install plugins:
-PLUGINS=(
-  sstephenson/ruby-build
-  sstephenson/rbenv-default-gems
-  sstephenson/rbenv-gem-rehash
-  rkh/rbenv-update
-  rkh/rbenv-whatis
-  rkh/rbenv-use
-)
+# Main
 
 sync https://github.com/sstephenson/rbenv.git $RBENV_ROOT
 
-for plugin in "${PLUGINS[@]}"; do
-  plugin "$plugin"
-done
+
+# Plugins
+
+plugin sstephenson/ruby-build
+plugin sstephenson/rbenv-default-gems
+plugin sstephenson/rbenv-gem-rehash
+plugin rkh/rbenv-update
+plugin rkh/rbenv-whatis
+plugin rkh/rbenv-use
+
 
 # Link version-controlled default-gems so rbenv plugin sees it.
 symlink $HOME/ruby/rc/default-gems $RBENV_ROOT/
