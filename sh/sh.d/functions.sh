@@ -39,6 +39,14 @@ psgrep () {
     headgrep -n1 "$@";
 }
 
+show-args () {
+  # Set SHOW_ARGS_SPEC=%s to display regularly (%s vs %q).
+  local arg i=0
+  for arg in "$@"; do
+    printf "%3d: «${SHOW_ARGS_SPEC:-%q}»\n" $((++i)) "$arg"
+  done
+}
+
 # calculator
 # can put pre-ARGV in this var (useful to load other files or specify options)
 export BC_ENV_ARGS="-l"
