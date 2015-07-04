@@ -1,5 +1,7 @@
 # putting color in GREP_OPTIONS makes it work for (b)zgrep, too
-GREP_OPTIONS="--color=auto"
+# Always show line number to make it easy to use as a vim quickfix buffer.
+GREP_OPTIONS="--color=auto --line-number"
+
 GREP_COLORS="ms=01;31:mc=01;33:sl=:cx=34:fn=35:ln=32:bn=32:se=36"
 export GREP_OPTIONS GREP_COLORS
 

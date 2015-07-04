@@ -31,6 +31,8 @@ $gc core.excludesFile ~/.excludes
 
 config rebase.autosquash true
 
+config grep.lineNumber   true
+
 grep_color () {
   local slot="$1" sgr="$2" val=""
   for attr in ${sgr//;/ }; do
