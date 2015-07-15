@@ -23,4 +23,10 @@ setup_runtime_dir node
 
 mkdir -p ~/node/global
 
-install_iojs
+if [[ `uname` == Darwin ]]; then
+  brew install iojs
+  [[ -h ~/usr/iojs ]] || \
+    ln -s ~/homebrew/opt/iojs ~/usr/iojs
+else
+  install_iojs
+fi
