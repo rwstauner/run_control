@@ -71,6 +71,7 @@ Vagrant.configure('2') do |config|
   config.vm.synced_folder rc_dir, rc_guest
 
   config.vm.provision :shell, :inline => <<-SHELL
+    echo '#{ENV['PWD'].match(/[^\/]+$/)[0]}' > /home/vagrant/.vagrant.name
     for exe in #{rc_guest}/provision/*; do
       test -x "$exe" && echo "# rc: $exe" && "$exe"
     done
