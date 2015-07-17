@@ -93,6 +93,9 @@ $endif
 # for freebsd console
 "\e[H": beginning-of-line
 "\e[F": end-of-line
+
+# Enable this with ctrl key (like i have in zsh).
+"\C-b": kill-word
 $endif
 
 # Quote the current or previous word

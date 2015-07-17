@@ -3,3 +3,4 @@ set enable-keypad on
 "\e[1;5D": backward-word
 "\eOA": history-search-backward
 "\eOB": history-search-forward
+"\C-b": kill-word
