@@ -8,8 +8,9 @@ function ensure_line () {
   grep -qFx "$line" "$file" || echo "$line" >> "$file"
 }
 
+line="load %Q|#{ENV['HOME']}/run_control/vagrant/loader.rb|"
 test -d ~/.vagrant.d && \
-ensure_line "$(cat ~/run_control/vagrant/loader.rb)" ~/.vagrant.d/Vagrantfile
+ensure_line "$line" ~/.vagrant.d/Vagrantfile
 
 # TODO: /opt/vagrant/bin/* ?
 # At that point it's probably better to just put it back in $PATH.
