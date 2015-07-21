@@ -3,6 +3,8 @@
 name=vimrc
 umask 0022
 
+cd ~/run_control
+
 if ! [[ -d "$name" ]]; then
   remote="`git config remote.origin.url`"
   git clone "${remote/run_control/$name}" "$name"
