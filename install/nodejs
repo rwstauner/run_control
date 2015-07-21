@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. `dirname "$0"`/.helpers.sh
+. `dirname "$0"`/../scripts/.helpers.sh
 umask 0077
 
 install_iojs () {
@@ -11,10 +11,12 @@ install_iojs () {
   symlink="$parent/iojs"
 
   if ! [[ -d "$parent/$basename" ]]; then
+    cd "$parent"
     # Write to disk instead of pipe to utilize `tar -a`.
     curl -O "$url/$archive" && \
     tar -xaf "$archive" -C "$parent" && \
-    rm "$symlink" && ln -s "$basename" "$symlink" && \
+    rm -f "$symlink" && \
+    ln -s "$basename" "$symlink" && \
     rm "$archive"
   fi
 }
