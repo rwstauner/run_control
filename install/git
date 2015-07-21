@@ -1,0 +1,28 @@
+#!/bin/bash
+
+url=https://www.kernel.org/pub/software/scm/git/
+archive=`curl -s $url | perl -lne '$g = $1 if /href="(git-[0-9]+(\.[0-9]+)+.tar.xz)"/; END { print $g }'`
+
+cd ~/data/src
+
+if ! [[ -n "$archive" ]]; then
+  echo 'Latest tarball not found.'
+  $BROWSER git-scm.com
+  echo 'archive name? '
+  read archive
+fi
+
+dir="${archive%.tar.*}"
+
+[[ -d "$dir" ]] || {
+  [[ -f $archive ]] || wget $url/$archive
+  tar xvaf $archive
+}
+
+cd $dir
+
+sudo apt-get build-dep git
+
+make prefix=$HOME/usr all doc  install install-doc
+
+~/run_control/scripts/git_config.sh
