@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# ಠ_ಠ
+which docker || \
+  wget -qO- https://get.docker.com/ | sh
+
+groups | sed 's/ /\n/g' | grep docker || \
+  sudo usermod -aG docker $USER
