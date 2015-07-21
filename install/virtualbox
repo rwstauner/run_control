@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo apt-get install libqt4-network libqt4-opengl libqtcore4 libqtgui4
+
+echo 'download and install'
+$BROWSER https://www.virtualbox.org/wiki/Linux_Downloads
+
+echo 'if install fails, try:'
+echo 'sudo apt-get -f install'
