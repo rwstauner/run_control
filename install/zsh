@@ -1,8 +1,15 @@
 #!/bin/bash
 
+# Ubu < 15 is missing zsh man pages.
+if lsb_release -d | grep -q 'Ubuntu 14.04'; then
+  sudo add-apt-repository ppa:ramilehti/ppa
+  sudo apt-get update
+fi
+
 sudo apt-get build-dep zsh
 sudo apt-get install zsh zsh-doc zsh-lovers
 
 echo 'changing default shell...'
 
+getent passwd $USER | grep -q zsh || \
 chsh --shell /bin/zsh
