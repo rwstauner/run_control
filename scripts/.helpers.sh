@@ -6,6 +6,17 @@ umask 0022
 PREFIX=$HOME/usr
 SRC_DIR=$HOME/data/src
 
+download () {
+  local url="$1" dest="$2"
+  wget "$url" -O "$dest"
+}
+
+download-bin () {
+  local url="$1" dest="$HOME/usr/bin/${2:-${1##*/}}"
+  download "$url" "$dest"
+  chmod 0755 "$dest"
+}
+
 have () {
   which "$1" &> /dev/null
 }

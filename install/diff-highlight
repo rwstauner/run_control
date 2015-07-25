@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+download-bin https://github.com/git/git/raw/master/contrib/diff-highlight/diff-highlight
