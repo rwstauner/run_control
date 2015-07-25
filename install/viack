@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+git-dir https://github.com/tsibley/viack "$SRC_DIR/github/viack"
+
+git pull
+make install prefix=$PREFIX

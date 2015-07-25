@@ -38,7 +38,6 @@ dl_cmp  vagrant   https://github.com/mitchellh/vagrant/raw/master/contrib/bash/c
 dl_cmp  django    https://github.com/django/django/raw/master/extras/django_bash_completion
 
 dl_bin  hub     http://defunkt.io/hub/standalone
-dl_bin  viack   https://github.com/tsibley/viack/raw/master/viack
 
 # python
 
