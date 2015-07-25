@@ -1,0 +1,15 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if have apt-get; then
+  sudo apt-get build-dep silversearcher-ag
+fi
+
+git-dir https://github.com/ggreer/the_silver_searcher "$SRC_DIR/github/the_silver_searcher"
+
+# 0.30.0
+git-checkout-latest-tag
+
+./build.sh --prefix=$PREFIX
+make install
