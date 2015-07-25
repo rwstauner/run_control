@@ -6,12 +6,6 @@ completion="$HOME/usr/share/bash_completion.d/"
 mkdir -p "$bin" "$completion"
 chmod u+rx "$bin" "$completion"
 
-if uname -m -i -p | sed 's/ /\n/g' | uniq | grep -q x86_64; then
-  bit=64
-else
-  bit=32
-fi
-
 function dl () {
   local dest="$1" url="$2"
   test -s "$dest" || wget "$url" -O "$dest"
@@ -43,7 +37,6 @@ fi
 dl_cmp  vagrant   https://github.com/mitchellh/vagrant/raw/master/contrib/bash/completion.sh
 dl_cmp  django    https://github.com/django/django/raw/master/extras/django_bash_completion
 
-dl_bin  jq      http://stedolan.github.io/jq/download/linux${bit}/jq
 dl_bin  hub     http://defunkt.io/hub/standalone
 dl_bin  viack   https://github.com/tsibley/viack/raw/master/viack
 

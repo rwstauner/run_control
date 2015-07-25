@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+download-bin https://stedolan.github.io/jq/download/linux`arch-info bits`/jq

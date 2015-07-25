@@ -6,6 +6,19 @@ umask 0022
 PREFIX=$HOME/usr
 SRC_DIR=$HOME/data/src
 
+arch-info () {
+  local bits
+  if uname -m -i -p | sed 's/ /\n/g' | uniq | grep -q x86_64; then
+    bits=64
+  else
+    bits=32
+  fi
+  case "$1" in
+    bits) echo $bits;;
+    *) echo unknown: "$*";;
+  esac
+}
+
 download () {
   local url="$1" dest="$2"
   wget "$url" -O "$dest"
