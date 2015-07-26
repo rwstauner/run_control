@@ -5,6 +5,7 @@ umask 0022
 
 PREFIX=$HOME/usr
 SRC_DIR=$HOME/data/src
+rc=$HOME/run_control #rc=`dirname $0`/..
 
 arch-info () {
   local bits name
@@ -39,6 +40,11 @@ have () {
 
 homebrew () {
   if macosx; then
+    if ! have brew; then
+      echo 'installing homebrew...'
+      $rc/install/homebrew
+      source $rc/sh/homebrew.sh
+    fi
     # Get latest formulae.
     brew update
     brew install "$@"

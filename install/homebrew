@@ -3,6 +3,11 @@
 homebrew=$HOME/homebrew
 brewbin=$homebrew/bin
 
+if [[ `uname` != Darwin ]]; then
+  echo ENOTAMAC
+  exit 1
+fi
+
 test -d $homebrew/.git || \
 git clone http://github.com/Homebrew/homebrew $homebrew
 
