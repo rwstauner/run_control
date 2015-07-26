@@ -1,24 +1,14 @@
 #!/bin/bash
 
 . `dirname "$0"`/../scripts/.helpers.sh
-umask 0077
 
 install_iojs () {
   url="https://iojs.org/dist/latest/"
   archive=`curl "$url" | perl -lne 'print $1 if /href="(iojs-.+?linux-x64\.tar\.xz)"/'`
-  basename="${archive%.tar.*}"
-  parent="$HOME/usr"
-  symlink="$parent/iojs"
 
-  if ! [[ -d "$parent/$basename" ]]; then
-    cd "$parent"
-    # Write to disk instead of pipe to utilize `tar -a`.
-    curl -O "$url/$archive" && \
-    tar -xaf "$archive" -C "$parent" && \
-    rm -f "$symlink" && \
-    ln -s "$basename" "$symlink" && \
-    rm "$archive"
-  fi
+  versioned-archive-dir iojs "$url/$archive"
+
+  # No need to symlink, this is added to path in shrc.
 }
 
 setup_runtime_dir node
