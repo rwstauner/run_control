@@ -25,23 +25,17 @@ brew install --with-default-names findutils
 brew install gawk
 # gawk installs awk symlink
 
-# Get version 2+.
-brew install git
-
 brew install --with-default-names gnu-sed
 
 # If imagemagick has removed the version in the formula:
 # SHA256=foobar URL=yo perl -p -i -e 's/(^\s+(sha256|url)\s+").+?(")/$1$ENV{"\U$2"}$3/' Library/Formula/imagemagick.rb
 brew install imagemagick --with-x11
 
-brew install jq
-
 #brew install imagesnap
 #brew install tlassemble
 
 brew install pstree
 
-brew install tmux
 brew install tree
 
 # Get newer version with more consistent config.

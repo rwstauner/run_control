@@ -15,8 +15,8 @@ setup_runtime_dir node
 
 mkdir -p ~/node/global
 
-if [[ `uname` == Darwin ]]; then
-  brew install iojs
+if homebrew iojs; then
+  # Symlink homebrew into ~/usr so that shrc symlink works.
   [[ -h ~/usr/iojs ]] || \
     ln -s ~/homebrew/opt/iojs ~/usr/iojs
 else

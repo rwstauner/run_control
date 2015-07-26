@@ -37,6 +37,21 @@ have () {
   which "$1" &> /dev/null
 }
 
+homebrew () {
+  if macosx; then
+    # Get latest formulae.
+    brew update
+    brew install "$@"
+  else
+    return 1
+  fi
+}
+
+macosx () {
+  [[ `uname` = Darwin ]]
+}
+
+
 git-dir () {
   local url="$1" dir="$2"
   if ! [[ -d "$dir" ]]; then

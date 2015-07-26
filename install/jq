@@ -2,4 +2,8 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+if homebrew jq; then
+  exit
+fi
+
 download-bin https://stedolan.github.io/jq/download/linux`arch-info bits`/jq

@@ -1,6 +1,12 @@
 #!/bin/bash
 
-cd ~/data/src
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if homebrew tmux; then
+  exit
+fi
+
+cd $SRC_DIR
 
 v=2.0
 dir="tmux-$v"
@@ -11,8 +17,9 @@ archive=$dir.tar.gz
   tar xvaf $archive
 }
 
+have apt-get && \
 sudo apt-get build-dep tmux
 
 cd $dir
 
-./configure --prefix=$HOME/usr && make && make install
+./configure --prefix=$PREFIX && make && make install
