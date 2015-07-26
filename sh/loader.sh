@@ -36,9 +36,7 @@ shrc_dir=$HOME/run_control/sh
 add_to_path $HOME/usr/bin
 
 # Homebrew.
-add_to_path $HOME/homebrew/bin
-# Get (unprefixed) GNU utils to override BSD utils.
-add_to_path $HOME/homebrew/opt/coreutils/libexec/gnubin
+source_rc_files $shrc_dir/homebrew.sh
 
 # Personal scripts.
 add_to_path $HOME/bin
