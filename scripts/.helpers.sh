@@ -7,14 +7,17 @@ PREFIX=$HOME/usr
 SRC_DIR=$HOME/data/src
 
 arch-info () {
-  local bits
+  local bits name
   if uname -m -i -p | sed 's/ /\n/g' | uniq | grep -q x86_64; then
     bits=64
+    name=amd64
   else
     bits=32
+    name=i386
   fi
   case "$1" in
     bits) echo $bits;;
+    name) echo $name;;
     *) echo unknown: "$*";;
   esac
 }

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+version=2.2.1
+archive=hub-linux-`arch-info name`-${version}.tar.gz
+
+versioned-archive-dir hub https://github.com/github/hub/releases/download/v${version}/$archive
+
+ln -sf "$PREFIX/hub/hub" "$PREFIX/bin/hub"

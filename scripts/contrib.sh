@@ -37,8 +37,6 @@ fi
 dl_cmp  vagrant   https://github.com/mitchellh/vagrant/raw/master/contrib/bash/completion.sh
 dl_cmp  django    https://github.com/django/django/raw/master/extras/django_bash_completion
 
-dl_bin  hub     http://defunkt.io/hub/standalone
-
 # python
 
 gen_cmp 'pip'     pip completion --bash
