@@ -1,7 +1,15 @@
 #!/bin/bash
 
-dir="$1"
-[[ -d "$dir" ]] || { echo 'dir?'; exit 1; }
+cd ~/data/src
+
+v=2.0
+dir="tmux-$v"
+archive=$dir.tar.gz
+
+[[ -d "$dir" ]] || {
+  [[ -f "$archive" ]] || wget https://github.com/tmux/tmux/releases/download/$v/$archive
+  tar xvaf $archive
+}
 
 sudo apt-get build-dep tmux
 
