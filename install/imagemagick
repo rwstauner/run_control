@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+# If imagemagick has removed the version in the formula:
+# SHA256=foobar URL=yo perl -p -i -e 's/(^\s+(sha256|url)\s+").+?(")/$1$ENV{"\U$2"}$3/' Library/Formula/imagemagick.rb
+if homebrew imagemagick --with-x11; then
+  exit
+elif have apt-get; then
+  # libmagickwand-dev
+  sudo apt-get install imagemagick
+fi

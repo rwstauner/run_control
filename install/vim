@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Get newer version with more consistent config.
+if homebrew vim; then
+  exit
+elif have apt-get; then
+  # vim-gtk to get +clipboard
+  sudo apt-get install vim vim-doc vim-nox vim-gtk ctags
+fi
