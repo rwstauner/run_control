@@ -40,15 +40,3 @@ dl_cmp  django    https://github.com/django/django/raw/master/extras/django_bash
 # python
 
 gen_cmp 'pip'     pip completion --bash
-
-json_tool="$bin/json_tool"
-if ! [[ -f "$json_tool" ]]; then
-  # Use pydoc to find the file.
-  jtpy="`pydoc json.tool | awk '{ if( found ){ print $1; exit } } /FILE/ { found=1 }'`"
-  if [[ -f "$jtpy" ]]; then
-    # Insert a shebang and change the indent level.
-    sed -e '1 i #!/usr/bin/env python' -e 's/indent=4/indent=2/' "$jtpy" > "$json_tool"
-    # Set exec bit.
-    chmod u+x "$json_tool"
-  fi
-fi
