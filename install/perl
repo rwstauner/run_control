@@ -1,0 +1,42 @@
+#!/bin/bash
+
+. `dirname "$0"`/.helpers.sh
+
+# ~/.pause: "user %s\npassword %s\n"
+# ~/.local/share/.cpan -> ~/.cpan/
+
+echo 'mv .pause .cpan* .metabase to ~/'
+
+# Install a few essentials into the system perl.
+if have apt-get; then
+  sudo apt-get build-dep perl
+  sudo apt-get install   perl libperl-dev perl-doc liblocal-lib-perl \
+    libterm-readkey-perl \
+    libtry-tiny-perl \
+    libgtk2-perl perlmagick
+fi
+
+perldir=$HOME/perl5
+setup_runtime_dir perl `basename "$perldir"`
+
+rc=$HOME/run_control
+cd $rc/perl
+
+
+# Install plenv and plugins.
+./plenv
+
+# Load plenv.
+. $rc/sh/setup.sh
+. $rc/sh/sh.d/perl.sh
+
+# Install perl.
+latest=`plenv install -l | perl -le '@v = sort grep { int($_) % 2 == 0 } map { /5\.(\d+\.\d+)/ } <>; print "5." . $v[-1]'`
+
+plenv install $latest
+plenv global  $latest
+
+# Don't do this if it isn't necessary.
+#sudo ln -s `which perl` /usr/local/bin/perl
+
+perl install-mods.pl
