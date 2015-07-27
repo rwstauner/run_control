@@ -5,7 +5,9 @@ CPAN::Reporter
 
 # Test everything else with this installed
 # http://cpan.metacpan.org/authors/id/D/DA/DAGOLDEN/Acme-Override-INET-0.004.tar.gz
-Acme::Override::INET
+#Acme::Override::INET
+
+TAP::Harness::Restricted
 
 CPAN::Meta
 CPAN
@@ -65,6 +67,7 @@ Daemon::Control
 DateTime
 DateTime::Format::Duration
 DBIx::Connector
+Debug::Show
 Digest
 Digest::SHA
 Digest::MD5
