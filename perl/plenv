@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+plenvdir=$HOME/.plenv
+plugins=$plenvdir/plugins
+
+git-dir git://github.com/tokuhirom/plenv.git $plenvdir
+
+git-dir git://github.com/tokuhirom/Perl-Build.git $plugins/perl-build
+
+git-dir git://github.com/miyagawa/plenv-contrib.git $plugins/plenv-contrib
