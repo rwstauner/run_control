@@ -1,30 +1,11 @@
 #!/usr/bin/env perl
-# http://www.dagolden.com/index.php/2134/how-i-manage-new-perls-with-perlbrew/
 
 use v5.10;
 use strict;
 use warnings;
 use FindBin '$Bin';
 
-my $as = shift
-  or die "Usage: $0 <perl-version>";
-my @args = @ARGV;
-
 $SIG{INT} = sub { die $_[0] };
-
-my %flag_defs = (
-  t => [qw/-D usethreads/],
-  s => [qw/-D useshrplib/],
-  f => [qw/-Dcccdlflags=-fPIC/],
-);
-my %flags = map { ($_ => 1) } grep { defined } split //, ($as =~ /-?([a-z]+)$/)[0] || '';
-push @args, map { @{ $flag_defs{$_} || [] } } keys %flags;
-
-$as =~ s/^5\.//;
-$as =~ s/^(\d+)$/$1.0/; # Append ".0" if no dot ("5.20" => "5.20.0").
-my $perl = "5.$as";
-$perl =~ s/-?[a-z]+$//; # Strip trailing flags.
-my $lib = $flags{l} ? $as . '@std' : undef;
 
 my @test_reports = qw(
   Test::Reporter::Transport::Socket
@@ -42,6 +23,9 @@ my @install_groups;
   my $group = 0;
   local @ARGV = "$Bin/install.txt";
   while( <> ){
+    s/^\s+//;
+    s/\s+$//;
+
     # Use comments and blank lines to separate groups.
     ++$group, next if /^\s*(#.+)?$/;
 
@@ -59,8 +43,6 @@ my @install_groups;
 }
 chomp(@$_) for @install_groups;
 
-my @no_man = qw/-D man1dir=none -D man3dir=none/;
-
 # Don't prompt me.
 close STDIN;
 open STDIN, '<', '/dev/null';
@@ -72,29 +54,18 @@ sub run {
   return ($s == 0);
 }
 
-# install perl and lock it down
-# We ignore the exit status of cpan, but what about perlbrew install?
-run( qw/perlbrew install -j 9 --as/, $as, $perl, @no_man, @args )
-  or warn "Failed to install $perl";
-
-run( qw/perlbrew exec --with/, $as, perl => '-V' );
-
-run( qw/chmod -R a-w/, "$ENV{HOME}/perl5/perlbrew/perls/$as" ) if $lib;
-
-# give us a local::lib for installing things
-run( qw/perlbrew lib create/, $lib ) if $lib;
-
 # NOTE: We basically ignore the result of the cpan calls... most modules
 # should get installed eventually... if there's a big problem we'll notice.
 my $cpan = 'cpan';
+(my $perlbin = $^X) =~ s{[^/]+$}{};
 sub cpan {
-  run( qw/perlbrew exec --with/, $lib || $as, $cpan, @_ );
+  run( "$perlbin/$cpan", @_ );
 }
 
 # Reset to default in case ENV specifies one we don't have installed.
 local $ENV{HARNESS_SUBCLASS} = 'TAP::Harness';
 
-# let's avoid any pod tests when we try to install stuff
+# Avoid any pod tests when we try to install stuff.
 cpan( qw/TAP::Harness::Restricted/ ) and
   local $ENV{HARNESS_SUBCLASS} = 'TAP::Harness::Restricted';
 
