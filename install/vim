@@ -7,3 +7,7 @@ elif have apt-get; then
   # vim-gtk to get +clipboard
   sudo apt-get install vim vim-doc vim-nox vim-gtk ctags
 fi
+
+# source install:
+# Unset PATH so that vim links to system interpreters.
+# PATH=/usr/bin:/bin ./configure --with-features=huge --enable-perlinterp=dynamic --enable-pythoninterp=dynamic --enable-python3interp=dynamic
