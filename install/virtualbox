@@ -1,9 +1,26 @@
 #!/bin/bash
 
-sudo apt-get install libqt4-network libqt4-opengl libqtcore4 libqtgui4
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if have apt-get; then
+  # Last time it said it depended on these, but then it didn't install anything.
+  sudo apt-get install libqt4-network libqt4-opengl libqtcore4 libqtgui4
+fi
 
 echo 'download and install'
 $BROWSER https://www.virtualbox.org/wiki/Linux_Downloads
 
 echo 'if install fails, try:'
 echo 'sudo apt-get -f install'
+
+vbdir="$HOME/VirtualBox VMs"
+test -h "$vbdir" || \
+  ln -s "$HOME/data/virtual_machines/virtual_boxes" "$vbdir"
+
+if ! have VBoxManage; then
+  echo 'install package and press any key to proceed'
+  read key
+fi
+
+# Re-register existing vms.
+find "$vbdir/" -name \*.vbox -print0 | xargs -0 -n 1 VBoxManage registervm
