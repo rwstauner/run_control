@@ -78,7 +78,6 @@ compare /etc/pm/sleep.d/
     libtry-tiny-perl libapp-nopaste-perl libgtk2-perl perlmagick
     libgtk2.0-dev
     libxml2 libexpat-dev libxml2-dev libxml2-utils libxslt-dev xmlstarlet
-    libyaml-dev
     moreutils patchutils diffstat icoutils
     tree
     libevent-dev libncurses-dev libssl-dev libcurl4-openssl-dev
@@ -119,7 +118,6 @@ compare /etc/pm/sleep.d/
     libapache2-mod-fcgid
     libapache2-mod-php5 php-geshi php5-cli php5-common php5-gd
     nodejs
-    python-setuptools python-pip python-avahi python-gpgme python-docutils python-gtk2
     unrar unzip tnef
     xfce4-sensors-plugin xfce4-artwork xfce4-clipman xfce4-clipman-plugin
     xbacklight
@@ -200,15 +198,6 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
     perlbrew alias -f create perl-5.14.2-st local
 
     sudo ln -s ~/perl5/perlbrew/perls/local/bin/perl /usr/local/bin/
-
-### python
-
-    sudo apt-get install python python-dev python-pip python-virtualenv
-
-To build python 2.6 for testing,
-Add the LDFLAGS for ubuntu (http://ubuntuforums.org/showthread.php?t=1759873)
-
-    (make distclean; export LDFLAGS="-L/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)"; ./configure --prefix=/home/rando/python/p/2.6.9 && make && make install)
 
 ### tmux
 

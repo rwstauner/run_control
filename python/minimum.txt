@@ -1,0 +1,10 @@
+PyYAML               >=  3.10
+
+docutils             >=  0.11
+
+pylint               >=  0.28.0
+pylint-nose-checker  >=  1.0.0
+
+simplejson           >=  0
+
+virtualenv           >=  1.9.1
