@@ -1,0 +1,19 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if ! have skippy-xd; then
+  sudo add-apt-repository ppa:landronimirc/skippy-xd-daily
+  sudo apt-get update
+  sudo apt-get install skippy-xd
+fi
+
+# The fix script uses this.
+have xdotool || \
+  sudo apt-get -y install xdotool
+
+# http://www.linux-ai.com/skippy-xd-expose-like-window-picker-for-xfce-lxde-etc/
+# http://code.google.com/p/skippy-xd/
+# https://github.com/richardgv/skippy-xd
+
+download-bin https://github.com/hotice/webupd8/raw/master/skippy-xd-fix

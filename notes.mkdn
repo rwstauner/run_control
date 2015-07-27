@@ -245,12 +245,6 @@ copy dir
 
 http://www.cyberciti.biz/open-source/command-line-hacks/remark-command-regex-markup-examples/
 
-### skippy-xd
-
-http://www.linux-ai.com/skippy-xd-expose-like-window-picker-for-xfce-lxde-etc/
-http://code.google.com/p/skippy-xd/
-https://github.com/richardgv/skippy-xd
-
 ### the_silver_searcher
 
 https://github.com/ggreer/the_silver_searcher
