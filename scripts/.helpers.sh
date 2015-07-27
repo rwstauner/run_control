@@ -43,6 +43,7 @@ homebrew () {
     if ! have brew; then
       echo 'installing homebrew...'
       $rc/install/homebrew
+      source $rc/sh/setup.sh
       source $rc/sh/homebrew.sh
     fi
     # Get latest formulae.
