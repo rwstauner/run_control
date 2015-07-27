@@ -58,6 +58,20 @@ macosx () {
   [[ `uname` = Darwin ]]
 }
 
+in-group () {
+  groups | sed 's/ /\n/g' | grep -q "$@"
+}
+
+add-to-group () {
+  local group="$1" user="${2:-$USER}"
+  echo "Adding $user to $group group"
+  sudo usermod -a -G $group $user
+}
+
+ensure-in-group () {
+  in-group "$1" || add-to-group "$1"
+}
+
 
 git-dir () {
   local url="$1" dir="$2"

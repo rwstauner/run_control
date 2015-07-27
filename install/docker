@@ -1,8 +1,9 @@
 #!/bin/bash
 
+. `dirname "$0"`/../scripts/.helpers.sh
+
 # ಠ_ಠ
-which docker || \
+have docker || \
   wget -qO- https://get.docker.com/ | sh
 
-groups | sed 's/ /\n/g' | grep docker || \
-  sudo usermod -aG docker $USER
+ensure-in-group docker
