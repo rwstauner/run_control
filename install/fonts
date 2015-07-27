@@ -1,0 +1,9 @@
+#!/bin/bash
+
+dir=$HOME/.fonts
+mkdir -p "$dir"
+cd "$dir"
+
+zip=Symbola.zip
+wget -O $zip http://users.teilar.gr/~g1951d/$zip
+unzip -o $zip Symbola.ttf
