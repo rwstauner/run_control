@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo 'download, install, configure'
+$BROWSER 'https://www.dropbox.com/install?os=lnx'
+
+echo
+echo 'copy previous dir before starting'
