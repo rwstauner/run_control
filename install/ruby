@@ -1,0 +1,20 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+setup_runtime_dir ruby
+
+$HOME/ruby/rc/rbenv.sh
+
+# Load rbenv.
+. $rc/sh/setup.sh
+. $rc/sh/sh.d/ruby.sh
+
+install-ruby () {
+  local version="$1"
+  rbenv install $version
+  rbenv global  $version
+  # The default-gems plugin will install any essentials.
+}
+
+install-ruby 2.2.2

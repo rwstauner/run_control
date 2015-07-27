@@ -210,16 +210,6 @@ Add the LDFLAGS for ubuntu (http://ubuntuforums.org/showthread.php?t=1759873)
 
     (make distclean; export LDFLAGS="-L/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)"; ./configure --prefix=/home/rando/python/p/2.6.9 && make && make install)
 
-### ruby
-
-* rvm
-    * \curl -L https://get.rvm.io | bash -s stable --ruby
-
-install 1.9.3
-gem install puppet --version 2.7.13
-gem install vagrant
-gem install bundler
-
 ### tmux
 
 rebuild from source for latest features
