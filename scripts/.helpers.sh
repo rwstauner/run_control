@@ -34,6 +34,18 @@ download-bin () {
   chmod 0755 "$dest"
 }
 
+expired () {
+  local file="$HOME/.cache/$USER-expiry-timestamps/$1" sec="${2:-3600}"
+  local stamp=`date +%s`
+  if ! [[ -e "$file" ]] || [[ "$(<$file)" -lt `expr $stamp - $sec` ]]; then
+    mkdir -p "${file%/*}"
+    echo $stamp > "$file"
+    return 0
+  else
+    return 1
+  fi
+}
+
 have () {
   which "$1" &> /dev/null
 }
@@ -56,7 +68,8 @@ homebrew-ready () {
 homebrew () {
   homebrew-ready || return 1
 
-    # Get latest formulae.
+  # Get latest formulae.
+  expired 'homebrew-update' && \
     brew update
     brew install "$@"
 
