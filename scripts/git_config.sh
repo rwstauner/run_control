@@ -14,6 +14,8 @@ fi
 git_version=`git --version`
 
 . "${0%/*}/.helpers.sh"
+set +x
+
 function have_git_version () { version_ge "$git_version" "$1"; }
 
 gc="git config --global"
