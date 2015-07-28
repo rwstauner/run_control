@@ -2,6 +2,10 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+if homebrew ag; then
+  exit
+fi
+
 if have apt-get; then
   sudo apt-get build-dep silversearcher-ag
 fi
