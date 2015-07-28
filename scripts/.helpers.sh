@@ -38,20 +38,31 @@ have () {
   which "$1" &> /dev/null
 }
 
+homebrew-ready () {
+  # Always return false if not a mac.
+  macosx || return 1
+
+  if ! have brew; then
+    echo 'installing homebrew...'
+    $rc/install/homebrew
+    source $rc/sh/setup.sh
+    source $rc/sh/homebrew.sh
+  fi
+
+  # Always return true if we _should_ have homebrew (on a mac).
+  return 0
+}
+
 homebrew () {
-  if macosx; then
-    if ! have brew; then
-      echo 'installing homebrew...'
-      $rc/install/homebrew
-      source $rc/sh/setup.sh
-      source $rc/sh/homebrew.sh
-    fi
+  homebrew-ready || return 1
+
     # Get latest formulae.
     brew update
     brew install "$@"
-  else
-    return 1
-  fi
+
+  # Always return true if we want to install with homebrew
+  # (to enable if/block/exit).
+  return 0
 }
 
 macosx () {
