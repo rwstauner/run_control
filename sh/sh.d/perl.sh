@@ -13,7 +13,10 @@ shadowpaste () {
 cpan () {
   # No prompts.
   command cpan "$@" < /dev/null
+  # Rehash any installed scripts.
+  if which plenv &> /dev/null; then plenv rehash; fi
 }
+
 # LWP 6.00 breaks CPAN::Reporter (when using Metabase Transport)
 # cert purchased on 2011/03/15
 #alias cpan='env PERL_LWP_SSL_VERIFY_HOSTNAME=0 cpan'
@@ -25,14 +28,22 @@ cpan () {
 
 #export PERL_UNICODE=AS
 
+plenvdir=$HOME/.plenv
+if [[ -d "$plenvdir" ]]; then
+  add_to_path "$plenvdir/bin"
+  eval "$(plenv init -)"
+
 # Only load the default perlbrew environment if perlbrew isn't already in use.
-if [[ -z "$PERLBREW_PERL" ]]; then
+elif [[ -z "$PERLBREW_PERL" ]]; then
+
 for pbparent in $HOME/perl5 /opt/perl5 /opt /usr/local; {
   perlbrewrc="$pbparent/perlbrew/etc/bashrc"
   [[ -r "$perlbrewrc" ]] && { source "$perlbrewrc"; break; }
 }
 unset pbparent
+
 fi
+unset plenvdir
 
 # after perlbrew
 which setup-bash-complete &> /dev/null && . setup-bash-complete
