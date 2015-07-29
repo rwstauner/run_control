@@ -1,5 +1,16 @@
 #!/bin/bash
 
+. `dirname "$0"`/../scripts/.helpers.sh
+
+# The mac zsh is missing pcre.
+if homebrew zsh; then
+  zsh=$HOME/homebrew/bin/zsh
+  ensure-line $zsh /etc/shells
+  perl -e 'exit( (getpwnam($ENV{USER}))[8] eq $ARGV[0] ? 0 : 1)' $zsh || \
+    chsh -s $zsh
+  exit
+fi
+
 # Ubu < 15 is missing zsh man pages.
 if lsb_release -d | grep -q 'Ubuntu 14.04'; then
   sudo add-apt-repository ppa:ramilehti/ppa
