@@ -45,4 +45,6 @@ for i in dict; {
   eval "$i"' () { command '"$i"' "$@" | $PAGER; }'
 }
 
-alias ag='ag --pager=$PAGER'
+# I like ag's `--group` output but nogroup is more consistent with (git) grep
+# and can easily be used as a vim quickfix buffer.
+alias ag='ag --pager=$PAGER --nogroup'
