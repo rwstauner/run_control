@@ -34,6 +34,12 @@ download-bin () {
   chmod 0755 "$dest"
 }
 
+ensure-line () {
+  local line="$1" file="$2"
+  grep -qFx "$line" "$file" || \
+    echo "$line" | sudo tee -a "$file"
+}
+
 expired () {
   local file="$HOME/.cache/$USER-expiry-timestamps/$1" sec="${2:-3600}"
   local stamp=`date +%s`
