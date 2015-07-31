@@ -22,3 +22,5 @@ if homebrew iojs; then
 else
   install_iojs
 fi
+
+~/node/rc/install-packages

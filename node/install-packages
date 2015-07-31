@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Configure npm before using it.
+~/run_control/scripts/npm_config.sh
+
+install () {
+  npm install -g "${1%:}${2+@}$2"
+}
+
+#install bower
+#install docco
+
+# o
+# phantomjs
+# ramda
+
+install lodash
+
+install clean-css
+install less: '>=1.7.5'
+install less-plugin-clean-css
+
+# Vim (syntastic) will use these when editing js.
+#install js-beautify
+install jshint
+install jslint
+install jsonlint
+
+# Run tests.
+#install mocha
+
+# Handy for quick servers.
+#install node-static
+
+install promise
+
+install temp
+
+install uglify-js '>=2'
