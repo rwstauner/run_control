@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+url=https://packer.io/downloads.html
+$BROWSER $url
+
+echo 'path to download?'
+read path
+
+[[ -f "$path" ]] || path=`ls ~/Downloads/packer*.zip | tail -n 1`
+[[ "${path:0:1}" == "/" ]] || path="$PWD/$path"
+
+cd $PREFIX/bin && unzip $path
