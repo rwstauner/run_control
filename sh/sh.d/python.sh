@@ -5,7 +5,7 @@ export PIP_DOWNLOAD_CACHE=$HOME/python/pip-downloads
 #export PYTHONDOCS=http://localhost/docs/python-2.7.4-docs-html/
 export DJANGO_COLORS='dark'
 
-[[ -f ~/usr/bin/json_tool ]] || alias json_tool='python -m json.tool'
+[[ -f ~/usr/bin/json.tool ]] || alias json.tool='python -m json.tool'
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
