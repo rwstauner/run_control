@@ -5,5 +5,12 @@ mkdir -p "$dir"
 cd "$dir"
 
 zip=Symbola.zip
-wget -O $zip http://users.teilar.gr/~g1951d/$zip
-unzip -o $zip Symbola.ttf
+symbola_url='http://users.teilar.gr/~g1951d'
+if wget -O $zip $symbola_url/$zip; then
+  unzip -o $zip Symbola.ttf
+else
+  $BROWSER $symbola_url
+fi
+
+# Monoid
+$BROWSER http://larsenwork.com/monoid
