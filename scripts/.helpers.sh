@@ -151,10 +151,10 @@ version_ge () {
 setup_runtime_dir () {
   local name="$1" homedir="${2:-$1}"
 
-  root=$HOME/$homedir
+  local root=$HOME/$homedir
   test -d "$root" || mkdir -p "$root"
 
-  rcdir=$root/rc
+  local rcdir=$root/rc
   if ! [[ -d $rcdir ]]; then
     ln -s ~/run_control/$name $rcdir;
   fi
