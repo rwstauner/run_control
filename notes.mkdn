@@ -182,29 +182,6 @@ http://askubuntu.com/questions/117127/flash-video-appears-blue
     sudo apt-get update
     sudo apt-get install libvdpau1
 
-### node
-
-    sudo apt-get install nodejs
-
-### perl
-
-* cpan autobundle on old OS
-* perlbrew
-    * copy ~/perl5/perlbrew/dists
-    * copy .cpanreporter/ .cpantesters/ .metabase/
-    * copy .cpan/patches/ .cpan/prefs/
-
-    perlbrew install perl-5.14.2 --as 5.14.2-st -Dusethreads -Duseshrplib -Dlddlflags='-shared -O2 -L/home/rando/perl5/perlbrew/perls/5.14.2-st/lib/5.14.2/x86_64-linux-thread-multi/CORE'
-    perlbrew alias -f create perl-5.14.2-st local
-
-    sudo ln -s ~/perl5/perlbrew/perls/local/bin/perl /usr/local/bin/
-
-### tmux
-
-rebuild from source for latest features
-https://github.com/ThomasAdam/tmux
-git://tmux.git.sourceforge.net/gitroot/tmux/tmux
-
 ### imagemagick
 
 http://www.imagemagick.org/script/install-source.php
@@ -215,22 +192,9 @@ http://www.imagemagick.org/script/install-source.php
     make
     make install
 
-### dropbox
-
-copy dir
-[dl/install](https://www.dropbox.com/install?os=lnx)
-
 ### remark
 
 http://www.cyberciti.biz/open-source/command-line-hacks/remark-command-regex-markup-examples/
-
-### the_silver_searcher
-
-https://github.com/ggreer/the_silver_searcher
-
-### virtualbox
-
-[deb packages](https://www.virtualbox.org/wiki/Linux_Downloads)
 
 # run_control
 
@@ -238,10 +202,6 @@ https://github.com/ggreer/the_silver_searcher
 * copy: `.xchat2/ .xscreensaver .dzil/ .vimperator* .clamz ~/`
 * copy: `autokey/ gmusicbrowser/ google-* inkscape/ libreoffice/ Skype/ transmission/ ~/.config/`
 * check `~/.config/autokey/autokey.json` for compatibility
-
-# fonts
-
-    ~/.fonts/Symbola605.ttf
 
 # sound
 
