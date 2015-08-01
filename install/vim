@@ -5,7 +5,8 @@ if homebrew vim; then
   exit
 elif have apt-get; then
   # vim-gtk to get +clipboard
-  sudo apt-get install vim vim-doc vim-nox vim-gtk ctags
+  # vim-doc is the HTML docs.
+  sudo apt-get install vim vim-nox vim-gtk ctags
 fi
 
 # source install:
