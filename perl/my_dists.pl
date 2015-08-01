@@ -2,9 +2,10 @@
 
 use strict;
 use warnings;
+# Stick to core modules.
 use Getopt::Long;
-use LWP::UserAgent;
-use JSON;
+use HTTP::Tiny;
+use JSON::PP;
 
 sub find_author {
   my $pause = "$ENV{HOME}/.pause";
@@ -29,7 +30,7 @@ GetOptions(
 );
 $author ||= find_author;
 
-my $ua = LWP::UserAgent->new;
+my $ua = HTTP::Tiny->new;
 
 # NOTE: This finds "latest" releases when it may be more desirable to get
 # latest dev releases (which requires a more interesting query/filter.
@@ -57,14 +58,11 @@ my $query = {
 };
 
   my $search = $opts{dists} ? 'release' : 'module';
-  my $req = HTTP::Request->new(POST => "http://api.metacpan.org/$search/_search",
-    [],
-    encode_json($query)
-  );
-  $req->accept_decodable;
-  my $res = $ua->request($req);
+  my $res = $ua->request(POST => "http://api.metacpan.org/$search/_search", {
+    content => encode_json($query)
+  });
 
-my @results = @{ decode_json($res->decoded_content)->{hits}{hits} };
+my @results = @{ decode_json($res->{content})->{hits}{hits} };
 
 print map { "$_\n" } sort
   $opts{dists}
