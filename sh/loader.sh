@@ -22,4 +22,6 @@ source_rc_files $shrc_dir/term.sh
 # Get everything else.
 source_rc_files $shrc_dir/sh.d/*.sh ~/.shrc.local $EXTRA_SHRC
 
+dedupe_path
+
 unset shrc_dir

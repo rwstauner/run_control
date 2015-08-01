@@ -23,3 +23,9 @@ add_to_path () {
     fi
   done
 }
+
+dedupe_path () {
+  # Keep first occurrence and remove any duplicates.
+  # Pass $PATH instead of using $ENV{PATH} since plenv will add to path.
+  PATH=`perl -ne 'print join ":", grep { !$u{$_}++ } split /:/' <<<"$PATH"`
+}
