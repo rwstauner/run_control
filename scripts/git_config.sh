@@ -264,6 +264,10 @@ $gc alias.root            $'rev-parse --show-toplevel'
 $gc alias.serve           $'!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
 $gc alias.st              $'!_() { if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -re "s/^([^:]+):/\\\033[33m\\1\\\033[00m:/"; fi; }; _'
+
+# Use $PAGER and -p to force (only for this command) sending color to pipe.
+$gc alias.stpp            $'!PAGER=fppt git -p st'
+
 $gc alias.s               $'status -s -b -u'
 $gc alias.tag-summary     $'!_() { git show --summary ${1:-`git last-tag`}; }; _'
 
