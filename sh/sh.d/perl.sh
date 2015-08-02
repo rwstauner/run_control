@@ -28,9 +28,9 @@ cpan () {
 
 #export PERL_UNICODE=AS
 
-plenvdir=$HOME/.plenv
-if [[ -d "$plenvdir" ]]; then
-  add_to_path "$plenvdir/bin"
+export PLENV_ROOT="$HOME/perl5/plenv"
+if [[ -d "$PLENV_ROOT" ]]; then
+  add_to_path "$PLENV_ROOT/bin"
   eval "$(plenv init -)"
 
 # Only load the default perlbrew environment if perlbrew isn't already in use.
@@ -43,7 +43,6 @@ for pbparent in $HOME/perl5 /opt/perl5 /opt /usr/local; {
 unset pbparent
 
 fi
-unset plenvdir
 
 # after perlbrew
 which setup-bash-complete &> /dev/null && . setup-bash-complete

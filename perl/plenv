@@ -1,12 +1,20 @@
 #!/bin/bash
 
+export PLENV_ROOT="$HOME/perl5/plenv"
+
 . `dirname "$0"`/../scripts/.helpers.sh
 
-plenvdir=$HOME/.plenv
-plugins=$plenvdir/plugins
+lc () {
+  tr '[A-Z]' '[a-z]' <<<"$1"
+}
 
-git-dir git://github.com/tokuhirom/plenv.git $plenvdir
+plugin () {
+  local repo="$1"
+  git-dir https://github.com/${repo}.git "${PLENV_ROOT}/plugins/`lc ${repo#*/}`"
+}
 
-git-dir git://github.com/tokuhirom/Perl-Build.git $plugins/perl-build
+git-dir https://github.com/tokuhirom/plenv.git $PLENV_ROOT
 
-git-dir git://github.com/miyagawa/plenv-contrib.git $plugins/plenv-contrib
+plugin tokuhirom/Perl-Build
+
+plugin miyagawa/plenv-contrib
