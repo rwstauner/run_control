@@ -2,14 +2,10 @@
 
 RBENV_ROOT="$HOME/ruby/rbenv"
 
+. `dirname "$0"`/../scripts/.helpers.sh
+
 sync () {
-  local repo="$1" dir="$2"
-  printf "%-55s ... " "$repo"
-  if ! [[ -d "$dir/.git" ]]; then
-    git clone "$repo" "$dir"
-  else
-    (cd "$dir"; git pull)
-  fi
+  git-dir "$@"
 }
 
 plugin () {

@@ -109,22 +109,25 @@ ensure-in-group () {
 
 
 git-dir () {
+  local tag=false
+  [[ "$1" == "--tag" ]] && { tag=true; shift; }
   local url="$1" dir="$2"
-  if ! [[ -d "$dir" ]]; then
+  if ! [[ -d "$dir/.git" ]]; then
     git clone "$url" "$dir"
+    cd "$dir"
+  else
+    cd "$dir"
+    git checkout master
+    git pull
+    $tag && git-checkout-latest-tag
   fi
-  cd "$dir"
   # Stay in dir.
 }
 
 git-checkout-latest-tag () {
-  if [[ -d .git ]]; then
-    git checkout master
-    git pull "$@"
-    # Checkout latest tag (strip describe's commits since tag).
-    # 0.30.0-24-g07f8336 => 0.30.0
-    git checkout `git describe --tags | sed -r 's/-[0-9]+-g[0-9a-f]+$//'`
-  fi
+  # Checkout latest tag (strip describe's commits since tag).
+  # 0.30.0-24-g07f8336 => 0.30.0
+  git checkout `git describe --tags | sed -r 's/-[0-9]+-g[0-9a-f]+$//'`
 }
 
 versioned-archive-dir () {
