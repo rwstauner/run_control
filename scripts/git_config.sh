@@ -240,7 +240,7 @@ alias lg               "log --color --graph --pretty=format:'%Cred%h%Creset -%C(
 alias lgpcw            '!git lg -p --color-words=.'
 
 # ls-files doesn't tab-complete, so shorten it, and force it through a pager.
-alias ls               '!git ls-files "$@" | $PAGER'
+alias ls               '-p ls-files'
 alias lsgrep           '!git ls-files | grep --color=always "$@" | $PAGER'
 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
@@ -302,7 +302,7 @@ alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 
 
 # whois takes a name or email
-alias whois           $'!git log -i -1 --pretty="format:%an <%ae>\n" --author="$1"'
+alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
 # whatis takes a commit name
 alias whatis           'show -s --pretty="tformat:%h (%s, %ad)" --date=short'
 
