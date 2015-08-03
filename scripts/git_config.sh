@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Turn off xtrace that helpers turns on (too much noise for this).
+. "${0%/*}/.helpers.sh" +x
+
 file="$HOME/.gitconfig"
 umask 0077
 touch "$file"
@@ -13,8 +16,6 @@ fi
 
 git_version=`git --version`
 
-. "${0%/*}/.helpers.sh"
-set +x
 
 function have_git_version () { version_ge "$git_version" "$1"; }
 

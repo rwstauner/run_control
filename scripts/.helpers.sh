@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+[[ "$1" == "+x" ]] || set -x
 umask 0022
 
 PREFIX=$HOME/usr
