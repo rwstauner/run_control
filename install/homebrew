@@ -11,6 +11,8 @@ fi
 test -d $homebrew/.git || \
 git clone http://github.com/Homebrew/homebrew $homebrew
 
+PATH=$brewbin:$PATH
+
 symlink () {
   local src="$1" dest="$2"
   test -h "$dest" || \
