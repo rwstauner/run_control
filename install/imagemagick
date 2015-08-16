@@ -8,5 +8,6 @@ if homebrew imagemagick --with-x11; then
   exit
 elif have apt-get; then
   # libmagickwand-dev
+  # sudo apt-get build-dep imagemagick
   sudo apt-get install imagemagick
 fi
