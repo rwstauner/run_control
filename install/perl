@@ -16,6 +16,12 @@ if have apt-get; then
     libgtk2-perl perlmagick
 fi
 
+symlink () {
+  local src="$1" dest="$2"
+  [[ -e "$dest" ]] && [[ -h "$dest" ]] && sudo rm "$dest"
+  sudo ln -s "$src" "$dest"
+}
+
 perldir=$HOME/perl5
 setup_runtime_dir perl `basename "$perldir"`
 
@@ -36,7 +42,9 @@ latest=`plenv install -l | perl -le '@v = sort grep { int($_) % 2 == 0 } map { /
 plenv install $latest
 plenv global  $latest
 
-# Don't do this if it isn't necessary.
-#sudo ln -s `which perl` /usr/local/bin/perl
-
 perl install-mods.pl
+
+# Link a dir to the installation dir for scripts.
+symlink `perl -le 'print $^X =~ m{(.+)/bin/[^/]+$}'` "$perldir/local"
+# Link /usr/local/bin/perl for simple shebangs.
+symlink `which perl` "/usr/local/bin/perl"
