@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Remove zsh RPROMPT so i can use copy-end-of-line after hitting up.
+# Preserve leading prompt since that can be a useful decoration and
+# using copy-end-of-line is just as simple as copy-line.
+perl -pe 's/\s+🐙 «.+?»$//;'
