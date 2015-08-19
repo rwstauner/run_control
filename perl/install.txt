@@ -114,6 +114,7 @@ Text::CSV_XS
 Text::CSV
 Try::Tiny
 Unicode::String
+Unicode::Tussle
 Unicode::UTF8
 URI
 Vi::QuickFix
