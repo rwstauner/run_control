@@ -1,0 +1,15 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if homebrew terminal-notifier; then
+  script ~/usr/bin/notify-send <<'EOF'
+#!/bin/bash
+msg="$1"
+[[ "${msg:0:1}" == "[" ]] && msg="\\$msg"
+terminal-notifier -message "$msg" ${2:+-title "$2"}
+EOF
+  exit
+fi
+
+sudo apt-get install notify-send
