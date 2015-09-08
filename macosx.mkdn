@@ -1,0 +1,9 @@
+# Mac tips
+
+## Prevent system from sleeping
+
+    # Stay awake while command is running:
+    caffeinate $cmd args...
+
+    # Stay awake for an hour.
+    caffeinate -t 3600
