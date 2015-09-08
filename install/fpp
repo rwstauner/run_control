@@ -6,11 +6,6 @@ dir=$PREFIX/PathPicker
 
 git-dir https://github.com/facebook/PathPicker $dir
 
-script () {
-  cat > "$1"
-  chmod 0755 "$1"
-}
-
 
 # It needs to be run from the checkout dir so put a redirect in $PATH.
 script $PREFIX/bin/fpp <<EXE

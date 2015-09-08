@@ -151,6 +151,11 @@ version_ge () {
   perl -e '($s, $t) = map { [split /\./, (/([0-9.]+)/)[0]] } @ARGV; while(@$t){ shift(@$s) >= shift(@$t) or exit(1) }' -- "$@"
 }
 
+script () {
+  cat > "$1"
+  chmod 0755 "$1"
+}
+
 setup_runtime_dir () {
   local name="$1" homedir="${2:-$1}"
 
