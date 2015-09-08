@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if homebrew abcde --with-{flac,lame,vorbis-tools}; then
+  exit
+fi
+
+sudo apt-get install abcde
