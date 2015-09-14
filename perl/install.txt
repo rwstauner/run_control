@@ -49,6 +49,7 @@ App::gh
 App::HTTPThis
 App::perlbrew
 App::pmuninstall
+App::PipeFilter
 App::Software::License
 App::sync_cpantesters
 App::Uni
