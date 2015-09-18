@@ -9,7 +9,10 @@ github_font () {
   local url=`curl -sL $prefix/$repo/releases/latest | perl -lne 'print $1 if /href="(.+?\Q'"$suffix"'.zip\E)"/'`
   if [[ -n "$url" ]]; then
     [[ "${url:0:1}" == "/" ]] && url="$prefix$url"
-    curl -s "$url" | unzip -
+    file=`mktemp font-XXXXXX`
+    curl -sL "$url" > "$file"
+    unzip "$file"
+    rm "$file"
   else
     $BROWSER "$prefix/$repo"
   fi
