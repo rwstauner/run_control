@@ -4,6 +4,17 @@ dir=$HOME/.fonts
 mkdir -p "$dir"
 cd "$dir"
 
+github_font () {
+  local prefix="https://github.com" repo="$1" suffix="${2:--ttf}"
+  local url=`curl -sL $prefix/$repo/releases/latest | perl -lne 'print $1 if /href="(.+?\Q'"$suffix"'.zip\E)"/'`
+  if [[ -n "$url" ]]; then
+    [[ "${url:0:1}" == "/" ]] && url="$prefix$url"
+    curl -s "$url" | unzip -
+  else
+    $BROWSER "$prefix/$repo"
+  fi
+}
+
 zip=Symbola.zip
 symbola_url='http://users.teilar.gr/~g1951d'
 if wget -O $zip $symbola_url/$zip; then
@@ -14,3 +25,6 @@ fi
 
 # Monoid
 $BROWSER http://larsenwork.com/monoid
+
+# Hack
+github_font 'chrissimpkins/Hack'
