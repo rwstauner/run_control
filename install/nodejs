@@ -2,11 +2,14 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-install_iojs () {
-  url="https://iojs.org/dist/latest/"
-  archive=`curl "$url" | perl -lne 'print $1 if /href="(iojs-.+?linux-x64\.tar\.xz)"/'`
+name=node
 
-  versioned-archive-dir iojs "$url/$archive"
+install-nodejs () {
+  local os="$1"
+  url='https://nodejs.org/dist/latest/'
+  archive=`curl "$url" | perl -lne 'print $1 if /href="('"$name"'-.+?-'"$os"'-x64\.tar\.xz)"/'`
+
+  versioned-archive-dir $name "$url/$archive"
 
   # No need to symlink, this is added to path in shrc.
 }
@@ -15,12 +18,9 @@ setup_runtime_dir node
 
 mkdir -p ~/node/global
 
-if homebrew iojs; then
-  # Symlink homebrew into ~/usr so that shrc symlink works.
-  [[ -h ~/usr/iojs ]] || \
-    ln -s ~/homebrew/opt/iojs ~/usr/iojs
-else
-  install_iojs
-fi
+install-nodejs `uname | tr A-Z a-z`
+
+# Ensure new node is in PATH.
+. `dirname "$0"`/../sh/sh.d/node.sh
 
 ~/node/rc/install-packages
