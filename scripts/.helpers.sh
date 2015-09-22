@@ -145,6 +145,7 @@ versioned-archive-dir () {
   local symlink="$name"
 
   if ! [[ -d "$dest" ]]; then
+    (
     cd "${dest%/*}" && \
     # Write to disk instead of pipe to utilize `tar -a`.
     download "$url" && \
@@ -152,6 +153,7 @@ versioned-archive-dir () {
     rm -f "$symlink" && \
     ln -s "${dest##*/}" "$symlink" && \
     rm "$archive"
+    )
   fi
 }
 
