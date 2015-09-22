@@ -25,7 +25,7 @@ arch-info () {
 
 download () {
   local url="$1" dest="${2:-${1##*/}}"
-  wget "$url" -O "$dest"
+  wget --no-clobber "$url" -O "$dest"
 }
 
 download-bin () {
