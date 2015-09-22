@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. `dirname "$0"`/../scripts/.helpers.sh
+
 dir=$HOME/.fonts
 mkdir -p "$dir"
 cd "$dir"
@@ -12,6 +14,7 @@ github_font () {
     file=`mktemp font-XXXXXX`
     curl -sL "$url" > "$file"
     unzip "$file"
+    install-fonts `zip-file-contents "$file"`
     rm "$file"
   else
     $BROWSER "$prefix/$repo"

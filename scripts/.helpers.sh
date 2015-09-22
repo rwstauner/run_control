@@ -89,6 +89,14 @@ homebrew () {
   return 0
 }
 
+install-fonts () {
+  if macosx; then
+    for i in "$@"; do
+      open "$i"
+    done;
+  fi
+}
+
 macosx () {
   [[ `uname` = Darwin ]]
 }
@@ -166,4 +174,8 @@ setup_runtime_dir () {
   if ! [[ -d $rcdir ]]; then
     ln -s ~/run_control/$name $rcdir;
   fi
+}
+
+zip-file-contents () {
+  unzip -qql "$1" | perl -lne 'print $1 if /^\s+\d+\s+[0-9-]+\s+[0-9:]+\s+(.+)/'
 }
