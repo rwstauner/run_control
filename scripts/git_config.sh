@@ -264,6 +264,7 @@ alias pulls            '!git pull; test -f ${GIT_DIR:-.}/.gitmodules && git subm
 alias pum              '!git fetch upstream; git pull upstream master'
 
 alias pusht            '!git push "$@"; git push --tags "$@"'
+alias pushup           '!git push -u "${1:-origin}" "${2:-`git current-branch`}"'
 
 alias branch-to-remote  '!branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch'
 alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch'
