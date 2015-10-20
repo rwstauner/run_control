@@ -34,7 +34,7 @@ else
 fi
 
 # Monoid
-$BROWSER http://larsenwork.com/monoid
+#$BROWSER http://larsenwork.com/monoid
 
 # Hack
 github_font 'chrissimpkins/Hack'
