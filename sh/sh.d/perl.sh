@@ -11,8 +11,12 @@ shadowpaste () {
 }
 
 cpan () {
-  # No prompts.
-  command cpan "$@" < /dev/null
+  if [[ $# -eq 0 ]]; then
+    command cpan "$@"
+  else
+    # No prompts.
+    command cpan "$@" < /dev/null
+  fi
   # Rehash any installed scripts.
   if which plenv &> /dev/null; then plenv rehash; fi
 }
