@@ -13,7 +13,7 @@ github_font () {
     [[ "${url:0:1}" == "/" ]] && url="$prefix$url"
     file=`mktemp font-XXXXXX`
     curl -sL "$url" > "$file"
-    unzip "$file"
+    unzip -o "$file"
     install-fonts `zip-file-contents "$file"`
     rm "$file"
   else
