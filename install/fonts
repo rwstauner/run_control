@@ -6,6 +6,10 @@ dir=$HOME/.fonts
 mkdir -p "$dir"
 cd "$dir"
 
+have () {
+  which "$1" &> /dev/null
+}
+
 github_font () {
   local prefix="https://github.com" repo="$1" suffix="${2:--ttf}"
   local url=`curl -sL $prefix/$repo/releases/latest | perl -lne 'print $1 if /href="(.+?\Q'"$suffix"'.zip\E)"/'`
@@ -34,3 +38,8 @@ $BROWSER http://larsenwork.com/monoid
 
 # Hack
 github_font 'chrissimpkins/Hack'
+
+if have apt-get; then
+  sudo apt-get install \
+    ttf-mscorefonts-installer
+fi
