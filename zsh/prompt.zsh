@@ -46,10 +46,33 @@ autoload -U add-zsh-hook
 add-zsh-hook precmd  _rwstauner_before_prompt
 add-zsh-hook preexec _rwstauner_before_execute
 
+if whence git_prompt_info &> /dev/null; then
+  #_last_git_dir=''
+  _rwstauner_git_prompt_info () {}
+  _rwstauner_cd_git_info () {
+    # Instead of checking git after every command,
+    # decide whether to enable it when we change in to a dir.
+    local git_dir="`git rev-parse --git-dir 2> /dev/null`"
+
+    #if [[ -n "$git_dir" ]] && [[ "$git_dir" != "$_last_git_dir" ]]; then
+    if [[ -n "$git_dir" ]] && ! [[ "$(git config custom.no-prompt-info)" = "true" ]]; then
+      _rwstauner_git_prompt_info () { git_prompt_info; }
+    else
+      _rwstauner_git_prompt_info () {}
+    fi
+
+    #_last_git_dir="$git_dir"
+  }
+
+  add-zsh-hook chpwd   _rwstauner_cd_git_info
+fi
+
 # Some fun characters:
 # ∷ ⎇  ⬕ 🚀 😎 🔥 🔚 💥 👻 🐧 🐾 🏁 🎃 🍪 🌵 🌉 🌀 🃟 🐲 💣 ☃⛄ ⛇
 
 _rwstauner_set_prompt () {
+
+  _rwstauner_cd_git_info
 
 typeset -a my_prompt
 my_prompt=(
@@ -99,14 +122,12 @@ my_prompt=(
 )
 
 PROMPT="${(j,,)my_prompt}"
+RPROMPT='$(_rwstauner_git_prompt_info)'
 unset my_prompt
 
 }
 
 _rwstauner_set_prompt
-
-whence git_prompt_info &> /dev/null && \
-RPROMPT='$(git_prompt_info)'
 
 # zsh/Src/utils.c
 # Put a space on each side to get enough bg color.
