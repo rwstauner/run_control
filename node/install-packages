@@ -34,6 +34,7 @@ install jsonlint
 
 install promise
 
+install standard
 install temp
 
 install uglify-js '>=2'
