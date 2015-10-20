@@ -76,6 +76,7 @@ Encode
 Encoding::FixLatin
 File::Path
 File::Temp
+Format::Human::Bytes
 Image::ExifTool
 IO::Prompt::Tiny
 LWP::Protocol::PSGI
@@ -126,6 +127,7 @@ utf8::all
 
 App::Metabase::Relayd
 CGI::Fast
+Data::Dump::Streamer
 DBD::Mock
 DBD::PgPP
 DBI::Shell
@@ -164,6 +166,7 @@ Plack::Middleware::Precompressed
 PPI::HTML
 PPIx::Regexp
 Perl::Critic::Bangs
+Perl::Tidy
 Pod::POM::Web::PSGI
 Proc::Daemon
 Sub::Exporter
@@ -173,10 +176,13 @@ Test::BinaryData
 Test::Fatal
 Test::HexDifferences
 Test::MockTime
+Test::Most
+Test::NoWarnings
 Test::Output
 Test::XPath
 Test::Routine
 Test::Roo
+Test::Trap
 Task::Toolchain::Test
 Throwable
 Throwable::X
