@@ -44,6 +44,15 @@ Vagrant.configure('2') do |config|
   # Confirm that using alternate port range works.
   config.vm.usable_port_range = (3200 .. 3300)
 
+  config.trigger.before :up do
+    Dir[".vagrant/machines/*/virtualbox/id"].each do |vboxfile|
+      info "fixing ssh port (#{ vboxfile.split('/')[-3] })"
+      cmdprefix = %Q|bash -c 'VBoxManage modifyvm "$(<#{ vboxfile })" --natpf1 %s'|
+      run sprintf cmdprefix, %Q|delete ssh|
+      run sprintf cmdprefix, %Q|"ssh,tcp,127.0.0.1,#{ 3200 + rand(99) },,22"|
+    end
+  end
+
   # Always forward at least one port (so you can use one without restarting).
   # Sadly this does not work well with suspending/resuming.
   # Vagrant doesn't like to change forwarded ports on suspended machines
