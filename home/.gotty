@@ -1,0 +1,11 @@
+port = "51443"
+
+// Enable TSL/SSL by default
+// uses ~/.gotty.key and ~/.gotty.crt by default
+enable_tls = true
+
+// hterm preferences
+preferences {
+    font_size = 12
+    //, background_color = "rgb(16, 16, 32)"
+}
