@@ -219,7 +219,7 @@ alias last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-
 alias log1       'log --oneline'
 alias logp       'log -p'
 
-alias logdiff    'log -p --full-diff'
+alias logdiff    'log -p --full-diff --stat'
 
 # The --stat-name-width=${COLUMNS:-80} arg doesn't seem to help very much.
 logst='log --stat --no-merges'
