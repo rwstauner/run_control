@@ -258,9 +258,10 @@ alias merge-delete     '!git merge "$1" && git branch -d "$1"'
 # what new commits have been created by the last command (like "git pull")
 alias new              '!git log $1@{1}..$1@{0} "$@"'
 
+# FIXME: There's an api for this.
 alias prune-all        '!git remote | xargs -n 1 git remote prune'
 
-alias pulls            '!git pull; test -f ${GIT_DIR:-.}/.gitmodules && git submodule update'
+alias pulp             '!echo just here to avoid tab-completing "pull"'
 
 # pum doesn't seem to be storing the fetch, so do both
 alias pum              '!git fetch upstream; git pull upstream master'
@@ -288,6 +289,8 @@ alias st              $'!if [ $# -gt 0 ]; then git status "$@"; else git status 
 # Use $PAGER and -p to force (only for this command) sending color to pipe.
 alias stpp             '!PAGER=fppt git -p st'
 
+alias subup            '!test -f ${GIT_DIR:-.}/.gitmodules && git submodule update'
+
 alias s                'status -s -b -u'
 alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 
@@ -303,6 +306,8 @@ alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 # prefer the other options that I can pass to log.
   alias submodule-would-update "!git submodule-would-update-fancy"
 
+alias up               'pull --all --prune'
+alias ups              '!git up; git subup'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
