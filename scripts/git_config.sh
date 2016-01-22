@@ -152,6 +152,8 @@ alias co              'checkout'
 alias cob             'checkout -b'
 alias com             'checkout master'
 
+alias commit-vars     '!n="${1:-`git config user.name`}"; e="${2:-`git config user.email`}"; echo GIT_COMMITTER_NAME=\"$n\" GIT_COMMITTER_EMAIL=\"$e\" GIT_AUTHOR_NAME=\"$n\" GIT_AUTHOR_EMAIL=\"$e\"'
+
 alias cobt            '!git branch-track "$@"; git co "$1"'
 
 # TODO: heredoc?
