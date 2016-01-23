@@ -1,0 +1,22 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+dl () {
+  local dest="$PREFIX/bin/stack"
+  [[ -x $dest ]] && return
+
+  local platform="$1"
+  local url="https://www.stackage.org/stack/$platform"
+  curl -L "$url" | \
+    tar -xzf - --to-command='cat' --wildcards '*/stack' > "$dest"
+}
+
+if homebrew haskell-stack; then
+  true # pass
+else
+  dl linux-x86_64
+fi
+
+# Install the latest ghc globally.
+stack setup
