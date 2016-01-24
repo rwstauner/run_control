@@ -2,6 +2,15 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+if macosx; then
+  have docker || \
+    open https://www.docker.com/docker-toolbox
+
+  #docker-machine inspect default || \
+  #docker-machine create --driver virtualbox default
+  exit
+fi
+
 # ಠ_ಠ
 have docker || \
   wget -qO- https://get.docker.com/ | sh
