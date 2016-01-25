@@ -20,6 +20,9 @@ unsetopt clobber
 
 unsetopt flow_control
 
+# Perform filename expansion on the RHS of "FOO=~bar".
+setopt magic_equal_subst
+
 # Error if glob doesn't match.  Use glob*(N) to override.
 setopt nomatch
 
