@@ -22,8 +22,10 @@ alias caly='cal `date +%Y`'
 
 alias diffpatch='diff -Npurd'
 alias diffgit='\git diff --no-index'
-alias diffgitcw='\git diff --no-index --color-words=.'
-alias diffgithl='\git diffhl --no-index'
+
+for i in cw hl; {
+  alias diffgit$i="\\git diff$i --no-index";
+}
 
 alias ftp='/usr/bin/ftp'; # kerberos ftp bothers me
 
