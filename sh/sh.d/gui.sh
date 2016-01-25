@@ -36,7 +36,15 @@ if [[ -n "$DISPLAY" ]]; then
   }
 
   # don't barf all over my terminal and make me 'reset' (nor take it hostage)
-  for cmd in evince eog gthumb acroread libreoffice ristretto; do
+  for cmd in \
+    acroread \
+    eog \
+    evince \
+    gimp \
+    gthumb \
+    libreoffice \
+    ristretto \
+      ; do
     eval "$cmd () { echo 'redirecting $cmd...'; command $cmd \"\$@\" &> /dev/null & }"
   done
 
