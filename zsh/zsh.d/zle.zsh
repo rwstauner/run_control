@@ -48,9 +48,7 @@ bindkey "\e+" predict-toggle
 # zle -N history-beginning-search-menu
 # bindkey '\eP' history-beginning-search-menu
 
-
 # Other functions to try:
-# modify-current-argument
 # url-quote-magic
 # quote-and-complete-word
 # replace-string
@@ -98,7 +96,6 @@ bindkey "\e:"  execute-named-cmd
 # Keys to remember:
 
 # Esc-Q   push-line: stash, run different command, come back to previous (unfinished)
-# Esc-M   copy-prev-shell-word: OMZ sets this
 # Esc-.   insert-last-word
 # ^@      set-mark-command: mark cursor position for region edit
 # ^X^E    edit-command-line
