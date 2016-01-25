@@ -25,4 +25,5 @@ _vim_emacs_line_init () {
 zle -N zle-line-init     _vim_emacs_line_init
 zle -N zle-keymap-select _vim_emacs_keymap_select
 
+# Default is ^X^V but a plain ^[ makes it feel like vim.
 bindkey -e "\e" vi-cmd-mode

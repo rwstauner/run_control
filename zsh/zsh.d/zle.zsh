@@ -96,10 +96,19 @@ bindkey "\e:"  execute-named-cmd
 # Keys to remember:
 
 # Esc-Q   push-line: stash, run different command, come back to previous (unfinished)
-# Esc-.   insert-last-word
+# Esc-.   insert-last-word # (from previous history event)
 # ^@      set-mark-command: mark cursor position for region edit
-# ^X^E    edit-command-line
-# Esc-A   accept-and-hold: run, then bring up again
+# ^X^E    edit-command-line # (in $EDITOR)
+# ^X^B    vi-match-bracket
+# Esc-t   transponse-words
+# Esc-X   execute-named-cmd # prompt for zle widget name and execute
+
+# More than just Enter:
+bindkey "^[a"   accept-and-hold
+bindkey "^[b"   accept-and-infer-next-history
+
+# Show indicator between ^V and key.
+bindkey "^V" vi-quoted-insert
 
 # TODO: put Esc-? functionality into prompt?
 # TODO: Create function (omz plugin?) to display cheat sheet of zle commands.
