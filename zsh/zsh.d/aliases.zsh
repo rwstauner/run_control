@@ -1,5 +1,5 @@
 alias help=run-help
-
+alias math='noglob math'
 
 # The built-in history is `fc -l` but that only shows 10.  Show all of them.
 # ...but use a pager because otherwise that will wipe out my scrollback.
