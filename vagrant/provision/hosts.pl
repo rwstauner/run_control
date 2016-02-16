@@ -20,6 +20,7 @@ use warnings;
         # If $name not present insert between previous names and any comments.
         or s/(#.*)?$/ $name $1/;
       ++$matched;
+      last;
     }
   }
 
