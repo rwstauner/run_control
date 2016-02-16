@@ -21,14 +21,21 @@
 .bashrc    00;32
 .c         00;32
 .h         00;95
+.hs        00;32
+.java      00;32
 .psgi      00;32
 .pm        00;32
 .rake      00;32
 .ru        00;32
+.scala     00;32
 .t         00;32
 .wsgi      00;32
 .vim       00;32
 .zshrc     00;32
+
+# build artifacts
+.class     00;37
+.o         00;37
 
 # text formats
 .xml       00;33
