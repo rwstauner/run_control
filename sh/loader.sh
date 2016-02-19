@@ -25,3 +25,6 @@ source_rc_files $shrc_dir/sh.d/*.sh ~/.shrc.local $EXTRA_SHRC
 dedupe_path
 
 unset shrc_dir
+
+# Don't let path_helper rearrange the PATH in subshells.
+export NO_PATH_HELPER=1
