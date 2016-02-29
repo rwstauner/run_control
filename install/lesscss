@@ -1,0 +1,9 @@
+#!/bin/bash
+
+install () {
+  npm install -g "${1%:}${2+@}$2"
+}
+
+install clean-css
+install less: '>=1.7.5'
+install less-plugin-clean-css
