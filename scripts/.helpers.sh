@@ -26,6 +26,7 @@ arch-info () {
 download () {
   local url="$1" dest="${2:-${1##*/}}"
   wget --no-clobber "$url" -O "$dest"
+  #[[ -f "$dest" ]]
 }
 
 download-bin () {
@@ -149,10 +150,11 @@ versioned-archive-dir () {
     cd "${dest%/*}" && \
     # Write to disk instead of pipe to utilize `tar -a`.
     download "$url" && \
-    tar -xaf "$archive" && \
+    mkdir "$dest" && \
+    tar -xaf "$basename" --strip-components=1 -C "$dest" && \
     rm -f "$symlink" && \
     ln -s "${dest##*/}" "$symlink" && \
-    rm "$archive"
+    rm "$basename"
     )
   fi
 }
