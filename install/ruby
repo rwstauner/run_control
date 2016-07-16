@@ -17,4 +17,10 @@ install-ruby () {
   # The default-gems plugin will install any essentials.
 }
 
-install-ruby 2.2.2
+# Find the latest stable MRI.
+latest_mri () {
+  # The list appears to be sorted by version, so just print the last one.
+  rbenv install -l | grep -E '^[[:space:]]*[0-9.]+$' | tail -n1
+}
+
+install-ruby `latest_mri`
