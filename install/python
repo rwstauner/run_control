@@ -46,3 +46,5 @@ $venv/bin/pip install -r $pydir/rc/minimum.txt
 # Add the LDFLAGS for ubuntu (http://ubuntuforums.org/showthread.php?t=1759873)
 
 #     (make distclean; export LDFLAGS="-L/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)"; ./configure --prefix=$HOME/python/p/2.6.9 && make && make install)
+
+# apt-get install pypy
