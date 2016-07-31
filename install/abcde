@@ -2,8 +2,54 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if homebrew abcde --with-{flac,lame,vorbis-tools}; then
-  exit
+locallib=$HOME/perl5/abcde
+cpanm () {
+  command cpanm -l "$locallib" "$@"
+}
+pm-installed () {
+  perl -Mlocal::lib="$locallib" -m"$1" -c -e1 2> /dev/null
+}
+
+perldep () {
+  pm-installed "$1" || cpanm "$@"
+}
+
+check-mb-discid () {
+  local mod=MusicBrainz::DiscID
+  pm-installed "$mod" && return
+  local patch98179="$locallib/rt-98179.patch"
+  local patch89285="$locallib/rt-89285.patch"
+  mkdir -p "$locallib"
+  wget -nc -O "$patch98179" \
+    https://anonscm.debian.org/cgit/pkg-perl/packages/libmusicbrainz-discid-perl.git/plain/debian/patches/stack-corruption-discid_put.patch
+  wget -nc -O "$patch89285" \
+    https://rt.cpan.org/Ticket/Attachment/1294156/685797/url.patch
+    cpanm --look "$mod" <<PATCH
+patch -p1 < '$patch98179'
+patch -p1 < '$patch89285'
+rm t/05pod.t
+perl Build.PL; ./Build; ./Build test; ./Build install
+PATCH
+}
+
+perldeps () {
+  check-mb-discid
+  perldep WebService::MusicBrainz -n
+}
+
+perldeps
+
+if homebrew abcde --with-{flac,lame,vorbis-tools,glyr}; then
+  homebrew cdparanoia
+
+  homebrew normalize
+
+  homebrew libdiscid
+else
+
+  sudo apt-get install abcde
+  sudo apt-get install libdiscid
+
 fi
 
-sudo apt-get install abcde
+perldeps
