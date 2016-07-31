@@ -37,7 +37,7 @@ cd $rc/perl
 . $rc/sh/sh.d/perl.sh
 
 # Install perl.
-latest=`plenv install -l | perl -le '@v = sort grep { int($_) % 2 == 0 } map { /5\.(\d+\.\d+)/ } <>; print "5." . $v[-1]'`
+latest=`plenv install -l | perl -le '@v = sort { $a <=> $b } grep { int($_) % 2 == 0 } map { /5\.(\d+\.\d+)(?!-RC)/ } <>; print "5." . $v[-1]'`
 
 plenv install $latest
 plenv global  $latest
