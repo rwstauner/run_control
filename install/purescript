@@ -1,0 +1,7 @@
+#!/bin/bash
+
+install () {
+  npm install -g "$@"
+}
+
+install purescript pulp bower

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+brew tap caskroom/cask
+
+install () {
+  brew cask install "$@"
+}
+
+install android-file-transfer
+#install atom
+install dockertoolbox
+install dropbox
+install google-chrome
+install firefox
+#install logmein-client
+install virtualbox
+install vox
