@@ -16,6 +16,14 @@ for i in xargs watch sudo;
 for i in pacmd;
   { alias $i="rlwrap $i"; }
 
+# Stay awake.
+if which caffeinate &> /dev/null; then
+  for i in abcde brew; {
+    alias $i="caffeinate $i";
+  }
+fi
+
+
 # shortcuts for common args
 
 alias caly='cal `date +%Y`'

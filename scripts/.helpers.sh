@@ -72,6 +72,10 @@ homebrew-ready () {
   return 0
 }
 
+brew () {
+  command caffeinate brew "$@"
+}
+
 homebrew () {
   homebrew-ready || return 1
 
