@@ -154,7 +154,7 @@ alias com             'checkout master'
 
 alias commit-vars     '!n="${1:-`git config user.name`}"; e="${2:-`git config user.email`}"; echo GIT_COMMITTER_NAME=\"$n\" GIT_COMMITTER_EMAIL=\"$e\" GIT_AUTHOR_NAME=\"$n\" GIT_AUTHOR_EMAIL=\"$e\"'
 
-alias cobt            '!git branch-track "$@"; git co "$1"'
+alias cobt            '!echo "git co"; git co "$1"'
 
 # TODO: heredoc?
 alias cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { print tolower($2) }\047 ~/.pause`@cpan.org> <`git config user.email`>"'
@@ -163,6 +163,7 @@ alias cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { print
 alias clone-fork      '!fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream'
 
 # git rev-parse --default master --symbolic-full-name HEAD
+# git rev-parse --abbrev-ref HEAD
 alias current-branch  '!git symbolic-ref HEAD | sed s-^refs/heads/--'
 
 # diff diff diff
