@@ -10,7 +10,12 @@ tap caskroom/cask
 # Firefox developer edition.
 tap caskroom/versions
 
+installed () {
+  brew cask list "$1" &> /dev/null
+}
+
 install () {
+  installed "$1" || \
   brew cask install "$@"
 }
 
