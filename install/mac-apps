@@ -44,6 +44,8 @@ install skype
 install virtualbox
 install vox
 
+install xquartz
+
 #install zoomus
 
 _ () { echo $'#!/bin/sh\n# Avoid mac helper.\nexit 0' > $1 && chmod 0755 $1; }; _ ~/usr/bin/javac
