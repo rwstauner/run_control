@@ -15,6 +15,20 @@ CLIP
 
 else
 
-echo xsel
+  script "$dest" <<'CLIP'
+#!/bin/sh
+
+clip () {
+  #exec xclip -selection clipboard "$@"
+  exec xsel -b "$@"
+}
+
+if test -t 0; then
+  clip -o
+else
+  clip -i
+fi
+CLIP
+
 
 fi
