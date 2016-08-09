@@ -1,0 +1,30 @@
+#!/bin/bash
+
+tapped () {
+  brew tap | grep -qFx "$1"
+}
+
+tap () {
+  tapped "$1" || \
+    brew tap "$1"
+}
+
+installed () {
+  brew cask list "$1" &> /dev/null
+}
+
+install () {
+  installed "$1" || \
+    brew cask install "$@"
+}
+
+# "Package installers may write to any location; options such as --appdir are ignored."
+[[ `stat -c '%U' /usr/local/bin` == "$USER" ]] || \
+  sudo chown $USER /usr/local/bin
+
+tap caskroom/cask
+tap caskroom/versions
+
+for i in "$@"; do
+  install "$i"
+done
