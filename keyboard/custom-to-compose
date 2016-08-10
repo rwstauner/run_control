@@ -1,0 +1,42 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use File::Basename qw(dirname);
+
+my %keysym = (
+  '(' => 'parenleft',
+  ')' => 'parenright',
+  ':' => 'colon',
+  ' ' => 'space',
+  '.' => 'period',
+  "'" => 'apostrophe',
+  '"' => 'quotedbl',
+  '<' => 'less',
+  '>' => 'greater',
+  '-' => 'minus',
+  '/' => 'slash',
+  '\\' => 'backslash',
+);
+
+local @ARGV = dirname(__FILE__) . '/compose-custom.txt';
+
+sub line {
+  print $_[0] . "\n";
+}
+
+while (<>) {
+  next if /^\s*(#.+)?$/;
+
+  if (m!\A \s* (["'])(.+?)\1 \s+ (["'])(.+?)\3 \s* (\#.*)? \s* \z!x) {
+    my ($from, $to, $comment) = ($2, $4, $5);
+    my @keys =
+      map { "<$_>" }
+      map { $keysym{$_} || $_ }
+        "Multi_key", split //, $from;
+    line join ' ', grep { defined } @keys, ':', qq["$to"], $comment || "# $from";
+  }
+  else {
+    warn "Skipping $_";
+  }
+}
