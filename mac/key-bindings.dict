@@ -14,8 +14,10 @@
    "@\UF703" = "moveWordForward:";                        /* ⌘     Right Arrow */
   "@$\UF703" = "moveWordForwardAndModifySelection:";      /* ⌘ ⇧   Right Arrow */
 
-/* "@\U003C" = "moveToBeginningOfLine:"; /* ⌘ < */
-/* "@\U003E" = "moveToEndOfLine:";  /* ⌘ > */
+  "@~\UF702" = "moveToLeftEndOfLine:";                    /* ⌘ ⌥   Left  Arrow */
+ "@~$\UF702" = "moveToLeftEndOfLineAndModifySelection:";  /* ⌘ ⌥ ⇧ Left  Arrow */
+  "@~\UF703" = "moveToRightEndOfLine:";                   /* ⌘ ⌥   Right Arrow */
+ "@~$\UF703" = "moveToRightEndOfLineAndModifySelection:"; /* ⌘ ⌥ ⇧ Right Arrow */
 
 /* "~\010"="deleteWordBackward:"; /* Alt-backspace */
 /* "~\177"="deleteWordBackward:"; /* Alt-delete */
