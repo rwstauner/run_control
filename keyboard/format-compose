@@ -4,20 +4,10 @@ use strict;
 use warnings;
 use File::Basename qw(dirname);
 
-my %keysym = (
-  '(' => 'parenleft',
-  ')' => 'parenright',
-  ':' => 'colon',
-  ' ' => 'space',
-  '.' => 'period',
-  "'" => 'apostrophe',
-  '"' => 'quotedbl',
-  '<' => 'less',
-  '>' => 'greater',
-  '-' => 'minus',
-  '/' => 'slash',
-  '\\' => 'backslash',
-);
+our %Keysyms;
+use X11::Keysyms '%Keysyms';
+
+my %keysym = reverse %Keysyms;
 
 local @ARGV = dirname(__FILE__) . '/compose.txt';
 
@@ -32,8 +22,9 @@ while (<>) {
     my ($from, $to, $comment) = ($2, $4, $5);
     my @keys =
       map { "<$_>" }
-      map { $keysym{$_} || $_ }
-        "Multi_key", split //, $from;
+        'Multi_key',
+        map { $keysym{ord $_} || $_ }
+          split //, $from;
     line join ' ', grep { defined } @keys, ':', qq["$to"], $comment || "# $from";
   }
   else {
