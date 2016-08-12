@@ -19,7 +19,7 @@ my %keysym = (
   '\\' => 'backslash',
 );
 
-local @ARGV = dirname(__FILE__) . '/compose-custom.txt';
+local @ARGV = dirname(__FILE__) . '/compose.txt';
 
 sub line {
   print $_[0] . "\n";

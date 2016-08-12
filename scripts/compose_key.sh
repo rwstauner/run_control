@@ -4,7 +4,7 @@ rc=$HOME/run_control
 kb=$rc/keyboard
 
 custom-keys () {
-  $rc/keyboard/custom-to-compose
+  $rc/keyboard/format-compose
 }
 
 generate () {
