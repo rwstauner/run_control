@@ -1,58 +1,59 @@
 # vim: set ft=conf ts=2 sts=2 sw=2 expandtab smarttab:
+# %!perl -CS -mcharnames -lpe 'if (/\s+"(.)".*/) { $u = charnames::viacode(ord $1); $_ .= " \x23 $u" unless /\Q$u\E/ }'
 
 # NOTE: 8 keys appears to be the limit.
 
-"-<" "←" # For consistency with "->"
-":'(" "😢"
-":(" "☹"
-":)" "☺"
-"anger" "💢"
-"angry" "😠"
-"bear" "🐻"
-"beer" "🍺"
-"bomb" "💣"
-"cactus" "🌵"
-"cake" "🎂"
-"camel" "🐫"
-"check" "✓"
-"clap" "👏"
-"collide" "💥"
-"confound" "😖"
-"confused" "😕"
-"cookie" "🍪"
-"cow" "🐄"
-"cry" "😭"
-"cyclone" "🌀"
+"-<" "←" # For consistency with "->" # LEFTWARDS ARROW
+":'(" "😢" # CRYING FACE
+":(" "☹" # WHITE FROWNING FACE
+":)" "☺" # WHITE SMILING FACE
+"anger" "💢" # ANGER SYMBOL
+"angry" "😠" # ANGRY FACE
+"bear" "🐻" # BEAR FACE
+"beer" "🍺" # BEER MUG
+"bomb" "💣" # BOMB
+"cactus" "🌵" # CACTUS
+"cake" "🎂" # BIRTHDAY CAKE
+"camel" "🐫" # BACTRIAN CAMEL
+"check" "✓" # CHECK MARK
+"clap" "👏" # CLAPPING HANDS SIGN
+"collide" "💥" # COLLISION SYMBOL
+"confound" "😖" # CONFOUNDED FACE
+"confused" "😕" # CONFUSED FACE
+"cookie" "🍪" # COOKIE
+"cow" "🐄" # COW
+"cry" "😭" # LOUDLY CRYING FACE
+"cyclone" "🌀" # CYCLONE
 "dis" "ಠ_ಠ" # look of disapproval
-"dragon" "🐉"
-"eyes" "👀"
+"dragon" "🐉" # DRAGON
+"eyes" "👀" # EYES
 "facepalm" "😐 ＋🌴"
-"fire" "🔥"
+"fire" "🔥" # FIRE
 "flip" "(╯°□°）╯︵ ┻━┻" # tableflip
-"ghost" "👻"
-"joy" "😂"
-"mail" "📬"
-"neutral" "😐"
-"octopus" "🐙"
-"panda" "🐼"
-"pear" "🍐"
-"penguin" "🐧"
-"pin" "📌"
-"poo" "💩"
-"rocket" "🚀"
-"scream" "😱"
-"ship" "🛳"
+"ghost" "👻" # GHOST
+"joy" "😂" # FACE WITH TEARS OF JOY
+"mail" "📬" # OPEN MAILBOX WITH RAISED FLAG
+"neutral" "😐" # NEUTRAL FACE
+"octopus" "🐙" # OCTOPUS
+"panda" "🐼" # PANDA FACE
+"pear" "🍐" # PEAR
+"penguin" "🐧" # PENGUIN
+"pin" "📌" # PUSHPIN
+"poo" "💩" # PILE OF POO
+"rocket" "🚀" # ROCKET
+"scream" "😱" # FACE SCREAMING IN FEAR
+"ship" "🛳" # PASSENGER SHIP
 "shrug" "¯\\_(ツ)_/¯"
-"skull" "💀"
-"star" "★"
-"sunglass" "😎"
-"sweat" "😰"
-"there4" "∴"
-"tongue" "😛"
-"unamused" "😒"
+"skull" "💀" # SKULL
+"star" "★" # BLACK STAR
+"sunglass" "😎" # SMILING FACE WITH SUNGLASSES
+"sweat" "😰" # FACE WITH OPEN MOUTH AND COLD SWEAT
+"there4" "∴" # THEREFORE
+"tongue" "😛" # FACE WITH STUCK-OUT TONGUE
+"unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
-"weary" "😩"
-"wearycat" "🙀"
-"wink" "😉"
-"xbones" "🕱"
-"zzz" "💤"
+"weary" "😩" # WEARY FACE
+"wearycat" "🙀" # WEARY CAT FACE
+"wink" "😉" # WINKING FACE
+"xbones" "🕱" # BLACK SKULL AND CROSSBONES
+"zzz" "💤" # SLEEPING SYMBOL
