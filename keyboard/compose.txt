@@ -3,6 +3,8 @@
 
 # NOTE: 8 keys appears to be the limit.
 
+"+1" "👍" # THUMBS UP SIGN
+"-1" "👎" # THUMBS DOWN SIGN
 "-<" "←" # For consistency with "->" # LEFTWARDS ARROW
 ":'(" "😢" # CRYING FACE
 ":(" "☹" # WHITE FROWNING FACE
@@ -12,6 +14,8 @@
 "bear" "🐻" # BEAR FACE
 "beer" "🍺" # BEER MUG
 "bomb" "💣" # BOMB
+"bullet" "•" # BULLET
+"bullseye" "◎" # BULLSEYE
 "cactus" "🌵" # CACTUS
 "cake" "🎂" # BIRTHDAY CAKE
 "camel" "🐫" # BACTRIAN CAMEL
@@ -30,15 +34,30 @@
 "facepalm" "😐 ＋🌴"
 "fire" "🔥" # FIRE
 "flip" "(╯°□°）╯︵ ┻━┻" # tableflip
+"flower" "⚘" # FLOWER
 "ghost" "👻" # GHOST
 "joy" "😂" # FACE WITH TEARS OF JOY
+"key " "␣" # Space # SPACE
+"keyb" "⌫" # Backspace # ERASE TO THE LEFT
+"keyc" "⌘" # Cmd # PLACE OF INTEREST SIGN
+"keyd" "⌦" # Delete # ERASE TO THE RIGHT
+"keye" "⎋" # Escape # BROKEN CIRCLE WITH NORTHWEST ARROW
+"keyo" "⌥" # Option # OPTION KEY
+"keyr" "⏎" # Return # RETURN SYMBOL
+"keys" "⇧" # Shift # UPWARDS WHITE ARROW
+"keyt" "⇥" # Tab # RIGHTWARDS ARROW TO BAR
 "mail" "📬" # OPEN MAILBOX WITH RAISED FLAG
+"mountain" "⛰" # MOUNTAIN
+"n-" "–" # EN DASH
+"n`" "ñ" # shift not needed # LATIN SMALL LETTER N WITH TILDE
+"N`" "Ñ" # shift not needed # LATIN CAPITAL LETTER N WITH TILDE
 "neutral" "😐" # NEUTRAL FACE
 "octopus" "🐙" # OCTOPUS
 "panda" "🐼" # PANDA FACE
 "pear" "🍐" # PEAR
 "penguin" "🐧" # PENGUIN
 "pin" "📌" # PUSHPIN
+"pizza" "🍕" # SLICE OF PIZZA
 "poo" "💩" # PILE OF POO
 "rocket" "🚀" # ROCKET
 "scream" "😱" # FACE SCREAMING IN FEAR
