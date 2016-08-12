@@ -15,14 +15,14 @@
   <!-- https://github.com/tekezo/Karabiner/blob/version_10.21.0/src/core/server/Resources/include/checkbox/standards/option.xml -->
   <item>
     <name>Option_R to Control_R (only in Emacs, Terminal, X11)</name>
-    <identifier>remap.optionR2controlR_etx</identifier>
+    <identifier>private.optionR2controlR_etx</identifier>
     <only>EMACS, TERMINAL, X11</only>
     <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::CONTROL_R</autogen>
   </item>
 
   <item>
     <name>Option_L to Control_L (only in Emacs, Terminal, X11)</name>
-    <identifier>remap.optionL2controlL_etx</identifier>
+    <identifier>private.optionL2controlL_etx</identifier>
     <only>EMACS, TERMINAL, X11</only>
     <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::CONTROL_L</autogen>
   </item>
