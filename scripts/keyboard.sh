@@ -13,21 +13,22 @@ configure-im () {
     im-config -n "$im"
 }
 
-force-pm () {
-  pm="$1"
+perl-mod () {
+  pm="$1"; shift
   perl -c -m"$pm" -e1 2> /dev/null || \
-    cpanm -n "$pm"
+    cpanm "$@" "$pm"
 }
 
 if [[ `uname` == Darwin ]]; then
 
-  force-pm X11::Keysyms
+  perl-mod X11::Keysyms -n
   $rc/mac/setup/keyboard
 
 else
 
   apt uim
   configure-im uim
+  perl-mod X11::Keysyms
 
 fi
 
