@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. `dirname "$0"`/../scripts/.helpers.sh
+
 # Get newer version with more consistent config.
 if homebrew vim; then
   exit
