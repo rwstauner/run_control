@@ -71,6 +71,7 @@
 "tongue" "😛" # FACE WITH STUCK-OUT TONGUE
 "unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
+"wave" "🌊" # WATER WAVE
 "weary" "😩" # WEARY FACE
 "wearycat" "🙀" # WEARY CAT FACE
 "wink" "😉" # WINKING FACE
