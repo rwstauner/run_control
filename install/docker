@@ -4,7 +4,7 @@
 
 if macosx; then
   have docker || \
-    open https://www.docker.com/docker-toolbox
+    echo 'use cask (mac/setup/apps)'
 
   #docker-machine inspect default || \
   #docker-machine create --driver virtualbox default
