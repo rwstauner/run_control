@@ -18,7 +18,7 @@ fi
 
 symlink () {
   local src="$1" dest="$2"
-  [[ -e "$dest" ]] && [[ -h "$dest" ]] && sudo rm "$dest"
+  [[ -h "$dest" ]] && sudo rm "$dest"
   sudo ln -s "$src" "$dest"
 }
 
