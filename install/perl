@@ -42,6 +42,8 @@ latest=`plenv install -l | perl -le '@v = sort { $a <=> $b } grep { int($_) % 2 
 plenv install $latest
 plenv global  $latest
 
+which cpanm || cpan App::cpanminus
+
 perl install-mods.pl
 
 # Link a dir to the installation dir for scripts.
