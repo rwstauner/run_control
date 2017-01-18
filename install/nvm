@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+shrc=$HOME/node/.nvm.sh
+
+if homebrew nvm; then
+  mkdir -p "${shrc%/*}"
+  echo ". \"$(brew --prefix nvm)/nvm.sh\"" > "$shrc"
+  exit
+fi
