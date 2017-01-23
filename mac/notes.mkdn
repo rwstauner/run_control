@@ -1,5 +1,42 @@
 # Mac tips
 
+## System Preferences
+
+- General
+
+    - Appearance: Graphite
+    - ✓ Use dark menu bar and Dock
+    - Highlight Color: Green
+    - Show scoll bars: When scrolling
+
+- Keyboard
+
+    - Keyboard
+
+        - ✓ Show Keyboard, Emoji, & Symbol Viewers in menu bar
+        - Modifier Keys → Caps Lock: No Action
+
+    - Shortcuts
+
+        - Mission Control
+
+            - disable ⌥ ↑ ?
+            - □ Move left a space ^←
+            - □ Move right a space ^→
+
+## Terminal
+
+Profiles → Keyboard
+
+- ^↑ => `\033[1;5A`
+- ^↓ => `\033[1;5B`
+- ⇧↑ => `\033[1;2A`
+- ⇧↓ => `\033[1;2B`
+
+### vox
+
+prefs -> "open preferences pane" to activate media keys
+
 ## Prevent system from sleeping
 
     # Stay awake while command is running:
