@@ -18,8 +18,7 @@ install lodash
 
 # Vim (syntastic) will use these when editing js.
 #install js-beautify
-install jshint
-#install jslint
+install eslint
 install jsonlint
 
 # Run tests.
