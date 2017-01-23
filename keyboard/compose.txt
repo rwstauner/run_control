@@ -6,6 +6,11 @@
 "+1" "👍" # THUMBS UP SIGN
 "-1" "👎" # THUMBS DOWN SIGN
 "-<" "←" # For consistency with "->" # LEFTWARDS ARROW
+"-^" "↑" # For consistency with "->" # UPWARDS ARROW
+"-v" "↓" # For consistency with "->" # DOWNWARDS ARROW
+"1/2" "½" # VULGAR FRACTION ONE HALF
+"1/4" "¼" # VULGAR FRACTION ONE QUARTER
+"3/4" "¾" # VULGAR FRACTION THREE QUARTERS
 ":'(" "😢" # CRYING FACE
 ":(" "☹" # WHITE FROWNING FACE
 ":)" "☺" # WHITE SMILING FACE
@@ -29,8 +34,10 @@
 "cry" "😭" # LOUDLY CRYING FACE
 "cyclone" "🌀" # CYCLONE
 "dis" "ಠ_ಠ" # look of disapproval
+"down" "↓" # DOWNWARDS ARROW
 "dragon" "🐉" # DRAGON
 "eyes" "👀" # EYES
+"empty" "∅" # EMPTY SET
 "facepalm" "😐 ＋🌴"
 "fire" "🔥" # FIRE
 "flip" "(╯°□°）╯︵ ┻━┻" # tableflip
@@ -49,8 +56,9 @@
 "mail" "📬" # OPEN MAILBOX WITH RAISED FLAG
 "mountain" "⛰" # MOUNTAIN
 "n-" "–" # EN DASH
-"n`" "ñ" # shift not needed # LATIN SMALL LETTER N WITH TILDE
 "N`" "Ñ" # shift not needed # LATIN CAPITAL LETTER N WITH TILDE
+"n`" "ñ" # shift not needed # LATIN SMALL LETTER N WITH TILDE
+"nbsp" " " # NO-BREAK SPACE
 "neutral" "😐" # NEUTRAL FACE
 "octopus" "🐙" # OCTOPUS
 "panda" "🐼" # PANDA FACE
@@ -64,6 +72,7 @@
 "ship" "🛳" # PASSENGER SHIP
 "shrug" "¯\\_(ツ)_/¯"
 "skull" "💀" # SKULL
+"square" "□" # WHITE SQUARE
 "star" "★" # BLACK STAR
 "sunglass" "😎" # SMILING FACE WITH SUNGLASSES
 "sweat" "😰" # FACE WITH OPEN MOUTH AND COLD SWEAT
@@ -71,9 +80,14 @@
 "tongue" "😛" # FACE WITH STUCK-OUT TONGUE
 "unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
+"up" "↑" # UPWARDS ARROW
 "wave" "🌊" # WATER WAVE
+"waving" "👋" # WAVING HAND SIGN
 "weary" "😩" # WEARY FACE
 "wearycat" "🙀" # WEARY CAT FACE
 "wink" "😉" # WINKING FACE
 "xbones" "🕱" # BLACK SKULL AND CROSSBONES
+"zwnj" "‌" # ZERO WIDTH NON-JOINER
+"zwj" "‍" # ZERO WIDTH JOINER
+"zwnbsp" "﻿" # BOM # ZERO WIDTH NO-BREAK SPACE
 "zzz" "💤" # SLEEPING SYMBOL
