@@ -43,6 +43,7 @@
 "flip" "(╯°□°）╯︵ ┻━┻" # tableflip
 "flower" "⚘" # FLOWER
 "ghost" "👻" # GHOST
+"imp" "👿" # IMP
 "joy" "😂" # FACE WITH TEARS OF JOY
 "key " "␣" # Space # SPACE
 "keyb" "⌫" # Backspace # ERASE TO THE LEFT
@@ -72,6 +73,7 @@
 "ship" "🛳" # PASSENGER SHIP
 "shrug" "¯\\_(ツ)_/¯"
 "skull" "💀" # SKULL
+"smileimp" "😈" # SMILING FACE WITH HORNS
 "square" "□" # WHITE SQUARE
 "star" "★" # BLACK STAR
 "sunglass" "😎" # SMILING FACE WITH SUNGLASSES
