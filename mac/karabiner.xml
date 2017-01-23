@@ -27,4 +27,20 @@
     <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::CONTROL_L</autogen>
   </item>
 
+  <!-- now set control to option/alt/meta in case i want it -->
+  <item>
+    <name>Control_R to Option_R (only in Emacs, Terminal, X11)</name>
+    <identifier>private.controlR2Option_etx</identifier>
+    <only>EMACS, TERMINAL, X11</only>
+    <autogen>__KeyToKey__ KeyCode::CONTROL_R, KeyCode::OPTION_R</autogen>
+  </item>
+
+  <item>
+    <name>Control_L to Option_L (only in Emacs, Terminal, X11)</name>
+    <identifier>private.controlL2optionL_etx</identifier>
+    <only>EMACS, TERMINAL, X11</only>
+    <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::OPTION_L</autogen>
+  </item>
+
+
 </root>
