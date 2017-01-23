@@ -110,7 +110,7 @@ my_prompt=(
   # Show last command (and exit status if non-zero).
   '%{%F{139}%}%30>…>%1v%<<%(?:: %{%B%F{202}%}🎃 %?%{%f%b%})%{%f%}'
 
-  '🐧'
+  '🐧 '
 
   # Elapsed time of last command.
   '%{%F{135}%}%2v%{%f%}'
