@@ -70,6 +70,8 @@ plugins=(
   cpanm
   colorize
   dircycle
+  docker
+  docker-compose
   fabric
 
   # We load this plugin later.
