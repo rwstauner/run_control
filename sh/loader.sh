@@ -6,11 +6,12 @@ source $shrc_dir/setup.sh
 # consider symlinking those scripts into ~/usr/bin
 # to keep the $PATH shorter so less searching is required.
 
-# Locally compiled (without sudo).
-add_to_path $HOME/usr/bin
-
 # Homebrew.
 source_rc_files $shrc_dir/homebrew.sh
+
+# Locally compiled, generated, etc.
+# Put this after homebrew so we can override some things.
+add_to_path $HOME/usr/bin
 
 # Personal scripts.
 add_to_path $HOME/bin
