@@ -115,6 +115,9 @@ my_prompt=(
   # Elapsed time of last command.
   '%{%F{135}%}%2v%{%f%}'
 
+  # Docker env.
+  '${DOCKER_MACHINE_NAME:+ }%{%F{31}%}$DOCKER_MACHINE_NAME%{%f%}'
+
   # Put prompt character on a line by itself.
   # Zsh/zle seems much better than bash/readline about having "hidden" bytes.
   # $ › 〉❭ ❯ ❱ ⧽
