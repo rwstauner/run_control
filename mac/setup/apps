@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://github.com/sindresorhus/quick-look-plugins
+
 apps=()
 install () {
   apps+=("$1")
@@ -17,7 +19,8 @@ install adobe-reader
 
 #install atom
 
-install docker
+install dash
+install docker-beta
 install dropbox
 
 install firefox
@@ -32,14 +35,25 @@ script ~/usr/bin/gimp <<<$'#!/bin/bash\nexec /Applications/GIMP.app/Contents/Mac
 
 install google-chrome
 
+#install java
+
 # Ministry taxes.
 install libreoffice
 
-#install logmein-client
+install ngrok
+
+install remember-the-milk
+
+install slack-beta
 install skype
 
+install the-unarchiver
+
+install vagrant
 install virtualbox
+install vnc-viewer
 install vox
+install vox-preferences-pane
 
 install xquartz
 
