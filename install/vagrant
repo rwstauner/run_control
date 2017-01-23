@@ -1,5 +1,7 @@
 #!/bin/bash
 
+install () {
+
 url=https://www.vagrantup.com/downloads.html
 $BROWSER $url
 
@@ -7,5 +9,9 @@ echo 'move old ~/.vagrant.d to ~/'
 
 echo 'press key after package is installed'
 read key
+
+}
+
+which vagrant &> /dev/null || install
 
 ~/run_control/vagrant/setup
