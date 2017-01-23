@@ -5,6 +5,7 @@ bin=$HOME/usr/bin
 
 function ensure_line () {
   line="$1" file="$2"
+  [[ -f "$file" ]] && \
   grep -qFx "$line" "$file" || echo "$line" >> "$file"
 }
 
