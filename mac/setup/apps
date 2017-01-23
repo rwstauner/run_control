@@ -5,6 +5,11 @@ install () {
   apps+=("$1")
 }
 
+script () {
+  cat > "$1"
+  chmod 0755 "$1"
+}
+
 install android-file-transfer
 
 # Taxes :-P
@@ -21,6 +26,9 @@ install firefoxdeveloperedition
 # Clipboard history.
 install flycut
 install flux
+
+install gimp
+script ~/usr/bin/gimp <<<$'#!/bin/bash\nexec /Applications/GIMP.app/Contents/MacOS/GIMP "$@"'
 
 install google-chrome
 
@@ -40,6 +48,6 @@ install xquartz
 mkdir -p ~/usr/bin
 
 # Use docker for java.
-_ () { echo $'#!/bin/sh\n# Avoid mac helper.\nexit 0' > $1 && chmod 0755 $1; }; _ ~/usr/bin/javac
+script ~/usr/bin/javac <<<$'#!/bin/sh\n# Avoid mac helper.\nexit 0'
 
 $HOME/run_control/mac/install "${apps[@]}"
