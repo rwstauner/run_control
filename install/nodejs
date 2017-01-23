@@ -21,6 +21,7 @@ mkdir -p ~/node/global
 install-nodejs `uname | tr A-Z a-z`
 
 # Ensure new node is in PATH.
+. `dirname "$0"`/../sh/setup.sh
 . `dirname "$0"`/../sh/sh.d/node.sh
 
 ~/node/rc/install-packages
