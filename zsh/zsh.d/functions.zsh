@@ -25,3 +25,8 @@ format-elapsed-time () {
 
   echo "${(j, ,)elapsed}"
 }
+
+newest () {
+  # Utilize multios to print path to STDERR (for visbility) and STDOUT (for pipe).
+  ls -tr "$@" | tail -n 1 1>&2 | cat
+}
