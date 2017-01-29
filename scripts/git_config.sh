@@ -145,6 +145,13 @@ alias blamehard       'blame -w -C -C -C'
 #alias bunch           '!env FILE_LOG_LEVEL=off gitbunch'
 #alias bunch           '!gitbunch'
 
+# ls-files -m doesn't show changes staged for commit (status does).
+# The value of this command is to interact with files,
+# so print the new name for renames (R) and skip deletes (D).
+alias changed         $'!git status --porcelain | awk \x27$1 ~ /[MA]/ { print $2 } $1 ~ /[R]/ { print $4 }\x27'
+
+alias change-id       $'!git show --no-patch "$@" | awk \x27/^ {4}Change-Id: I/ { print $2 }\x27'
+
 alias civ             'commit -v'
 alias amend           'commit -v -n --amend'
 
@@ -190,6 +197,8 @@ alias_diffs hl            '!_() { git ' ' --color "$@" | diff-highlight | $PAGER
 
 alias diffwithsubs     '!git submodule summary; git diff'
 
+alias draft            '!git push-draft'
+
 # the sha1 for an empty tree in case you want to compare something to a bare repo
 alias empty-tree-sha1  'hash-object -t tree /dev/null'
 
@@ -213,6 +222,13 @@ alias k                '!gitk'
 # Gitv (from the command line seems to require an argument)
 alias kv               '!vim -c "silent Gitv" `if test "$#" -gt 0; then echo "$@"; else echo .; fi`'
 
+alias last             'log --stat -p -w -n 1 -U10'
+alias lastcw           '!git last --color-words=.'
+alias lastcww          '!git last --color-words=\\w+'
+
+# Print added, modified, the new name of renames, not deletes, and limit to files that still exist.
+alias last-changed    $'!git show --pretty= --name-status "$@" | awk \x27$1 ~ /[MA]/ { print $2 } $1 ~ /^R/ { print $3 }\x27| xargs ls -1 2> /dev/null'
+
 # there must be a better way
 alias last-sha        $'!git show HEAD --oneline | head -n1 | awk \047{print $1}\047'
 alias last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-f0-9]+$//\047'
@@ -220,6 +236,7 @@ alias last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-
 alias log1       'log --oneline'
 alias logp       'log -p'
 
+alias log-changed     'log --name-only'
 alias logdiff    'log -p --full-diff --stat'
 
 # The --stat-name-width=${COLUMNS:-80} arg doesn't seem to help very much.
@@ -262,11 +279,14 @@ alias new              '!git log $1@{1}..$1@{0} "$@"'
 # FIXME: There's an api for this.
 alias prune-all        '!git remote | xargs -n 1 git remote prune'
 
+alias prune-branches   '!git checkout master; git rebase-branches; for branch in $(git branch --merged master | cut -c 3- | grep -vFx master); do git branch -d "$branch"; done'
+
 alias pulp             '!echo just here to avoid tab-completing "pull"'
 
 # pum doesn't seem to be storing the fetch, so do both
 alias pum              '!git fetch upstream; git pull upstream master'
 
+alias push-draft       'push origin HEAD:refs/drafts/master'
 alias pusht            '!git push "$@"; git push --tags "$@"'
 alias pushup           '!git push -u "${1:-origin}" "${2:-`git current-branch`}"'
 
@@ -277,6 +297,9 @@ alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $b
 # https://gist.github.com/piscisaureus/3342247
 alias fetch-pr         '!remote="${1:-origin}"; git fetch "$remote" "+refs/pull/*/head:refs/remotes/$remote/pr/*"'
 alias branch-pr        '!branch="$1"; pr="$2"; remote="${3:-origin}"; git co -b "$branch" -t "refs/remotes/$remote/pr/$pr"'
+
+# Rebasing a cherry-picked branch will squash the duplicated commit.
+alias rebase-branches  '!for branch in $(git branch --no-merged master); do echo " # $branch #"; git rebase -q master "$branch" || git rebase --abort; done; git checkout master'
 
 # Since git operates from the project root dir `pwd` also works.
 #$gc alias.root            $'!pwd'
