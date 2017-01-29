@@ -7,6 +7,41 @@ docker () {
   command docker "$@"
 }
 
+# https://github.com/docker/compose/issues/3106
+export COMPOSE_HTTP_TIMEOUT=86400
+
+docker-compose () {
+  # Lazy-load docker env if not done already.
+  docker version &> /dev/null
+
+  # Redefine function and call it.
+  docker-compose () {
+    case "$1" in
+      recreate)
+        shift
+        docker-compose build "$@"
+        docker-compose stop  "$@"
+        docker-compose rm -f "$@"
+        set -- up --force-recreate -d "$@"
+        ;;
+      run)
+        shift
+        # TODO: Is there a way to persist bash history without -v?
+        # Always use --rm with run.
+        [[ "$1" == "--rm" ]] && shift
+        set -- run --rm "$@"
+        ;;
+    esac
+
+    if [[ -r .docker-compose.env ]]; then
+      env $(perl -ne 'print if /^(\w+)=/ && !length $ENV{$1}' .docker-compose.env ) docker-compose "$@"
+    else
+      command docker-compose "$@"
+    fi
+  }
+  docker-compose "$@"
+}
+
 drun () {
   args=(
     -i --rm -v $PWD:/src -w /src
@@ -15,6 +50,9 @@ drun () {
   test -t 0 && args+=-t
   command docker run "${args[@]}" "$@"
 }
+
+# TODO: source .env.local (since dc it loads .env)
+alias dc=docker-compose
 
 docker-clean-images () {
   docker images -q -f 'dangling=true' | xargs -r docker rmi
