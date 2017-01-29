@@ -1,3 +1,12 @@
+docker () {
+  if [[ -d ~/.dinghy ]]; then
+    `dinghy shellinit`
+    DOCKER_MACHINE_IP=`dinghy ip`
+  fi
+  unset -f docker
+  command docker "$@"
+}
+
 drun () {
   args=(
     -i --rm -v $PWD:/src -w /src
