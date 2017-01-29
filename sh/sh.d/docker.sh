@@ -43,12 +43,27 @@ docker-compose () {
 }
 
 drun () {
+  local hist=$HOME/.bash_history.docker
+  [[ -f $hist ]] || touch $hist
   args=(
+    -v $hist:/root/.bash_history # persist bash history
+    -v $hist:/root/.ash_history  # also sh (alpine)
     -i --rm -v $PWD:/src -w /src
   )
+
+  # local var val
+  # for var in TERM LOCALE LANG; {
+  #   if [[ -n "$ZSH_VERSION" ]]; then
+  #     val="${(P)var}"
+  #   else
+  #     val="${!var}"
+  #   fi
+  #   args+=(-e "$var=$val")
+  # }
+
   # Only specify -t if stdin is console (piping data to -t makes it mad).
   test -t 0 && args+=-t
-  command docker run "${args[@]}" "$@"
+  docker run "${args[@]}" "$@"
 }
 
 # TODO: source .env.local (since dc it loads .env)
