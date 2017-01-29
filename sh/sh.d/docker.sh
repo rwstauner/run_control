@@ -66,6 +66,7 @@ drun () {
   docker run "${args[@]}" "$@"
 }
 
+alias dexec='docker exec -it'
 # TODO: source .env.local (since dc it loads .env)
 alias dc=docker-compose
 
@@ -74,6 +75,12 @@ docker-clean-images () {
 }
 docker-clean-containers () {
   docker ps     -q -f 'status=exited' | xargs -r docker rm
+}
+docker-clean-volumes () {
+  comm -1 -3 \
+    <(docker ps -q | while read i; do docker inspect $i | jq -r '.[] | .Mounts | .[] | .Name'| grep -vFx null; done | sort | uniq) \
+    <(docker volume ls -q | sort) \
+      | xargs -r docker volume rm
 }
 
 docker-in-docker-args () {
@@ -86,3 +93,10 @@ docker-in-docker-args () {
     echo ' -v /var/run/docker.sock:/var/run/docker.sock '
   fi
 }
+
+# https://docs.docker.com/docker-for-mac/troubleshoot/#known-issues
+docker-sync-clock () {
+  drun --privileged alpine sh -c 'date; echo "$1"; date -s "$1"' -- "$(date -u +'%F %T')"
+}
+
+#_ () { log=`docker inspect --format '{{.LogPath}}' $1`; c=`wc -l $log | awk '{print $1}'`; sed -i -n -e "$((c/10)),$ p" $log; }; _ $container
