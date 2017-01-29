@@ -204,6 +204,8 @@ alias empty-tree-sha1  'hash-object -t tree /dev/null'
 
 #alias change-github-username $'!sed -i -re \047s/(github.com:)magnificent-tears/\\1rwstauner/\047 .git/config'
 
+alias follow           'log --follow'
+
 # Create a script that can be verified and then piped to sh.
 # TODO: split args b/t log and fp with `--`.
 alias format-patch-script  $'!file="$1"; shift; git log --oneline "$file" | perl -e \'print reverse <STDIN>\' | perl -lne \'BEGIN { @opts = splice @ARGV } ($c, $s) = split / /, $_, 2; print q[git format-patch -n --start-number ], ++$patch, qq[ @opts -1 $c # $s]\' -- "$@"'
@@ -262,8 +264,13 @@ alias lgpcw            '!git lg -p --color-words=.'
 # ls-files doesn't tab-complete, so shorten it, and force it through a pager.
 alias ls               '-p ls-files'
 alias lsgrep           '!git ls-files | grep --color=always "$@" | $PAGER'
+#alias lsgrep           '!pattern="$1"; shift; git ls-files "$@" | grep --color=always "$pattern" | $PAGER'
+
+alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short --numstat'
 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
+
+alias mine             '!git log --author=`git config user.email`'
 
 # provide rebasing music (https://coderwall.com/p/at9bya)
 #alias mav             $'!afplay ~/Music/Danger\\ Zone.mp3 & LASTPID=$! \ngit rebase -i $1 \nkill -9 $LASTPID\n true'
