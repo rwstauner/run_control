@@ -7,6 +7,12 @@ docker () {
   command docker "$@"
 }
 
+dinghy () {
+  `command dinghy shellinit`
+  unset -f dinghy
+  command dinghy "$@"
+}
+
 # https://github.com/docker/compose/issues/3106
 export COMPOSE_HTTP_TIMEOUT=86400
 
