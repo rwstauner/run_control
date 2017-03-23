@@ -4,8 +4,10 @@
 
 shrc=$HOME/node/.nvm.sh
 
-if homebrew nvm; then
+dir=$HOME/node/zsh-nvm
+git-dir https://github.com/lukechilds/zsh-nvm.git $dir
+
+if [[ -d "$dir" ]]; then
   mkdir -p "${shrc%/*}"
-  echo ". \"$(brew --prefix nvm)/nvm.sh\"" > "$shrc"
-  exit
+  echo "source $dir/zsh-nvm.plugin.zsh" > "$shrc"
 fi
