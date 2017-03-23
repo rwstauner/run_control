@@ -1,0 +1,17 @@
+#!/bin/bash
+
+base="${0##*/}"
+
+if [[ -r .node-version ]]; then
+  v=$(sed 's/^[^0-9]*//' .node-version)
+  x=$HOME/node/n/n/versions/node/$v/bin/$base
+
+  if [[ -x "$x" ]]; then
+    exec "$x" "$@"
+  fi
+fi
+
+dir=$HOME/usr/node
+# This seems necessary in order to require modules installed with npm -g.
+export NODE_PATH=$dir/lib/node_modules
+exec $dir/bin/$base "$@"

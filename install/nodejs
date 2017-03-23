@@ -2,6 +2,9 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+# install other versions
+homebrew n
+
 name=node
 
 install-nodejs () {
@@ -15,6 +18,14 @@ install-nodejs () {
 }
 
 setup_runtime_dir node
+
+exes=(
+  node
+  npm
+)
+for exe in "${exes[@]}"; do
+  ln -sf ~/node/rc/shim ~/usr/bin/"$exe"
+done
 
 mkdir -p ~/node/global
 
