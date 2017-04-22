@@ -1,0 +1,19 @@
+#!/bin/sh
+
+cmd="$1"; shift;
+
+# Check if the file exists first (fastest).
+exe="node_modules/.bin/$cmd"
+if [[ -x "$exe" ]]; then
+  exec "$exe" "$@"
+else
+  # Ask npm in case we're not in the project root.
+  exe="`npm bin`/$cmd"
+  if [[ -x "$exe" ]]; then
+    exec "$exe" "$@"
+  fi
+fi
+
+# Assume it's globally installed.
+# (This works as a prefix command, not a shim.)
+exec "$cmd" "$@"

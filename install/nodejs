@@ -27,6 +27,8 @@ for exe in "${exes[@]}"; do
   ln -sf ~/node/rc/shim ~/usr/bin/"$exe"
 done
 
+ln -sf ~/node/rc/npm-bin ~/usr/bin/
+
 mkdir -p ~/node/global
 
 install-nodejs `uname | tr A-Z a-z`
