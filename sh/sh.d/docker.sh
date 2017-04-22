@@ -98,9 +98,20 @@ docker-in-docker-args () {
   fi
 }
 
+docker-stats () {
+  local extra=''
+  [[ $COLUMNS -ge 150 ]] && extra='{{.Container}}\t'
+  docker stats --format 'table {{.Name}}\t'"${extra}"'{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}\t{{.PIDs}}' "$@"
+}
+
 # https://docs.docker.com/docker-for-mac/troubleshoot/#known-issues
 docker-sync-clock () {
   drun --privileged alpine sh -c 'date; echo "$1"; date -s "$1"' -- "$(date -u +'%F %T')"
 }
 
 #_ () { log=`docker inspect --format '{{.LogPath}}' $1`; c=`wc -l $log | awk '{print $1}'`; sed -i -n -e "$((c/10)),$ p" $log; }; _ $container
+
+docker-ip () {
+  # docker inspect -f '{{ .NetworkSettings.Networks.getsmart_default.IPAddress }}' "$@"
+  docker inspect "$@" | jq -r '.[]|.NetworkSettings.Networks as $n | $n[ $n|keys[0] ].IPAddress'
+}
