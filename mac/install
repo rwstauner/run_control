@@ -25,6 +25,14 @@ install () {
 tap caskroom/cask
 tap caskroom/versions
 
+reinstall=false
+if [[ "$1" == "--reinstall" ]]; then
+  reinstall=true
+fi
+
 for i in "$@"; do
+  if $reinstall; then
+    brew cask remove "$i"
+  fi
   install "$i"
 done
