@@ -20,6 +20,15 @@ put-cli-in-path () {
   symlink "$1" "$bin/"
 }
 
+sierra=false
+sw_vers -productVersion | grep -qF 10.12 && sierra=true
+
+if $sierra; then
+  install karabiner-elements
+  symlink $mac/karabiner.json ~/.config/karabiner/karabiner.json
+  exit
+fi
+
 install seil
 put-cli-in-path /Applications/Seil.app/Contents/Library/bin/seil
 

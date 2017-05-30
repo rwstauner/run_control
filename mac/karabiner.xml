@@ -1,16 +1,6 @@
 <?xml version="1.0"?>
 <root>
 
-  <!-- We map caps lock to F19 with Seil.  Terminal seems to eat F19,
-       so map F19 to Shift+F19 so we can use Compose Key in Terminal. -->
-  <item>
-    <name>Add shift to F19</name>
-    <identifier>private.send_shift_with_f19</identifier>
-    <autogen>__KeyToKey__ KeyCode::F19,
-                          KeyCode::F19, ModifierFlag::SHIFT_L
-    </autogen>
-  </item>
-
   <!-- Below are from karabiner defaults, copied here for automation. -->
   <!-- https://github.com/tekezo/Karabiner/blob/version_10.21.0/src/core/server/Resources/include/checkbox/standards/option.xml -->
   <item>

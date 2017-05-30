@@ -16,6 +16,10 @@
         - ✓ Show Keyboard, Emoji, & Symbol Viewers in menu bar
         - Modifier Keys → Caps Lock: No Action
 
+    - Text
+
+        - uncheck "Use smart quotes"
+
     - Shortcuts
 
         - Mission Control
@@ -32,6 +36,8 @@ Profiles → Keyboard
 - ^↓ => `\033[1;5B`
 - ⇧↑ => `\033[1;2A`
 - ⇧↓ => `\033[1;2B`
+
+- Remove "F19" so that it doesn't eat the compose key.
 
 ### vox
 

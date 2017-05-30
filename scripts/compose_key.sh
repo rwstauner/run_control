@@ -30,8 +30,8 @@ if [[ `uname` == Darwin ]]; then
     echo "/* $generated */"
     echo '{'
     cat $mac/key-bindings.dict | indent
-    echo '  /* Compose Key: Shift+F19 */'
-    echo -n '  "$\UF716" = ' # Shift+F19
+    echo '  /* Compose Key: F19 */'
+    echo -n '  "\UF716" = '
     {
       # Custom first (first in wins).
       custom-keys
