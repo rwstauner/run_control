@@ -8,15 +8,17 @@ if [[ `uname` = Darwin ]]; then
 
   script $dest <<'CLIP'
 #!/bin/sh
+# generated
 cmd=pbcopy
 test -t 0 && cmd=pbpaste
-exec $cmd
+exec reattach-to-user-namespace $cmd
 CLIP
 
 else
 
   script "$dest" <<'CLIP'
 #!/bin/sh
+# generated
 
 clip () {
   #exec xclip -selection clipboard "$@"
