@@ -16,3 +16,8 @@ no_path_helper () {
 }
 
 no_path_helper /etc/zshenv
+
+xcode-select --install
+
+mac/setup/scripts
+install/clip
