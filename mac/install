@@ -28,6 +28,7 @@ tap caskroom/versions
 reinstall=false
 if [[ "$1" == "--reinstall" ]]; then
   reinstall=true
+  shift
 fi
 
 for i in "$@"; do
