@@ -59,7 +59,7 @@ have () {
 
 homebrew-ready () {
   # Always return false if not a mac.
-  macosx || return 1
+  is_mac || return 1
 
   if ! have brew; then
     echo 'installing homebrew...'
@@ -95,14 +95,14 @@ homebrew () {
 }
 
 install-fonts () {
-  if macosx; then
+  if is_mac; then
     for i in "$@"; do
       open "$i"
     done;
   fi
 }
 
-macosx () {
+is_mac () {
   [[ `uname` = Darwin ]]
 }
 
