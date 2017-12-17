@@ -44,6 +44,7 @@
 "flower" "⚘" # FLOWER
 "ghost" "👻" # GHOST
 "imp" "👿" # IMP
+"inf" "∞" # INFINITY
 "joy" "😂" # FACE WITH TEARS OF JOY
 "key " "␣" # Space # SPACE
 "keyb" "⌫" # Backspace # ERASE TO THE LEFT
