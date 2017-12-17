@@ -21,6 +21,8 @@ install lodash
 install eslint
 install jsonlint
 
+# install json
+
 # Run tests.
 #install mocha
 
@@ -29,7 +31,7 @@ install jsonlint
 
 install promise
 
-install standard
+# install standard
 install temp
 
 install uglify-js '>=2'
