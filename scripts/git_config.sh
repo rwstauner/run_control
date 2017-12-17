@@ -152,6 +152,8 @@ alias changed         $'!git status --porcelain | awk \x27$1 ~ /[MA]/ { print $2
 
 alias change-id       $'!git show --no-patch "$@" | awk \x27/^ {4}Change-Id: I/ { print $2 }\x27'
 
+alias consolidate     '!git gc --aggressive && git repack'
+
 alias civ             'commit -v'
 alias amend           'commit -v -n --amend'
 
@@ -197,7 +199,7 @@ alias_diffs hl            '!_() { git ' ' --color "$@" | diff-highlight | $PAGER
 
 alias diffwithsubs     '!git submodule summary; git diff'
 
-alias draft            '!git push-draft'
+alias draft            'push origin HEAD:refs/drafts/master'
 
 # the sha1 for an empty tree in case you want to compare something to a bare repo
 alias empty-tree-sha1  'hash-object -t tree /dev/null'
@@ -215,6 +217,8 @@ alias grep-todo       'grep -iE "to.?do|fix.?me"'
 
 alias homepage-metacpan    '!curl -v -d "login=`git config github.user`&token=`git config github.token`&values[homepage]=http://metacpan.org/release/${PWD##*/}" "https://github.com/api/v2/json/repos/show/rwstauner/${PWD##*/}"'
 
+alias hubclone        '!git clone git@github.com:`git config github.user`/"$1".git'
+
 # uses patchutils/interdiff to see upstream modifications b/t two commits (origin/master and local branch)
 alias intercommit     '!git show "$1" > .git/commit1 && git show "$2" > .git/commit2 && interdiff .git/commit[12] | less -FRS'
 
@@ -224,7 +228,7 @@ alias k                '!gitk'
 # Gitv (from the command line seems to require an argument)
 alias kv               '!vim -c "silent Gitv" `if test "$#" -gt 0; then echo "$@"; else echo .; fi`'
 
-alias last             'log --stat -p -w -n 1 -U10'
+alias last             'log --pretty=fuller --stat -p -w -n 1 -U10'
 alias lastcw           '!git last --color-words=.'
 alias lastcww          '!git last --color-words=\\w+'
 
@@ -247,7 +251,7 @@ alias logstat         'log --stat'
 alias logst           "$logst"
 
 # show new commits after last fetch
-alias lc              "$logst ORIG_HEAD.."
+alias log-pulled      "$logst ORIG_HEAD.."
 alias log-fetched     "$logst ..FETCH_HEAD"
 # this should probably be log-remote and figure out the tracking remote
 alias log-origin      "$logst ..origin"
@@ -263,7 +267,7 @@ alias lgpcw            '!git lg -p --color-words=.'
 
 # ls-files doesn't tab-complete, so shorten it, and force it through a pager.
 alias ls               '-p ls-files'
-alias lsgrep           '!git ls-files | grep --color=always "$@" | $PAGER'
+# alias lsgrep           '!git ls-files | grep --color=always "$@" | $PAGER'
 #alias lsgrep           '!pattern="$1"; shift; git ls-files "$@" | grep --color=always "$pattern" | $PAGER'
 
 alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short --numstat'
@@ -286,14 +290,13 @@ alias new              '!git log $1@{1}..$1@{0} "$@"'
 # FIXME: There's an api for this.
 alias prune-all        '!git remote | xargs -n 1 git remote prune'
 
-alias prune-branches   '!git checkout master; git rebase-branches; for branch in $(git branch --merged master | cut -c 3- | grep -vFx master); do git branch -d "$branch"; done'
+alias prune-branches   '!git checkout master; git rebase-branches "$@"; for branch in $(git branch --merged master | cut -c 3- | grep -vFx master); do git branch -d "$branch"; done'
 
 alias pulp             '!echo just here to avoid tab-completing "pull"'
 
 # pum doesn't seem to be storing the fetch, so do both
 alias pum              '!git fetch upstream; git pull upstream master'
 
-alias push-draft       'push origin HEAD:refs/drafts/master'
 alias pusht            '!git push "$@"; git push --tags "$@"'
 alias pushup           '!git push -u "${1:-origin}" "${2:-`git current-branch`}"'
 
@@ -305,8 +308,11 @@ alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $b
 alias fetch-pr         '!remote="${1:-origin}"; git fetch "$remote" "+refs/pull/*/head:refs/remotes/$remote/pr/*"'
 alias branch-pr        '!branch="$1"; pr="$2"; remote="${3:-origin}"; git co -b "$branch" -t "refs/remotes/$remote/pr/$pr"'
 
+alias rbm              'rebase master'
+
 # Rebasing a cherry-picked branch will squash the duplicated commit.
-alias rebase-branches  '!for branch in $(git branch --no-merged master); do echo " # $branch #"; git rebase -q master "$branch" || git rebase --abort; done; git checkout master'
+# Wait a moment after a failure for git to clean up.
+alias rebase-branches  '![ $# -gt 0 ] || set -- $(git branch --no-merged master); for branch in "$@"; do echo " # $branch #"; git rebase -q master "$branch" || { git rebase --abort; sleep 1; } done; git checkout master'
 
 # Since git operates from the project root dir `pwd` also works.
 #$gc alias.root            $'!pwd'
@@ -336,6 +342,8 @@ alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 # We could do if have_git_version 1.7.0 to use 'git diff --submodule' but I
 # prefer the other options that I can pass to log.
   alias submodule-would-update "!git submodule-would-update-fancy"
+
+alias these            '!cmd="$1"; shift; for i in "$@"; do (cd "$i" && eval git "$cmd"); done'
 
 alias up               'pull --all --prune'
 alias ups              '!git up; git subup'
