@@ -2,6 +2,14 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+if is_mac; then
+  # Remove (if already installed) then install in order to upgrade.
+  brew cask ls | grep -qFx virtualbox && \
+    brew cask remove virtualbox
+  brew cask install virtualbox
+  exit
+fi
+
 if have apt-get; then
   # Last time it said it depended on these, but then it didn't install anything.
   sudo apt-get install libqt4-network libqt4-opengl libqtcore4 libqtgui4
