@@ -1,0 +1,10 @@
+#!/bin/bash
+
+bin=$HOME/usr/bin
+script () {
+  exe="$1"
+  { printf "#!/bin/bash\n\n"; cat; } > "$exe"
+  chmod 0755 "$exe"
+}
+
+script $bin/eject <<<'exec drutil tray eject'
