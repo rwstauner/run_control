@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if homebrew go; then
+  # noop, need an else
+  true
+fi
+
+# go get a bunch of stuff that vim-go uses (golint, etc).
+vim +setf\ go +GoInstallBinaries +qall
