@@ -36,6 +36,7 @@ script ~/usr/bin/gimp <<<$'#!/bin/bash\nexec /Applications/GIMP.app/Contents/Mac
 install google-chrome
 
 #install java
+install inkscape
 
 # Ministry taxes.
 install libreoffice
