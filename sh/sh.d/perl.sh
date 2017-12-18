@@ -36,22 +36,9 @@ export PLENV_ROOT="$HOME/perl5/plenv"
 if [[ -d "$PLENV_ROOT" ]]; then
   add_to_path "$PLENV_ROOT/bin"
   eval "$(plenv init -)"
-
-# Only load the default perlbrew environment if perlbrew isn't already in use.
-elif [[ -z "$PERLBREW_PERL" ]]; then
-
-for pbparent in $HOME/perl5 /opt/perl5 /opt /usr/local; {
-  perlbrewrc="$pbparent/perlbrew/etc/bashrc"
-  [[ -r "$perlbrewrc" ]] && { source "$perlbrewrc"; break; }
-}
-unset pbparent
-
 fi
 
-# after perlbrew
-which setup-bash-complete &> /dev/null && . setup-bash-complete
-
-# TODO: make a symlink to the newest perl in ~/perl5/
+alias dplenv='drun --ssh -v plenv:/opt/plenv -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa -v $HOME/.pause:/root/.pause -v $HOME/.gitconfig:/root/.gitconfig --tmpfs /src/.build rwstauner/plenv'
 
 # dzil aliases
   dzil () {
