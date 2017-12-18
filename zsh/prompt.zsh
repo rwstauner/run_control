@@ -96,7 +96,7 @@ my_prompt=(
   '%(!:%{%F{red}%B%S%} 💀 %{%s%b%}:)'
 
   # Backgroundjobs
-  '%(1j; %{%B%F{cyan}%}⚙%j%{%f%b%} ;)'
+  '%(1j; %{%B%F{cyan}%}⚙ %j%{%f%b%} ;)'
 
   #%L $SHLVL
 
