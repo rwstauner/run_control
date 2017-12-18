@@ -94,6 +94,11 @@ homebrew () {
   return 0
 }
 
+homebrew-tap () {
+  brew tap | grep -qFx "$1" || \
+    brew tap "$1"
+}
+
 install-fonts () {
   if is_mac; then
     for i in "$@"; do

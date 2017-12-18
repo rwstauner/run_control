@@ -2,12 +2,31 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if macosx; then
-  have docker || \
-    echo 'use cask (mac/setup/apps)'
+if is_mac; then
+  have docker || {
+    #$rc/mac/install docker-beta
+    homebrew docker
+  }
 
-  #docker-machine inspect default || \
-  #docker-machine create --driver virtualbox default
+  have docker-machine || homebrew docker-machine
+  have xhyve || \
+    homebrew xhyve docker-machine-driver-xhyve
+
+  # > docker-machine-driver-xhyve need root owner and uid
+  _ () {
+    [[ `stat -c '%U' "$1"` = root ]] || sudo chown root:wheel "$1";
+    [[ `stat -c '%a' "$1"` = 4555 ]] || sudo chmod u+s "$1";
+  }; \
+      _ $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+
+  have dinghy || {
+    homebrew-tap codekitchen/dinghy
+    homebrew dinghy
+  }
+
+  dinghy status | grep -qF 'VM: not created' && \
+    dinghy create --provider virtualbox --memory 6144 --cpus 4 --disk 100000
+
   exit
 fi
 
