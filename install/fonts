@@ -10,6 +10,11 @@ have () {
   which "$1" &> /dev/null
 }
 
+dl-and-install () {
+  download "$@"
+  install-fonts "${2:-${1##*/}}"
+}
+
 github_font () {
   local prefix="https://github.com" repo="$1" suffix="${2:--ttf}"
   local url=`curl -sL $prefix/$repo/releases/latest | perl -lne 'print $1 if /href="(.+?\Q'"$suffix"'.zip\E)"/'`
@@ -38,6 +43,10 @@ fi
 
 # Hack
 github_font 'chrissimpkins/Hack'
+
+# "1 serious error found.  Do not install this font." ¯\_(ツ)_/¯
+# monoOne
+#dl-and-install https://github.com/chrissimpkins/codeface/blob/master/fonts/mono-one/monoOne.otf
 
 if have apt-get; then
   sudo apt-get install \
