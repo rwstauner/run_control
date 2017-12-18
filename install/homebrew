@@ -58,6 +58,13 @@ brew install gnu-tar
 
 brew install pstree
 
+brew install qrencode
+
+brew install socat
+
 brew install tree
 
+brew install watch
 brew install wget
+
+brew install xmlstarlet
