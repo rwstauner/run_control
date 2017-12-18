@@ -3,7 +3,7 @@ export PYTHONSTARTUP=$HOME/python/rc/startup.py
 export PIP_DOWNLOAD_CACHE=$HOME/python/pip-downloads
 
 #export PYTHONDOCS=http://localhost/docs/python-2.7.4-docs-html/
-export DJANGO_COLORS='dark'
+#export DJANGO_COLORS='dark'
 
 [[ -f ~/usr/bin/json.tool ]] || alias json.tool='python -m json.tool'
 
@@ -26,7 +26,7 @@ tox () {
   notify_result -i "$_python_logo"
 }
 
-pip () {
+function pip {
   if ! [[ -d "$VIRTUAL_ENV" ]]; then
     echo $' \033[01;33m WARNING:\033[00m Python virtualenv is not active.\n'
   fi
