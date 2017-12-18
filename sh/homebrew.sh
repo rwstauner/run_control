@@ -6,3 +6,8 @@ add_to_path $HOME/homebrew/{bin,sbin}
 
 # Get (unprefixed) GNU utils to override BSD utils.
 add_to_path $HOME/homebrew/opt/coreutils/libexec/gnubin
+
+function man-nognu () {
+  gnuman=$HOME/homebrew/opt/coreutils/libexec/gnuman
+  MANPATH=${MANPATH/$gnuman:/} man "$@"
+}
