@@ -67,6 +67,29 @@ docker-compose () {
   docker-compose "$@"
 }
 
+docker-running () {
+  docker ps -f 'status=running' --format '{{ .Names }}' | grep -qFx "$1"
+}
+
+docker-ensure () {
+  name="$1"
+  shift
+  docker inspect --type container "$name" &> /dev/null || \
+    docker create --name "$name" "$@"
+  docker start "$name" &> /dev/null
+}
+
+alias dexec='docker exec -it'
+
+dssh-agent () {
+  local name=ssh-agent img=whilp/ssh-agent:latest
+  docker-running "$name" || {
+    docker-ensure "$name" -v ssh-agent:/ssh "$img"
+    echo 'ssh-add -l >&- || ssh-add' | drun --ssh-agent -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa "$img" sh
+  }
+  unset -f dssh-agent
+}
+
 drun () {
   local hist=$HOME/.bash_history.docker
   [[ -f $hist ]] || touch $hist
@@ -76,6 +99,12 @@ drun () {
     -v $HOME/.inputrc:/root/.inputrc # ctrl-arrows
     -i --rm -v $PWD:/src -w /src
   )
+
+  if [[ "$1" = "--ssh"* ]]; then
+    [[ "$1" = "--ssh-agent" ]] && dssh-agent
+    shift;
+    args+=(-v ssh-agent:/ssh -e SSH_AUTH_SOCK=/ssh/auth/sock)
+  fi
 
   case "$*" in
     *maven*|*gradle*|*clojure*)
@@ -100,7 +129,6 @@ drun () {
   docker run "${args[@]}" "$@"
 }
 
-alias dexec='docker exec -it'
 # TODO: source .env.local (since dc it loads .env)
 alias dc=docker-compose
 
