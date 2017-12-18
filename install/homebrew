@@ -8,6 +8,13 @@ if [[ `uname` != Darwin ]]; then
   exit 1
 fi
 
+script () {
+  exe="$1"
+  mkdir -p "`dirname "$exe"`"
+  cat > "$exe"
+  chmod 0755 "$exe"
+}
+
 test -d $homebrew/.git || \
 git clone http://github.com/Homebrew/homebrew $homebrew
 
@@ -25,6 +32,13 @@ brew update
 # Since coreutils doesn't support --with-default-names we add to path in sh/loader.sh
 brew install coreutils
 
+# Other utils (ruby gems, etc) get confused by gnu stty on mac, so reroute it.
+script ~/usr/bin/stty <<'SCRIPT'
+#!/bin/sh
+# Circumvent the homebrew/coreutils stty.
+exec /bin/stty "$@"
+SCRIPT
+
 # Use --with-default-names to install gnu utils without 'g' prefix
 # (also enables `man` to find them automatically).
 brew install --with-default-names findutils
@@ -34,7 +48,9 @@ brew install gawk
 
 brew install --with-default-names gnu-sed
 
-brew install --with-default-names gnu-tar
+# Install as 'gtar' as too many other things expect the bsd tar on mac.
+brew install gnu-tar
+
 #brew install --with-default-names gnu-units
 
 #brew install imagesnap
