@@ -18,6 +18,7 @@ for i in pacmd;
 
 # Stay awake.
 if which caffeinate &> /dev/null; then
+  alias caffeinate='caffeinate '
   for i in abcde brew; {
     alias $i="caffeinate $i";
   }
@@ -41,7 +42,7 @@ alias ftp='/usr/bin/ftp'; # kerberos ftp bothers me
 alias Wc=wc
 
 # ls
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --quoting-style=literal'
 alias ll='ls -l'
 alias lf='ll -aF'
 alias lh='lf -h'
@@ -57,4 +58,10 @@ for i in dict; {
 
 # I like ag's `--group` output but nogroup is more consistent with (git) grep
 # and can easily be used as a vim quickfix buffer.
-alias ag='ag --pager=$PAGER --nogroup'
+# Always look for ./.agignore even if searching specific directories.
+alias ag='ag --path-to-ignore .agignore --pager=$PAGER --nogroup --color-match="1;31" --color-path=35 --color-line-number=32'
+alias agq='ag --nofilename'
+
+alias pdftk='drun cartoncloud/pdftk'
+
+alias smenu='smenu -d -T'
