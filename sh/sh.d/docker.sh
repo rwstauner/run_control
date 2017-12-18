@@ -22,6 +22,7 @@ docker-compose () {
 
   # Redefine function and call it.
   docker-compose () {
+    local filter=()
     case "$1" in
       recreate)
         shift
@@ -38,12 +39,29 @@ docker-compose () {
         [[ "$1" == "--rm" ]] && shift
         set -- run --rm "$@"
         ;;
+      logt)
+        shift;
+        set -- logs -t "$@"
+        filter=(perl -MTime::Stamp=parsegm -lp -M'5; open(my $fh, "|-", $ENV{PAGER}||"less") or die $!; select $fh; $|=1' -e '
+          /^(\e\[.+?m)(\S+)\s+\|/ or next;
+          ($esc, $name) = ($1, $2);
+          $t{$name} ||= /(\S+Z)/ && parsegm($1);
+          s/(\S+Z) \K/$s = parsegm($1); sprintf qq{%s%2.2f %2.2f\e[00m }, $esc, $s - $t{$name}, $s - $l{$name}/e;
+          $l{$name} = $s;
+        ')
+        ;;
     esac
 
+    set -- command docker-compose "$@"
     if [[ -r .docker-compose.env ]]; then
-      env $(perl -ne 'print if /^(\w+)=/ && !length $ENV{$1}' .docker-compose.env ) docker-compose "$@"
+      shift # drop 'command'
+      set -- env $(perl -ne 'print if /^(\w+)=/ && !length $ENV{$1}' .docker-compose.env) "$@"
+    fi
+
+    if [[ ${#filter} -gt 0 ]]; then
+      "$@" | "${filter[@]}"
     else
-      command docker-compose "$@"
+      "$@"
     fi
   }
   docker-compose "$@"
