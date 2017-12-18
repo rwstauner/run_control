@@ -9,10 +9,6 @@ source $shrc_dir/setup.sh
 # Homebrew.
 source_rc_files $shrc_dir/homebrew.sh
 
-# Locally compiled, generated, etc.
-# Put this after homebrew so we can override some things.
-add_to_path $HOME/usr/bin
-
 # Personal scripts.
 add_to_path $HOME/bin
 
@@ -22,6 +18,10 @@ source_rc_files $shrc_dir/term.sh
 
 # Get everything else.
 source_rc_files $shrc_dir/sh.d/*.sh ~/.shrc.local $EXTRA_SHRC
+
+# Locally compiled, generated, etc.
+# Put this after other tools so we can override some things.
+add_to_path $HOME/usr/bin
 
 dedupe_path
 
