@@ -191,6 +191,5 @@ docker-sync-clock () {
 #_ () { log=`docker inspect --format '{{.LogPath}}' $1`; c=`wc -l $log | awk '{print $1}'`; sed -i -n -e "$((c/10)),$ p" $log; }; _ $container
 
 docker-ip () {
-  # docker inspect -f '{{ .NetworkSettings.Networks.getsmart_default.IPAddress }}' "$@"
-  docker inspect "$@" | jq -r '.[]|.NetworkSettings.Networks as $n | $n[ $n|keys[0] ].IPAddress'
+  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
 }
