@@ -106,6 +106,7 @@ bindkey "\e:"  execute-named-cmd
 # More than just Enter:
 bindkey "^[a"   accept-and-hold
 bindkey "^[b"   accept-and-infer-next-history
+bindkey "^X^M"  accept-and-infer-next-history
 
 # Show indicator between ^V and key.
 bindkey "^V" vi-quoted-insert
@@ -137,8 +138,8 @@ bindkey "^V" vi-quoted-insert
   done
 }
 
-bindkey "\e[" backward-kill-shell-word
-bindkey "\e]"  forward-kill-shell-word
+bindkey '^X^W' backward-kill-shell-word
+bindkey '^X^B'  forward-kill-shell-word
 
 # Ctrl-arrow  moves across words ($WORDCHARS).
 bindkey "\e[1;5D" backward-word
