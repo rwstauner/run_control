@@ -158,6 +158,27 @@ docker-in-docker-args () {
 
 docker-stats () {
   local extra=''
+  case "$1" in
+    --max-mem)
+      docker stats --format '{{.Name}}\t{{.MemUsage}}' | perl -MTime::Stamp=localstamp -ne '
+        BEGIN { $|=1; $units = { K => (1/1024), M => 1, G => 1024 }; $last = 0; }
+        next unless /'"$2"'/;
+        ($val, $unit) = /(\d+(?:\.\d+)?)([KMG])iB/ or next;
+        $val *= $units->{$unit};
+        s/^\e\[2J\e\[H/ /g;
+        $_ = "${\localstamp} " . $_;
+        if ($val > $last) {
+          $last = $val;
+          print $_;
+        }
+        else {
+          chomp;
+          print $_, "\r";
+        }
+      '
+      return
+      ;;
+  esac;
   [[ $COLUMNS -ge 150 ]] && extra='{{.Container}}\t'
   docker stats --format 'table {{.Name}}\t'"${extra}"'{{.CPUPerc}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.NetIO}}\t{{.BlockIO}}\t{{.PIDs}}' "$@"
 }
