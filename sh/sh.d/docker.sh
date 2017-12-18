@@ -73,8 +73,17 @@ drun () {
   args=(
     -v $hist:/root/.bash_history # persist bash history
     -v $hist:/root/.ash_history  # also sh (alpine)
+    -v $HOME/.inputrc:/root/.inputrc # ctrl-arrows
     -i --rm -v $PWD:/src -w /src
   )
+
+  case "$*" in
+    *maven*|*gradle*|*clojure*)
+      args+=(-v $HOME/.m2:/root/.m2)
+      args+=(-v $HOME/.m2:/home/gradle/.m2)
+      args+=(-v $hist:/home/gradle/.bash_history)
+      ;;
+  esac
 
   # local var val
   # for var in TERM LOCALE LANG; {
