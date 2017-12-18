@@ -8,7 +8,7 @@ mkdirpushd () {
 from () {
   local dir="$1"; shift
   # Use subshell in case the process dies.
-  (cd "$dir" || return; "$@")
+  (cd "$dir" || return; eval "$@")
 }
 
 # print the full path to a relative file
