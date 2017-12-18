@@ -19,6 +19,7 @@ for i in \
   grunt \
   karma \
   stylelint \
+  yarn \
 ; {
   alias $i="npm-bin $i"
 }
