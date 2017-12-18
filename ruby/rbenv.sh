@@ -22,14 +22,13 @@ symlink () {
 
 # Main
 
-sync https://github.com/sstephenson/rbenv.git $RBENV_ROOT
+sync https://github.com/rbenv/rbenv.git $RBENV_ROOT
 
 
 # Plugins
 
-plugin sstephenson/ruby-build
-plugin sstephenson/rbenv-default-gems
-plugin sstephenson/rbenv-gem-rehash
+plugin rbenv/ruby-build
+plugin rbenv/rbenv-default-gems
 plugin rkh/rbenv-update
 plugin rkh/rbenv-whatis
 plugin rkh/rbenv-use
