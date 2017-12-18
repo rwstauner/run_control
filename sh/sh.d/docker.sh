@@ -25,8 +25,11 @@ docker-compose () {
     case "$1" in
       recreate)
         shift
-        # build, stop, rm -f
-        set -- up --build --force-recreate -d "$@"
+        # build first, then stop, remove, and recreate
+        docker-compose build "$@"
+        docker-compose stop  "$@"
+        docker-compose rm -f "$@"
+        set -- up --force-recreate -d "$@"
         ;;
       run)
         shift
