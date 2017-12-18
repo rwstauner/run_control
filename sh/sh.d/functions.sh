@@ -55,9 +55,9 @@ show-args () {
 # can put pre-ARGV in this var (useful to load other files or specify options)
 export BC_ENV_ARGS="-l"
 # if given args pipe them to the command, otherwise give a prompt
-math () {
+function math {
   if [[ $# -gt 0 ]]; then
-    local scale='scale=2;';
+    local scale='scale=5;';
     if [[ "x$1" == "x-s" ]]; then
       scale="scale=$2;";
       shift 2;
