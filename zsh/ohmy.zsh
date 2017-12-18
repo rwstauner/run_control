@@ -119,6 +119,7 @@ unset -f source
 autoload -U add-zsh-hook
 
 # Remove these hooks so they don't even run (better than DISABLE_AUTO_TITLE).
+add-zsh-hook -d precmd  update_terminalapp_cwd
 add-zsh-hook -d precmd  omz_termsupport_precmd
 add-zsh-hook -d preexec omz_termsupport_preexec
 
