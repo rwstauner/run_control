@@ -18,6 +18,10 @@ full-path () {
   echo "$f"
 }
 
+gethostbyname () {
+  perl -MSocket -e 'print inet_ntoa(scalar gethostbyname($ARGV[0]))' "$@"
+}
+
 # rename_to_lowercase () {
 #   tmp=`mktemp -u "$1".XXXXXXXXXXX`;
 #   mv "$1" "$tmp"; mv "$tmp" "`echo "$1" | tr '[A-Z]' '[a-z]'`"; unset tmp;
