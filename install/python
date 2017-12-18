@@ -13,6 +13,8 @@ if ! have pip && have easy_install; then
   sudo easy_install pip
 fi
 
+have virtualenv || sudo pip install virtualenv
+
 setup_runtime_dir python
 
 pydir=$HOME/python
