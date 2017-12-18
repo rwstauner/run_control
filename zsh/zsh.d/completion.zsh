@@ -30,6 +30,12 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Enable ^X^F (like vim) to complete file paths
+# (regardless of what tab might want to complete).
+zle -C complete-files complete-word _generic
+zstyle ':completion:complete-files:*' completer _files
+bindkey "^X^F" complete-files
+
 
 # Complete both ends of the word.
 setopt complete_in_word
