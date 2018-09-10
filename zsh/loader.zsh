@@ -15,3 +15,6 @@ source $rc_dir/sh/loader.sh
 source_rc_files $zshrc_dir/zsh.d/* ~/.zshrc.local $EXTRA_ZSHRC
 
 unset rc_dir zshrc_dir
+
+# Don't let naughty installers append lines and confuse me.
+return
