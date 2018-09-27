@@ -24,7 +24,7 @@ if [[ `uname` == Darwin ]]; then
   mac=$rc/mac
   compose=$HOME/.cache/Compose.txt
   [[ -e "$compose" ]] || \
-    curl -s magnificent-tears.com/Compose.txt | generate "$compose"
+    curl -s https://r4s6.net/Compose.txt | generate "$compose"
 
   {
     echo "/* $generated */"
