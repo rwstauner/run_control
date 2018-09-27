@@ -24,6 +24,8 @@
 "cactus" "🌵" # CACTUS
 "cake" "🎂" # BIRTHDAY CAKE
 "camel" "🐫" # BACTRIAN CAMEL
+"cat" "🐈" # CAT
+"catface" "🐱" # CAT FACE
 "check" "✓" # CHECK MARK
 "clap" "👏" # CLAPPING HANDS SIGN
 "collide" "💥" # COLLISION SYMBOL
@@ -63,12 +65,14 @@
 "nbsp" " " # NO-BREAK SPACE
 "neutral" "😐" # NEUTRAL FACE
 "octopus" "🐙" # OCTOPUS
+"ok" "👌" # OK HAND SIGN
 "panda" "🐼" # PANDA FACE
 "pear" "🍐" # PEAR
 "penguin" "🐧" # PENGUIN
 "pin" "📌" # PUSHPIN
 "pizza" "🍕" # SLICE OF PIZZA
 "poo" "💩" # PILE OF POO
+"pray" "🙏" # PERSON WITH FOLDED HANDS
 "rocket" "🚀" # ROCKET
 "scream" "😱" # FACE SCREAMING IN FEAR
 "ship" "🛳" # PASSENGER SHIP
@@ -81,6 +85,7 @@
 "sweat" "😰" # FACE WITH OPEN MOUTH AND COLD SWEAT
 "there4" "∴" # THEREFORE
 "tongue" "😛" # FACE WITH STUCK-OUT TONGUE
+"triumph" "😤" # FACE WITH LOOK OF TRIUMPH
 "unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
 "up" "↑" # UPWARDS ARROW
