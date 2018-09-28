@@ -19,7 +19,7 @@ full-path () {
 }
 
 gethostbyname () {
-  perl -MSocket -e 'print inet_ntoa(scalar gethostbyname($ARGV[0]))' "$@"
+  perl -MSocket -e 'printf "%s\n", inet_ntoa(scalar gethostbyname($ARGV[0]))' "$@"
 }
 
 # rename_to_lowercase () {
