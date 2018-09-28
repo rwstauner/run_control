@@ -46,9 +46,11 @@ autoload -U add-zsh-hook
 add-zsh-hook precmd  _rwstauner_before_prompt
 add-zsh-hook preexec _rwstauner_before_execute
 
+_rwstauner_git_prompt_info () {}
+_rwstauner_cd_git_info () {}
+
 if whence git_prompt_info &> /dev/null; then
   #_last_git_dir=''
-  _rwstauner_git_prompt_info () {}
   _rwstauner_cd_git_info () {
     # Instead of checking git after every command,
     # decide whether to enable it when we change in to a dir.
