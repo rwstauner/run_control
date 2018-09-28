@@ -23,6 +23,8 @@ install dash
 install docker-beta
 install dropbox
 
+install finicky
+
 install firefox
 install firefoxdeveloperedition
 
