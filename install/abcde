@@ -11,12 +11,13 @@ pm-installed () {
 }
 
 perldep () {
-  pm-installed "$1" || cpanm "$@"
+  # pm-installed "$1" && return
+  cpanm "$@"
 }
 
 check-mb-discid () {
   local mod=MusicBrainz::DiscID
-  pm-installed "$mod" && return
+  # pm-installed "$mod" && return
   cpanm "$mod"
 }
 
