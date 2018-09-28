@@ -63,5 +63,6 @@ alias ag='ag --path-to-ignore .ignore --pager=$PAGER --nogroup --color-match="1;
 alias agq='ag --nofilename'
 
 alias pdftk='drun cartoncloud/pdftk'
+alias pdfinfo='drun flungo/poppler pdfinfo'
 
 alias smenu='smenu -d -T'
