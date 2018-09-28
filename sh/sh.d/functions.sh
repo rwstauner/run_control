@@ -93,3 +93,12 @@ function math {
 
   #alias time=timed
   #alias time=/usr/bin/time; # avoid bash built-in to enable $TIME format
+
+function unzip_single_file {
+  zip="$1"
+  if [[ `unzip -qql "$zip" | wc -l` -ne 1 ]]; then
+    echo "not a single file" >&2
+    return 1
+  fi
+  unzip -p "$zip" > "${zip%.zip}.content"
+}
