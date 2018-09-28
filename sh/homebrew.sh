@@ -8,6 +8,6 @@ add_to_path $HOME/homebrew/{bin,sbin}
 add_to_path $HOME/homebrew/opt/coreutils/libexec/gnubin
 
 function man-nognu () {
-  gnuman=$HOME/homebrew/opt/coreutils/libexec/gnuman
-  MANPATH=${MANPATH/$gnuman:/} man "$@"
+  gnuman="$HOME/homebrew/opt/coreutils/libexec/gnuman:$HOME/homebrew/share/man"
+  MANPATH="${MANPATH/$gnuman:/}" man "$@"
 }
