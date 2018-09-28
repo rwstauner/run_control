@@ -58,8 +58,8 @@ for i in dict; {
 
 # I like ag's `--group` output but nogroup is more consistent with (git) grep
 # and can easily be used as a vim quickfix buffer.
-# Always look for ./.agignore even if searching specific directories.
-alias ag='ag --path-to-ignore .agignore --pager=$PAGER --nogroup --color-match="1;31" --color-path=35 --color-line-number=32'
+# Always look for ./.ignore even if searching specific directories.
+alias ag='ag --path-to-ignore .ignore --pager=$PAGER --nogroup --color-match="1;31" --color-path=35 --color-line-number=32'
 alias agq='ag --nofilename'
 
 alias pdftk='drun cartoncloud/pdftk'
