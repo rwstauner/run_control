@@ -6,5 +6,6 @@ pylint               >=  0.28.0
 pylint-nose-checker  >=  1.0.0
 
 simplejson           >=  3.3.0
+sqlparse
 
 virtualenv           >=  1.9.1
