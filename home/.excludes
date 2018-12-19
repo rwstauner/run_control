@@ -1,4 +1,7 @@
+.nrepl-history
+
 *.swp
+
 *.py[co]
 __pycache__
 .tox
