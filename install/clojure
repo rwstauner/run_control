@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if homebrew clojure; then
+  exit
+fi
