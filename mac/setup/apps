@@ -20,7 +20,7 @@ install adobe-reader
 #install atom
 
 install dash
-install docker-beta
+# install docker
 install dropbox
 
 install finicky
