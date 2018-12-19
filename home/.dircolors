@@ -1,8 +1,11 @@
 # vim: set ft=dircolors16 ts=8 sts=0 sw=8 noet nosta:
 
-# image formats
+# images
 .svg   00;35
 .xcf   00;35
+
+# video
+.mts   00;35
 
 # scripts
 .pl      00;92
