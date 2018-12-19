@@ -348,6 +348,8 @@ alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 
 alias these            '!cmd="$1"; shift; for i in "$@"; do (cd "$i" && eval git "$cmd"); done'
 
+alias topic            '!git checkout -b "$1" master'
+
 alias up               'pull --all --prune'
 alias ups              '!git up; git subup'
 
