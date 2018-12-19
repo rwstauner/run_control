@@ -58,10 +58,10 @@ parse_grep_colors () {
     color="${slot#*=}"
     case "${slot%=*}" in
       mt)
-          grep_color matching   $color
+          grep_color match      $color
           grep_color context    $color
         ;;
-      ms) grep_color matching   $color;;
+      ms) grep_color match      $color;;
       mc) grep_color context    $color;;
       sl)  ;;
       cx)  ;;
