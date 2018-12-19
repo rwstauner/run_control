@@ -84,6 +84,9 @@ config color.ui          auto
 
 config core.excludesFile ~/.excludes
 
+# https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
+config core.trustctime   false
+
 config rebase.autosquash true
 
 config grep.lineNumber   true
