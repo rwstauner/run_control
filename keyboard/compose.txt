@@ -19,6 +19,7 @@
 "bear" "🐻" # BEAR FACE
 "beer" "🍺" # BEER MUG
 "bomb" "💣" # BOMB
+"bow" "🙇" # PERSON BOWING DEEPLY
 "bullet" "•" # BULLET
 "bullseye" "◎" # BULLSEYE
 "cactus" "🌵" # CACTUS
@@ -26,7 +27,6 @@
 "camel" "🐫" # BACTRIAN CAMEL
 "cat" "🐈" # CAT
 "catface" "🐱" # CAT FACE
-"check" "✓" # CHECK MARK
 "clap" "👏" # CLAPPING HANDS SIGN
 "collide" "💥" # COLLISION SYMBOL
 "confound" "😖" # CONFOUNDED FACE
@@ -89,8 +89,10 @@
 "unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
 "up" "↑" # UPWARDS ARROW
+"vv" "✓" # CHECK MARK
 "wave" "🌊" # WATER WAVE
 "waving" "👋" # WAVING HAND SIGN
+"warn" "⚠" # WARNING SIGN
 "weary" "😩" # WEARY FACE
 "wearycat" "🙀" # WEARY CAT FACE
 "wink" "😉" # WINKING FACE
