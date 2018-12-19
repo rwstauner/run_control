@@ -6,6 +6,7 @@ if is_mac; then
   have docker || {
     #$rc/mac/install docker-beta
     homebrew docker
+    homebrew docker-credential-helper
   }
 
   have docker-machine || homebrew docker-machine
