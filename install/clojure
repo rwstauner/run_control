@@ -2,6 +2,10 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if homebrew clojure; then
-  exit
+if homebrew clojure leiningen; then
+  true # noop
+else
+  echo 'fixme'
 fi
+
+[[ -d ~/.lein ]] || ln -s ~/run_control/clojure/lein ~/.lein
