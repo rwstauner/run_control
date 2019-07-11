@@ -243,7 +243,7 @@ alias lastcw           '!git last --color-words=.'
 alias lastcww          '!git last --color-words=\\w+'
 
 # Print added, modified, the new name of renames, not deletes, and limit to files that still exist.
-alias last-changed    $'!git show --pretty= --name-status "$@" | awk \x27$1 ~ /[MA]/ { print $2 } $1 ~ /^R/ { print $3 }\x27| xargs ls -1 2> /dev/null'
+alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | xargs -r ls -1 2> /dev/null'
 
 # there must be a better way
 alias last-sha        $'!git show HEAD --oneline | head -n1 | awk \047{print $1}\047'
