@@ -79,7 +79,7 @@ docker-ensure () {
   docker start "$name" &> /dev/null
 }
 
-alias dexec='docker exec -it'
+alias dexec='docker exec -it -e COLUMNS -e TERM'
 
 dssh-agent () {
   local name=ssh-agent img=whilp/ssh-agent:latest
