@@ -1,0 +1,2 @@
+{:rules {:if-without-else true
+         :unused-fn-parameters true}}
