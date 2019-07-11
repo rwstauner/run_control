@@ -2,10 +2,11 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if homebrew clojure leiningen; then
+if homebrew clojure leiningen boot-clj candid82/brew/joker; then
   true # noop
 else
   echo 'fixme'
 fi
 
+[[ -d ~/.clojure ]] || ln -s ~/run_control/clojure/config ~/.clojure
 [[ -d ~/.lein ]] || ln -s ~/run_control/clojure/lein ~/.lein
