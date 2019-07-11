@@ -17,10 +17,8 @@ install android-file-transfer
 # Taxes :-P
 install adobe-reader
 
-#install atom
+install bitbar
 
-install dash
-# install docker
 install dropbox
 
 install finicky
@@ -60,8 +58,6 @@ install vox
 install vox-preferences-pane
 
 install xquartz
-
-#install zoomus
 
 mkdir -p ~/usr/bin
 
