@@ -331,7 +331,7 @@ alias root             'rev-parse --show-toplevel'
 # run daemon (use !git to run from repo root) then try git ls-remote
 alias serve            '!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
-alias st              $'!if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -re "s/^([^:]+):/\\\033[33m\\1\\\033[00m:/"; fi'
+alias st              $'!if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -e "s/^/\\\033[33m/" -e "s/:/\\\033[00m:/"; fi'
 
 # Use $PAGER and -p to force (only for this command) sending color to pipe.
 alias stpp             '!PAGER=fppt git -p st'
