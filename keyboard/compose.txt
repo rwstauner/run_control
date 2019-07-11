@@ -38,6 +38,7 @@
 "dis" "ಠ_ಠ" # look of disapproval
 "down" "↓" # DOWNWARDS ARROW
 "dragon" "🐉" # DRAGON
+"eyeroll" "🙄" # FACE WITH ROLLING EYES
 "eyes" "👀" # EYES
 "empty" "∅" # EMPTY SET
 "facepalm" "😐 ＋🌴"
