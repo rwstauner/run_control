@@ -20,42 +20,5 @@ put-cli-in-path () {
   symlink "$1" "$bin/"
 }
 
-sierra=false
-sw_vers -productVersion | grep -qF 10.12 && sierra=true
-
-if $sierra; then
-  install karabiner-elements
-  symlink $mac/karabiner.json ~/.config/karabiner/karabiner.json
-  exit
-fi
-
-install seil
-put-cli-in-path /Applications/Seil.app/Contents/Library/bin/seil
-
-# Make Caps Lock send F19.
-seil set keycode_capslock 80
-
-cat <<SEIL
-Remember to:
-  - System Preferences > Keyboard > Modifier Keys -> caps lock: "No Action"'
-  - Open Seil, check box for "Change the caps lock key"
-  - Restart any apps for changes to take effect.
-SEIL
-
-install karabiner
-
-karabiner="$HOME/Library/Application Support/Karabiner/private.xml"
-symlink "$mac/karabiner.xml" "$karabiner"
-
-put-cli-in-path /Applications/Karabiner.app/Contents/Library/bin/karabiner
-
-karabiner reloadxml
-
-karabiner-settings () {
-  cat "$karabiner" | perl -lne 'print $2 if m{<(identifier)>(.+?)</\1>}'
-}
-
-# Enable any new settings.
-karabiner-settings | while read -r setting; do
-  karabiner enable "$setting"
-done
+install karabiner-elements
+symlink $mac/karabiner.json ~/.config/karabiner/karabiner.json
