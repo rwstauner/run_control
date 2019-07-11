@@ -67,26 +67,22 @@ ZSH_CUSTOM=$HOME/run_control/zsh/custom
 # zsh_reload
 plugins=(
   cp
-  cpanm
   colorize
-  dircycle
   docker
   docker-compose
-  fabric
 
   # We load this plugin later.
   #history-substring-search
 
-  jsontools
-  npm
-  pip
-  python
-  pylint
+  # npm
+  # pip
+  # python
+  # pylint
   rsync
   safe-paste
   urltools
-  vagrant
-  virtualenv
+  # vagrant
+  # virtualenv
 )
 
 # Don't load OMZ libs we don't want to use.
