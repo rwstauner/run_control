@@ -83,6 +83,12 @@ parse_grep_colors
 config color.ui          auto
 
 config core.excludesFile ~/.excludes
+config core.attributesfile ~/.gitattributes
+
+cat <<EOF > ~/.gitattributes
+# generated.
+*.json diff=json
+EOF
 
 # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
 config core.trustctime   false
@@ -121,6 +127,7 @@ fi
 # use with ".gitattributes": '*.png diff=exif'
 
 config diff.exif.textconv    'exiftool'; # exiv2 ?
+config diff.json.textconv    'sh -c '\''jq "${JSON_DIFF_JQ:-.}" "$@" || cat "$@"'\'' --'
 config diff.strings.textconv 'strings'
 config diff.ziplist.textconv 'unzip -l'
 config diff.pdftext.textconv 'pdftotext'
