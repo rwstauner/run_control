@@ -1,4 +1,8 @@
-export PAGER=less LESS=FRX
+# F - Quit if entire file fits on first screen.
+# R - Output "raw" control characters (colors).
+# X - Don't use termcap init/deinit strings (don't clear the screen).
+# i - Ignore case in searches that do not contain uppercase.
+export PAGER=less LESS=FRXi
 
 # http://nion.modprobe.de/blog/archives/572-less-colors-for-man-pages.html
 # https://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
