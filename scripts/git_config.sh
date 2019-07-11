@@ -318,7 +318,7 @@ alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $b
 alias fetch-pr         '!remote="${1:-origin}"; git fetch "$remote" "+refs/pull/*/head:refs/remotes/$remote/pr/*"'
 alias branch-pr        '!branch="$1"; pr="$2"; remote="${3:-origin}"; git co -b "$branch" -t "refs/remotes/$remote/pr/$pr"'
 
-alias rbm              'rebase master'
+alias rbm              'rebase master --autostash'
 
 # Rebasing a cherry-picked branch will squash the duplicated commit.
 # Wait a moment after a failure for git to clean up.
@@ -357,7 +357,7 @@ alias these            '!cmd="$1"; shift; for i in "$@"; do (cd "$i" && eval git
 
 alias topic            '!git checkout -b "$1" master'
 
-alias up               'pull --all --prune'
+alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
 
 # whois takes a name or email
