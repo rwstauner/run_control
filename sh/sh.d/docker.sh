@@ -97,7 +97,7 @@ drun () {
     -v $hist:/root/.bash_history # persist bash history
     -v $hist:/root/.ash_history  # also sh (alpine)
     -v $HOME/.inputrc:/root/.inputrc # ctrl-arrows
-    -i --rm -v $PWD:/src -w /src
+    -i --rm
   )
 
   if [[ "$1" = "--ssh"* ]]; then
@@ -127,6 +127,14 @@ drun () {
   # Only specify -t if stdin is console (piping data to -t makes it mad).
   test -t 0 && args+=-t
   docker run "${args[@]}" "$@"
+}
+drunw () {
+  preargs=()
+  if [[ "$1" == "--ssh" ]]; then
+    shift
+    preargs=(--ssh)
+  fi
+  drun "${preargs[@]}" -v "$PWD:/src" -w /src "$@"
 }
 
 # TODO: source .env.local (since dc it loads .env)
