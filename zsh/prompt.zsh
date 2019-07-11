@@ -78,6 +78,7 @@ _rwstauner_set_prompt () {
 
 typeset -a my_prompt
 my_prompt=(
+  '🤖 '
   #'💥 '
 
   # user
