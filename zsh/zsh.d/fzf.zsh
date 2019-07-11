@@ -30,6 +30,10 @@ _fzf_post_process () {
       # If there's a "(modified|new file):" in front of the path, strip it.
       perl -pe 's/^\s*[^:]+:\s*(.+)/$1/'
       ;;
+    docker\ ps*)
+      # Just the container id.
+      awk '{ print $1 }'
+      ;;
     *)
       cat
       ;;
