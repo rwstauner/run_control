@@ -1,5 +1,0 @@
-#!/bin/bash
-
-. `dirname "$0"`/../scripts/.helpers.sh
-
-download-bin http://download.elasticsearch.org/es2unix/es
