@@ -1,18 +1,3 @@
-docker () {
-  if [[ -d ~/.dinghy ]]; then
-    `dinghy shellinit`
-    DOCKER_MACHINE_IP=`dinghy ip`
-  fi
-  unset -f docker
-  command docker "$@"
-}
-
-dinghy () {
-  `command dinghy shellinit`
-  unset -f dinghy
-  command dinghy "$@"
-}
-
 # https://github.com/docker/compose/issues/3106
 export COMPOSE_HTTP_TIMEOUT=86400
 
@@ -85,7 +70,7 @@ dssh-agent () {
   local name=ssh-agent img=whilp/ssh-agent:latest
   docker-running "$name" || {
     docker-ensure "$name" -v ssh-agent:/ssh "$img"
-    echo 'ssh-add -l >&- || ssh-add' | drun --ssh-agent -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa "$img" sh
+    echo 'ssh-add -l >&- || ssh-add' | drun --ssh-agent -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa:cached,ro "$img" sh
   }
   unset -f dssh-agent
 }
@@ -94,9 +79,9 @@ drun () {
   local hist=$HOME/.bash_history.docker
   [[ -f $hist ]] || touch $hist
   args=(
-    -v $hist:/root/.bash_history # persist bash history
-    -v $hist:/root/.ash_history  # also sh (alpine)
-    -v $HOME/.inputrc:/root/.inputrc # ctrl-arrows
+    -v $hist:/root/.bash_history:cached # persist bash history
+    -v $hist:/root/.ash_history:cached  # also sh (alpine)
+    -v $HOME/.inputrc:/root/.inputrc:cached # ctrl-arrows
     -i --rm
   )
 
@@ -107,10 +92,10 @@ drun () {
   fi
 
   case "$*" in
-    *maven*|*gradle*|*clojure*)
-      args+=(-v $HOME/.m2:/root/.m2)
-      args+=(-v $HOME/.m2:/home/gradle/.m2)
-      args+=(-v $hist:/home/gradle/.bash_history)
+    *maven*|*gradle*|*clojure*|*lein*)
+      args+=(-v $HOME/.m2:/root/.m2:cached)
+      args+=(-v $HOME/.m2:/home/gradle/.m2:cached)
+      args+=(-v $hist:/home/gradle/.bash_history:cached)
       ;;
   esac
 
@@ -134,10 +119,9 @@ drunw () {
     shift
     preargs=(--ssh)
   fi
-  drun "${preargs[@]}" -v "$PWD:/src" -w /src "$@"
+  drun "${preargs[@]}" -v "$PWD:/src:cached" -w /src "$@"
 }
 
-# TODO: source .env.local (since dc it loads .env)
 alias dc=docker-compose
 
 docker-clean-images () {
