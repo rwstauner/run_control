@@ -29,7 +29,8 @@ perldeps () {
 
 perldeps
 
-if homebrew abcde --with-{flac,lame,vorbis-tools,glyr}; then
+# --with-{flac,lame,vorbis-tools,glyr} no longer optional
+if homebrew abcde; then
   homebrew cdparanoia
 
   homebrew normalize
