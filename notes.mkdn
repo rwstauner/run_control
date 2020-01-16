@@ -99,7 +99,6 @@ compare /etc/pm/sleep.d/
     sqlite3 sqlite3-doc sqlite3-pcre libsqlite3-dev
     postgresql-client-8.4 libpq-dev
     psutils pdftk cups-pdf
-    silversearcher-ag
     xclip xsel xsane xsensors
     zenity
     dict aspell

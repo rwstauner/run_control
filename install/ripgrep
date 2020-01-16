@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if homebrew ripgrep;
+  exit
+fi
+
+echo "not implemented" >&2
+exit 1

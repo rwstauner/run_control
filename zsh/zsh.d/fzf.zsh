@@ -2,11 +2,11 @@ source_rc_files ~/.fzf.zsh
 
 
 # Use git for faster finding.
-export FZF_DEFAULT_COMMAND='
-  (git ls-tree -r --name-only HEAD ||
-   find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
-      sed s/^..//) 2> /dev/null'
-
+# export FZF_DEFAULT_COMMAND='
+#   (git ls-tree -r --name-only HEAD ||
+#    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+#       sed s/^..//) 2> /dev/null'
+export FZF_DEFAULT_COMMAND='rg --files'
 
 export FZF_DEFAULT_OPTS="
   --history $HOME/.fzf.history
@@ -22,7 +22,7 @@ bindkey '^X^H' fzf-history-widget
 _fzf_post_process () {
   cmd="$1"
   case "$cmd" in
-    ag\ *|grep\ *|git\ grep\ *)
+    grep\ *|git\ grep\ *|rg\ *)
       # Strip everything after "file:line".
       perl -pe 's/^(.+?:(\d+)).*/$1/'
       ;;

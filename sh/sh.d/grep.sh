@@ -1,8 +1,10 @@
 # putting color in GREP_OPTIONS makes it work for (b)zgrep, too
-GREP_OPTIONS="--color=auto"
+# but is deprecated, apparently.
+# export GREP_OPTIONS="--color=auto"
+alias grep='grep --color=auto'
 
-GREP_COLORS="ms=01;31:mc=01;33:sl=:cx=34:fn=35:ln=32:bn=32:se=36"
-export GREP_OPTIONS GREP_COLORS
+# GNU grep
+export GREP_COLORS="ms=01;31:mc=01;33:sl=:cx=34:fn=35:ln=32:bn=32:se=36"
 
 # http://savannah.gnu.org/bugs/index.php?31389
 #alias grep='env LC_ALL=POSIX grep'
@@ -15,3 +17,6 @@ alias Grep='grep'
 # use grep that might not be expecting altered output.
 # Also force display of filename for consistency.
 alias grepn='grep -H -n'
+
+# RIPGREP_CONFIG_PATH
+alias rg='rg --no-heading'
