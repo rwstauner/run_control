@@ -14,6 +14,7 @@
 ":'(" "😢" # CRYING FACE
 ":(" "☹" # WHITE FROWNING FACE
 ":)" "☺" # WHITE SMILING FACE
+"N`" "Ñ" # shift not needed # LATIN CAPITAL LETTER N WITH TILDE
 "anger" "💢" # ANGER SYMBOL
 "angry" "😠" # ANGRY FACE
 "bear" "🐻" # BEAR FACE
@@ -38,11 +39,12 @@
 "dis" "ಠ_ಠ" # look of disapproval
 "down" "↓" # DOWNWARDS ARROW
 "dragon" "🐉" # DRAGON
+"empty" "∅" # EMPTY SET
 "eyeroll" "🙄" # FACE WITH ROLLING EYES
 "eyes" "👀" # EYES
-"empty" "∅" # EMPTY SET
 "facepalm" "😐 ＋🌴"
 "fire" "🔥" # FIRE
+"fish" "🐟" # FISH
 "flip" "(╯°□°）╯︵ ┻━┻" # tableflip
 "flower" "⚘" # FLOWER
 "ghost" "👻" # GHOST
@@ -58,16 +60,17 @@
 "keyr" "⏎" # Return # RETURN SYMBOL
 "keys" "⇧" # Shift # UPWARDS WHITE ARROW
 "keyt" "⇥" # Tab # RIGHTWARDS ARROW TO BAR
+"kiss" "😘" # FACE THROWING A KISS
 "mail" "📬" # OPEN MAILBOX WITH RAISED FLAG
 "mountain" "⛰" # MOUNTAIN
 "n-" "–" # EN DASH
-"N`" "Ñ" # shift not needed # LATIN CAPITAL LETTER N WITH TILDE
 "n`" "ñ" # shift not needed # LATIN SMALL LETTER N WITH TILDE
 "nbsp" " " # NO-BREAK SPACE
 "neutral" "😐" # NEUTRAL FACE
 "octopus" "🐙" # OCTOPUS
 "ok" "👌" # OK HAND SIGN
 "panda" "🐼" # PANDA FACE
+"party" "🎉" # PARTY POPPER
 "pear" "🍐" # PEAR
 "penguin" "🐧" # PENGUIN
 "pin" "📌" # PUSHPIN
@@ -75,6 +78,7 @@
 "poo" "💩" # PILE OF POO
 "pray" "🙏" # PERSON WITH FOLDED HANDS
 "rocket" "🚀" # ROCKET
+"rofl" "🤣" # ROLLING ON THE FLOOR LAUGHING
 "scream" "😱" # FACE SCREAMING IN FEAR
 "ship" "🛳" # PASSENGER SHIP
 "shrug" "¯\\_(ツ)_/¯"
@@ -85,20 +89,21 @@
 "sunglass" "😎" # SMILING FACE WITH SUNGLASSES
 "sweat" "😰" # FACE WITH OPEN MOUTH AND COLD SWEAT
 "there4" "∴" # THEREFORE
+"think" "🤔" # THINKING FACE
 "tongue" "😛" # FACE WITH STUCK-OUT TONGUE
 "triumph" "😤" # FACE WITH LOOK OF TRIUMPH
 "unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
 "up" "↑" # UPWARDS ARROW
 "vv" "✓" # CHECK MARK
+"warn" "⚠" # WARNING SIGN
 "wave" "🌊" # WATER WAVE
 "waving" "👋" # WAVING HAND SIGN
-"warn" "⚠" # WARNING SIGN
 "weary" "😩" # WEARY FACE
 "wearycat" "🙀" # WEARY CAT FACE
 "wink" "😉" # WINKING FACE
 "xbones" "🕱" # BLACK SKULL AND CROSSBONES
-"zwnj" "‌" # ZERO WIDTH NON-JOINER
 "zwj" "‍" # ZERO WIDTH JOINER
 "zwnbsp" "﻿" # BOM # ZERO WIDTH NO-BREAK SPACE
+"zwnj" "‌" # ZERO WIDTH NON-JOINER
 "zzz" "💤" # SLEEPING SYMBOL
