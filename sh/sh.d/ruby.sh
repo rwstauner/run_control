@@ -17,3 +17,5 @@ rbenv-gem-dir () {
 # If a Gemfile has rb-readline, rails console is fine.
 # Loading pry without rails requires including it directly.
 alias pry='pry -rrb-readline'
+
+alias ruby-ip='ruby -rsocket -e "puts Socket.gethostbyname(ARGV[0])[3].unpack(%(CCCC)).join(%(.))"'
