@@ -4,6 +4,6 @@
 
 dir=$PREFIX/fzf
 git-dir https://github.com/junegunn/fzf.git $dir
-(cd $dir && ./install --key-bindings --completion < /dev/null)
+(cd $dir && ./install --key-bindings --completion --no-bash --no-zsh < /dev/null)
 
 ln -sf $dir/bin/fzf $PREFIX/bin/fzf
