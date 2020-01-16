@@ -2,39 +2,14 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-# install other versions
-homebrew n
+script $PREFIX/bin/node <<'STUB'
+#!/bin/sh
+echo "${0##*/} not installed" >&2
+exit 1
+STUB
 
-name=node
-
-install-nodejs () {
-  local os="$1"
-  url='https://nodejs.org/dist/latest/'
-  archive=`curl "$url" | perl -lne 'print $1 if /href="('"$name"'-.+?-'"$os"'-x64\.tar\.xz)"/'`
-
-  versioned-archive-dir $name "$url/$archive"
-
-  # No need to symlink, this is added to path in shrc.
-}
-
-setup_runtime_dir node
-
-exes=(
-  node
-  npm
-)
-for exe in "${exes[@]}"; do
-  ln -sf ~/node/rc/shim ~/usr/bin/"$exe"
+for i in \
+  npm \
+; do
+  ln -sf node $PREFIX/bin/$i
 done
-
-ln -sf ~/node/rc/npm-bin ~/usr/bin/
-
-mkdir -p ~/node/global
-
-install-nodejs `uname | tr A-Z a-z`
-
-# Ensure new node is in PATH.
-. `dirname "$0"`/../sh/setup.sh
-. `dirname "$0"`/../sh/sh.d/node.sh
-
-~/node/rc/install-packages

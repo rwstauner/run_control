@@ -116,7 +116,6 @@ compare /etc/pm/sleep.d/
     apache2 apache2-mpm-prefork apache2-utils apache2.2-bin apache2.2-common
     libapache2-mod-fcgid
     libapache2-mod-php5 php-geshi php5-cli php5-common php5-gd
-    nodejs
     unrar unzip tnef
     xfce4-sensors-plugin xfce4-artwork xfce4-clipman xfce4-clipman-plugin
     xbacklight
