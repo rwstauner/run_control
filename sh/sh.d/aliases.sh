@@ -9,7 +9,7 @@ for i in rmdir mkdir rename;
   { alias $i="$i -v"; }
 
 # let me use my aliases when delaying commands
-for i in xargs watch sudo;
+for i in {g,}xargs watch sudo;
   { alias $i="$i "; }
 
 # add readline support

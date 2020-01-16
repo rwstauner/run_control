@@ -125,16 +125,16 @@ drunw () {
 alias dc=docker-compose
 
 docker-clean-images () {
-  docker images -q -f 'dangling=true' | xargs -r docker rmi
+  docker images -q -f 'dangling=true' | gxargs -r docker rmi
 }
 docker-clean-containers () {
-  docker ps     -q -f 'status=exited' | xargs -r docker rm
+  docker ps     -q -f 'status=exited' | gxargs -r docker rm
 }
 docker-clean-volumes () {
   comm -1 -3 \
     <(docker ps -q | while read i; do docker inspect $i | jq -r '.[] | .Mounts | .[] | .Name'| grep -vFx null; done | sort | uniq) \
     <(docker volume ls -q | sort) \
-      | xargs -r docker volume rm
+      | gxargs -r docker volume rm
 }
 
 docker-in-docker-args () {
