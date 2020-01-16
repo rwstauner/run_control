@@ -114,7 +114,7 @@ sub output {
     printf '("insertText:", "%s"); /* %s: %s */' . "\n",
       $data,
       join(', ', Compose => map { charnames::viacode(ord $_) // 'unknown' } @stack),
-      charnames::viacode(ord $data);
+      charnames::viacode(ord $data) // '';
   }
 }
 
