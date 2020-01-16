@@ -2,8 +2,9 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-# Get newer version with more consistent config.
-if homebrew vim; then
+test -d ~/.config/nvim || ln -s ~/run_control/nvim ~/.config/
+
+if homebrew nvim; then
   exit
 elif have apt-get; then
   # vim-gtk to get +clipboard
