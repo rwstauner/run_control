@@ -26,7 +26,7 @@ if is_mac; then
   }
 
   dinghy status | grep -qF 'VM: not created' && \
-    dinghy create --provider virtualbox --memory 6144 --cpus 4 --disk 100000
+    dinghy create --provider virtualbox --memory 4092 --cpus 4 --disk 100000
 
   exit
 fi
