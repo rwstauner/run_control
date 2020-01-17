@@ -1,0 +1,47 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if homebrew normalize; then
+  dest=$PREFIX/bin/normalize-ogg
+  if ! [[ -s $dest ]]; then
+    src=$(brew --prefix)/bin/normalize-ogg
+    cp "$src" "$dest"
+    patch -d "${dest%/*}" <<'DIFF'
+--- normalize-ogg	2020-01-03 17:24:16.000000000 -0700
++++ normalize-ogg	2020-01-03 17:25:20.000000000 -0700
+@@ -28,7 +28,7 @@
+ 
+ $MP3DECODE  = " -q -o %w %m";
+ $MP3ENCODE  = " -quiet %w %m";
+-$OGGDECODE  = " -q -d wav -f %w %m";
++$OGGDECODE  = ""; # " -q -d wav -f %w %m"; # rws
+ $OGGENCODE  = "";
+ $FLACDECODE = "";
+ $FLACENCODE = "";
+@@ -121,7 +121,7 @@ sub read_tags {
+     my ($retval, $vorbis_tag, $id3v1_tag, $id3v2_tag, $id3v2_sz);
+ 
+     if ($fname =~ /\.ogg$/i) {
+-	$vorbis_tag = backtick_noshell($VORBISCOMMENT, $fname);
++	$vorbis_tag = backtick_noshell($VORBISCOMMENT, "-e", $fname); # rws
+ 	defined($vorbis_tag) || die "Can't run vorbiscomment: $!, stopped";
+ 	$retval = [ 'ogg', $vorbis_tag ];
+ 
+@@ -171,7 +171,7 @@ sub write_tags {
+ 
+     if ($fname =~ /\.ogg$/i) {
+ 	if ($tag->[0] eq 'ogg' && $tag->[1]) {
+-	    my @args = ($VORBISCOMMENT, "-a", $fname);
++	    my @args = ($VORBISCOMMENT, "-e", "-a", $fname); # rws
+ 	    defined(my $pid = open(BABY, "|-"))
+ 		|| die "Can't fork: $!, stopped";
+ 	    if ($pid) {
+DIFF
+  fi
+
+  exit
+fi
+
+echo "not implemented" >&2
+exit 1
