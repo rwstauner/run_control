@@ -20,6 +20,7 @@
 "bear" "🐻" # BEAR FACE
 "beer" "🍺" # BEER MUG
 "bomb" "💣" # BOMB
+"boom" "💥" # COLLISION SYMBOL
 "bow" "🙇" # PERSON BOWING DEEPLY
 "bullet" "•" # BULLET
 "bullseye" "◎" # BULLSEYE
