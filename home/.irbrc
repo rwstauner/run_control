@@ -39,9 +39,6 @@ module Cantaloupe
 	end
 end
 
-## leave my prompt alone!
-at_exit { puts Cantaloupe.color(:red){' good riddance!'} rescue nil } ## hey, that's not nice.
-
 ## get method tab-completion like script/console
 require 'irb/completion'
 
@@ -63,10 +60,7 @@ if IRB.conf[:PROMPT]
 end
 
 def quiet(str)
-	#loud = conf.return_format
-	#conf.return_format = nil
 	puts str
-	#conf.return_format = loud
 	nil
 end
 
@@ -84,27 +78,12 @@ end
 ## built-in ri
 def ri(what); quiet `ri "#{what}"`; end
 
-#require 'strscan'
-
-#require 'rubygems'
-#require_gem 'rails'
-#$:.push(*%w|/www/rails/lib /www/rails|)
-
 ## namespace
 module Cantaloupe
-class <<self
-	def irb_msg(msg)
-		#warn " \033[37m::\033[33m " + msg.to_s + " \033[37m::\033[0m "
-		warn [color(:grey), '::', color(:orange){ msg }, color(:grey){ '::' }].join(' ')
-	end
-end
 	REASON = [	color(:bold, :magenta){%|"I'm scared."|},
 				color(:bold, :green)  {%|"Tardy, you have a cantaloupe."|},
 				color(:bold, :magenta){%|"Oh, I feel better, now."|}].join('  ')
 end
 
-## reminder
-puts Cantaloupe::REASON
-Cantaloupe.irb_msg Cantaloupe.singleton_methods.sort.join(' ')
 
 end
