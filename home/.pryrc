@@ -11,3 +11,17 @@ def fix_rb_readline
     rl_bind_keyseq_if_unbound("\033[1;5C", :rl_forward_word)
   end
 end
+
+class Object
+  def local_methods
+    (self.methods - self.class.superclass.instance_methods).sort
+  end
+
+  def super_methods(m)
+    supers = [m]
+    while m = m.super_method
+      supers << m
+    end
+    supers
+  end
+end

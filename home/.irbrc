@@ -81,6 +81,18 @@ class Object
 	def methods_local(re=nil)
 		methods_irb(re, self.methods - self.class.superclass.instance_methods)
 	end
+
+  def local_methods
+    (self.methods - self.class.superclass.instance_methods).sort
+  end
+
+  def super_methods(m)
+    supers = [m]
+    while m = m.super_method
+      supers << m
+    end
+    supers
+  end
 end
 
 ## built-in ri
