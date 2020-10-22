@@ -19,4 +19,5 @@ alias Grep='grep'
 alias grepn='grep -H -n'
 
 # RIPGREP_CONFIG_PATH
-alias rg='rg --no-heading'
+# alias rg='rg -H --no-heading --vimgrep'
+alias rg='rg -H --no-heading'
