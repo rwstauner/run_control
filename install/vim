@@ -4,7 +4,12 @@
 
 test -d ~/.config/nvim || ln -s ~/run_control/nvim ~/.config/
 
+nvim-post-install () {
+  command -v nvr || pip3 install neovim-remote
+}
+
 if homebrew nvim; then
+  nvim-post-install
   exit
 elif have apt-get; then
   # vim-gtk to get +clipboard

@@ -127,8 +127,13 @@ my_prompt=(
   $'\n%(!.%{%K{red}%}#%{%k%}.%{%B%F{031}%}💥%{%f%b%}) '
 )
 
+if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
+  RPROMPT='%{%B%F{202}%}« neovim »%{%f%}'
+  # my_prompt[1]='✏ '
+else
+  RPROMPT='$(_rwstauner_git_prompt_info)'
+fi
 PROMPT="${(j,,)my_prompt}"
-RPROMPT='$(_rwstauner_git_prompt_info)'
 unset my_prompt
 
 }
