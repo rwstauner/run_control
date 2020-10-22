@@ -43,7 +43,8 @@
 "empty" "∅" # EMPTY SET
 "eyeroll" "🙄" # FACE WITH ROLLING EYES
 "eyes" "👀" # EYES
-"facepalm" "😐 ＋🌴"
+"fp" "🤦" # FACE PALM
+"fp+" "😐 ＋🌴"
 "fire" "🔥" # FIRE
 "fish" "🐟" # FISH
 "flip" "(╯°□°）╯︵ ┻━┻" # tableflip
