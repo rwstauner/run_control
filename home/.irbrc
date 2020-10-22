@@ -4,19 +4,27 @@ if $0 == 'irb'
 IRB.conf[:USE_READLINE] = true
 
 ## irb history-saving extension
-#require 'irb/ext/save-history'
+# require 'irb/ext/save-history'
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 IRB.conf[:SAVE_HISTORY] = 500
-	## not necessary
-	#class IRB::Irb
-	#	alias_method :non_historical_initialize, :initialize
-	#	def initialize(*args)
-	#		non_historical_initialize(*args)
-	#		@context.history_file = "#{ENV['HOME']}/.irb_history"
-	#		@context.save_history = 500
-	#		#@context.io.load_history ## don't need to call this explicitly
-	#	end
-	#end
+
+# Only for mac system irb.
+$hist_loaded = ! $".detect { |l| l =~ %r{^/System/} }
+def fixhist
+  unless $hist_loaded
+    loadhist
+    $hist_loaded = true
+  end
+end
+
+def loadhist
+  STDERR.puts "loading hist"
+  last = Readline::HISTORY.pop
+  File.readlines(IRB.conf[:HISTORY_FILE]).each do |line|
+    Readline::HISTORY << line.chomp
+  end
+  Readline::HISTORY << last unless last.nil?
+end
 
 module Cantaloupe
 	COLOR = {
@@ -85,5 +93,18 @@ module Cantaloupe
 				color(:bold, :magenta){%|"Oh, I feel better, now."|}].join('  ')
 end
 
+if Readline::HISTORY.to_a.empty?
+  STDERR.puts "hit enter to fix hist" unless $hist_loaded
+  # Tried overriding the string that gets put into the prompt
+  # but that gets called too early.
+  # self.define_singleton_method(:to_s) { do_stuff }
+  IRB::ReadlineInputMethod.prepend(Module.new do
+    def gets
+      super.tap do
+        fixhist
+      end
+    end
+  end)
+end
 
 end
