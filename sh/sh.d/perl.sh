@@ -148,6 +148,10 @@ alias mp3info2='mp3info2 -e 3'
 
 alias human_bytes='perl -MFormat::Human::Bytes -le "print Format::Human::Bytes->base2(shift)"'
 
+uni () {
+  PLENV_VERSION=5.30.1 plenv exec uni -8 "$@" | less -r
+}
+
 if [[ -n "$ZSH_VERSION" ]]; then
   cpanm=$HOME/.cpanm/work; : ~cpanm
 fi
