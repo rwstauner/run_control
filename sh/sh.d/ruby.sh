@@ -9,6 +9,7 @@ if [[ -d $RBENV_ROOT ]]; then
 fi
 
 export DISABLE_SPRING=1
+export RUBY_CONFIGURE_OPTS=--enabled-shared
 
 rbenv-gem-dir () {
   echo $(rbenv prefix)/lib/ruby/gems/*/gems/
