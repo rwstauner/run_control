@@ -106,6 +106,7 @@ omz=$?
 # Always do these.
 unset skip_omz_lib
 unset -f source
+unalias _ # alias for sudo
 
 # If omz failed, return early and preserve exit code.
 [[ $omz -eq 0 ]] || return $omz
