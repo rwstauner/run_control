@@ -1,1 +1,7 @@
-alias cljn='clj -R:nREPL -m nrepl.cmdline --interactive'
+clj () {
+  if [[ $# -eq 0 ]]; then
+    clojure -M:my-repl
+  else
+    command clj "$@"
+  fi
+}

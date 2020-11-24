@@ -1,0 +1,9 @@
+; https://github.com/bhauman/rebel-readline
+{
+ ; :key-map :viins
+ :color-theme :dark-screen-theme
+ :key-bindings {:emacs [;["^D" :clojure-doc-at-point]
+                        ; Make enter accept-line regardless of cursor placement.
+                        ["^M" :clojure-force-accept-line]]
+                :viins [["^M" :clojure-force-accept-line]]}
+}
