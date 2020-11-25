@@ -5,3 +5,7 @@ clj () {
     command clj "$@"
   fi
 }
+
+alias bb='rlwrap bb'
+
+export BABASHKA_PRELOADS='(defmacro $$ [& args] `(let [proc ^{:inherit true} (p/$ ~@args)] (p/check proc) nil))'

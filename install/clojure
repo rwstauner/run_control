@@ -2,7 +2,16 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if homebrew clojure leiningen boot-clj candid82/brew/joker; then
+brew=(
+  clojure
+  leiningen
+  boot-clj
+  candid82/brew/joker
+  borkdude/brew/babashka
+  borkdude/brew/clj-kondo
+)
+
+if homebrew "${brew[@]}"; then
   true # noop
 else
   echo 'fixme'
