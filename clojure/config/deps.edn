@@ -34,18 +34,20 @@
   ;;   :deps {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.5.460"}}}
   ;;   :test {:extra-paths ["test"]}
     ; https://nrepl.org/nrepl/0.6.0/usage/server.html#_using_clojure_cli_tools
-    :my-repl
-      {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.4"}
-                    nrepl/nrepl {:mvn/version "0.8.3"}
-                    com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
-       :main-opts ["-m" "nrepl.cmdline" "--interactive" "--repl-fn" "rebel-readline.main/-main"]}
-    :nREPL
+    :nrepl
       {:extra-deps {nrepl/nrepl {:mvn/version "0.6.0"}}
-       :main-opts ["-m" "nrepl.cmdline" "--interactive"]}
+       ; :main-opts ["-m" "nrepl.cmdline" "--interactive"]
+       }
     :rebel
       {:extra-deps
         {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
-       :main-opts  ["-m" "rebel-readline.main"]}
+       ; :main-opts  ["-m" "rebel-readline.main"]
+       }
+    :reply
+      {:extra-deps {reply/reply {:mvn/version "0.4.4"}}
+       :main-opts ["-m" "reply.main"]}
+    :tools/repl
+      {:extra-deps {org.clojure/tools.namespace {:mvn/version "1.0.0"}}}
   }
 
   ;; Provider attributes

@@ -1,4 +1,5 @@
 .nrepl-history
+.rebel_readline_history
 
 *.swp
 

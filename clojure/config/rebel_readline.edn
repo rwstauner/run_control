@@ -4,6 +4,7 @@
  :color-theme :dark-screen-theme
  :key-bindings {:emacs [;["^D" :clojure-doc-at-point]
                         ; Make enter accept-line regardless of cursor placement.
-                        ["^M" :clojure-force-accept-line]]
+                        ["^M" :clojure-force-accept-line]
+                        ["^U" :backward-kill-line]]
                 :viins [["^M" :clojure-force-accept-line]]}
 }
