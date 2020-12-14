@@ -49,17 +49,12 @@ _fzf_post_process () {
   esac
 }
 
-__output_after_last_prompt () {
-  # if last line and current line combine to make multi line prompt...
-  perl -ne 'if ($o[-1] =~ /^🤖 / && /^💥/) { pop @o; @l = @o; @o = () } else { push @o, $_ } END { print @l }'
-}
-
 # FZF the contents of the current tmux pane.
 __fzf-tmux-pane () {
   local last="${psvar[1]}" # Set by custom prompt hooks. Alternative: `fc -l -1 | cut -f 3- -d ' '`
   # `-S 0` visible, `-S -10` ten lines in hist, `-S -` beginning
   # -J to wrap and preserve whitespace
-  local cmd="tmux capture-pane -Jp -S - | __output_after_last_prompt"
+  local cmd="$HOME/run_control/tmux/capture-from-last-prompt"
   eval "$cmd | $(FZF_TMUX_HEIGHT=90% __fzfcmd) +s --tac -m --header=tmux-capture-pane" | _fzf_post_process "$last" | while read item; do
     # TODO: s/.+?:\d+:\K.+//
     # TODO: might not want the q
