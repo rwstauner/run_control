@@ -236,7 +236,7 @@ alias_diffs () {
 
 alias_diffs cw            '' $'--color-words=.'
 alias_diffs cww           '' $'--color-words=\\\\w+'
-alias_diffs hl            '!_() { git ' ' --color "$@" | diff-highlight | $PAGER; }; _'
+alias_diffs hl            '!_() { git' '--color "$@" | diff-highlight | $PAGER; }; _'
 
 alias diff-each        '!(cd $GIT_PREFIX && git diff --name-only -- "$@") | while read -r f; do GIT_DIFF_FILE="$f" git diff --color=always "$f"; done | $PAGER'
 alias diffwithsubs     '!git submodule summary; git diff'
@@ -317,6 +317,7 @@ alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
 
 alias mine             '!git log --author=`git config user.email`'
+alias minest           '!git mine --stat --no-merges'
 
 # provide rebasing music (https://coderwall.com/p/at9bya)
 #alias mav             $'!afplay ~/Music/Danger\\ Zone.mp3 & LASTPID=$! \ngit rebase -i $1 \nkill -9 $LASTPID\n true'
@@ -329,6 +330,8 @@ alias mine             '!git log --author=`git config user.email`'
 # what new commits have been created by the last command (like "git pull")
 alias new              '!git log $1@{1}..$1@{0} "$@"'
 
+# alias patch            '!git --no-pager diff --no-color "$@"'
+
 # FIXME: There's an api for this.
 alias prune-all        '!git remote | xargs -n 1 git remote prune'
 
@@ -339,8 +342,10 @@ alias pulp             '!echo just here to avoid tab-completing "pull"'
 # pum doesn't seem to be storing the fetch, so do both
 alias pum              '!git fetch upstream; git pull upstream master'
 
+alias push-topic       '!git push origin "`git config remote.origin.push`,topic=$*"'
 alias pusht            '!git push "$@"; git push --tags "$@"'
-alias pushup           '!git push -u "${1:-origin}" "${2:-`git current-branch`}"'
+alias branch-prefix    '!git config remote."${1:-origin}".url | grep -q rwstauner || echo "rwstauner/"'
+alias pushup           '!git push -u "${1:-origin}" HEAD:"`git branch-prefix`${2:-`git current-branch`}"'
 
 alias branch-to-remote  '!branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch'
 alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch'
@@ -350,11 +355,12 @@ alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $b
 alias fetch-pr         '!remote="${1:-origin}"; git fetch "$remote" "+refs/pull/*/head:refs/remotes/$remote/pr/*"'
 alias branch-pr        '!branch="$1"; pr="$2"; remote="${3:-origin}"; git co -b "$branch" -t "refs/remotes/$remote/pr/$pr"'
 
-alias rbm              'rebase master --autostash'
+alias rb               'rebase --autostash'
+alias rbm              '!if [ $# -gt 0 ] && [ "x$*" != "x-i" ]; then echo "no args for rbm"; exit 1; fi; git rebase --autostash master "$@"'
 
 # Rebasing a cherry-picked branch will squash the duplicated commit.
 # Wait a moment after a failure for git to clean up.
-alias rebase-branches  '![ $# -gt 0 ] || set -- $(git branch --no-merged master); for branch in "$@"; do echo " # $branch #"; git rebase -q master "$branch" || { git rebase --abort; sleep 1; } done; git checkout master'
+alias rebase-branches  '![ $# -gt 0 ] || set -- $(git branch --no-merged master | grep -vE "\bwip-"); for branch in "$@"; do echo " # $branch #"; git rebase -q master "$branch" || { git rebase --abort; sleep 1; } done; git checkout master'
 
 # Since git operates from the project root dir `pwd` also works.
 #$gc alias.root            $'!pwd'
@@ -391,6 +397,7 @@ alias topic            '!git checkout -b "$1" master'
 
 alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
+alias upp              '!git up; git prune-branches; git bv'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
