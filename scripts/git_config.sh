@@ -88,6 +88,7 @@ config core.attributesfile ~/.gitattributes
 cat <<EOF > ~/.gitattributes
 # generated.
 *.json diff=json
+sanctum/** diff=sanctum
 
 *.java diff=java
 *.pl diff=perl
@@ -156,6 +157,7 @@ fi
 
 config diff.exif.textconv    'exiftool'; # exiv2 ?
 config diff.json.textconv    'sh -c '\''jq "${JSON_DIFF_JQ:-.}" "$@" || cat "$@"'\'' --'
+config diff.sanctum.textconv 'sh -c '\''test -n "$GIT_DIFF_FILE" && t="${GIT_DIFF_FILE#sanctum/}" && t="${t%%/*}" && cd sanctum && sanctum view -t "$t" "${1#sanctum/}" || cat "$@"'\'' --'
 config diff.strings.textconv 'strings'
 config diff.ziplist.textconv 'unzip -l'
 config diff.pdftext.textconv 'pdftotext'
@@ -236,6 +238,7 @@ alias_diffs cw            '' $'--color-words=.'
 alias_diffs cww           '' $'--color-words=\\\\w+'
 alias_diffs hl            '!_() { git ' ' --color "$@" | diff-highlight | $PAGER; }; _'
 
+alias diff-each        '!(cd $GIT_PREFIX && git diff --name-only -- "$@") | while read -r f; do GIT_DIFF_FILE="$f" git diff --color=always "$f"; done | $PAGER'
 alias diffwithsubs     '!git submodule summary; git diff'
 
 alias draft            'push origin HEAD:refs/drafts/master'
