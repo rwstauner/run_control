@@ -30,9 +30,18 @@ _fzf_post_process () {
       # If there's a "(modified|new file):" in front of the path, strip it.
       perl -pe 's/^\s*[^:]+:\s*(.+)/$1/'
       ;;
+    docker\ images*)
+      # image:tag
+      # awk '{ if ($2 == "<none>") { print $1 } else { printf "%s:%s\n", $1, $2 } }'
+      awk '{ print $3 }'
+      ;;
     docker\ ps*)
       # Just the container id.
       awk '{ print $1 }'
+      ;;
+    docker\ volume\ ls)
+      # Just the name.
+      awk '{ print $2 }'
       ;;
     *)
       cat
