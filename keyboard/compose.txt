@@ -17,6 +17,7 @@
 "N`" "Ñ" # shift not needed # LATIN CAPITAL LETTER N WITH TILDE
 "anger" "💢" # ANGER SYMBOL
 "angry" "😠" # ANGRY FACE
+"anguish" "😧" # ANGUISHED FACE
 "bear" "🐻" # BEAR FACE
 "beer" "🍺" # BEER MUG
 "bomb" "💣" # BOMB
