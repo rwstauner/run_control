@@ -88,6 +88,34 @@ config core.attributesfile ~/.gitattributes
 cat <<EOF > ~/.gitattributes
 # generated.
 *.json diff=json
+
+*.java diff=java
+*.pl diff=perl
+*.pm diff=perl
+*_spec.rb diff=rspec
+*.sh whitespace=indent,trail,space eol=lf
+
+# https://gist.github.com/tekin/12500956bd56784728e490d8cef9cb81
+*.c     diff=cpp
+*.h     diff=cpp
+*.c++   diff=cpp
+*.h++   diff=cpp
+*.cpp   diff=cpp
+*.hpp   diff=cpp
+*.cc    diff=cpp
+*.hh    diff=cpp
+*.cs    diff=csharp
+*.css   diff=css
+*.html  diff=html
+*.xhtml diff=html
+*.ex    diff=elixir
+*.exs   diff=elixir
+*.go    diff=golang
+*.py    diff=python
+*.md    diff=markdown
+*.rb    diff=ruby
+*.rake  diff=ruby
+*.rs    diff=rust
 EOF
 
 # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
@@ -131,6 +159,7 @@ config diff.json.textconv    'sh -c '\''jq "${JSON_DIFF_JQ:-.}" "$@" || cat "$@"
 config diff.strings.textconv 'strings'
 config diff.ziplist.textconv 'unzip -l'
 config diff.pdftext.textconv 'pdftotext'
+config diff.rspec.xfuncname  '^[ \t]*((RSpec|describe|context|it|before|after|feature|scenario|background)[ \t].*)$'
 
 # [aliases]
 # NOTE: git uses 'sh'
