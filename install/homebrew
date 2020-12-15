@@ -29,7 +29,6 @@ symlink () {
 # Get latest formulae.
 brew update
 
-# Since coreutils doesn't support --with-default-names we add to path in sh/loader.sh
 brew install coreutils
 
 # Other utils (ruby gems, etc) get confused by gnu stty on mac, so reroute it.
@@ -39,19 +38,16 @@ script ~/usr/bin/stty <<'SCRIPT'
 exec /bin/stty "$@"
 SCRIPT
 
-# Use --with-default-names to install gnu utils without 'g' prefix
-# (also enables `man` to find them automatically).
-brew install --with-default-names findutils
+brew install findutils
 
 brew install gawk
 # gawk installs awk symlink
 
-brew install --with-default-names gnu-sed
+brew install gnu-sed
 
-# Install as 'gtar' as too many other things expect the bsd tar on mac.
 brew install gnu-tar
 
-#brew install --with-default-names gnu-units
+#brew install gnu-units
 
 #brew install imagesnap
 #brew install tlassemble
