@@ -111,3 +111,11 @@ function unzip_single_file {
   fi
   unzip -p "$zip" > "${zip%.zip}.content"
 }
+
+terraform () {
+  if [[ -s terragrunt.hcl ]]; then
+    command terragrunt "$@"
+  else
+    command terraform "$@"
+  fi
+}
