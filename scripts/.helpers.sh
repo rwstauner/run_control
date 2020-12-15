@@ -83,11 +83,8 @@ homebrew () {
   expired 'homebrew-update' && \
     brew update
 
-  if brew ls | grep -qFx "$1"; then
-    brew upgrade "$@"
-  else
-    brew install "$@"
-  fi
+  brew install "$@"
+  brew upgrade "$@"
 
   # Always return true if we want to install with homebrew
   # (to enable if/block/exit).
