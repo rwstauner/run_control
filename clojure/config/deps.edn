@@ -1,3 +1,6 @@
+; see https://github.com/practicalli/clojure-deps-edn for lots of good examples
+
+
 ;; The deps.edn file describes the information needed to build a classpath.
 ;;
 ;; When using the `clojure` or `clj` script, there are several deps.edn files
@@ -34,10 +37,42 @@
   ;;   :deps {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.5.460"}}}
   ;;   :test {:extra-paths ["test"]}
     ; https://nrepl.org/nrepl/0.6.0/usage/server.html#_using_clojure_cli_tools
+    :cljfmt
+      {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.4"}}}
+    :fmt
+      {:extra-deps {com.jameslaverack/cljfmt-runner
+                    {:git/url "https://github.com/JamesLaverack/cljfmt-runner"
+                     :sha "97960e9a6464935534b5a6bab529e063d0027128"}}
+       :main-opts ["-m" "cljfmt-runner.check"]}
+    :fmt/fix {:main-opts ["-m" "cljfmt-runner.fix"]}
+    :kaocha
+      {:extra-paths ["test"]
+       :extra-deps  {lambdaisland/kaocha {:mvn/version "1.0-612"}}
+       :main-opts   ["-m" "kaocha.runner"]}
+    :kibit
+      {:extra-deps {tvaughan/kibit-runner {:mvn/version "0.1.0"}}
+       :main-opts  ["-m" "kibit-runner.cmdline"]}
+    ; :kondo
+    ;   {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
+    ;    :main-opts  ["-m" "clj-kondo.main"]}
+    :native-image
+      {:main-opts ["-m clj.native-image core"
+                   "--initialize-at-build-time"
+                   ;; optional native image name override
+                   "-H:Name=core"]
+       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
+       :extra-deps
+       {clj.native-image/clj.native-image
+        {:git/url "https://github.com/taylorwood/clj.native-image.git"
+         ; :sha "7708e7fd4572459c81f6a6b8e44c96f41cdd92d4"
+         :sha "f3e40672d5c543b80a2019c1f07b2d3fe785962c"}}}
     :nrepl
       {:extra-deps {nrepl/nrepl {:mvn/version "0.6.0"}}
        ; :main-opts ["-m" "nrepl.cmdline" "--interactive"]
        }
+    :outdated
+      {:extra-deps {olical/depot {:mvn/version "1.8.4"}}
+       :main-opts ["-m" "depot.outdated.main" "-a" "outdated"]}
     :rebel
       {:extra-deps
         {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
@@ -46,6 +81,14 @@
     :reply
       {:extra-deps {reply/reply {:mvn/version "0.4.4"}}
        :main-opts ["-m" "reply.main"]}
+    :spring
+      {:extra-deps
+        {org.springframework.boot/spring-boot-tools {:mvn/version "2.1.7.RELEASE"}}}
+    :test
+      {:extra-paths ["test"]
+       :extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                               :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}}
+       :main-opts ["-m" "cognitect.test-runner"]}
     :tools/repl
       {:extra-deps {org.clojure/tools.namespace {:mvn/version "1.0.0"}}}
   }
