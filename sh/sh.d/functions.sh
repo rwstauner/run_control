@@ -38,6 +38,15 @@ headgrep () {
   grep "$@";
 }
 
+keep-trying () {
+  local i=0
+  while ! "$@"; do
+    echo " ⚠ $i"
+    i=$((i+1))
+  done
+  echo " ✓ $i"
+}
+
 psgrep () {
   command ps -eo pid,ppid,pgid,user,%cpu,%mem,rss,state,tty,lstart,time,fname,command | \
     headgrep -n1 "$@";
