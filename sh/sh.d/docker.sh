@@ -1,3 +1,5 @@
+export DOCKER_BUILDKIT=1
+
 # https://github.com/docker/compose/issues/3106
 export COMPOSE_HTTP_TIMEOUT=86400
 
@@ -24,6 +26,12 @@ docker-compose () {
         [[ "$1" == "--rm" ]] && shift
         set -- run --rm "$@"
         ;;
+      # logs)
+      #   case "$*" in
+      #     *-f*|*--follow*);;
+      #     *) filter=(${PAGER:-less});;
+      #   esac
+      #   ;;
       logt)
         shift;
         set -- logs -t "$@"
@@ -66,14 +74,14 @@ docker-ensure () {
 
 alias dexec='docker exec -it -e COLUMNS -e TERM'
 
-dssh-agent () {
-  local name=ssh-agent img=whilp/ssh-agent:latest
-  docker-running "$name" || {
-    docker-ensure "$name" -v ssh-agent:/ssh "$img"
-    echo 'ssh-add -l >&- || ssh-add' | drun --ssh-agent -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa:cached,ro "$img" sh
-  }
-  unset -f dssh-agent
-}
+# dssh-agent () {
+#   local name=ssh-agent img=whilp/ssh-agent:latest
+#   docker-running "$name" || {
+#     docker-ensure "$name" -v ssh-agent:/ssh "$img"
+#     echo 'ssh-add -l >&- || ssh-add' | drun --ssh-agent -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa:cached,ro "$img" sh
+#   }
+#   unset -f dssh-agent
+# }
 
 drun () {
   local hist=$HOME/.bash_history.docker
@@ -86,9 +94,12 @@ drun () {
   )
 
   if [[ "$1" = "--ssh"* ]]; then
-    [[ "$1" = "--ssh-agent" ]] && dssh-agent
+    # [[ "$1" = "--ssh-agent" ]] && dssh-agent
     shift;
-    args+=(-v ssh-agent:/ssh -e SSH_AUTH_SOCK=/ssh/auth/sock)
+    # args+=(-v ssh-agent:/ssh -e SSH_AUTH_SOCK=/ssh/auth/sock -e GIT_SSH_COMMAND="ssh -i ~/.id_rsa -o StrictHostKeyChecking=no -l $USER")
+    local sockpath=/run/host-services/ssh-auth.sock
+    # FIXME: this doesn't work for github.
+    args+=(-v $sockpath:$sockpath -e SSH_AUTH_SOCK=$sockpath -e GIT_SSH_COMMAND="ssh -i ~/.id_rsa -o StrictHostKeyChecking=no -l $USER")
   fi
 
   case "$*" in
@@ -110,7 +121,8 @@ drun () {
   # }
 
   # Only specify -t if stdin is console (piping data to -t makes it mad).
-  test -t 0 && args+=-t
+  test -t 0 && args+=(-t)
+  # echo docker run "${args[@]}" "$@"
   docker run "${args[@]}" "$@"
 }
 drunw () {
@@ -133,7 +145,7 @@ docker-clean-containers () {
 docker-clean-volumes () {
   comm -1 -3 \
     <(docker ps -q | while read i; do docker inspect $i | jq -r '.[] | .Mounts | .[] | .Name'| grep -vFx null; done | sort | uniq) \
-    <(docker volume ls -q | sort) \
+    <(docker volume ls -q --filter 'dangling=true' | grep -E '[a-f0-9]{64}' | sort) \
       | gxargs -r docker volume rm
 }
 
@@ -184,4 +196,10 @@ docker-sync-clock () {
 
 docker-ip () {
   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
+}
+
+docker-dive () {
+  docker run --rm -it \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
+    wagoodman/dive:latest "$@"
 }
