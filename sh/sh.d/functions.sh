@@ -112,6 +112,11 @@ function unzip_single_file {
   unzip -p "$zip" > "${zip%.zip}.content"
 }
 
+httpd () {
+  # python3 -m http.server
+  python2 -m SimpleHTTPServer "$@"
+}
+
 terraform () {
   if [[ -s terragrunt.hcl ]]; then
     command terragrunt "$@"
