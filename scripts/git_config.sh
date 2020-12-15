@@ -10,9 +10,10 @@ touch "$file"
 chmod 0600 "$file"
 
 # if there's no modeline put one there
-if test -f "$file" && ! grep -qE '^# vim: .+:$' "$file"; then
+if ! grep -qE '^# vim: .+:$' "$file"; then
   # set ro to remind me not to edit the file
-  sed -i -e '1 i# vim: set ro ts=2:' "$file"
+  [[ -s "$file" ]] || echo > "$file"
+  sed -i -e $'1 i\\\n# vim: set ro ts=2:' "$file"
 fi
 
 git_version=`git --version`
