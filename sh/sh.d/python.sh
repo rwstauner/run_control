@@ -14,11 +14,6 @@ source_rc_files $HOME/python/venv/local/bin/activate
 _python_logo="$HOME/data/images/tech/python_logo_transparent.png"
 test -f $_python_logo || _python_logo=/usr/share/pixmaps/python.xpm
 
-nosetests () {
-  command nosetests "$@"
-  notify_result -i "$_python_logo"
-}
-
 tox () {
   # Prepend any local python builds to the path so tox can access them.
   PATH=`python -c 'import sys; print ":".join(sys.argv[1:])' \

@@ -16,6 +16,8 @@
 
 alias nosound='NO_SOUND=1'
 
+# run after a command to notify about its result:
+# something () { command something "$@"; notify_result -i "path/to/image"; }
 notify_result () {
   local rv=$?
   local dir=`pwd`
