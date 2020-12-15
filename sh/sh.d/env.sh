@@ -8,4 +8,7 @@ export FTP_PASSIVE=1; # used by Net::FTP, and maybe possibly hopefully some othe
 # Universal file exclusions
 export TAR_OPTIONS="$TAR_OPTIONS --exclude-from=$HOME/.excludes"
 
+# Don't load mac crap for Apple_Terminal
+unset TERM_PROGRAM
+
 export XML_CATALOG_FILES="$HOME/devel/xml/catalog /etc/xml/catalog"
