@@ -16,7 +16,7 @@ script () {
 }
 
 test -d $homebrew/.git || \
-git clone http://github.com/Homebrew/homebrew $homebrew
+git clone http://github.com/Homebrew/brew $homebrew
 
 PATH=$brewbin:$PATH
 
