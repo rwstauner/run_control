@@ -373,9 +373,6 @@ alias serve            '!git daemon --reuseaddr --verbose  --base-path=. --expor
 
 alias st              $'!if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -e "s/^/\\\033[33m/" -e "s/:/\\\033[00m:/"; fi'
 
-# Use $PAGER and -p to force (only for this command) sending color to pipe.
-alias stpp             '!PAGER=fppt git -p st'
-
 alias subup            '!test -f ${GIT_DIR:-.}/.gitmodules && git submodule update'
 
 alias s                'status -s -b -u'
