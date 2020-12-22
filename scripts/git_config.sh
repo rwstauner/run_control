@@ -372,10 +372,14 @@ alias root             'rev-parse --show-toplevel'
 alias serve            '!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
 alias st              $'!if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -e "s/^/\\\033[33m/" -e "s/:/\\\033[00m:/"; fi'
+alias stx              '!git st; git bv; echo ignored:; git summarize-other'
 
 alias subup            '!test -f ${GIT_DIR:-.}/.gitmodules && git submodule update'
 
 alias s                'status -s -b -u'
+
+alias summarize-other  "!git ls-files -o | perl -ne '\$c = m{^([^/]+)/} ? \$1 : q[.]; \$d{\$c}++; END { for ( sort keys %d ){ printf qq[%6d %s/\\n], \$d{\$_}, \$_ } }'"
+
 alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 
   alias would-update  "!branch=\$(git symbolic-ref HEAD | sed s-^refs/heads/--); range=\"\${1:-..\`git config branch.\$branch.remote\`}/\$branch\"; { git log --color --graph --oneline \"\$range\"; git diff --color --stat \"\$range\"; git submodule-would-update; } | \${GIT_PAGER:-\${PAGER:-less -FRX}}"
