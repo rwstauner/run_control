@@ -4,7 +4,7 @@
 
 # If imagemagick has removed the version in the formula:
 # SHA256=foobar URL=yo perl -p -i -e 's/(^\s+(sha256|url)\s+").+?(")/$1$ENV{"\U$2"}$3/' Library/Formula/imagemagick.rb
-if homebrew imagemagick --with-x11; then
+if homebrew imagemagick; then
   exit
 elif have apt-get; then
   # libmagickwand-dev
