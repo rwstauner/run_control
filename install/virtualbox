@@ -4,9 +4,9 @@
 
 if is_mac; then
   # Remove (if already installed) then install in order to upgrade.
-  brew cask ls | grep -qFx virtualbox && \
-    brew cask remove virtualbox
-  brew cask install virtualbox
+  brew ls --cask | grep -qFx virtualbox && \
+    brew uninstall --cask virtualbox
+  brew install --cask virtualbox
   exit
 fi
 
