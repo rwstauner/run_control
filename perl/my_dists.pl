@@ -58,7 +58,7 @@ my $query = {
 };
 
   my $search = $opts{dists} ? 'release' : 'module';
-  my $res = $ua->request(POST => "http://api.metacpan.org/$search/_search", {
+  my $res = $ua->request(POST => "http://fastapi.metacpan.org/$search/_search", {
     content => encode_json($query)
   });
 
