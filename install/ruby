@@ -2,6 +2,11 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+if is_mac; then
+  # ruby-build secretly needs a working svn.
+  brew list --formula | grep -qFx subversion || brew install svn
+fi
+
 setup_runtime_dir ruby
 
 $HOME/ruby/rc/rbenv.sh
