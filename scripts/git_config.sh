@@ -123,6 +123,7 @@ EOF
 # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
 config core.trustctime   false
 
+config pull.rebase false # merge (default)
 config rebase.autosquash true
 
 config grep.lineNumber   true
