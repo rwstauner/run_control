@@ -2,9 +2,10 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+mkdir -p ~/gopath
+
 if homebrew go; then
-  # noop, need an else
-  true
+  [[ -d ~/go ]] || ln -s ~/homebrew/opt/go/libexec ~/go
 fi
 
 # go get a bunch of stuff that vim-go uses (golint, etc).
