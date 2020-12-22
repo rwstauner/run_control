@@ -31,9 +31,9 @@ github_font () {
 }
 
 zip=Symbola.zip
-symbola_url='http://users.teilar.gr/~g1951d'
+symbola_url='https://dn-works.com/wp-content/uploads/2020/UFAS-Fonts/'
 if wget -O $zip $symbola_url/$zip; then
-  unzip -o $zip Symbola.ttf
+  unzip -o $zip Symbola.otf
 else
   $BROWSER $symbola_url
 fi
@@ -42,7 +42,7 @@ fi
 #$BROWSER http://larsenwork.com/monoid
 
 # Hack
-github_font 'chrissimpkins/Hack'
+homebrew homebrew/cask-fonts/font-hack || github_font 'source-foundry/Hack'
 
 # "1 serious error found.  Do not install this font." ¯\_(ツ)_/¯
 # monoOne
