@@ -2,7 +2,7 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-test -d ~/.config/nvim || ln -s ~/run_control/nvim ~/.config/
+test -d ~/.config/nvim || ln -s ~/.vim ~/.config/nvim
 
 nvim-post-install () {
   command -v nvr || pip3 install neovim-remote
