@@ -3,7 +3,9 @@
 . `dirname "$0"`/../scripts/.helpers.sh
 
 if is_mac; then
-  have docker || brew cask install docker
+  have docker || brew install --cask docker
+
+  echo 'Open the docker app to finish installation'
 
   exit
 fi

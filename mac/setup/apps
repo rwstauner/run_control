@@ -15,16 +15,17 @@ script () {
 install android-file-transfer
 
 # Taxes :-P
-install adobe-reader
+install adobe-acrobat-reader
 
-install bitbar
+#install bitbar
 
+install docker
 install dropbox
 
 install finicky
 
 install firefox
-install firefoxdeveloperedition
+# install firefoxdeveloperedition
 
 # Clipboard history.
 install flycut
@@ -33,7 +34,7 @@ install flux
 install gimp
 script ~/usr/bin/gimp <<<$'#!/bin/bash\nexec /Applications/GIMP.app/Contents/MacOS/GIMP "$@"'
 
-install google-chrome
+#install google-chrome
 
 #install java
 install inkscape
@@ -41,27 +42,27 @@ install inkscape
 # Ministry taxes.
 install libreoffice
 
-install ngrok
+#install ngrok
 
-install remember-the-milk
-install rocket
+#install rocket
 
-install slack-beta
+#install slack-beta
 install skype
 
 install the-unarchiver
 
-install vagrant
+#install vagrant
 install virtualbox
 install vnc-viewer
 install vox
 install vox-preferences-pane
 
-install xquartz
+#install xquartz
 
 mkdir -p ~/usr/bin
 
 # Use docker for java.
 script ~/usr/bin/javac <<<$'#!/bin/sh\n# Avoid mac helper.\nexit 0'
+ln -s javac ~/usr/bin/java
 
 $HOME/run_control/mac/install "${apps[@]}"

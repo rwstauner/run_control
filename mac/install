@@ -10,20 +10,20 @@ tap () {
 }
 
 installed () {
-  brew cask list "$1" &> /dev/null
+  brew list --cask "$1" &> /dev/null
 }
 
 install () {
   installed "$1" || \
-    brew cask install "$@"
+    brew install --cask "$@"
 }
 
 # "Package installers may write to any location; options such as --appdir are ignored."
 [[ `stat -c '%U' /usr/local/bin` == "$USER" ]] || \
   sudo chown $USER /usr/local/bin
 
-tap caskroom/cask
-tap caskroom/versions
+tap homebrew/cask
+# tap homebrew/cask-versions
 
 reinstall=false
 if [[ "$1" == "--reinstall" ]]; then
@@ -33,7 +33,7 @@ fi
 
 for i in "$@"; do
   if $reinstall; then
-    brew cask remove "$i"
+    brew uninstall --cask "$i"
   fi
   install "$i"
 done
