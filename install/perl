@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. `dirname "$0"`/.helpers.sh
+. `dirname "$0"`/../scripts/.helpers.sh
 
 # ~/.pause: "user %s\npassword %s\n"
 # ~/.local/share/.cpan -> ~/.cpan/
