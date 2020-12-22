@@ -2,7 +2,7 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if homebrew ripgrep;
+if homebrew ripgrep; then
   exit
 fi
 
