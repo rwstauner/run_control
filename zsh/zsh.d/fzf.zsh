@@ -1,4 +1,18 @@
-source_rc_files ~/.fzf.zsh
+# ~/.fzf.zsh {{{
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == *$HOME/usr/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}$HOME/usr/fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "$HOME/usr/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "$HOME/usr/fzf/shell/key-bindings.zsh"
+# }}}
 
 
 # Use git for faster finding.
