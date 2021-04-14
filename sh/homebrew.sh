@@ -16,10 +16,5 @@ with-brew-env () {
     # CPPFLAGS="$CPPFLAGS -I$HOME/homebrew/opt/libxml2/include -I$HOME/homebrew/opt/readline/include" \
     # LDFLAGS="$LDFLAGS -L$HOME/homebrew/opt/libxml2/lib -L$HOME/homebrew/opt/readline/lib" \
     # DYLD_FALLBACK_LIBRARY_PATH="$HOME/homebrew/lib" \
-  PKG_CONFIG_PATH="${PKG_CONFIG_PATH:+$PKG_CONFIG_PATH }$HOME/homebrew/lib/pkgconfig" \
-    LIBRARY_PATH="${LIBRARY_PATH:+${LIBRARY_PATH}:}$HOME/homebrew/lib" \
-    CPATH="${CPATH:+${CPATH}:}$HOME/homebrew/include" \
-    CPPFLAGS="${CPPFLAGS:+$CPPFLAGS }-I$HOME/homebrew/include" \
-    LDFLAGS="${LDFLAGS:+$LDFLAGS }-L$HOME/homebrew/lib" \
-    "$@"
+  with-compilation-dir "$HOME/homebrew" "$@"
 }

@@ -1,5 +1,15 @@
 # shell utilities
 
+with-compilation-dir () {
+  local dir="$1"; shift
+  PKG_CONFIG_PATH="${PKG_CONFIG_PATH:+$PKG_CONFIG_PATH }$dir/lib/pkgconfig" \
+    LIBRARY_PATH="${LIBRARY_PATH:+${LIBRARY_PATH}:}$dir/lib" \
+    CPATH="${CPATH:+${CPATH}:}$dir/include" \
+    CPPFLAGS="${CPPFLAGS:+$CPPFLAGS }-I$dir/include" \
+    LDFLAGS="${LDFLAGS:+$LDFLAGS }-L$dir/lib" \
+    "$@"
+}
+
 mkdirpushd () {
   mkdir "$@"
   pushd "$@"
