@@ -2,4 +2,17 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-download-bin https://github.com/git/git/raw/master/contrib/diff-highlight/diff-highlight
+script ~/usr/bin/diff-highlight <<EOF
+#!/usr/bin/env perl
+
+$(curl -sL https://github.com/git/git/raw/master/contrib/diff-highlight/DiffHighlight.pm)
+
+package main;
+
+# Some scripts may not realize that SIGPIPE is being ignored when launching the
+# pager--for instance scripts written in Python.
+\$SIG{PIPE} = 'DEFAULT';
+
+DiffHighlight::highlight_stdin();
+exit 0;
+EOF
