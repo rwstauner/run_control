@@ -5,7 +5,6 @@
 touch ~/.tmux.conf.local
 
 if homebrew tmux; then
-  homebrew reattach-to-user-namespace
   exit
 fi
 

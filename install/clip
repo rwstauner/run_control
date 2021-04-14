@@ -11,7 +11,7 @@ if [[ `uname` = Darwin ]]; then
 # generated
 cmd=pbcopy
 test -t 0 && cmd=pbpaste
-exec reattach-to-user-namespace $cmd
+exec $cmd
 CLIP
 
 else
