@@ -7,6 +7,8 @@ PREFIX=$HOME/usr
 SRC_DIR=$HOME/data/src
 rc=$HOME/run_control #rc=`dirname $0`/..
 
+source $rc/sh/setup.sh
+
 arch-info () {
   local bits name
   if uname -m -i -p | sed 's/ /\n/g' | uniq | grep -q x86_64; then

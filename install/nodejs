@@ -4,5 +4,7 @@
 
 homebrew gpg gawk
 
+command -v asdf || . $rc/sh/sh.d/asdf.sh
+
 asdf plugin-add nodejs
 ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
