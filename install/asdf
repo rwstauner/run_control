@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ASDF_DIR="$HOME/.asdf"
+if ! test -d "$ASDF_DIR"; then
+  git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR"
+else
+  (cd "$ASDF_DIR" && git checkout master && git pull)
+fi
+(cd "$ASDF_DIR" && git checkout "$(git describe --abbrev=0 --tags)")
