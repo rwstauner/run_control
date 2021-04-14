@@ -81,10 +81,13 @@ parse_grep_colors
 # [settings]
 # TODO: figure out config core.autocrlf        input
 
+config init.defaultBranch main
+
 config color.ui          auto
 
 config core.excludesFile ~/.excludes
 config core.attributesfile ~/.gitattributes
+config core.symlinks false
 
 cat <<EOF > ~/.gitattributes
 # generated.
