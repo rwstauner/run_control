@@ -2,14 +2,7 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-script $PREFIX/bin/node <<'STUB'
-#!/bin/sh
-echo "${0##*/} not installed" >&2
-exit 1
-STUB
+homebrew gpg gawk
 
-for i in \
-  npm \
-; do
-  ln -sf node $PREFIX/bin/$i
-done
+asdf plugin-add nodejs
+~/.asdf/plugins/nodejs/bin/import-release-team-keyring
