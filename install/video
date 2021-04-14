@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+common=(
+  ffmpeg
+  mplayer
+)
+
+if homebrew "${common[@]}"; then
+  exit
+fi
+
+sudo apt-get "${common[@]}"

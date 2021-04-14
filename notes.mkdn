@@ -105,7 +105,7 @@ compare /etc/pm/sleep.d/
     autokey-gtk
     xdotool
     clamz
-    flac vorbis-tools mpg123 lame normalize-audio sox paprefs paman mplayer mplayer-fonts mplayer-gui mencoder ffmpeg ffmpeg2theora abcde cdparanoia cheese cd-discid audacity
+    paprefs paman mplayer-fonts mplayer-gui mencoder ffmpeg2theora abcde cdparanoia cheese cd-discid audacity
     gmusicbrowser libgstreamer-interfaces-perl libgnome2-wnck-perl
     curl lynx midori elinks
     clamav

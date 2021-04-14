@@ -1,0 +1,17 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+common=(
+  flac
+  lame
+  mpg123
+  sox
+  vorbis-tools
+)
+
+if homebrew "${common[@]}" normalize; then
+  exit
+fi
+
+sudo apt-get "${common[@]}" normalize-audio
