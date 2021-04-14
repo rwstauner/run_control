@@ -6,6 +6,8 @@ add_to_path $HOME/homebrew/{bin,sbin}
 
 # Get (unprefixed) GNU utils to override BSD utils.
 add_to_path $HOME/homebrew/opt/coreutils/libexec/gnubin
+# Get homebrew'ed (keg-only) java.
+add_to_path $HOME/homebrew/opt/openjdk/bin
 
 function man-nognu () {
   gnuman="$HOME/homebrew/opt/coreutils/libexec/gnuman:$HOME/homebrew/share/man"
