@@ -39,12 +39,16 @@
     ; https://nrepl.org/nrepl/0.6.0/usage/server.html#_using_clojure_cli_tools
     :cljfmt
       {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.4"}}}
+    :cljs
+      {:extra-deps {org.clojure/clojurescript {:mvn/version "1.10.758"}}}
     :fmt
       {:extra-deps {com.jameslaverack/cljfmt-runner
                     {:git/url "https://github.com/JamesLaverack/cljfmt-runner"
                      :sha "97960e9a6464935534b5a6bab529e063d0027128"}}
        :main-opts ["-m" "cljfmt-runner.check"]}
     :fmt/fix {:main-opts ["-m" "cljfmt-runner.fix"]}
+    :install
+      {:exec-fn clojure.tools.deps.alpha.tools.install/install}
     :kaocha
       {:extra-paths ["test"]
        :extra-deps  {lambdaisland/kaocha {:mvn/version "1.0-612"}}
@@ -66,6 +70,10 @@
         {:git/url "https://github.com/taylorwood/clj.native-image.git"
          ; :sha "7708e7fd4572459c81f6a6b8e44c96f41cdd92d4"
          :sha "f3e40672d5c543b80a2019c1f07b2d3fe785962c"}}}
+    :new
+      {:extra-deps {seancorfield/clj-new {:mvn/version "1.1.243"}}
+       :exec-fn clj-new/create
+       :exec-args {:template "lib" :env {:developer "Randy Stauner"}}}
     :nrepl
       {:extra-deps {nrepl/nrepl {:mvn/version "0.6.0"}}
        ; :main-opts ["-m" "nrepl.cmdline" "--interactive"]
@@ -89,6 +97,8 @@
        :extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
                                                :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}}
        :main-opts ["-m" "cognitect.test-runner"]}
+    :tools/cli
+      {:extra-deps {org.clojure/tools.cli {:mvn/version "1.0.206"}}}
     :tools/repl
       {:extra-deps {org.clojure/tools.namespace {:mvn/version "1.0.0"}}}
   }
