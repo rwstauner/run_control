@@ -9,6 +9,7 @@ brew=(
   candid82/brew/joker
   borkdude/brew/babashka
   borkdude/brew/clj-kondo
+  borkdude/brew/jet
 )
 
 if homebrew "${brew[@]}"; then
