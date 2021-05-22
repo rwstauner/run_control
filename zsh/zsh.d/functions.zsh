@@ -30,3 +30,8 @@ newest () {
   # Utilize multios to print path to STDERR (for visbility) and STDOUT (for pipe).
   ls -tr "$@" | tail -n 1 1>&2 | cat
 }
+
+diff-with () {
+  code="$1"; shift
+  diffgit =($code $1) =($code $2)
+}
