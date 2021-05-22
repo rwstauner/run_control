@@ -5,6 +5,9 @@
 if is_mac; then
   # ruby-build secretly needs a working svn.
   brew list --formula | grep -qFx subversion || brew install svn
+
+  # ffi-1.11.1 has a specific, limited path lookup.
+  [[ -d /opt/local ]] || sudo ln -s ~/homebrew /opt/local
 fi
 
 setup_runtime_dir ruby
