@@ -39,6 +39,10 @@ Profiles → Keyboard
 
 - Remove "F19" so that it doesn't eat the compose key.
 
+Profiles → Advanced
+
+Uncheck "Allow VT100 application keypad mode"
+
 ### vox
 
 prefs -> "open preferences pane" to activate media keys
