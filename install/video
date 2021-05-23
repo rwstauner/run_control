@@ -11,4 +11,4 @@ if homebrew "${common[@]}"; then
   exit
 fi
 
-sudo apt-get "${common[@]}"
+sudo apt-get install "${common[@]}"

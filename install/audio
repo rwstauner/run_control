@@ -14,4 +14,4 @@ if homebrew "${common[@]}" normalize; then
   exit
 fi
 
-sudo apt-get "${common[@]}" normalize-audio
+sudo apt-get install "${common[@]}" normalize-audio
