@@ -6,5 +6,4 @@ if homebrew ripgrep; then
   exit
 fi
 
-echo "not implemented" >&2
-exit 1
+sudo apt-get install ripgrep
