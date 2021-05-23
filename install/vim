@@ -12,9 +12,7 @@ if homebrew nvim; then
   nvim-post-install
   exit
 elif have apt-get; then
-  # vim-gtk to get +clipboard
-  # vim-doc is the HTML docs.
-  sudo apt-get install vim vim-nox vim-gtk ctags
+  sudo apt-get install neovim
 fi
 
 # source install:
