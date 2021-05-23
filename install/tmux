@@ -6,22 +6,6 @@ touch ~/.tmux.conf.local
 
 if homebrew tmux; then
   exit
+else
+  sudo apt-get install tmux
 fi
-
-cd $SRC_DIR
-
-v=2.2
-dir="tmux-$v"
-archive=$dir.tar.gz
-
-[[ -d "$dir" ]] || {
-  [[ -f "$archive" ]] || wget https://github.com/tmux/tmux/releases/download/$v/$archive
-  tar xvaf $archive
-}
-
-have apt-get && \
-sudo apt-get build-dep tmux
-
-cd $dir
-
-./configure --prefix=$PREFIX && make && make install
