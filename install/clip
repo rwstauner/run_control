@@ -16,6 +16,9 @@ CLIP
 
 else
 
+  command -v xsel || \
+    sudo apt-get install xsel
+
   script "$dest" <<'CLIP'
 #!/bin/sh
 # generated
