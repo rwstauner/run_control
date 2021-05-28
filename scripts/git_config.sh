@@ -88,6 +88,7 @@ config color.ui          auto
 config core.excludesFile ~/.excludes
 config core.attributesfile ~/.gitattributes
 config core.symlinks false
+config user.branch-prefix rwstauner/
 
 cat <<EOF > ~/.gitattributes
 # generated.
@@ -349,7 +350,7 @@ alias pum              '!git fetch upstream; git pull upstream master'
 
 alias push-topic       '!git push origin "`git config remote.origin.push`,topic=$*"'
 alias pusht            '!git push "$@"; git push --tags "$@"'
-alias branch-prefix    '!git config remote."${1:-origin}".url | grep -q rwstauner || echo "rwstauner/"'
+alias branch-prefix    '!git config remote."${1:-origin}".url | grep -q rwstauner || git config user.branch-prefix'
 alias pushup           '!git push -u "${1:-origin}" HEAD:"`git branch-prefix`${2:-`git current-branch`}"'
 
 alias branch-to-remote  '!branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch'
