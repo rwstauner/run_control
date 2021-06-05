@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Allow root login on specified ttys.
+# Some things complain when this file isn't present.
+echo tty1 | sudo tee /etc/securetty

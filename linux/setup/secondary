@@ -1,0 +1,16 @@
+#!/bin/bash
+
+pkgs=(
+  dict aspell
+  exiftool
+  inotify-tools
+
+  sqlite3 sqlite3-doc sqlite3-pcre libsqlite3-dev
+
+  xdotool
+  xsane
+
+  wireshark socat nmap traceroute whois
+)
+
+sudo apt install "${pkgs[@]}"

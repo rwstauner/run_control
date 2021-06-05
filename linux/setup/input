@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# 3-finger drag
+repo=https://github.com/aakside/libinput/
+branch=1.16-branch-complyue
+
+sudo apt-get build-dep libinput
+sudo apt-get install gtk+-3.0 cmake check
+
+dir=$HOME/usr/src/libinput-patched
+mkdir -p "$dir"
+
+git clone "$repo" --branch "$branch" "$dir"
+cd "$dir"
+
+builddir=builddir
+meson --prefix=/usr/local -Ddocumentation=false $builddir/
+ninja -C $builddir
+sudo ninja -C $builddir install
+
+device=`sudo $builddir/libinput list-devices | grep Device: | sed -E 's/^Device:\s+//' | grep Touchpad`
+
+cat <<EOF | sudo tee /etc/X11/xorg.conf.d/30-touchpad.conf
+Section "InputClass"
+    Identifier "$device"
+    Driver "libinput"
+EndSection
+EOF

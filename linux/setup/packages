@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# TODO: read notes
+
+# Base packages to do first.
+
+pkgs=(
+  caffeine
+  gdm3
+  neovim
+  python3-gpg
+  openssh-server
+  tmux
+  xfce4-goodies
+  xsel
+)
+
+sudo apt-get install "${pkgs[@]}"

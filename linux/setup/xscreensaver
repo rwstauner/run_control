@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pkgs=(
+  xscreensaver
+  # flurry
+  xscreensaver-gl-extra
+)
+
+sudo apt-get install "${pkgs[@]}"
+
+# TODO: config
