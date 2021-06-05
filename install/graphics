@@ -1,0 +1,16 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if is_mac && homebrew --cask gimp inkscape; then
+  exit
+fi
+
+pkgs=(
+  inkscape
+  gimp gimp-data gimp-data-extras gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gimp-texturize
+  jhead
+  qrencode
+)
+
+sudo apt-get install "${pkgs[@]}"
