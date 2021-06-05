@@ -4,6 +4,7 @@
 umask 0022
 
 PREFIX=$HOME/usr
+mkdir -p $PREFIX/bin
 SRC_DIR=$HOME/data/src
 rc=$HOME/run_control #rc=`dirname $0`/..
 
@@ -172,6 +173,7 @@ version_ge () {
 }
 
 script () {
+  mkdir -p "`dirname "$1"`"
   cat > "$1"
   chmod 0755 "$1"
 }
