@@ -10,10 +10,10 @@ echo 'mv .pause .cpan* .metabase to ~/'
 # Install a few essentials into the system perl.
 if have apt-get; then
   sudo apt-get build-dep perl
-  sudo apt-get install   perl libperl-dev perl-doc liblocal-lib-perl \
-    libterm-readkey-perl \
-    libtry-tiny-perl \
-    libgtk2-perl perlmagick
+  # sudo apt-get install   perl libperl-dev perl-doc liblocal-lib-perl \
+  #   libterm-readkey-perl \
+  #   libtry-tiny-perl \
+  #   libgtk2-perl perlmagick
 fi
 
 symlink () {
@@ -44,7 +44,7 @@ plenv global  $latest
 
 which cpanm || cpan App::cpanminus
 
-perl install-mods.pl
+# perl install-mods.pl
 
 # Link a dir to the installation dir for scripts.
 symlink `perl -le 'print $^X =~ m{(.+)/bin/[^/]+$}'` "$perldir/local"
