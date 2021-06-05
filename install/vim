@@ -8,11 +8,16 @@ nvim-post-install () {
   command -v nvr || pip3 install neovim-remote
 }
 
-if homebrew nvim; then
+if is_mac && homebrew nvim; then
   nvim-post-install
   exit
 elif have apt-get; then
-  sudo apt-get install neovim
+  pkgs=(
+    neovim
+    # Class vim for things nvim doesn't support.
+    vim-nox
+  )
+  sudo apt-get install "${pkgs[@]}"
 fi
 
 # source install:
