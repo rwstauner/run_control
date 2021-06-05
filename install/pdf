@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if have apt-get; then
+  sudo apt-get install pdftk poppler-utils
+else
+  template=$'#!/bin/sh\ndocker run -v "$PWD:/mnt:cached" -w /mnt %s "$@"\n'
+
+  printf "$template" cartoncloud/pdftk | script ~/usr/bin/pdftk
+  printf "$template" "flungo/poppler pdfinfo" | script ~/usr/bin/pdfinfo
+fi

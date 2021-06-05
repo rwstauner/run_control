@@ -56,9 +56,6 @@ for i in dict; {
   eval "$i"' () { command '"$i"' "$@" | $PAGER; }'
 }
 
-alias pdftk='drunw cartoncloud/pdftk'
-alias pdfinfo='drunw flungo/poppler pdfinfo'
-
 alias smenu='smenu -d -T'
 
 alias weather='curl wttr.in'
