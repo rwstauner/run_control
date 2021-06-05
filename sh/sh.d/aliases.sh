@@ -20,7 +20,7 @@ for i in pacmd;
 if which caffeinate &> /dev/null; then
   alias caffeinate='caffeinate '
   for i in abcde brew rsync; {
-    alias $i="caffeinate $i";
+    alias $i="caffeinate -- $i";
   }
 fi
 
