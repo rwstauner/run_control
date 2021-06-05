@@ -4,7 +4,7 @@
 
 mkdir -p ~/gopath
 
-if homebrew go; then
+if is_mac && homebrew go; then
   [[ -d ~/go ]] || ln -s ~/homebrew/opt/go/libexec ~/go
 fi
 

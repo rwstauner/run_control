@@ -61,9 +61,6 @@ have () {
 }
 
 homebrew-ready () {
-  # Always return false if not a mac.
-  is_mac || return 1
-
   if ! have brew; then
     echo 'installing homebrew...'
     $rc/install/homebrew
@@ -71,12 +68,11 @@ homebrew-ready () {
     source $rc/sh/homebrew.sh
   fi
 
-  # Always return true if we _should_ have homebrew (on a mac).
   return 0
 }
 
 brew () {
-  command caffeinate brew "$@"
+  command caffeinate -- brew "$@"
 }
 
 homebrew () {

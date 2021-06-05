@@ -10,7 +10,7 @@ common=(
   vorbis-tools
 )
 
-if homebrew "${common[@]}" normalize; then
+if is_mac && homebrew "${common[@]}" normalize; then
   exit
 fi
 

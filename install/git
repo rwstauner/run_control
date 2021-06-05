@@ -6,7 +6,7 @@ load-config () {
   ~/run_control/scripts/git_config.sh
 }
 
-if homebrew git; then
+if is_mac && homebrew git; then
   load-config
   exit
 fi

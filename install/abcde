@@ -30,7 +30,7 @@ perldeps () {
 perldeps
 
 # --with-{flac,lame,vorbis-tools,glyr} no longer optional
-if homebrew abcde; then
+if is_mac && homebrew abcde; then
   homebrew cdparanoia
 
   homebrew normalize

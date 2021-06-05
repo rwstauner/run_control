@@ -42,6 +42,7 @@ fi
 #$BROWSER http://larsenwork.com/monoid
 
 # Hack
+is_mac && \
 homebrew homebrew/cask-fonts/font-hack || github_font 'source-foundry/Hack'
 
 # "1 serious error found.  Do not install this font." ¯\_(ツ)_/¯

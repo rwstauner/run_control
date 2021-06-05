@@ -4,7 +4,7 @@
 
 touch ~/.tmux.conf.local
 
-if homebrew tmux; then
+if is_mac && homebrew tmux; then
   exit
 else
   sudo apt-get install tmux

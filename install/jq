@@ -2,7 +2,7 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if homebrew jq; then
+if is_mac && homebrew jq; then
   exit
 fi
 

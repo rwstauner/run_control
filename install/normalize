@@ -2,7 +2,7 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-if homebrew normalize; then
+if is_mac && homebrew normalize; then
   dest=$PREFIX/bin/normalize-ogg
   if ! [[ -s $dest ]]; then
     src=$(brew --prefix)/bin/normalize-ogg

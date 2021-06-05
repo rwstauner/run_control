@@ -2,7 +2,11 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
-homebrew gpg gawk
+if have apt-get; then
+  sudo apt-get install gpg gawk
+else
+  homebrew gpg gawk
+fi
 
 command -v asdf || . $rc/sh/sh.d/asdf.sh
 

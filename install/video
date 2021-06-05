@@ -7,7 +7,7 @@ common=(
   mplayer
 )
 
-if homebrew "${common[@]}"; then
+if is_mac && homebrew "${common[@]}"; then
   exit
 fi
 
