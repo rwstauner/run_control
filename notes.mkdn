@@ -28,7 +28,6 @@
     openssh-server sshfs
     mtp-tools mtpfs
     git git-doc git-cvs git-email git-gui git-svn gitk gitweb
-    bash bash-completion zsh zsh-doc
     gcc libjpeg-dev libbz2-dev libtiff4-dev libwmf-dev libz-dev libpng12-dev libx11-dev libxt-dev libxext-dev libxml2-dev libfreetype6-dev liblcms1-dev libexif-dev libjasper-dev libltdl3-dev graphviz pkg-config liblzma-dev libwebp-dev
     libmagickwand-dev
     libfcgi-dev

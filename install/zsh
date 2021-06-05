@@ -3,7 +3,7 @@
 . `dirname "$0"`/../scripts/.helpers.sh
 
 # The mac zsh is missing pcre.
-if homebrew zsh; then
+if is_mac && homebrew zsh; then
   zsh=$HOME/homebrew/bin/zsh
   ensure-line $zsh /etc/shells
   perl -e 'exit( (getpwnam($ENV{USER}))[8] eq $ARGV[0] ? 0 : 1)' $zsh || \
@@ -11,14 +11,7 @@ if homebrew zsh; then
   exit
 fi
 
-# Ubu < 15 is missing zsh man pages.
-if lsb_release -d | grep -q 'Ubuntu 14.04'; then
-  sudo add-apt-repository ppa:ramilehti/ppa
-  sudo apt-get update
-fi
-
-sudo apt-get build-dep zsh
-sudo apt-get install zsh zsh-doc zsh-lovers
+sudo apt-get install zsh zsh-doc
 
 echo 'changing default shell...'
 
