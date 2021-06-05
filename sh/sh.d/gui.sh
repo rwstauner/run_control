@@ -14,7 +14,7 @@ if [[ -n "$DISPLAY" ]]; then
     ${BROWSER:-firefox} "file://`full-path $1`"
   }
 
-  SYMBOLA_FONT="`ls ~/.fonts/Symbola*.ttf | tail -n 1`"
+  SYMBOLA_FONT="`ls ~/.fonts/Symbola*.?tf | tail -n 1`"
   show_text () {
     local text=''
     if [[ $# -gt 0 ]]; then
