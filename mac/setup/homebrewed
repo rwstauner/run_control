@@ -1,0 +1,46 @@
+#!/bin/bash
+
+script () {
+  exe="$1"
+  mkdir -p "`dirname "$exe"`"
+  cat > "$exe"
+  chmod 0755 "$exe"
+}
+
+# Get latest formulae.
+brew update
+
+brew install coreutils
+
+# Other utils (ruby gems, etc) get confused by gnu stty on mac, so reroute it.
+script ~/usr/bin/stty <<'SCRIPT'
+#!/bin/sh
+# Circumvent the homebrew/coreutils stty.
+exec /bin/stty "$@"
+SCRIPT
+
+brew install findutils
+
+brew install gawk
+
+brew install gnu-sed
+
+brew install gnu-tar
+
+#brew install gnu-units
+
+#brew install imagesnap
+#brew install tlassemble
+
+brew install pstree
+
+brew install qrencode
+
+brew install socat
+
+brew install tree
+
+brew install watch
+brew install wget
+
+brew install xmlstarlet

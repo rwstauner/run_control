@@ -1,66 +1,29 @@
-#!/bin/sh
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
 
 homebrew=$HOME/homebrew
-brewbin=$homebrew/bin
 
-if [[ `uname` != Darwin ]]; then
-  echo ENOTAMAC
-  exit 1
+if have apt-get; then
+  sudo apt-get install \
+    build-essentiall \
+    gcc-11 \
+    libreadline-dev rlwrap
 fi
-
-script () {
-  exe="$1"
-  mkdir -p "`dirname "$exe"`"
-  cat > "$exe"
-  chmod 0755 "$exe"
-}
 
 test -d $homebrew/.git || \
 git clone http://github.com/Homebrew/brew $homebrew
 
-PATH=$brewbin:$PATH
+PATH=$homebrew/bin:$PATH
 
-symlink () {
-  local src="$1" dest="$2"
-  test -h "$dest" || \
-    ln -s "$src" "$dest"
-}
-
-# Get latest formulae.
-brew update
-
-brew install coreutils
-
-# Other utils (ruby gems, etc) get confused by gnu stty on mac, so reroute it.
-script ~/usr/bin/stty <<'SCRIPT'
-#!/bin/sh
-# Circumvent the homebrew/coreutils stty.
-exec /bin/stty "$@"
-SCRIPT
-
-brew install findutils
-
-brew install gawk
-# gawk installs awk symlink
-
-brew install gnu-sed
-
-brew install gnu-tar
-
-#brew install gnu-units
-
-#brew install imagesnap
-#brew install tlassemble
-
-brew install pstree
-
-brew install qrencode
-
-brew install socat
-
-brew install tree
-
-brew install watch
-brew install wget
-
-brew install xmlstarlet
+# if ! is_mac; then
+#   v=`brew info gdbm | head -n1 | sed '/^gdbm:( stable)?//'`
+#   dir=`mktemp -td brew-gdbm.XXXXXX`
+#   cd "$dir"
+#   brew unpack gdbm
+#   cd gdbm-*
+#   ./configure --enable-libgdbm-compat --without-readline --prefix="$homebrew/Cellar/gdbm/$v"
+#   make install
+#   brew link gdbm
+#   rm -rf "$dir"
+# fi
