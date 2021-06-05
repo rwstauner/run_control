@@ -2,21 +2,29 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+if is_mac; then
+  brew=(
+    leiningen
+    boot-clj
+  )
+  homebrew "${brew[@]}"
+elif have apt-get; then
+  sudo apt-get install curl rlwrap openjdk-11-jdk-headless
+  download-bin https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein lein
+  download-bin https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh boot
+  # Make the rlwrap dep a no-op
+  brew install "$rc/linux/brew/Formula/rlwrap.rb"
+fi
+
 brew=(
   clojure/tools/clojure
-  leiningen
-  boot-clj
   candid82/brew/joker
   borkdude/brew/babashka
   borkdude/brew/clj-kondo
   borkdude/brew/jet
 )
 
-if homebrew "${brew[@]}"; then
-  true # noop
-else
-  echo 'fixme'
-fi
+homebrew "${brew[@]}"
 
 [[ -d ~/.clojure ]] || ln -s ~/run_control/clojure/config ~/.clojure
 [[ -d ~/.lein ]] || ln -s ~/run_control/clojure/lein ~/.lein
