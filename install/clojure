@@ -26,5 +26,13 @@ brew=(
 
 homebrew "${brew[@]}"
 
+dl-archived-bin () {
+  local slug="$1" bin="${2:-${1#*/}}"
+  os=`iif is_mac "macos" "linux"`
+  url=$(latest-github-dl-url "$slug" "_$os.tar.gz") || return 1
+  curl -sL "$url" | tar -C "$PREFIX/bin" -xvzf - "$bin"
+}
+dl-archived-bin greglook/cljstyle
+
 [[ -d ~/.clojure ]] || ln -s ~/run_control/clojure/config ~/.clojure
 [[ -d ~/.lein ]] || ln -s ~/run_control/clojure/lein ~/.lein

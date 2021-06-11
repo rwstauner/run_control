@@ -10,6 +10,10 @@ rc=$HOME/run_control #rc=`dirname $0`/..
 
 source $rc/sh/setup.sh
 
+iif () {
+  if eval "$1"; then echo "$2"; else echo "$3"; fi
+}
+
 warn () {
   echo "$*" >&2
 }
