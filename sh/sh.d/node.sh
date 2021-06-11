@@ -7,3 +7,8 @@ dnode () {
     ${PORT+-p} ${PORT+$PORT:$PORT} \
     "${IMAGE:-node:lts}" "$@"
 }
+
+node () {
+  NODE_PATH=`asdf which node | sed 's,bin/node,.npm/lib/node_modules,'` \
+  command node "$@"
+}
