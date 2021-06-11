@@ -236,6 +236,8 @@ alias_diffs () {
   alias="$1" prefix="$2" suffix="$3"
   config "alias.ix$alias"     "$prefix${prefix:+ }${git_ix} ${suffix}"
   config "alias.diff$alias"   "$prefix${prefix:+ }diff $suffix"
+  config "alias.last$alias"  "$prefix${prefix:+ }last -p $suffix"
+  config "alias.lf$alias"     "${prefix:-! git }${prefix:+ }lf $suffix"
   config "alias.logp$alias"   "$prefix${prefix:+ }log -p $suffix"
   config "alias.showp$alias"  "$prefix${prefix:+ }show -p $suffix"
 }
@@ -276,9 +278,8 @@ alias k                '!gitk'
 # Gitv (from the command line seems to require an argument)
 alias kv               '!vim -c "silent Gitv" `if test "$#" -gt 0; then echo "$@"; else echo .; fi`'
 
-alias last             'log --pretty=fuller --stat -p -w -n 1 -U10'
-alias lastcw           '!git last --color-words=.'
-alias lastcww          '!git last --color-words=\\w+'
+alias lf               'log --pretty=fuller --stat -p -w'
+alias last             '!git lf -n 1 -U10'
 
 # Print added, modified, the new name of renames, not deletes, and limit to files that still exist.
 alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | gxargs -r ls -1 2> /dev/null'
