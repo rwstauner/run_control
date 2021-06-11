@@ -409,6 +409,8 @@ alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
 alias upp              '!git up; git prune-branches; git bv'
 
+alias url              '!printf "%s/%s\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/master/$1"'
+
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
 # whatis takes a commit name
