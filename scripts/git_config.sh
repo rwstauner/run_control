@@ -206,7 +206,7 @@ alias amend           'commit -v -n --amend'
 
 alias co              'checkout'
 alias cob             'checkout -b'
-alias com             'checkout master'
+alias com             '!git checkout `git main-branch`'
 
 alias commit-vars     '!n="${1:-`git config user.name`}"; e="${2:-`git config user.email`}"; echo GIT_COMMITTER_NAME=\"$n\" GIT_COMMITTER_EMAIL=\"$e\" GIT_AUTHOR_NAME=\"$n\" GIT_AUTHOR_EMAIL=\"$e\"'
 
@@ -318,6 +318,8 @@ alias ls               '-p ls-files'
 # alias lsgrep           '!git ls-files | grep --color=always "$@" | $PAGER'
 #alias lsgrep           '!pattern="$1"; shift; git ls-files "$@" | grep --color=always "$pattern" | $PAGER'
 
+alias main-branch      '!if [ "`git config branch.main.merge`" = "refs/heads/main" ]; then echo main; else echo master; fi'
+
 alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short --numstat'
 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
@@ -341,12 +343,12 @@ alias new              '!git log $1@{1}..$1@{0} "$@"'
 # FIXME: There's an api for this.
 alias prune-all        '!git remote | xargs -n 1 git remote prune'
 
-alias prune-branches   '!git checkout master; git rebase-branches "$@"; for branch in $(git branch --merged master | cut -c 3- | grep -vFx master); do git branch -d "$branch"; done'
+alias prune-branches   '!main="`git main-branch`"; git com; git rebase-branches "$@"; for branch in $(git branch --merged "$main" | cut -c 3- | grep -vFx "$main"); do git branch -d "$branch"; done'
 
 alias pulp             '!echo just here to avoid tab-completing "pull"'
 
 # pum doesn't seem to be storing the fetch, so do both
-alias pum              '!git fetch upstream; git pull upstream master'
+alias pum              '!git fetch upstream; git pull upstream `git main-branch`'
 
 alias push-topic       '!git push origin "`git config remote.origin.push`,topic=$*"'
 alias pusht            '!git push "$@"; git push --tags "$@"'
@@ -362,11 +364,11 @@ alias fetch-pr         '!remote="${1:-origin}"; git fetch "$remote" "+refs/pull/
 alias branch-pr        '!branch="$1"; pr="$2"; remote="${3:-origin}"; git co -b "$branch" -t "refs/remotes/$remote/pr/$pr"'
 
 alias rb               'rebase --autostash'
-alias rbm              '!if [ $# -gt 0 ] && [ "x$*" != "x-i" ]; then echo "no args for rbm"; exit 1; fi; git rebase --autostash master "$@"'
+alias rbm              '!if [ $# -gt 0 ] && [ "x$*" != "x-i" ]; then echo "no args for rbm"; exit 1; fi; git rebase --autostash `git main-branch` "$@"'
 
 # Rebasing a cherry-picked branch will squash the duplicated commit.
 # Wait a moment after a failure for git to clean up.
-alias rebase-branches  '![ $# -gt 0 ] || set -- $(git branch --no-merged master | grep -vE "\bwip-"); for branch in "$@"; do echo " # $branch #"; git rebase -q master "$branch" || { git rebase --abort; sleep 1; } done; git checkout master'
+alias rebase-branches  '!main=`git main-branch`; [ $# -gt 0 ] || set -- $(git branch --no-merged "$main" | grep -vE "\bwip-"); for branch in "$@"; do echo " # $branch #"; git rebase -q "$main" "$branch" || { git rebase --abort; sleep 1; } done; git checkout "$main"'
 
 # Since git operates from the project root dir `pwd` also works.
 #$gc alias.root            $'!pwd'
@@ -400,7 +402,7 @@ alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 
 alias these            '!cmd="$1"; shift; for i in "$@"; do (cd "$i" && eval git "$cmd"); done'
 
-alias topic            '!git checkout -b "$1" master'
+alias topic            '!git checkout -b "$1" "`git main-branch`"'
 
 alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
