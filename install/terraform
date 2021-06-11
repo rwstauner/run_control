@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+command -v asdf || . $rc/sh/sh.d/asdf.sh
+
+asdf plugin-add terraform
+asdf plugin-add terraform-docs https://github.com/looztra/asdf-terraform-docs
+homebrew tflint
