@@ -6,27 +6,22 @@ dir=$HOME/.fonts
 mkdir -p "$dir"
 cd "$dir"
 
-have () {
-  which "$1" &> /dev/null
-}
-
 dl-and-install () {
   download "$@"
   install-fonts "${2:-${1##*/}}"
 }
 
 github_font () {
-  local prefix="https://github.com" repo="$1" suffix="${2:--ttf}"
-  local url=`curl -sL $prefix/$repo/releases/latest | perl -lne 'print $1 if /href="(.+?\Q'"$suffix"'.zip\E)"/'`
+  local repo="$1" suffix="${2:--ttf.zip}"
+  local url=$(latest-github-dl-url "$repo" "$suffix") || return 1
   if [[ -n "$url" ]]; then
-    [[ "${url:0:1}" == "/" ]] && url="$prefix$url"
     file=`mktemp font-XXXXXX`
     curl -sL "$url" > "$file"
     unzip -o "$file"
     install-fonts `zip-file-contents "$file"`
     rm "$file"
   else
-    $BROWSER "$prefix/$repo"
+    $BROWSER "https://github.com/$repo"
   fi
 }
 

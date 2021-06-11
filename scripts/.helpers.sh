@@ -10,6 +10,10 @@ rc=$HOME/run_control #rc=`dirname $0`/..
 
 source $rc/sh/setup.sh
 
+warn () {
+  echo "$*" >&2
+}
+
 arch-info () {
   local bits name
   if uname -m -i -p | sed 's/ /\n/g' | uniq | grep -q x86_64; then
@@ -38,6 +42,33 @@ download-bin () {
   chmod 0755 "$dest"
 }
 
+cache_dir="$HOME/.cache/$USER-rc-cache"
+cached () {
+  cat "$cache_dir/$1" 2>&-
+}
+cache () {
+  local cache_file="$cache_dir/$1"
+  mkdir -p "${cache_file%/*}"
+  tee "$cache_file"
+}
+
+latest-github-dl-url () {
+  local prefix="https://github.com" slug="$1" suffix="${2}"
+  key="github-latest/$slug/$suffix"
+  ! expired "$key" 86400 && cached "$key" && return
+
+  local url=$(curl -sL "$prefix/$slug/releases/latest" | \
+    PREFIX="$prefix" SLUG="$slug" SUFFIX="$suffix" \
+    perl -lne 'print(substr($1,0,1) eq "/" ? "$ENV{PREFIX}$1" : $1) if m{href="(.*?/\Q${ENV{SLUG}}\E/releases/download/.+?\Q${ENV{SUFFIX}}\E)"}')
+
+  if [[ -z "$url" ]]; then
+    warn "failed to find latest github download url for $slug '$suffix'"
+    return 1
+  fi
+
+  echo "$url" | cache "$key"
+}
+
 ensure-line () {
   local line="$1" file="$2"
   grep -qFx "$line" "$file" || \
@@ -57,7 +88,7 @@ expired () {
 }
 
 have () {
-  which "$1" &> /dev/null
+  command -v "$1" &> /dev/null
 }
 
 homebrew-ready () {
@@ -71,7 +102,8 @@ homebrew-ready () {
   return 0
 }
 
-brew () {
+# avoid shell alias.
+function brew () {
   command caffeinate -- brew "$@"
 }
 
