@@ -127,6 +127,16 @@ httpd () {
   python2 -m SimpleHTTPServer "$@"
 }
 
+# Auto-resolve overrides for built-in commands.
+git () {
+  # naive but good enough for now.
+  cmd="$1"; shift
+  if command git has "$cmd-x"; then
+    cmd="$cmd-x"
+  fi
+  command -- git "$cmd" "$@"
+}
+
 terraform () {
   if [[ -s terragrunt.hcl ]]; then
     command terragrunt "$@"

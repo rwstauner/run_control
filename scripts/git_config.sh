@@ -215,6 +215,8 @@ alias cobt            '!git checkout -tb "$1" origin/"$1"'
 # TODO: heredoc?
 alias cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { print tolower($2) }\047 ~/.pause`@cpan.org> <`git config user.email`>"'
 
+alias clone-dest      '!echo "${2:-${1##*/}}"'
+
 # clone repo, make remote "origin" for first arg and "upstream" for second
 alias clone-fork      '!fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream'
 
@@ -261,6 +263,8 @@ alias follow           'log --follow'
 # Create a script that can be verified and then piped to sh.
 # TODO: split args b/t log and fp with `--`.
 alias format-patch-script  $'!file="$1"; shift; git log --oneline "$file" | perl -e \'print reverse <STDIN>\' | perl -lne \'BEGIN { @opts = splice @ARGV } ($c, $s) = split / /, $_, 2; print q[git format-patch -n --start-number ], ++$patch, qq[ @opts -1 $c # $s]\' -- "$@"'
+
+alias clone-x          '!git clone "$@" && (cd `git clone-dest "$@"` && git maybe repo-setup)'
 
 # filenames at the top: --heading --break ?
 alias grep-todo       'grep -iE "to.?do|fix.?me"'
@@ -322,6 +326,9 @@ alias ls               '-p ls-files'
 alias main-branch      '!if [ "`git config branch.main.merge`" = "refs/heads/main" ]; then echo main; else echo master; fi'
 
 alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short --numstat'
+
+alias has              '!cmd="$1"; shift; git config "alias.$cmd" >&- || command -v "git-$cmd" >&-'
+alias maybe            '!if git has "$1"; then git "$@"; fi'
 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
 
@@ -407,7 +414,7 @@ alias topic            '!git checkout -b "$1" "`git main-branch`"'
 
 alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
-alias upp              '!git up; git prune-branches; git bv'
+alias upp              '!git up; git new | git maybe process-merged; git prune-branches; git bv'
 
 alias url              '!printf "%s/%s\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/master/$1"'
 
