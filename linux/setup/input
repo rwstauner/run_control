@@ -1,11 +1,17 @@
 #!/bin/bash
 
+have () { command -v "$1" >&-; }
+
 # 3-finger drag
 repo=https://github.com/aakside/libinput/
 branch=1.16-branch-complyue
 
-sudo apt-get build-dep libinput
-sudo apt-get install gtk+-3.0 cmake check
+if have apt-get; then
+  sudo apt-get build-dep libinput
+  sudo apt-get install gtk+-3.0 cmake check
+elif have pacman; then
+  sudo pacman -S --needed libinput cmake meson ninja gcc pkg-config check
+fi
 
 dir=$HOME/usr/src/libinput-patched
 mkdir -p "$dir"

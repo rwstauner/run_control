@@ -1,16 +1,33 @@
 #!/bin/bash
 
+have () { command -v "$1" >&-; }
+
 pkgs=(
-  dict aspell
-  exiftool
   inotify-tools
 
-  sqlite3 sqlite3-doc sqlite3-pcre libsqlite3-dev
+  sqlite3 sqlite3-doc
 
   xdotool
   xsane
 
-  wireshark socat nmap traceroute whois
+  socat nmap traceroute whois
 )
 
-sudo apt install "${pkgs[@]}"
+if have apt; then
+  pkgs=(
+    dict
+    aspell
+    ncal
+    exiftool
+    sqlite3-pcre libsqlite3-dev
+    wireshark
+  )
+  sudo apt install "${pkgs[@]}"
+elif have pacman; then
+  pkgs=(
+    words
+    aspell-en
+    util-linux
+  )
+  sudo pacman -S --needed "${pkgs[@]}"
+fi

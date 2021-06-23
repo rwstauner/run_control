@@ -1,18 +1,39 @@
 #!/bin/bash
 
+have () { command -v "$1" >&-; }
+
 # TODO: read notes
 
 # Base packages to do first.
 
-pkgs=(
-  caffeine
-  gdm3
+common=(
+  curl
+  git
+  make
   neovim
-  python3-gpg
-  openssh-server
   tmux
+  wget
   xfce4-goodies
   xsel
 )
 
-sudo apt-get install "${pkgs[@]}"
+if have apt-get; then
+
+  pkgs=(
+    gdm3
+    python3-gpg
+    openssh-server
+  )
+
+  sudo apt-get install "${common[@]}" "${pkgs[@]}"
+
+elif have pacman; then
+  pkgs=(
+    python-gpgme
+    unzip
+    vim
+    zip
+  )
+
+  sudo pacman -S --needed "${common[@]}" "${pkgs[@]}"
+fi
