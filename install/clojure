@@ -2,37 +2,39 @@
 
 . `dirname "$0"`/../scripts/.helpers.sh
 
+os=`iif is_mac "macos" "linux"`
+dl-archived-bin () {
+  local slug="$1" bin="${2:-${1#*/}}" suffix="$3"
+  url=$(latest-github-dl-url "$slug" "$suffix") || return 1
+  archive=`download "$url"`
+  (extract "$archive" && find -name "$bin" | xargs cp -t $PREFIX/bin)
+}
+
 if is_mac; then
   brew=(
     leiningen
     boot-clj
+    clojure/tools/clojure
+    borkdude/brew/clj-kondo
+    borkdude/brew/jet
   )
   homebrew "${brew[@]}"
-elif have apt-get; then
-  sudo apt-get install curl rlwrap openjdk-11-jdk-headless
+else
+  if have apt-get; then
+    sudo apt-get install curl rlwrap openjdk-11-jdk-headless clojure
+  elif have pacman; then
+    sudo pacman -S --needed curl rlwrap jre11-openjdk-headless clojure
+  fi
+
   download-bin https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein lein
   download-bin https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh boot
-  # Make the rlwrap dep a no-op
-  brew install "$rc/linux/brew/Formula/rlwrap.rb"
+
+  dl-archived-bin babashka/babashka  bb        -$os-amd64.tar.gz
+  dl-archived-bin clj-kondo/clj-kondo clj-kondo -$os-amd64.zip
+  dl-archived-bin borkdude/jet       jet       -$os-amd64.zip
 fi
 
-brew=(
-  clojure/tools/clojure
-  candid82/brew/joker
-  borkdude/brew/babashka
-  borkdude/brew/clj-kondo
-  borkdude/brew/jet
-)
-
-homebrew "${brew[@]}"
-
-dl-archived-bin () {
-  local slug="$1" bin="${2:-${1#*/}}"
-  os=`iif is_mac "macos" "linux"`
-  url=$(latest-github-dl-url "$slug" "_$os.tar.gz") || return 1
-  curl -sL "$url" | tar -C "$PREFIX/bin" -xvzf - "$bin"
-}
-dl-archived-bin greglook/cljstyle
+dl-archived-bin greglook/cljstyle cljstyle _$os.tar.gz
 
 [[ -d ~/.clojure ]] || ln -s ~/run_control/clojure/config ~/.clojure
 [[ -d ~/.lein ]] || ln -s ~/run_control/clojure/lein ~/.lein
