@@ -10,8 +10,11 @@ elif have apt-get; then
   # libmagickwand-dev
   # sudo apt-get build-dep imagemagick
   sudo apt-get install imagemagick
+elif have pacman; then
+  sudo pacman -S --needed imagemagick
+fi
   sudo perl -p -i.bak -e '
     s/(.+)/<!-- rws $1 -->/ if /<policy / && /domain="coder"/ && /rights="none"/ && /PDF/;
+    s/(.+)/<!-- rws $1 -->/ if /<policy / && /domain="delegate"/ && /rights="none"/ && /pattern="gs"/;
     s/value=".+?"/value="10GiB"/ if /<policy / && /domain="resource"/ && /name="disk"/ && /"1GiB"/;
   ' /etc/ImageMagick*/policy.xml
-fi

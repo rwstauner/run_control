@@ -39,11 +39,13 @@ if is_mac && homebrew abcde; then
 
   # Use $PATH perl.
   perl -0777 -p -i -e 's,^#!/usr/bin/perl,#!/usr/bin/env perl,' `brew --prefix`/bin/abcde-musicbrainz-tool
-else
+elif have apt-get; then
 
   sudo apt-get install abcde
   sudo apt-get install libdiscid
 
+elif have pacman; then
+  sudo pacman -S --needed abcde libdiscid
 fi
 
 perldeps

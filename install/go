@@ -6,6 +6,8 @@ mkdir -p ~/gopath
 
 if is_mac && homebrew go; then
   [[ -d ~/go ]] || ln -s ~/homebrew/opt/go/libexec ~/go
+elif have pacman; then
+  sudo pacman -S --needed go
 fi
 
 # go get a bunch of stuff that vim-go uses (golint, etc).

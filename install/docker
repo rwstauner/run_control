@@ -10,7 +10,12 @@ if is_mac; then
   exit
 fi
 
-if ! have docker; then
+if have pacman; then
+  sudo pacman -S --needed docker
+  if have systemctl; then
+    sudo systemctl enable docker.service
+  fi
+elif ! have docker; then
   sudo apt-get install \
     apt-transport-https \
     ca-certificates \

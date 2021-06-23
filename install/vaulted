@@ -1,3 +1,10 @@
 #!/bin/bash
 
-brew install vaulted
+if is_mac; then
+  homebrew vaulted
+  exit
+elif have pacman; then
+  sudo pacman -S --needed go
+fi
+
+go get -u github.com/miquella/vaulted

@@ -8,9 +8,14 @@ fi
 
 pkgs=(
   inkscape
-  gimp gimp-data gimp-data-extras gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gimp-texturize
+  gimp
   jhead
   qrencode
 )
 
-sudo apt-get install "${pkgs[@]}"
+if have apt-get; then
+  sudo apt-get install "${pkgs[@]}" \
+    gimp-data gimp-data-extras gimp-gap gimp-gmic gimp-plugin-registry gimp-resynthesizer gimp-texturize
+elif have pacman; then
+  sudo pacman -S --needed "${pkgs[@]}"
+fi

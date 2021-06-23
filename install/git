@@ -9,32 +9,10 @@ load-config () {
 if is_mac && homebrew git; then
   load-config
   exit
+elif have apt-get; then
+  sudo apt-get install git
+elif have pacman; then
+  sudo pacman -S --needed git
 fi
-
-cd $SRC_DIR
-
-url=https://www.kernel.org/pub/software/scm/git/
-archive=`curl -s $url | perl -lne '$g = $1 if /href="(git-[0-9]+(\.[0-9]+)+.tar.xz)"/; END { print $g }'`
-
-if ! [[ -n "$archive" ]]; then
-  echo 'Latest tarball not found.'
-  $BROWSER git-scm.com
-  echo 'archive name? '
-  read archive
-fi
-
-dir="${archive%.tar.*}"
-
-[[ -d "$dir" ]] || {
-  [[ -f $archive ]] || wget $url/$archive
-  tar xvaf $archive
-}
-
-cd $dir
-
-have apt-get && \
-sudo apt-get build-dep git
-
-make prefix=$HOME/usr all doc  install install-doc
 
 load-config

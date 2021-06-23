@@ -6,4 +6,8 @@ if is_mac && homebrew ripgrep; then
   exit
 fi
 
-sudo apt-get install ripgrep
+if have apt-get; then
+  sudo apt-get install ripgrep
+elif have pacman; then
+  sudo pacman -S --needed ripgrep
+fi

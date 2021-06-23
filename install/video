@@ -11,4 +11,8 @@ if is_mac && homebrew "${common[@]}"; then
   exit
 fi
 
-sudo apt-get install "${common[@]}"
+if have apt-get; then
+  sudo apt-get install "${common[@]}"
+elif have pacman; then
+  sudo pacman -S --needed "${common[@]}"
+fi

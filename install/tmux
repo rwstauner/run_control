@@ -6,6 +6,8 @@ touch ~/.tmux.conf.local
 
 if is_mac && homebrew tmux; then
   exit
-else
+elif have apt-get; then
   sudo apt-get install tmux
+elif have pacman; then
+  sudo pacman -S --needed tmux
 fi

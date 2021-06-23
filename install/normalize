@@ -43,5 +43,9 @@ DIFF
   exit
 fi
 
-echo "not implemented" >&2
-exit 1
+
+if have apt-get; then
+  sudo apt-get install normalize-audio
+elif have pacman; then
+  yay -S normalize
+fi

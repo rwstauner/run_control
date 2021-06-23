@@ -12,4 +12,8 @@ EOF
   exit
 fi
 
-sudo apt-get install notify-send
+if have apt-get; then
+  sudo apt-get install notify-send
+elif have pacman; then
+  sudo pacman -S --needed libnotify
+fi

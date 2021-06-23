@@ -11,7 +11,11 @@ if is_mac && homebrew zsh; then
   exit
 fi
 
-sudo apt-get install zsh zsh-doc
+if have apt-get; then
+  sudo apt-get install zsh zsh-doc
+elif have pacman; then
+  sudo pacman -S --needed zsh
+fi
 
 echo 'changing default shell...'
 
