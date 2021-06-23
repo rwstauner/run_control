@@ -6,11 +6,6 @@ dir=$HOME/.fonts
 mkdir -p "$dir"
 cd "$dir"
 
-dl-and-install () {
-  download "$@"
-  install-fonts "${2:-${1##*/}}"
-}
-
 github_font () {
   local repo="$1" suffix="${2:--ttf.zip}"
   local url=$(latest-github-dl-url "$repo" "$suffix") || return 1
@@ -39,10 +34,6 @@ fi
 # Hack
 is_mac && \
 homebrew homebrew/cask-fonts/font-hack || github_font 'source-foundry/Hack'
-
-# "1 serious error found.  Do not install this font." ¯\_(ツ)_/¯
-# monoOne
-#dl-and-install https://github.com/chrissimpkins/codeface/blob/master/fonts/mono-one/monoOne.otf
 
 if have apt-get; then
   sudo apt-get install \

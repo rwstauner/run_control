@@ -34,10 +34,18 @@ arch-info () {
   esac
 }
 
+cache_dir="$HOME/.cache/$USER-rc-cache"
 download () {
-  local url="$1" dest="${2:-${1##*/}}"
-  wget --no-clobber "$url" -O "$dest"
-  #[[ -f "$dest" ]]
+  local url="$1" dest="$2"
+  local key=`echo "$1" | sed "s,/,%,g"`
+  local cache_file="$cache_dir/download/$key"
+
+  if expired "$key" 86400 || ! [[ -f "$cache_file" ]]; then
+    mkdir -p "${cache_file%/*}"
+    wget --no-clobber "$url" -O "$cache_file"
+  fi
+  [[ -n "$dest" ]] && cp "$cache_file" "$dest"
+  echo "$cache_file"
 }
 
 download-bin () {
@@ -46,7 +54,21 @@ download-bin () {
   chmod 0755 "$dest"
 }
 
-cache_dir="$HOME/.cache/$USER-rc-cache"
+extract () {
+  local file="$1" dir=`mktemp -d -t extract-${1##*/}-XXXXXX`
+  [[ "${file}" = /* ]] || file="$PWD/$file"
+  cd "$dir"
+  case "$file" in
+    *.tar.*|*.tgz)
+      tar -xvaf "$file";;
+    *.zip)
+      unzip "$file";;
+    *)
+      echo 'unknown archive format' >&2
+      return 1
+  esac
+}
+
 cached () {
   cat "$cache_dir/$1" 2>&-
 }
@@ -130,6 +152,8 @@ homebrew-tap () {
   brew tap | grep -qFx "$1" || \
     brew tap "$1"
 }
+
+# TODO: apt helpers to only install when not present
 
 install-fonts () {
   if is_mac; then
