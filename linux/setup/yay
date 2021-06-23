@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. `dirname "$0"`/../../scripts/.helpers.sh
+
+sudo pacman -S --needed fakeroot
+
+cd ~/usr/src
+(git-dir https://aur.archlinux.org/yay.git ~/usr/src/yay;
+  makepkg -si)
