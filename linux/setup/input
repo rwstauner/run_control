@@ -32,3 +32,8 @@ Section "InputClass"
     Driver "libinput"
 EndSection
 EOF
+
+if have pacman; then
+  echo /usr/local/lib | sudo tee /etc/ld.so.conf.d/usr-local.conf
+  sudo ldconfig
+fi
