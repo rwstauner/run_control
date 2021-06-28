@@ -12,8 +12,6 @@ dl-archived-bin () {
 
 if is_mac; then
   brew=(
-    leiningen
-    boot-clj
     clojure/tools/clojure
     borkdude/brew/clj-kondo
     borkdude/brew/jet
@@ -21,18 +19,18 @@ if is_mac; then
   homebrew "${brew[@]}"
 else
   if have apt-get; then
-    sudo apt-get install curl rlwrap openjdk-11-jdk-headless clojure
+    sudo apt-get install curl rlwrap clojure
   elif have pacman; then
-    sudo pacman -S --needed curl rlwrap jre11-openjdk-headless clojure
+    sudo pacman -S --needed curl rlwrap clojure
   fi
-
-  download-bin https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein lein
-  download-bin https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh boot
 
   dl-archived-bin babashka/babashka  bb        -$os-amd64.tar.gz
   dl-archived-bin clj-kondo/clj-kondo clj-kondo -$os-amd64.zip
   dl-archived-bin borkdude/jet       jet       -$os-amd64.zip
 fi
+
+download-bin https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein lein
+download-bin https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh boot
 
 dl-archived-bin greglook/cljstyle cljstyle _$os.tar.gz
 
