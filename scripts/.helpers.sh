@@ -7,6 +7,7 @@ PREFIX=$HOME/usr
 mkdir -p $PREFIX/bin
 SRC_DIR=$HOME/data/src
 rc=$HOME/run_control #rc=`dirname $0`/..
+TAR="$(command -v gtar || echo tar)"
 
 source $rc/sh/setup.sh
 
@@ -60,7 +61,7 @@ extract () {
   cd "$dir"
   case "$file" in
     *.tar.*|*.tgz)
-      tar -xvaf "$file";;
+      $TAR -xvaf "$file";;
     *.zip)
       unzip "$file";;
     *)
@@ -216,7 +217,7 @@ versioned-archive-dir () {
     # Write to disk instead of pipe to utilize `tar -a`.
     download "$url" && \
     mkdir "$dest" && \
-    tar -xaf "$basename" --strip-components=1 -C "$dest" && \
+    $TAR -xaf "$basename" --strip-components=1 -C "$dest" && \
     rm -f "$symlink" && \
     ln -s "${dest##*/}" "$symlink" && \
     rm "$basename"

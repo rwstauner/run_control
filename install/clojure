@@ -7,7 +7,7 @@ dl-archived-bin () {
   local slug="$1" bin="${2:-${1#*/}}" suffix="$3"
   url=$(latest-github-dl-url "$slug" "$suffix") || return 1
   archive=`download "$url"`
-  (extract "$archive" && find -name "$bin" | xargs cp -t $PREFIX/bin)
+  (extract "$archive" && find . -name "$bin" | xargs cp -t $PREFIX/bin)
 }
 
 if is_mac; then
