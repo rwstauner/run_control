@@ -1,0 +1,16 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+. `dirname "$0"`/../sh/sh.d/asdf.sh
+
+if is_mac; then
+  asdf plugin-list | grep -qFx java || \
+    asdf plugin-add java https://github.com/halcyon/asdf-java.git
+  asdf list java | grep -q openjdk || \
+    asdf install java `asdf list-all java | grep adoptopenjdk-11 | tail -n1`
+
+elif have apt-get; then
+  sudo apt-get install openjdk-11-jdk-headless
+elif have pacman; then
+  sudo pacman -S --needed jre11-openjdk-headless
+fi
