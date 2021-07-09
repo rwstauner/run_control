@@ -131,7 +131,7 @@ httpd () {
 git () {
   # naive but good enough for now.
   cmd="$1"; shift
-  if command git has "$cmd-x"; then
+  if ! [[ "$cmd" = -* ]] && command git has "$cmd-x"; then
     cmd="$cmd-x"
   fi
   command -- git "$cmd" "$@"
