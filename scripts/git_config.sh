@@ -414,7 +414,7 @@ alias topic            '!git checkout -b "$1" "`git main-branch`"'
 
 alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
-alias upp              '!git up; git new | git maybe process-merged; git prune-branches; git bv'
+alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe process-merged; git prune-branches; git bv'
 
 alias url              '!printf "%s/%s#L%d\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/master/$1" "$2"'
 
