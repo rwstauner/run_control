@@ -416,7 +416,7 @@ alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
 alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe process-merged; git prune-branches; git bv'
 
-alias url              '!printf "%s/%s#L%d\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/master/$1" "$2"'
+alias url              '!printf "%s/%s#L%d\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/`git symbolic-ref HEAD | sed "s,^refs/heads/,,"`/$1" "$2"'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
