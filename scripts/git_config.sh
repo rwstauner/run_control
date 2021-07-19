@@ -378,6 +378,8 @@ alias rbm              '!if [ $# -gt 0 ] && [ "x$*" != "x-i" ]; then echo "no ar
 # Wait a moment after a failure for git to clean up.
 alias rebase-branches  '!main=`git main-branch`; [ $# -gt 0 ] || set -- $(git branch --no-merged "$main" | grep -vE "\bwip-"); for branch in "$@"; do echo " # $branch #"; git rebase -q "$main" "$branch" || { git rebase --abort; sleep 1; } done; git checkout "$main"'
 
+alias remote-branch    '!b=`git symbolic-ref HEAD | sed s,^refs/heads/,,`; if r=`git config branch.$b.merge`; then echo "$r" | sed s,^refs/heads/,,; else echo $b; fi'
+
 # Since git operates from the project root dir `pwd` also works.
 #$gc alias.root            $'!pwd'
 alias root             'rev-parse --show-toplevel'
@@ -416,7 +418,7 @@ alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
 alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe process-merged; git prune-branches; git bv'
 
-alias url              '!printf "%s/%s#L%d\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/`git symbolic-ref HEAD | sed "s,^refs/heads/,,"`/$1" "$2"'
+alias url              '!printf "%s/%s#L%d\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/`git remote-branch`/$1" "$2"'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
