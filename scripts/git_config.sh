@@ -376,7 +376,7 @@ alias rbm              '!if [ $# -gt 0 ] && [ "x$*" != "x-i" ]; then echo "no ar
 
 # Rebasing a cherry-picked branch will squash the duplicated commit.
 # Wait a moment after a failure for git to clean up.
-alias rebase-branches  '!main=`git main-branch`; [ $# -gt 0 ] || set -- $(git branch --no-merged "$main" | grep -vE "\bwip-"); for branch in "$@"; do echo " # $branch #"; git rebase -q "$main" "$branch" || { git rebase --abort; sleep 1; } done; git checkout "$main"'
+alias rebase-branches  '!main=`git main-branch`; [ $# -gt 0 ] || set -- $(git branch --no-merged "$main" | grep -vE "^\s*(wip-.*|master|main|develop)\s*$"); for branch in "$@"; do echo " # $branch #"; git rebase -q "$main" "$branch" || { git rebase --abort; sleep 1; } done; git checkout "$main"'
 
 alias remote-branch    '!b=`git symbolic-ref HEAD | sed s,^refs/heads/,,`; if r=`git config branch.$b.merge`; then echo "$r" | sed s,^refs/heads/,,; else echo $b; fi'
 
