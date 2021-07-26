@@ -38,7 +38,7 @@ _fzf_post_process () {
   case "$cmd" in
     grep\ *|git\ grep\ *|rg\ *)
       # Strip everything after "file:line".
-      perl -pe 's/^(.+?:(\d+)).*/$1/'
+      perl -pe 's/^(.+?:(\d+)?).*/$1/; s/:$//'
       ;;
     git\ st|git\ status)
       # If there's a "(modified|new file):" in front of the path, strip it.
