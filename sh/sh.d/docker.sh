@@ -97,7 +97,7 @@ drun () {
     # [[ "$1" = "--ssh-agent" ]] && dssh-agent
     shift;
     # args+=(-v ssh-agent:/ssh -e SSH_AUTH_SOCK=/ssh/auth/sock -e GIT_SSH_COMMAND="ssh -i ~/.id_rsa -o StrictHostKeyChecking=no -l $USER")
-    local sockpath=/run/host-services/ssh-auth.sock
+    local sockpath=`uname | grep -q Darwin && echo /run/host-services/ssh-auth.sock || echo "$SSH_AUTH_SOCK"`
     # FIXME: this doesn't work for github.
     args+=(-v $sockpath:$sockpath -e SSH_AUTH_SOCK=$sockpath -e GIT_SSH_COMMAND="ssh -i ~/.id_rsa -o StrictHostKeyChecking=no -l $USER")
   fi
