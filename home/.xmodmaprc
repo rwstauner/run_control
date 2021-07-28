@@ -7,10 +7,3 @@ clear Mod4
 keysym Super_L = Multi_key
 !keysym Mod5 = Alt_R
 keysym ISO_Level3_Shift = Alt_R
-
-!pretend keypad is regular
-keysym KP_Enter = Return
-keysym KP_Multiply = asterisk
-keysym KP_Divide = slash
-keysym KP_Subtract = minus
-keysym KP_Add = plus
