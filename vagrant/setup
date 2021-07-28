@@ -34,7 +34,7 @@ if which vagrant &> /dev/null; then
   #plugin vagrant-notify
 
   # Add functionality to vagrant commands/events.
-  plugin vagrant-triggers
+  #plugin vagrant-triggers
 
   # Auto-install virtualbox guest additions.
   plugin vagrant-vbguest
