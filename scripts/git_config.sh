@@ -87,7 +87,13 @@ config color.ui          auto
 
 config core.excludesFile ~/.excludes
 config core.attributesfile ~/.gitattributes
-config core.symlinks false
+
+if have_git_version 2.30.1; then
+  config core.symlinks true
+else
+  config core.symlinks false
+fi
+
 config user.branch-prefix rwstauner/
 
 cat <<EOF > ~/.gitattributes
