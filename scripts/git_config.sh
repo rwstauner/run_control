@@ -257,7 +257,8 @@ alias_diffs hl            '!_() { git' '--color "$@" | diff-highlight | $PAGER; 
 alias diff-each        '!(cd $GIT_PREFIX && git diff --name-only -- "$@") | while read -r f; do GIT_DIFF_FILE="$f" git diff --color=always "$f"; done | $PAGER'
 alias diffwithsubs     '!git submodule summary; git diff'
 
-alias draft            'push origin HEAD:refs/drafts/master'
+# gerrit
+# alias draft            'push origin HEAD:refs/drafts/master'
 
 # the sha1 for an empty tree in case you want to compare something to a bare repo
 alias empty-tree-sha1  'hash-object -t tree /dev/null'
