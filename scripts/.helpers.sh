@@ -226,7 +226,12 @@ versioned-archive-dir () {
 }
 
 version_ge () {
-  perl -e '($s, $t) = map { [split /\./, (/([0-9.]+)/)[0]] } @ARGV; while(@$t){ shift(@$s) >= shift(@$t) or exit(1) }' -- "$@"
+  bb -e '(let [[a b] (->> *command-line-args*
+                          (map #(-> %
+                                    (->> (re-find #"\d+(?:\.\d+)*"))
+                                    (str/split #"\.")
+                          (->> (mapv #(Integer/parseInt %))))))]
+          (System/exit (if (neg? (compare a b)) 1 0)))' -- "$@"
 }
 
 script () {
