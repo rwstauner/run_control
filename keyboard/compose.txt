@@ -105,7 +105,7 @@
 "weary" "😩" # WEARY FACE
 "wearycat" "🙀" # WEARY CAT FACE
 "wink" "😉" # WINKING FACE
-"xbones" "🕱" # BLACK SKULL AND CROSSBONES
+"xbones" "☠" # SKULL AND CROSSBONES
 "zap" "⚡" # HIGH VOLTAGE SIGN
 "zwj" "‍" # ZERO WIDTH JOINER
 "zwnbsp" "﻿" # BOM # ZERO WIDTH NO-BREAK SPACE
