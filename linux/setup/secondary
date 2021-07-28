@@ -28,6 +28,7 @@ elif have pacman; then
   pkgs=(
     words
     aspell-en
+    onboard
     util-linux
   )
   sudo pacman -S --needed "${common[@]}" "${pkgs[@]}"
