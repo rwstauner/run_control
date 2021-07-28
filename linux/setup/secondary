@@ -5,6 +5,7 @@ have () { command -v "$1" >&-; }
 common=(
   inotify-tools
 
+  python-gobject
   sqlite3 sqlite3-doc
 
   xdotool
