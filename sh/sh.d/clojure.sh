@@ -7,5 +7,6 @@ clj () {
 }
 
 alias bb='rlwrap bb'
+alias bbj='bb "(json/parse-stream *in* true)" | bb'
 
 export BABASHKA_PRELOADS='(defmacro $$ [& args] `(let [proc ^{:inherit true} (p/$ ~@args)] (p/check proc) nil))'
