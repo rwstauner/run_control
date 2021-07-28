@@ -44,6 +44,9 @@ plenv global  $latest
 
 which cpanm || cpan App::cpanminus
 
+# must-haves.
+cpanm File::Rename App::Uni
+
 # perl install-mods.pl
 
 # Link a dir to the installation dir for scripts.
