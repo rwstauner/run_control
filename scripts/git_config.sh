@@ -367,8 +367,10 @@ alias pum              '!git fetch upstream; git pull upstream `git main-branch`
 
 alias push-topic       '!git push origin "`git config remote.origin.push`,topic=$*"'
 alias pusht            '!git push "$@"; git push --tags "$@"'
+
 alias branch-prefix    '!git config remote."${1:-origin}".url | grep -q rwstauner || git config user.branch-prefix'
-alias pushup           '!git push -u "${1:-origin}" HEAD:"`git branch-prefix`${2:-`git current-branch`}"'
+alias branch-name      '!if echo "$1" | grep -qE "^[A-Z]+-[0-9]+$"; then echo "$1"; else echo "`git branch-prefix`$1"; fi'
+alias pushup           '!b="${2:-`git current-branch`}"; git push -u "${1:-origin}" HEAD:"`git branch-name "$b"`"'
 
 alias branch-to-remote  '!branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch'
 alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch'
