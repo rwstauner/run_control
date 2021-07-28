@@ -13,6 +13,7 @@ dl-archived-bin () {
 if is_mac; then
   brew=(
     clojure/tools/clojure
+    borkdude/brew/babashka
     borkdude/brew/clj-kondo
     borkdude/brew/jet
   )
