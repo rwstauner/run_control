@@ -2,7 +2,7 @@
 
 have () { command -v "$1" >&-; }
 
-pkgs=(
+common=(
   inotify-tools
 
   sqlite3 sqlite3-doc
@@ -22,12 +22,12 @@ if have apt; then
     sqlite3-pcre libsqlite3-dev
     wireshark
   )
-  sudo apt install "${pkgs[@]}"
+  sudo apt install "${common[@]}" "${pkgs[@]}"
 elif have pacman; then
   pkgs=(
     words
     aspell-en
     util-linux
   )
-  sudo pacman -S --needed "${pkgs[@]}"
+  sudo pacman -S --needed "${common[@]}" "${pkgs[@]}"
 fi
