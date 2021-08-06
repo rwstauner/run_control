@@ -37,3 +37,6 @@ dl-archived-bin greglook/cljstyle cljstyle _$os.tar.gz
 
 [[ -d ~/.clojure ]] || ln -s ~/run_control/clojure/config ~/.clojure
 [[ -d ~/.lein ]] || ln -s ~/run_control/clojure/lein ~/.lein
+
+command -v npm && \
+npm i -g nbb
