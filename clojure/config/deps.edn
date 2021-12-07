@@ -74,7 +74,7 @@
       {:extra-deps {seancorfield/clj-new {:mvn/version "1.1.243"}}
        :exec-fn clj-new/create
        :exec-args {:template "lib" :env {:developer "Randy Stauner"}}}
-    :nrepl
+    :nrepl-dep
       {:extra-deps {nrepl/nrepl {:mvn/version "0.6.0"}}
        ; :main-opts ["-m" "nrepl.cmdline" "--interactive"]
        }
