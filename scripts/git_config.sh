@@ -221,7 +221,7 @@ alias cobt            '!git checkout -tb "$1" origin/"$1"'
 # TODO: heredoc?
 alias cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { print tolower($2) }\047 ~/.pause`@cpan.org> <`git config user.email`>"'
 
-alias clone-dest      '!echo "${2:-${1##*/}}"'
+alias clone-dest      '!d="$2"; if [ -z "$d" ]; then d="${1##*/}"; d="${d%.git}"; fi; echo "$d"'
 
 # clone repo, make remote "origin" for first arg and "upstream" for second
 alias clone-fork      '!fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=${forkdir%.git}; git clone $fork; cd ${forkdir}; git remote add upstream $upstream'
