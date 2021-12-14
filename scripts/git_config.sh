@@ -250,8 +250,8 @@ alias_diffs () {
   config "alias.showp$alias"  "$prefix${prefix:+ }show -p $suffix"
 }
 
-alias_diffs cw            '' $'--color-words=.'
-alias_diffs cww           '' $'--color-words=\\\\w+'
+alias_diffs cw            '' $'-w --color-words=.'
+alias_diffs cww           '' $'-w --color-words=\\\\w+'
 alias_diffs hl            '!_() { git' '--color "$@" | diff-highlight | $PAGER; }; _'
 
 alias diff-each        '!(cd $GIT_PREFIX && git diff --name-only -- "$@") | while read -r f; do GIT_DIFF_FILE="$f" git diff --color=always "$f"; done | $PAGER'
