@@ -3,28 +3,38 @@
 . `dirname "$0"`/../scripts/.helpers.sh
 
 locallib=$HOME/perl5/abcde
-cpanm () {
-  command cpanm -l "$locallib" "$@"
+
+# fake presence of local::lib
+export PATH="$locallib/bin${PATH:+:${PATH}}"
+export PERL5LIB="$locallib/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+export PERL_LOCAL_LIB_ROOT="$locallib${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+export PERL_MB_OPT="--install_base \"$locallib\""
+export PERL_MM_OPT="INSTALL_BASE=$locallib"
+
+# abcde-musicbrainz-tool has shebang of /usr/bin/perl
+perl () {
+  /usr/bin/perl "$@"
 }
+
+cpan () {
+  command /usr/bin/perl -MCPAN -e 'notest(@ARGV)' -- install "$@"
+}
+
+# ensure we install it into this dir for bootstrapping
+test -r $locallib/perl5/lib/local/lib.pm || cpan local::lib
+
 pm-installed () {
   perl -Mlocal::lib="$locallib" -m"$1" -c -e1 2> /dev/null
 }
 
 perldep () {
-  # pm-installed "$1" && return
-  cpanm "$@"
-}
-
-check-mb-discid () {
-  local mod=MusicBrainz::DiscID
-  # pm-installed "$mod" && return
-  cpanm "$mod"
+  pm-installed "$1" && return
+  cpan "$@"
 }
 
 perldeps () {
-  check-mb-discid
-  perldep WebService::MusicBrainz -n
-  perldep WebService::MusicBrainz::Release -n
+  perldep MusicBrainz::DiscID
+  perldep WebService::MusicBrainz
 }
 
 perldeps
