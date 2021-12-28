@@ -45,7 +45,7 @@ elif have apt-get; then
   sudo apt-get install libdiscid
 
 elif have pacman; then
-  sudo pacman -S --needed abcde libdiscid
+  sudo pacman -S --needed abcde libdiscid cdparanoia glyr
 fi
 
 perldeps
