@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+command -v asdf || . $rc/sh/sh.d/asdf.sh
+
+asdf plugin-add kubectl
