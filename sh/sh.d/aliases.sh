@@ -32,7 +32,7 @@ alias caly='cal `date +%Y`'
 alias diffpatch='diff -Npurd'
 alias diffgit='\git diff --no-index'
 
-for i in cw hl; {
+for i in cw cww cws hl; {
   alias diffgit$i="\\git diff$i --no-index";
 }
 
