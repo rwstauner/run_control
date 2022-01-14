@@ -29,3 +29,5 @@ dedupe_path () {
   # Pass $PATH instead of using $ENV{PATH} since plenv will add to path.
   PATH=`perl -ne 'print join ":", grep { !$u{$_}++ } split /:/' <<<"$PATH"`
 }
+
+-rlwrap! () { local i; for i in "$@"; { alias $i=rlwrap\ $i; }; }
