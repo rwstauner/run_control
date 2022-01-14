@@ -13,3 +13,7 @@ alias bbj='bb "(json/parse-stream *in* true)" | bb'
 export BABASHKA_PRELOADS='(defmacro $$ [& args] `(let [proc ^{:inherit true} (p/$ ~@args)] (p/check proc) nil))'
 
 # -rlwrap! shadow-cljs
+
+# Skip npx.
+# export ICED_REPL_SHADOW_CLJS_CMD='shadow-cljs -A:weasel'
+# alias iced=$HOME/.vim/plugged/vim-iced/bin/iced
