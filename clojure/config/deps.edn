@@ -36,7 +36,13 @@
   :aliases {
   ;;   :deps {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.5.460"}}}
   ;;   :test {:extra-paths ["test"]}
+    :bench
+    {:extra-deps {org.clojars.mdwhatcott/benchmarks {:mvn/version "0.3.1"}}}
     ; https://nrepl.org/nrepl/0.6.0/usage/server.html#_using_clojure_cli_tools
+    :cider
+      {:extra-deps {cider/cider-nrepl {:mvn/version "0.26.0"}
+                    cider/piggieback {:mvn/version "0.5.2"}}}
+
     :cljfmt
       {:extra-deps {cljfmt/cljfmt {:mvn/version "0.6.4"}}}
     :cljs
@@ -86,6 +92,14 @@
         {com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
        ; :main-opts  ["-m" "rebel-readline.main"]
        }
+    :rebel-cljs
+      {:extra-deps
+        {com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}
+         org.clojure/clojurescript {:mvn/version "1.10.520"}
+         }
+       :main-opts  ["-m" "rebel-readline.cljs.main"]
+       }
+
     :reply
       {:extra-deps {reply/reply {:mvn/version "0.4.4"}}
        :main-opts ["-m" "reply.main"]}
@@ -94,13 +108,21 @@
         {org.springframework.boot/spring-boot-tools {:mvn/version "2.1.7.RELEASE"}}}
     :test-runner
       {:extra-paths ["test"]
-       :extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
-                                               :sha "209b64504cb3bd3b99ecfec7937b358a879f55c1"}}
-       :main-opts ["-m" "cognitect.test-runner"]}
+       :extra-deps {io.github.cognitect-labs/test-runner
+                    {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                     :sha "8c3f22363d63715de4087b038d79ae0de36a3263"}}
+       :main-opts ["-m" "cognitect.test-runner"]
+       :exec-fn cognitect.test-runner.api/test}
     :tools/cli
       {:extra-deps {org.clojure/tools.cli {:mvn/version "1.0.206"}}}
     :tools/repl
       {:extra-deps {org.clojure/tools.namespace {:mvn/version "1.0.0"}}}
+
+    :xml
+      {:extra-deps {com.fasterxml.jackson.core/jackson-databind {:mvn/version "2.5.5"}}}
+
+    :weasel
+      {:extra-deps {weasel/weasel {:mvn/version "0.7.1"}}}
   }
 
   ;; Provider attributes
