@@ -5,6 +5,7 @@ clj () {
     command clj "$@"
   fi
 }
+alias cljs='clojure -M:rebel-cljs'
 
 -rlwrap! bb
 alias bbj='bb "(json/parse-stream *in* true)" | bb'
