@@ -59,6 +59,11 @@ if whence git_prompt_info &> /dev/null; then
     #if [[ -n "$git_dir" ]] && [[ "$git_dir" != "$_last_git_dir" ]]; then
     if [[ -n "$git_dir" ]] && ! [[ "$(git config custom.no-prompt-info)" = "true" ]]; then
       _rwstauner_git_prompt_info () { git_prompt_info; }
+      # _rwstauner_git_prompt_info () {
+      #   local tfenv="$(cat .terraform/environment 2>&-)"
+      #   # TODO: hook this to actually running (or typing) terraform
+      #   echo "$(git_prompt_info) ${tfenv:+"%{%F{178}%}⛈  «"}$tfenv${tfenv:+"»%{%f%}"}";
+      # }
     else
       _rwstauner_git_prompt_info () {}
     fi
