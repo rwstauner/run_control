@@ -251,6 +251,7 @@ alias_diffs () {
 }
 
 alias_diffs cw            '' $'-w --color-words=.'
+alias_diffs cws           '' $'-w --color-words=\\\\S+'
 alias_diffs cww           '' $'-w --color-words=\\\\w+'
 alias_diffs hl            '!_() { git' '--color "$@" | diff-highlight | $PAGER; }; _'
 
