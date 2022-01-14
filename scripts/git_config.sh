@@ -272,6 +272,7 @@ alias follow           'log --follow'
 # TODO: split args b/t log and fp with `--`.
 alias format-patch-script  $'!file="$1"; shift; git log --oneline "$file" | perl -e \'print reverse <STDIN>\' | perl -lne \'BEGIN { @opts = splice @ARGV } ($c, $s) = split / /, $_, 2; print q[git format-patch -n --start-number ], ++$patch, qq[ @opts -1 $c # $s]\' -- "$@"'
 
+# repo-setup: if git config remote.origin.url | grep ...; then config user.email; config gh.pr.args '-r ...'
 alias clone-x          '!git clone "$@" && (cd `git clone-dest "$@"` && git maybe repo-setup)'
 
 # filenames at the top: --heading --break ?
