@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/run_control/zsh/ext/oh-my-zsh
+test -d "$ZSH" || return
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
