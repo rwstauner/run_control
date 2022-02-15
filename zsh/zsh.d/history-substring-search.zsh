@@ -1,6 +1,6 @@
 # The docs say to load this after the syntax highlighter.
 
-source "$ZSH/plugins/history-substring-search/history-substring-search.zsh" || return
+source_rc_file "$ZSH/plugins/history-substring-search/history-substring-search.zsh" || return
 
 # Alter the keybindings.
 

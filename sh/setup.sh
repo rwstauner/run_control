@@ -1,9 +1,14 @@
 umask 022
 
+source_rc_file () {
+  local rc="$1"
+  [[ -f "$rc" ]] && [[ -r "$rc" ]] && source "$rc"
+}
+
 source_rc_files () {
   local rc
   for rc in "$@"; do
-    [[ -f "$rc" ]] && [[ -r "$rc" ]] && source "$rc"
+    source_rc_file "$rc"
   done
 }
 
