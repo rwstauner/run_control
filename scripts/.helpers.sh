@@ -226,12 +226,8 @@ versioned-archive-dir () {
 }
 
 version_ge () {
-  bb -e '(let [[a b] (->> *command-line-args*
-                          (map #(-> %
-                                    (->> (re-find #"\d+(?:\.\d+)*"))
-                                    (str/split #"\.")
-                          (->> (mapv #(Integer/parseInt %))))))]
-          (System/exit (if (neg? (compare a b)) 1 0)))' -- "$@"
+  # python -c 'import sys; from packaging import version; sys.exit(0 if version.parse(sys.argv[1]) >= version.parse(sys.argv[2]) else 1);' "$@"
+  perl -e 'use version 0.77; ($s, $t) = map { version->declare((/([0-9.]+)/)[0]) } @ARGV; exit($s >= $t ? 0 : 1)' -- "$@"
 }
 
 script () {
