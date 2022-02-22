@@ -25,6 +25,9 @@ zshd_files=(
   zle
 )
 
+# Initial zsh settings.
+include "$dir/zsh/pre-load.zsh"
+
 # Load `zsh.d/*`.
 include_pattern "$dir/zsh/zsh.d/%s.zsh" "${zshd_files[@]}"
 
