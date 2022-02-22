@@ -1,6 +1,6 @@
 # https://github.com/zsh-users/zsh-syntax-highlighting
 ZSH_HIGHLIGHT_FILE=$HOME/run_control/zsh/ext/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_HIGHLIGHT_FILE || return
+source_rc_file $ZSH_HIGHLIGHT_FILE || return
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(
   brackets
