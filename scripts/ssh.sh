@@ -11,8 +11,7 @@ perl -0777 -p -i -e '
 Host *
   Compression yes
   ControlMaster auto
-  # keep this as short as possible
-  ControlPath ~/.ssh/.c/%h%p%r
+  ControlPath ~/.ssh/.c/%C
   ControlPersist 5m
 # }}}
 ";
