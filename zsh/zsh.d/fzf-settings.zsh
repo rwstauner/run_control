@@ -1,28 +1,3 @@
-# ~/.fzf.zsh {{{
-# Setup fzf
-# ---------
-add_to_path ~/usr/fzf/bin
-
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "$HOME/usr/fzf/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-# ------------
-() {
-  local i
-  for i in \
-    "$HOME/usr/fzf/shell/key-bindings.zsh" \
-    "/usr/share/doc/fzf/examples/key-bindings.zsh" \
-  ; do
-    if [[ -r "$i" ]]; then
-      source "$i" && break
-    fi
-  done
-}
-# }}}
-
-
 # Use git for faster finding.
 # export FZF_DEFAULT_COMMAND='
 #   (git ls-tree -r --name-only HEAD ||
@@ -41,8 +16,13 @@ export FZF_DEFAULT_OPTS="
 bindkey '^R' history-incremental-search-backward
 bindkey '^X^H' fzf-history-widget
 
+# Make it easy to overwrite.
+_fzf_post_process_custom () {
+  cat
+}
+
 _fzf_post_process () {
-  cmd="$1"
+  local cmd="$1"
   case "$cmd" in
     grep\ *|git\ grep\ *|rg\ *)
       # Strip everything after "file:line".
@@ -66,7 +46,7 @@ _fzf_post_process () {
       awk '{ print $2 }'
       ;;
     *)
-      cat
+      _fzf_post_process_custom "$cmd"
       ;;
   esac
 }
@@ -76,7 +56,7 @@ __fzf-tmux-pane () {
   local last="${psvar[1]}" # Set by custom prompt hooks. Alternative: `fc -l -1 | cut -f 3- -d ' '`
   # `-S 0` visible, `-S -10` ten lines in hist, `-S -` beginning
   # -J to wrap and preserve whitespace
-  local cmd="$HOME/run_control/tmux/capture-from-last-prompt"
+  local cmd="${FZF_TMUX_PANE_CMD:-$HOME/run_control/tmux/capture-from-last-prompt}"
   eval "$cmd | $(FZF_TMUX_HEIGHT=90% __fzfcmd) +s --tac -m --header=tmux-capture-pane" | _fzf_post_process "$last" | while read item; do
     # TODO: s/.+?:\d+:\K.+//
     # TODO: might not want the q
