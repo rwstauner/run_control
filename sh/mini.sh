@@ -10,7 +10,7 @@ include () {
     next if /^\s*(#.*)?$/;
 
     # Warn if a source call is found.
-    warn "!: $_" if /(^|\s)(\.|source)\s+/;
+    warn "source call: $_" if /(^|\s)(\.|source)\s+/;
 
     print;
   ' "$1"
