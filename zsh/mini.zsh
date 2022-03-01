@@ -18,6 +18,7 @@ zshd_files=(
   autoload
   completion
   functions
+  fzf-settings
   history
   options
   vim-emacs
