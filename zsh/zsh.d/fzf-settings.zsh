@@ -57,7 +57,10 @@ __fzf-tmux-pane () {
   # `-S 0` visible, `-S -10` ten lines in hist, `-S -` beginning
   # -J to wrap and preserve whitespace
   local cmd="${FZF_TMUX_PANE_CMD:-$HOME/run_control/tmux/capture-from-last-prompt}"
-  eval "$cmd | $(FZF_TMUX_HEIGHT=90% __fzfcmd) +s --tac -m --header=tmux-capture-pane" | _fzf_post_process "$last" | while read item; do
+  # Get output before fzf switches to alternate screen.
+  # (The start order of commands in a pipeline is non-deterministic.)
+  local output="$(eval $cmd)"
+  fzf +s --tac -m --header=tmux-capture-pane <<<"$output" | _fzf_post_process "$last" | while read item; do
     # TODO: s/.+?:\d+:\K.+//
     # TODO: might not want the q
     echo -n "${(q)item} "
