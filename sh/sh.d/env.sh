@@ -15,6 +15,9 @@ export SHELLCHECK_OPTS="-e SC2006 -e SC2164 -e SC2155"
 export TAR_OPTIONS="$TAR_OPTIONS --exclude-from=$HOME/.excludes"
 
 # Don't load mac crap for Apple_Terminal
-unset TERM_PROGRAM
+case "$TERM_PROGRAM" in
+  Apple*)
+    unset TERM_PROGRAM;;
+esac
 
 export XML_CATALOG_FILES="$HOME/devel/xml/catalog /etc/xml/catalog"
