@@ -32,7 +32,7 @@ _fzf_post_process () {
       # If there's a "(modified|new file):" in front of the path, strip it.
       perl -pe 's/^\s*[^:]+:\s*(.+)/$1/'
       ;;
-    git\ diff*)
+    git\ diff*|git\ ix*)
       perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}'
       ;;
     docker\ images*)
