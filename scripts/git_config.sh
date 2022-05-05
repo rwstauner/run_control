@@ -187,6 +187,8 @@ alias add-p           'add -p'
 alias adp             'add -p'
 alias touch           'add -N'
 
+alias all-changed     '!echo `git branch-changed` `git changed` | xargs -n 1 | sort | uniq'
+
 alias b               'branch'
 alias bv              'branch  -vv'
 alias bav             'branch -avv'
@@ -197,6 +199,9 @@ alias blamehard       'blame -w -C -C -C'
 
 #alias bunch           '!env FILE_LOG_LEVEL=off gitbunch'
 #alias bunch           '!gitbunch'
+
+alias branch-base     '!last=`git last-sha`; base=`git merge-base origin/HEAD "$last"`; if test -z "$base"; then main=`git main-branch`; base=`git merge-base "$main" "$last"`; fi; echo "${base:-${main:-`git main-branch`}}"'
+alias branch-changed  '!git diff --name-only `git branch-base`..'
 
 # ls-files -m doesn't show changes staged for commit (status does).
 # The value of this command is to interact with files,
@@ -297,8 +302,7 @@ alias last             '!git lf -n 1 -U10'
 # Print added, modified, the new name of renames, not deletes, and limit to files that still exist.
 alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | gxargs -r ls -1 2> /dev/null'
 
-# there must be a better way
-alias last-sha        $'!git show HEAD --oneline | head -n1 | awk \047{print $1}\047'
+alias last-sha        'log --pretty=format:%H -n 1'
 alias last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-f0-9]+$//\047'
 
 alias log1       'log --oneline'
