@@ -3,7 +3,8 @@
 #   (git ls-tree -r --name-only HEAD ||
 #    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
 #       sed s/^..//) 2> /dev/null'
-export FZF_DEFAULT_COMMAND='rg --files'
+# This is evaluated by the shell so don't use functions or aliases that expect tty output.
+export FZF_DEFAULT_COMMAND='command rg --files'
 
 export FZF_DEFAULT_OPTS="
   --history $HOME/.fzf.history

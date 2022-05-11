@@ -20,4 +20,6 @@ alias grepn='grep -H -n'
 
 # RIPGREP_CONFIG_PATH
 # alias rg='rg -H --no-heading --vimgrep'
-alias rg='rg -H --no-heading'
+rg () {
+  command rg -H --no-heading --pretty "$@" | less
+}
