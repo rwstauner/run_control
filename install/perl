@@ -46,6 +46,7 @@ which cpanm || cpan App::cpanminus
 
 # must-haves.
 cpanm File::Rename App::Uni
+cpanm Encoding::FixLatin Image::ExifTool MP3::Tag
 
 # perl install-mods.pl
 
