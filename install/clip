@@ -16,8 +16,15 @@ CLIP
 
 else
 
-  command -v xsel || \
-    sudo apt-get install xsel
+  if ! have xsel; then
+    if have apt-get; then
+      sudo apt-get install xsel
+    elif have pacman; then
+      sudo pacman -S --needed xsel
+    else
+      warn 'unknown package management system'
+    fi
+  fi
 
   script "$dest" <<'CLIP'
 #!/bin/sh
