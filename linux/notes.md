@@ -2,6 +2,8 @@
 
 run appropriate scripts in ./linux/setup
 
+confirm ctrl-alt-f1-7 works
+
 # window manager
 
 wade through settings looking for new things
