@@ -38,4 +38,19 @@ window manager
 find swap partition
 add it to /etc/default/grub:
 
-    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash resume=/dev/nvme0n1p7"
+    GRUB_CMDLINE_LINUX_DEFAULT="... resume=/dev/nvme0n1p7"
+
+(the `_DEFAULT` is for normal boots only.)
+
+Also comment out
+
+    GRUB_DISABLE_RECOVERY=true
+
+To add a menu entry for single-user mode (1).
+
+To boot into multi-user non-gui mode edit the command line and replace single
+with 3.
+
+then
+
+    sudo update-grub
