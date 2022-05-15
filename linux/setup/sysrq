@@ -3,5 +3,7 @@
 # https://en.wikipedia.org/wiki/Magic_SysRq_key
 
 val=244
-sudo perl -p -i -e 's/^kernel.sysrq = \K\d+/'"$val"'/' /etc/sysctl.d/10-magic-sysrq.conf
+file=/etc/sysctl.d/10-magic-sysrq.conf
+grep -qE "^kernel.sysrq\s=" "$file" || echo "kernel.sysrq = 16" | sudo tee -a "$file"
+sudo perl -p -i -e 's/^kernel.sysrq = \K\d+/'"$val"'/' "$file"
 echo "$val" | sudo tee /proc/sys/kernel/sysrq
