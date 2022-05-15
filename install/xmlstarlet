@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if is_mac && homebrew xmlstarlet; then
+  exit 0;
+fi
+
+sudo pacman -S --needed xmlstarlet
