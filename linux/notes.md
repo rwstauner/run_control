@@ -10,7 +10,7 @@ wade through settings looking for new things
 
 window manager
 - keyboard
-  - behvaior
+  - behavior
     - num lock state
   - application shortcuts
     - ctrl shift v: xfce4-popup-clipman
