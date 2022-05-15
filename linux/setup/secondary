@@ -24,15 +24,19 @@ if have apt; then
     ncal
     exiftool
     sqlite3-pcre libsqlite3-dev
+    xinput
     wireshark
   )
   sudo apt install "${common[@]}" "${pkgs[@]}"
 elif have pacman; then
   pkgs=(
+    dnsutils
+    tree
     words
     aspell-en
     onboard
     util-linux
+    xorg-xinput
   )
   sudo pacman -S --needed "${common[@]}" "${pkgs[@]}"
 fi
