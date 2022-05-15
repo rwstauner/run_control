@@ -14,6 +14,7 @@ if have pacman; then
   sudo pacman -S --needed docker
   if have systemctl; then
     sudo systemctl enable docker.service
+    sudo systemctl start docker.service
   fi
 elif ! have docker; then
   sudo apt-get install \
