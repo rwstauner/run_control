@@ -44,7 +44,7 @@ add it to /etc/default/grub:
 
 Also comment out
 
-    GRUB_DISABLE_RECOVERY=true
+    #GRUB_DISABLE_RECOVERY=true
 
 To add a menu entry for single-user mode (1).
 
