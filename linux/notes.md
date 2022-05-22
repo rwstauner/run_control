@@ -51,6 +51,8 @@ To add a menu entry for single-user mode (1).
 To boot into multi-user non-gui mode edit the command line and replace single
 with 3.
 
+Lower `GRUB_TIMEOUT=2`
+
 then
 
     sudo update-grub
