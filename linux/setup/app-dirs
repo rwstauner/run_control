@@ -3,7 +3,7 @@
 dirs=(
   .dropbox
   .mozilla
-  .config/google-chrome
+  .config--google-chrome
 )
 
 warn () {
@@ -23,5 +23,5 @@ symlink () {
 }
 
 for dir in "${dirs[@]}"; do
-  symlink ~/Dropbox/linux/home/$dir ~/$dir
+  symlink ~/data/home/$dir ~/${dir/--/\/}
 done
