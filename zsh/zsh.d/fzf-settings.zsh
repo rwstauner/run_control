@@ -36,6 +36,9 @@ _fzf_post_process () {
     git\ diff*|git\ ix*)
       perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}'
       ;;
+    git\ branch*|git\ bv|git\ bav)
+      perl -pe 's/^[ *] (\S+)\s+.+/$1/'
+      ;;
     docker\ images*)
       # image:tag
       # awk '{ if ($2 == "<none>") { print $1 } else { printf "%s:%s\n", $1, $2 } }'
