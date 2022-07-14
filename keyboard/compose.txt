@@ -13,7 +13,8 @@
 "3/4" "¾" # VULGAR FRACTION THREE QUARTERS
 ":'(" "😢" # CRYING FACE
 ":(" "☹" # WHITE FROWNING FACE
-":)" "☺" # WHITE SMILING FACE
+":)" "🙂" # SLIGHTLY SMILING FACE
+":D" "😃" # SMILING FACE WITH OPEN MOUTH
 "N`" "Ñ" # shift not needed # LATIN CAPITAL LETTER N WITH TILDE
 "anger" "💢" # ANGER SYMBOL
 "angry" "😠" # ANGRY FACE
@@ -91,6 +92,7 @@
 "star" "★" # BLACK STAR
 "sunglass" "😎" # SMILING FACE WITH SUNGLASSES
 "sweat" "😰" # FACE WITH OPEN MOUTH AND COLD SWEAT
+"sweat:)" "😅" # SMILING FACE WITH OPEN MOUTH AND COLD SWEAT
 "there4" "∴" # THEREFORE
 "think" "🤔" # THINKING FACE
 "tongue" "😛" # FACE WITH STUCK-OUT TONGUE
