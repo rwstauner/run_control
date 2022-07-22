@@ -3,7 +3,7 @@
 dir=run_control
 
 find-files () {
-  find home/ -mindepth 1 -maxdepth 1 2>&- | sort
+  find home/ `uname | tr A-Z a-z`/home -mindepth 1 -maxdepth 1 2>&- | sort
 }
 
 link-to-home () {
