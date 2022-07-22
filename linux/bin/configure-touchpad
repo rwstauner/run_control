@@ -1,0 +1,18 @@
+#!/bin/bash
+
+have () { command -v "$@" >&-; }
+
+if have xinput; then
+
+  touchpad="$(xinput --list --name-only | grep Touchpad)"
+  props () {
+    xinput list-props "$touchpad" | grep -iE drag.lock.enabled | grep -vi default
+  }
+
+  props | perl -lne 'print $1 if /\s+(.+?) \(\d+\):\s+[01]/' | while read prop; do
+    xinput set-prop "$touchpad" "$prop" 1
+  done
+
+else
+  echo 'xinput not found' >&2
+fi
