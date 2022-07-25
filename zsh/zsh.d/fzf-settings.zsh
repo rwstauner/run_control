@@ -36,8 +36,8 @@ _fzf_post_process () {
     git\ diff*|git\ ix*)
       perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}'
       ;;
-    git\ branch*|git\ bv|git\ bav)
-      perl -pe 's/^[ *] (\S+)\s+.+/$1/'
+    git\ branch*|git\ bv*|git\ bav*)
+      perl -pe 's{^[ *] (?:remotes/origin/)?(\S+)\s+.+}{$1}'
       ;;
     docker\ images*)
       # image:tag
