@@ -17,9 +17,16 @@ export FZF_DEFAULT_OPTS="
 bindkey '^R' history-incremental-search-backward
 bindkey '^X^H' fzf-history-widget
 
+
+_fzf_post_process_fallback () {
+  # TODO: fallback command that lets you pick whole line vs field
+  # what about multiple lines?
+  cat
+}
+
 # Make it easy to overwrite.
 _fzf_post_process_custom () {
-  cat
+  _fzf_post_process_fallback
 }
 
 _fzf_post_process () {
