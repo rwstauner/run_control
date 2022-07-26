@@ -94,7 +94,7 @@ my_prompt=(
   # host
   '%{'${PROMPT_HOST_COLOR:+%B}'%F{'"${PROMPT_HOST_COLOR:-green}"'}%}'${PROMPT_HOSTNAME:-%m}'%{%f'${PROMPT_HOST_COLOR:+%b}'%}'
 
-  '%{%F{216}%}${SSH_CONNECTION+ ↤}${SSH_CONNECTION%% *}%{%f%} '
+  '%{%F{216}%}'"${SSH_CONNECTION:+ ↤}${SSH_CONNECTION%% *}"'%{%f%} '
 
   #'%{%F{246}%}🐾%{%f%}'
   '%{%F{216}%}🍪%{%f%} '
