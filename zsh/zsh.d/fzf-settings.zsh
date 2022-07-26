@@ -97,6 +97,7 @@ bindkey '^T' fzf-tmux-pane-widget
 
 # Move fzf find file to ^F since we put tmux on ^T.
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_CTRL_T_COMMAND='command rg --files --glob="!*.xyz"'
   # local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . \\( -path '*/\\.*' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
   #   -o -type f -print \
   #   -o -type d -print \
