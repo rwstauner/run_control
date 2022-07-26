@@ -97,6 +97,7 @@
 "think" "🤔" # THINKING FACE
 "tongue" "😛" # FACE WITH STUCK-OUT TONGUE
 "triumph" "😤" # FACE WITH LOOK OF TRIUMPH
+"tophat" "🎩" # TOP HAT
 "unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
 "up" "↑" # UPWARDS ARROW
