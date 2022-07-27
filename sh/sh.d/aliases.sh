@@ -24,6 +24,8 @@ if which caffeinate &> /dev/null; then
   }
 fi
 
+alias abcde='env PAGER=cat caffeinate -- abcde'
+
 
 # shortcuts for common args
 
