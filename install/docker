@@ -11,7 +11,7 @@ if is_mac; then
 fi
 
 if have pacman; then
-  sudo pacman -S --needed docker
+  sudo pacman -S --needed docker docker-compose
   if have systemctl; then
     sudo systemctl enable docker.service
     sudo systemctl start docker.service
