@@ -89,7 +89,7 @@ __fzf-tmux-pane () {
   local end_cmd='clear-query+refresh-preview+enable-search+change-prompt(> )'
   local fzf_args=(
     +s --tac -m
-    --header=tmux-capture-pane
+    --header="$last"
     --ansi
     --preview-window up,1 --preview "echo {} | eval \$(<$filter)"
     --bind 'ctrl-t:disable-search+change-prompt(: )'
