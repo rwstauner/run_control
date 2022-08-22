@@ -21,6 +21,7 @@ bindkey '^X^H' fzf-history-widget
 _fzf_post_process_fallback () {
   # TODO: fallback command that lets you pick whole line vs field
   # what about multiple lines?
+  # or just use awk '{print $1}'
   cat
 }
 
@@ -69,15 +70,40 @@ _fzf_post_process () {
 __fzf-tmux-pane () {
   local last="${psvar[1]}" # Set by custom prompt hooks. Alternative: `fc -l -1 | cut -f 3- -d ' '`
   local cmd="${FZF_TMUX_PANE_CMD:-$HOME/run_control/tmux/capture-from-last-prompt -e}"
+
   # Get output before fzf switches to alternate screen.
   # (The start order of commands in a pipeline is non-deterministic.)
   local output="$(eval $cmd)"
-  fzf +s --tac -m --header=tmux-capture-pane --anis <<<"$output" | _fzf_post_process "$last" | while read item; do
-    # TODO: s/.+?:\d+:\K.+//
-    # TODO: might not want the q
-    echo -n "${(q)item} "
-  done
+
+  # Allow updating the post-process filter dynamically in fzf.
+  local filter="$(mktemp -t fzf.XXXXXX)"
+  local default_filter
+  if [[ -d ~/run_control ]]; then
+    default_filter="~/run_control/zsh/fzf-post-process \"$last\""
+  else
+    # mini
+    default_filter="source ~/.zshrc 2>&-; _fzf_post_process \"$last\""
+  fi
+  echo "$default_filter" >! "$filter"
+  local def_filter="if [[ {q} == '' ]]; then echo '$default_filter'; elif [[ {q} =~ '^([\$][0-9]+ *)+\$' ]]; then printf \"awk '{ print %s }'\n\" {q}; else echo {q}; fi >! $filter"
+  local end_cmd='clear-query+refresh-preview+enable-search+change-prompt(> )'
+  local fzf_args=(
+    +s --tac -m
+    --header=tmux-capture-pane
+    --ansi
+    --preview-window up,1 --preview "echo {} | eval \$(<$filter)"
+    --bind 'ctrl-t:disable-search+change-prompt(: )'
+    --bind "ctrl-x:execute-silent@$def_filter@+$end_cmd"
+  )
+  local fzf_output="$(fzf "${fzf_args[@]}" <<<"$output")"
+
+  if [[ -n "$fzf_output" ]]; then
+    eval "$(<$filter)" <<<"$fzf_output" | while read item; do
+      echo -n "${(q)item} "
+    done
+  fi
   local ret=$?
+  /bin/rm -f "$filter"
   echo
   return $ret
 }
