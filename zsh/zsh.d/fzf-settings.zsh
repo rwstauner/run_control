@@ -10,7 +10,6 @@ export FZF_DEFAULT_OPTS="
   --history $HOME/.fzf.history
   --bind 'ctrl-f:page-down,ctrl-b:page-up,ctrl-s:toggle-sort,ctrl-o:jump'
 "
-#--preview 'echo ${(q):-{}}' --preview-window=down:2
 
 
 # Restore ^r and put fzf hist on another key.
@@ -91,7 +90,7 @@ __fzf-tmux-pane () {
     +s --tac -m
     --header="$last"
     --ansi
-    --preview-window up,1 --preview "echo {} | eval \$(<$filter)"
+    --preview-window up,1 --preview "echo {} | eval \$(<$filter) | while read item; do echo \${(q)item}; done"
     --bind 'ctrl-t:disable-search+change-prompt(: )'
     --bind "ctrl-x:execute-silent@$def_filter@+$end_cmd"
   )
