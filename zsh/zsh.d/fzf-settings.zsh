@@ -68,8 +68,6 @@ _fzf_post_process () {
 # FZF the contents of the current tmux pane.
 __fzf-tmux-pane () {
   local last="${psvar[1]}" # Set by custom prompt hooks. Alternative: `fc -l -1 | cut -f 3- -d ' '`
-  # `-S 0` visible, `-S -10` ten lines in hist, `-S -` beginning
-  # -J to wrap and preserve whitespace
   local cmd="${FZF_TMUX_PANE_CMD:-$HOME/run_control/tmux/capture-from-last-prompt}"
   # Get output before fzf switches to alternate screen.
   # (The start order of commands in a pipeline is non-deterministic.)

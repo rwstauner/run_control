@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# `-S 0` visible, `-S -10` ten lines in hist, `-S -` beginning
+# -J to wrap and preserve whitespace
 tmux capture-pane -Jp -S - "$@" | \
   perl -ne '
   # if last line and current line combine to make multi line prompt...
