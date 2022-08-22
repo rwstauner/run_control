@@ -46,7 +46,7 @@ _fzf_post_process () {
       # If there's a "(modified|new file):" in front of the path, strip it.
       perl -pe 's/^\s*[^:]+:\s*(.+)/$1/'
       ;;
-    git\ diff*|git\ ix*)
+    git\ diff*|git\ ix*|git\ adp)
       perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}'
       ;;
     git\ branch*|git\ bv*|git\ bav*)
