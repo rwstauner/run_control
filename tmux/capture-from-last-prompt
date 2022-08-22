@@ -4,6 +4,7 @@
 # -J to wrap and preserve whitespace
 tmux capture-pane -Jp -S - "$@" | \
   perl -ne '
+  $esc = qr/(?:\e\[[0-9;]+[a-z])/;
   # if last line and current line combine to make multi line prompt...
-  if ($o[-1] =~ /^🤖 / && /^💥/) { pop @o; @l = @o if @o; @o = () } else { push @o, $_ } END { print @l }
+  if ($o[-1] =~ /^🤖 / && /^$esc*💥$esc*/) { pop @o; @l = @o if @o; @o = () } else { push @o, $_ } END { print @l }
   '
