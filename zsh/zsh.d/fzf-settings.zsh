@@ -6,9 +6,15 @@
 # This is evaluated by the shell so don't use functions or aliases that expect tty output.
 export FZF_DEFAULT_COMMAND='command rg --files'
 
+# --expect=key will print key on first line of results
+# --cycle
+# available: ctrl-o ctrl-q ctrl-r ctrl-s ctrl-v
 export FZF_DEFAULT_OPTS="
   --history $HOME/.fzf.history
+  --filepath-word
   --bind 'ctrl-f:page-down,ctrl-b:page-up,ctrl-s:toggle-sort,ctrl-o:jump'
+  --bind 'alt-up:last,alt-down:first'
+  --bind 'ctrl-g:jump'
 "
 
 
