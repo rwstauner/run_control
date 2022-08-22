@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+source "${0%/*}/zsh.d/fzf-settings.zsh"
+_fzf_post_process "$1"
