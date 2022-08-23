@@ -1,3 +1,11 @@
+# frozen_string_literal: true
+
+# begin
+#   require 'rb-readline'
+# rescue LoadError
+#   nil
+# end
+
 # rubocop:disable all
 Pry.config.pager = false
 
