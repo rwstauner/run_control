@@ -4,6 +4,7 @@
 #    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
 #       sed s/^..//) 2> /dev/null'
 # This is evaluated by the shell so don't use functions or aliases that expect tty output.
+# Don't bother to sort as fzf has its own sort algorithms (and will reorder as you type).
 export FZF_DEFAULT_COMMAND='command rg --files'
 
 # --expect=key will print key on first line of results

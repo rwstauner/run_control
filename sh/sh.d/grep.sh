@@ -18,8 +18,9 @@ alias Grep='grep'
 # Also force display of filename for consistency.
 alias grepn='grep -H -n'
 
-# RIPGREP_CONFIG_PATH
-# alias rg='rg -H --no-heading --vimgrep'
+# RIPGREP_CONFIG_PATH could point to a file of command line args... useful for --type-add 'foo:*foo'
+# Finding 4421 results in 114084 files causes rg's --sort (single-threaded)
+# to double response time (from 1m to 2m), whereas using |sort is nominal.
 rg () {
-  command rg -H --no-heading --pretty "$@" | less
+  command rg -H --no-heading --pretty "$@" | sort | less
 }
