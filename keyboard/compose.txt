@@ -32,6 +32,12 @@
 "cat" "🐈" # CAT
 "catface" "🐱" # CAT FACE
 "clap" "👏" # CLAPPING HANDS SIGN
+"circleb" "🔵" # LARGE BLUE CIRCLE
+"circleg" "🟢" # LARGE GREEN CIRCLE
+"circleo" "🟠" # LARGE ORANGE CIRCLE
+"circlep" "🟣" # LARGE PURPLE CIRCLE
+"circler" "🔴" # LARGE RED CIRCLE
+"circley" "🟡" # LARGE YELLOW CIRCLE
 "collide" "💥" # COLLISION SYMBOL
 "confound" "😖" # CONFOUNDED FACE
 "confused" "😕" # CONFUSED FACE
