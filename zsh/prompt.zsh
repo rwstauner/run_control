@@ -39,6 +39,9 @@ _rwstauner_before_execute () {
 
   # Remember the command we're executing.
   psvar[1]="$1"
+
+  # Set title.
+  #printf $'\e]0;%s\a' "${${(s: :)1}[1]}"
 }
 
 autoload -U add-zsh-hook
@@ -83,7 +86,15 @@ _rwstauner_set_prompt () {
 
 typeset -a my_prompt
 my_prompt=(
-  '🤖 '
+  # Whitespace after the reset gets swallowed so put a space before it.
+  $'\e[1m🤖 \e[0m'
+
+  # Set cursor as steady block.
+  # $'\e[2 q'
+
+  # Set title
+  #$'\e]0;zsh\a'
+
   #'💥 '
 
   # user
