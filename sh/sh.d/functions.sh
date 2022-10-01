@@ -123,7 +123,7 @@ function unzip_single_file {
 }
 
 httpd () {
-  python3 -m http.server
+  (cd "${1:-.}" && python3 -m http.server)
 }
 
 # Auto-resolve overrides for built-in commands.
