@@ -22,5 +22,10 @@ alias grepn='grep -H -n'
 # Finding 4421 results in 114084 files causes rg's --sort (single-threaded)
 # to double response time (from 1m to 2m), whereas using |sort is nominal.
 rg () {
-  command rg -H --no-heading --pretty "$@" | sort | less
+  case "$*" in
+    -h|--help)
+      command rg "$@" | less;;
+    *)
+      command rg -H --no-heading --pretty "$@" | sort | less;;
+  esac
 }
