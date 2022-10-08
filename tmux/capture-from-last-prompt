@@ -9,7 +9,7 @@ tmux capture-pane -Jp -S - "$@" | \
     if ($o[-1] =~ /(^🤖 |$esc+🤖 $esc+)/ && /^$esc*💥$esc*/) {
       pop @o;
       @l = @o if @o;
-      @o = ()
+      @o = $ENV{CAPTURE_PROMPT} ? s/^$esc*💥$esc*\h+(.+?)\h*$/\$ $1/r : ();
     }
     else {
       push @o, $_
