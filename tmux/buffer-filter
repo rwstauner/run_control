@@ -2,7 +2,7 @@
 
 perl -pe '
   # Remove whole line prompt prefix.
-  s/^🤖 .+?🍪.+?🌵.+?👻.+?🐧.+?\n//smg;
+  s/^🤖 .+?🍪.+?🌵.+?👻.+?🐧.+?\n//smg;
 
   # Remove zsh RPROMPT so i can use copy-end-of-line after hitting up.
   s/\s+(🐙|꩜) «.+?»$//;
