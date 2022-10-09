@@ -8,8 +8,14 @@ tmux capture-pane -Jp -S - "$@" | \
     # if last line and current line combine to make multi line prompt...
     if ($o[-1] =~ /(^🤖 |$esc+🤖 $esc+)/ && /^$esc*💥$esc*/) {
       pop @o;
-      @l = @o if @o;
-      @o = $ENV{CAPTURE_PROMPT} ? s/^$esc*💥$esc*\h+(.+?)\h*$/\$ $1/r : ();
+      if ($ENV{CAPTURE_PROMPT}) {
+        @l = @o if @o > 1;
+        @o = s/^$esc*💥$esc*\h+(.+?)\h*$/\$ $1/r;
+      }
+      else {
+        @l = @o if @o;
+        @o = ();
+      }
     }
     else {
       push @o, $_
