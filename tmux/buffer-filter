@@ -10,5 +10,5 @@ perl -pe '
   # Preserve leading prompt since that can be a useful decoration and
   # using copy-end-of-line is just as simple as copy-line.
   # But change it from U+1F4A5 since slack changes that to ":boom:" ಠ_ಠ.
-  s/^💥 (\s*)/\$$1/;
+  s/^💥\h*/\$ /;
 '
