@@ -399,6 +399,7 @@ alias remote-branch    '!b=`git symbolic-ref HEAD | sed s,^refs/heads/,,`; if r=
 #$gc alias.root            $'!pwd'
 alias root             'rev-parse --show-toplevel'
 
+alias sha              '!git show --format=%H "$@" | head -n1'
 # run daemon (use !git to run from repo root) then try git ls-remote
 alias serve            '!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
@@ -433,7 +434,11 @@ alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
 alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe process-merged; git prune-branches; git bv'
 
-alias url              '!if [ "x$2" = "x$3" ]; then set -- "$1" "$2"; fi; printf "%s/%s#%s\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/`git remote-branch`/$1" "L$2${3:+,L}$3"'
+alias url              'url-sha'
+alias url-main         '!git url-of `git main-branch`'
+alias url-branch       '!git url-of `git remote-branch`'
+alias url-sha          '!git url-of `git sha`'
+alias url-of           '!ref="$1" file="$2" l1="$3" l2="$4"; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
