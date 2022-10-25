@@ -404,7 +404,8 @@ alias sha              '!git show --format=%H "$@" | head -n1'
 alias serve            '!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
 alias st              $'!if [ $# -gt 0 ]; then git status "$@"; else git status && git stash list | sed -e "s/^/\\\033[33m/" -e "s/:/\\\033[00m:/"; fi'
-alias stx              '!git st; git bv; echo ignored:; git summarize-other'
+alias stb              '!git st; git bv'
+alias stx              '!git stb; echo ignored:; git summarize-other'
 
 alias subup            '!test -f ${GIT_DIR:-.}/.gitmodules && git submodule update'
 
