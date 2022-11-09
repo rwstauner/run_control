@@ -18,14 +18,18 @@ alias Grep='grep'
 # Also force display of filename for consistency.
 alias grepn='grep -H -n'
 
+rg-sort () {
+  perl -e 'sub _ { $_[0] =~ s/\e\[[0-9;]+[a-z]//gr } print map { join(q[:], @$_) } sort { $a->[0] cmp $b->[0] || _($a->[1]) <=> _($b->[1]) } map { [split /:/] } <>'
+}
+
 # RIPGREP_CONFIG_PATH could point to a file of command line args... useful for --type-add 'foo:*foo'
 # Finding 4421 results in 114084 files causes rg's --sort (single-threaded)
 # to double response time (from 1m to 2m), whereas using |sort is nominal.
 rg () {
   case "$*" in
     -h|--help)
-      command rg "$@" | less;;
+      command rg "$@" | $PAGER;;
     *)
-      command rg -H --no-heading --pretty "$@" | sort | less;;
+      command rg -H --no-heading --pretty "$@" | rg-sort | $PAGER;;
   esac
 }
