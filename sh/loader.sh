@@ -10,7 +10,7 @@ source $shrc_dir/setup.sh
 source_rc_files $shrc_dir/homebrew.sh
 
 # Personal scripts.
-add_to_path $HOME/bin
+add_to_path $HOME/run_control/bin $HOME/bin
 
 
 # Setup terminal first.

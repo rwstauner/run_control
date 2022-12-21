@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+my $esc = qr/\e\[[0-9;]+[a-z]/;
+sub remove_escapes { s/$esc//gr }
+sub rgsort {
+  map  { $_->[0] }
+  sort { $a->[1] cmp $b->[1] || $a->[2] <=> $b->[2] }
+  # Use /^file:\d+:/m instead of split to get the path:line for sections with context
+  # (context lines use dashes instead of colons, which could more easily match incorrectly).
+  map  { [$_, map { remove_escapes } /^([^\n:]+):(?:$esc)*(\d+)(?:$esc)*:/m] }
+  @_
+}
+sub slurp { local $_ = do { local $/; <STDIN> }; chomp; $_ }
+print do {
+  (grep { /^-[ABC]/ } @ARGV)
+    ? do {
+      $sep = qq[\n--\n];
+      (join($sep, rgsort split $sep, slurp), "\n");
+    }
+    : rgsort <STDIN>
+};
