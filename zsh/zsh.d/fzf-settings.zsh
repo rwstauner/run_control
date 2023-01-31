@@ -88,13 +88,13 @@ __fzf-tmux-pane () {
   local filter="$(mktemp -t fzf.XXXXXX)"
   local default_filter
   if [[ -d ~/run_control ]]; then
-    default_filter="~/run_control/zsh/fzf-post-process \"$last\""
+    default_filter="~/run_control/zsh/fzf-post-process ${(q)last}"
   else
     # mini
-    default_filter="source ~/.zshrc 2>&-; _fzf_post_process \"$last\""
+    default_filter="source ~/.zshrc 2>&-; _fzf_post_process ${(q)last}"
   fi
   echo "$default_filter" >! "$filter"
-  local def_filter="if [[ {q} == '' ]]; then echo '$default_filter'; elif [[ {q} =~ '^([\$][0-9]+ *)+\$' ]]; then printf \"awk '{ print %s }'\n\" {q}; else echo {q}; fi >! $filter"
+  local def_filter="if [[ {q} == '' ]]; then echo ${(q)default_filter}; elif [[ {q} =~ '^([\$][0-9]+ *)+\$' ]]; then printf \"awk '{ print %s }'\n\" {q}; else echo {q}; fi >! $filter"
   local end_cmd='clear-query+refresh-preview+enable-search+change-prompt(> )'
   local fzf_args=(
     +s --tac -m
