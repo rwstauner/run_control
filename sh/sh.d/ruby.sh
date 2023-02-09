@@ -15,4 +15,17 @@ rbenv-gem-dir () {
   echo $(rbenv prefix)/lib/ruby/gems/*/gems/
 }
 
+ruby-path () {
+  local r="-r$1"
+  case "$1" in
+    -r*) r="$1"; shift;;
+    -/)  r="-r${2%/*}"; shift;;
+  esac
+  RB="/$1.rb" ruby -W0 "$r" -e 'puts $".detect { |r| r.end_with?(ENV["RB"]) }'
+}
+
+vim_rb () {
+  vim "$(ruby-path "$@")"
+}
+
 alias ruby-ip='ruby -rsocket -e "puts Socket.gethostbyname(ARGV[0])[3].unpack(%(CCCC)).join(%(.))"'
