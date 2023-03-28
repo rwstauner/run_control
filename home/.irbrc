@@ -105,7 +105,7 @@ module Cantaloupe
 				color(:bold, :magenta){%|"Oh, I feel better, now."|}].join('  ')
 end
 
-if Readline::HISTORY.to_a.empty?
+if defined?(Readline) && Readline::HISTORY.to_a.empty?
   STDERR.puts "hit enter to fix hist" unless $hist_loaded
   # Tried overriding the string that gets put into the prompt
   # but that gets called too early.
