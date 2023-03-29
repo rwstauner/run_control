@@ -4,6 +4,7 @@ have () { command -v "$1" >&-; }
 
 common=(
   autoconf automake
+  cmake
 
   inotify-tools
 
@@ -31,12 +32,15 @@ if have apt; then
 elif have pacman; then
   pkgs=(
     dnsutils
+    gnu-netcat
+    net-tools
     tree
     words
     aspell-en
     onboard
     util-linux
     xorg-xinput
+    wireless_tools
   )
   sudo pacman -S --needed "${common[@]}" "${pkgs[@]}"
 fi
