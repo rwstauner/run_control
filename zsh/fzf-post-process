@@ -1,4 +1,12 @@
 #!/bin/zsh
 
+source-if () {
+  if [[ -r "$1" ]]; then
+    source "$1"
+  fi
+}
+
 source "${0%/*}/zsh.d/fzf-settings.zsh"
+source-if "${0%/*}/.zshrc.d/fzf-custom.zsh"
+source-if "${0%/*}/../.local/zsh.d/fzf-custom.zsh"
 _fzf_post_process "$1"
