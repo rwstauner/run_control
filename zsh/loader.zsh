@@ -15,7 +15,9 @@ source $zshrc_dir/ohmy.zsh || \
 source $rc_dir/sh/loader.sh
 
 # Load everything else.
-source_rc_files $zshrc_dir/zsh.d/* ~/.zshrc.local $EXTRA_ZSHRC
+source_rc_files $zshrc_dir/zsh.d/* ~/.zshrc.local
+[[ -d "$rc_dir/.local/zsh.d" ]] && source_rc_files $rc_dir/.local/zsh.d/*
+source_rc_files $EXTRA_ZSHRC
 
 unset rc_dir zshrc_dir
 
