@@ -45,12 +45,12 @@ _fzf_post_process () {
       # Strip everything after "file:line".
       perl -pe 's/^(.+?:(\d+)?).*/$1/; s/:$//'
       ;;
-    git\ st|git\ status)
+    git\ st|git\ status|git\ stash\ pop*)
       # If there's a "(modified|new file):" in front of the path, strip it.
       perl -pe 's/^\s*[^:]+:\s*(.+)/$1/'
       ;;
-    git\ diff*|git\ ix*|git\ adp)
-      perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}'
+    git\ diff*|git\ ix*|git\ adp|git\ log*|git\ last*)
+      perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}; s{\| \d+ [+-]+}{};'
       ;;
     git\ branch*|git\ bv*|git\ bav*)
       perl -pe 's{^[ *] (?:remotes/origin/)?(\S+)\s+.+}{$1}'
