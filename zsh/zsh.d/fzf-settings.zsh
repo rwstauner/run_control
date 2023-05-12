@@ -32,9 +32,11 @@ _fzf_post_process_fallback () {
 }
 
 # Make it easy to overwrite.
-_fzf_post_process_custom () {
-  _fzf_post_process_fallback
-}
+if ! whence -f _fzf_post_process_fallback >&-; then
+  _fzf_post_process_custom () {
+    _fzf_post_process_fallback
+  }
+fi
 
 _fzf_post_process () {
   local cmd="$1"
