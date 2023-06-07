@@ -86,10 +86,12 @@ alias dexec='docker exec -it -e COLUMNS -e TERM'
 drun () {
   local hist=$HOME/.bash_history.docker
   [[ -f $hist ]] || touch $hist
+  # Don't try to mount what may be a symlink.
+  diff -q ~/.inputrc{,.docker} &> /dev/null || /bin/cp -f ~/.inputrc{,.docker}
   args=(
     -v $hist:/root/.bash_history:cached # persist bash history
     -v $hist:/root/.ash_history:cached  # also sh (alpine)
-    -v $HOME/.inputrc:/root/.inputrc:cached # ctrl-arrows
+    -v $HOME/.inputrc.docker:/root/.inputrc:cached # ctrl-arrows
     -i --rm
   )
 
