@@ -187,7 +187,8 @@ alias add-p           'add -p'
 alias adp             'add -p'
 alias touch           'add -N'
 
-alias all-changed     '!echo `git branch-changed` `git changed` | xargs -n 1 | sort | uniq'
+# GIT_PREFIX is only correct at the top-level (the backtick commands will see it blank) so we need to strip it here.
+alias all-changed     '!echo `git branch-changed` `git changed` | sed "s,^$GIT_PREFIX,," | xargs -n 1 | sort | uniq'
 
 alias b               'branch'
 alias bv              'branch  -vv'
@@ -201,12 +202,12 @@ alias blamehard       'blame -w -C -C -C'
 #alias bunch           '!gitbunch'
 
 alias branch-base     '!last=`git last-sha`; base=`git merge-base origin/HEAD "$last"`; if test -z "$base"; then main=`git main-branch`; base=`git merge-base "$main" "$last"`; fi; echo "${base:-${main:-`git main-branch`}}"'
-alias branch-changed  '!git diff --name-only `git branch-base`..'
+alias branch-changed  '!git diff --name-only `git branch-base`.. | sed "s,^$GIT_PREFIX,,"'
 
 # ls-files -m doesn't show changes staged for commit (status does).
 # The value of this command is to interact with files,
 # so print the new name for renames (R) and skip deletes (D).
-alias changed         $'!git status --porcelain | awk \x27$1 ~ /[MA]/ { print $2 } $1 ~ /[R]/ { print $4 }\x27'
+alias changed         $'!git status --porcelain | awk \x27$1 ~ /[MA]/ { print $2 } $1 ~ /[R]/ { print $4 }\x27 | sed "s,^$GIT_PREFIX,,"'
 
 alias change-id       $'!git show --no-patch "$@" | awk \x27/^ {4}Change-Id: I/ { print $2 }\x27'
 
@@ -300,7 +301,7 @@ alias lf               'log --pretty=fuller --stat -p -w'
 alias last             '!git lf -n 1 -U10'
 
 # Print added, modified, the new name of renames, not deletes, and limit to files that still exist.
-alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | gxargs -r ls -1 2> /dev/null'
+alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | gxargs -r ls -1 2> /dev/null | sed "s,^$GIT_PREFIX,,"'
 
 alias last-sha        'log --pretty=format:%H -n 1'
 alias last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-f0-9]+$//\047'
