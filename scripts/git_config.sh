@@ -437,10 +437,10 @@ alias ups              '!git up; git subup'
 alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe process-merged; git prune-branches; git bv'
 
 alias url              'url-sha'
-alias url-main         '!git url-of `git main-branch`'
-alias url-branch       '!git url-of `git remote-branch`'
-alias url-sha          '!git url-of `git sha`'
-alias url-of           '!ref="$1" file="$2" l1="$3" l2="$4"; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
+alias url-main         '!git url-of `git main-branch` $GIT_PREFIX$1 $2 $3'
+alias url-branch       '!git url-of `git remote-branch` $GIT_PREFIX$1 $2 $3'
+alias url-sha          '!git url-of `git sha` $GIT_PREFIX$1 $2 $3'
+alias url-of           '!ref="$1" file="$GIT_PREFIX$2" l1="$3" l2="$4"; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
