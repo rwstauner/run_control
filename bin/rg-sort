@@ -1,19 +1,26 @@
 #!/usr/bin/env perl
+use strict;
 my $esc = qr/\e\[[0-9;]+[a-z]/;
+my $match =
+  # Use /^file:\d+:/m instead of split to find the path:line marker even inside sections with context
+  # (since context lines use dashes instead of colons, which could more easily match incorrectly).
+  qr/^([^\n:]+):(?:$esc)*(\d+)(?:$esc)*:/m
+  # or we could use the escapes to anchor things...
+  # qr/^(?:$esc+(.+?)$esc+)[:-](?:$esc+(\d+)$esc+)[:-]/m
+  ;
 sub remove_escapes { s/$esc//gr }
 sub rgsort {
   map  { $_->[0] }
   sort { $a->[1] cmp $b->[1] || $a->[2] <=> $b->[2] }
-  # Use /^file:\d+:/m instead of split to get the path:line for sections with context
-  # (context lines use dashes instead of colons, which could more easily match incorrectly).
-  map  { [$_, map { remove_escapes } /^([^\n:]+):(?:$esc)*(\d+)(?:$esc)*:/m] }
+  map  { [$_, map { remove_escapes } $match] }
   @_
 }
 sub slurp { local $_ = do { local $/; <STDIN> }; chomp; $_ }
 print do {
+  (grep { /^--passthru$/ } @ARGV) ? <STDIN> :
   (grep { /^-[ABC]/ } @ARGV)
     ? do {
-      $sep = qq[\n--\n];
+      my $sep = qq[\n--\n];
       (join($sep, rgsort split $sep, slurp), "\n");
     }
     : rgsort <STDIN>
