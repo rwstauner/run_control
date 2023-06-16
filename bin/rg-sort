@@ -12,7 +12,7 @@ sub remove_escapes { s/$esc//gr }
 sub rgsort {
   map  { $_->[0] }
   sort { $a->[1] cmp $b->[1] || $a->[2] <=> $b->[2] }
-  map  { [$_, map { remove_escapes } $match] }
+  map  { [$_, map { remove_escapes } ($_ =~ $match)] }
   @_
 }
 sub slurp { local $_ = do { local $/; <STDIN> }; chomp; $_ }
