@@ -32,7 +32,7 @@ _fzf_post_process_fallback () {
 }
 
 # Make it easy to overwrite.
-if ! whence -f _fzf_post_process_fallback >&-; then
+if ! whence -f _fzf_post_process_custom >&-; then
   _fzf_post_process_custom () {
     _fzf_post_process_fallback
   }
