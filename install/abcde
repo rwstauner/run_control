@@ -21,7 +21,7 @@ cpan () {
 }
 
 # ensure we install it into this dir for bootstrapping
-test -r $locallib/perl5/lib/local/lib.pm || cpan local::lib
+test -r $locallib/lib/perl5/local/lib.pm || cpan local::lib
 
 pm-installed () {
   perl -Mlocal::lib="$locallib" -m"$1" -c -e1 2> /dev/null
@@ -33,6 +33,7 @@ perldep () {
 }
 
 perldeps () {
+  perldep IO::Socket::SSL
   perldep MusicBrainz::DiscID
   perldep WebService::MusicBrainz
 }
@@ -55,7 +56,10 @@ elif have apt-get; then
   sudo apt-get install libdiscid
 
 elif have pacman; then
-  sudo pacman -S --needed abcde libdiscid cdparanoia glyr
+  sudo pacman -S --needed libdiscid cdparanoia glyr
+  # May need to cd ~/.cache/yay/abcde/ and make install the tarball manually.
+  # https://abcde.einval.com/download/
+  which abcde || yay -S --needed abcde
 fi
 
 perldeps
