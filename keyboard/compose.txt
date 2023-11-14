@@ -31,13 +31,13 @@
 "camel" "🐫" # BACTRIAN CAMEL
 "cat" "🐈" # CAT
 "catface" "🐱" # CAT FACE
-"clap" "👏" # CLAPPING HANDS SIGN
 "circleb" "🔵" # LARGE BLUE CIRCLE
 "circleg" "🟢" # LARGE GREEN CIRCLE
 "circleo" "🟠" # LARGE ORANGE CIRCLE
 "circlep" "🟣" # LARGE PURPLE CIRCLE
 "circler" "🔴" # LARGE RED CIRCLE
 "circley" "🟡" # LARGE YELLOW CIRCLE
+"clap" "👏" # CLAPPING HANDS SIGN
 "collide" "💥" # COLLISION SYMBOL
 "confound" "😖" # CONFOUNDED FACE
 "confused" "😕" # CONFUSED FACE
@@ -51,12 +51,12 @@
 "empty" "∅" # EMPTY SET
 "eyeroll" "🙄" # FACE WITH ROLLING EYES
 "eyes" "👀" # EYES
-"fp" "🤦" # FACE PALM
-"fp+" "😐 ＋🌴"
 "fire" "🔥" # FIRE
 "fish" "🐟" # FISH
 "flip" "(╯°□°）╯︵ ┻━┻" # tableflip
 "flower" "⚘" # FLOWER
+"fp" "🤦" # FACE PALM
+"fp+" "😐 ＋🌴"
 "ghost" "👻" # GHOST
 "imp" "👿" # IMP
 "inf" "∞" # INFINITY
@@ -102,8 +102,8 @@
 "there4" "∴" # THEREFORE
 "think" "🤔" # THINKING FACE
 "tongue" "😛" # FACE WITH STUCK-OUT TONGUE
-"triumph" "😤" # FACE WITH LOOK OF TRIUMPH
 "tophat" "🎩" # TOP HAT
+"triumph" "😤" # FACE WITH LOOK OF TRIUMPH
 "unamused" "😒" # UNAMUSED FACE
 "unflip" "┬─┬ノ( º _ ºノ)"
 "up" "↑" # UPWARDS ARROW
