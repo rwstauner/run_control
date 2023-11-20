@@ -32,7 +32,7 @@ _fzf_post_process_fallback () {
 }
 
 # Make it easy to overwrite.
-if ! whence -f _fzf_post_process_custom >&-; then
+if ! whence _fzf_post_process_custom >/dev/null; then
   _fzf_post_process_custom () {
     _fzf_post_process_fallback
   }
@@ -93,7 +93,7 @@ __fzf-tmux-pane () {
     default_filter="~/run_control/zsh/fzf-post-process ${(q)last}"
   else
     # mini
-    default_filter="source ~/.zshrc 2>&-; _fzf_post_process ${(q)last}"
+    default_filter="source ~/.zshrc 2>/dev/null; _fzf_post_process ${(q)last}"
   fi
   echo "$default_filter" >! "$filter"
   local def_filter="if [[ {q} == '' ]]; then echo ${(q)default_filter}; elif [[ {q} =~ '^([\$][0-9]+ *)+\$' ]]; then printf \"awk '{ print %s }'\n\" {q}; else echo {q}; fi >! $filter"

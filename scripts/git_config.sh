@@ -341,7 +341,7 @@ alias main-branch      '!for i in develop main master; do if [ "`git config bran
 
 alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short --numstat'
 
-alias has              '!cmd="$1"; shift; git config "alias.$cmd" >&- || command -v "git-$cmd" >&-'
+alias has              '!cmd="$1"; shift; git config "alias.$cmd" >/dev/null || command -v "git-$cmd" >/dev/null'
 alias maybe            '!if git has "$1"; then git "$@"; fi'
 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
