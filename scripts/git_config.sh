@@ -379,6 +379,7 @@ alias branch-prefix    '!git config remote."${1:-origin}".url | grep -q rwstaune
 alias branch-name      '!if echo "$1" | grep -qE "^[A-Z]+-[0-9]+$"; then echo "$1"; else echo "`git branch-prefix`$1"; fi'
 alias pushup           '!args=""; [ "x$1" = "x--no-verify" ] && args="$1" && shift; b="${2:-`git current-branch`}"; if [ "$b" = "`git main-branch`" ]; then echo "no pushup on main"; exit 1; fi; git push $args -u "${1:-`git pushup-target`}" HEAD:"`git branch-name "$b"`"'
 alias pushup-target    '!git config user.pushup-target || echo origin'
+alias pushf            'push --force-with-lease --force-if-includes'
 
 alias branch-to-remote  '!branch=${1:-`git current-branch`} remote=${2:-origin}; git config branch.$branch.remote $remote; git config branch.$branch.merge refs/heads/$branch'
 alias branch-track      '!branch=${1} remote=${2:-origin}; git branch --track $branch remotes/$remote/$branch'
