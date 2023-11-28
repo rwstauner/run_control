@@ -22,10 +22,13 @@ alias grepn='grep -H -n'
 # Finding 4421 results in 114084 files causes rg's --sort (single-threaded)
 # to double response time (from 1m to 2m), whereas using |sort is nominal.
 rg () {
+  # On darwin the pipline inside the case statement confuses tmux
+  # and the pane_current_path is lost.
+  # Using a subshell works around that.
   case "$*" in
     -h|--help)
-      command rg "$@" | $PAGER;;
+      (command rg "$@" | $PAGER);;
     *)
-      command rg -H --no-heading --pretty "$@" | rg-sort "$@" | $PAGER;;
+      (command rg -H --no-heading --pretty "$@" | rg-sort "$@" | $PAGER);;
   esac
 }
