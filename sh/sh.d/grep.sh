@@ -29,6 +29,6 @@ rg () {
     -h|--help)
       (command rg "$@" | $PAGER);;
     *)
-      (command rg -H --no-heading --pretty "$@" | rg-sort "$@" | $PAGER);;
+      (command rg --pretty -H --no-heading "$@" | rg-sort "$@" | $PAGER);;
   esac
 }
