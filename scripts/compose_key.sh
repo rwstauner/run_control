@@ -45,6 +45,10 @@ if [[ `uname` == Darwin ]]; then
     echo '}'
   } | generate ~/Library/KeyBindings/DefaultKeyBinding.dict
 
+  {
+    perl -ne 'next unless /^"(.+?)" "(.+?)"(?: # (.+))$/; print qq[";$1","$2","$3"\n];' $rc/keyboard/compose.txt
+  } | generate ~/tmp/text-expander-compose-key.csv
+
 else
 
   {
