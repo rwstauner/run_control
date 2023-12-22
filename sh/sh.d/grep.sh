@@ -25,10 +25,15 @@ rg () {
   # On darwin the pipline inside the case statement confuses tmux
   # and the pane_current_path is lost.
   # Using a subshell works around that.
-  case "$*" in
-    -h|--help)
-      (command rg "$@" | $PAGER);;
-    *)
-      (command rg --pretty -H --no-heading "$@" | rg-sort "$@" | $PAGER);;
-  esac
+  local i;
+  for i in "$@"; do
+    case "$i" in
+      -h|--help)
+        (command rg "$@" | $PAGER)
+        return $?;;
+      -l)
+        set -- --color=never "$@";;
+    esac
+  done
+  (command rg --pretty -H --no-heading "$@" | rg-sort "$@" | $PAGER)
 }

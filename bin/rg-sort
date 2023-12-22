@@ -5,7 +5,7 @@ my $match =
   # Use /^file:\d+:/m instead of split to find the path:line marker even inside sections with context
   # (since context lines use dashes instead of colons, which could more easily match incorrectly).
   qr/^([^\n:]+):(?:$esc)*(\d+)(?:$esc)*:/m
-  # or we could use the escapes to anchor things...
+  # or we could use the escapes to anchor things (except under --color=never)...
   # qr/^(?:$esc+(.+?)$esc+)[:-](?:$esc+(\d+)$esc+)[:-]/m
   ;
 sub remove_escapes { s/$esc//gr }
@@ -17,6 +17,7 @@ sub rgsort {
 }
 sub slurp { local $_ = do { local $/; <STDIN> }; chomp; $_ }
 print do {
+  (grep { /^-l$/ } @ARGV) ? sort <STDIN> :
   (grep { /^--passthru$/ } @ARGV) ? <STDIN> :
   (grep { /^-[ABC]/ } @ARGV)
     ? do {
