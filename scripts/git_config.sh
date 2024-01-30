@@ -222,7 +222,7 @@ alias com             '!git checkout `git main-branch`'
 
 alias commit-vars     '!n="${1:-`git config user.name`}"; e="${2:-`git config user.email`}"; echo GIT_COMMITTER_NAME=\"$n\" GIT_COMMITTER_EMAIL=\"$e\" GIT_AUTHOR_NAME=\"$n\" GIT_AUTHOR_EMAIL=\"$e\"'
 
-alias cobt            '!local_b="${2:-$1}"; local_b="${local_b#rwstauner/}"; git checkout -t -b "$local_b" origin/"$1"'
+alias cobt            '!local_b="${2:-$1}"; local_b="${local_b#rwstauner/}" remote=`git config user.pushup-target`; git checkout -t -b "$local_b" ${remote:-origin}/"$1"'
 
 # TODO: heredoc?
 alias cpan-mailmap    $'!echo "`git config user.name` <`awk \047/^user / { print tolower($2) }\047 ~/.pause`@cpan.org> <`git config user.email`>"'
