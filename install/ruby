@@ -25,10 +25,11 @@ install-ruby () {
   # The default-gems plugin will install any essentials.
 }
 
-# Find the latest stable MRI.
-latest_mri () {
+# Find the latest version matching the pattern.
+latest () {
   # The list appears to be sorted by version, so just print the last one.
-  rbenv install -l | grep -E '^[[:space:]]*[0-9.]+$' | tail -n1
+  rbenv install -l | grep -E "^[[:space:]]*$1\$" | tail -n1
 }
 
-install-ruby `latest_mri`
+install-ruby `latest '[0-9.]+'`
+install-ruby `latest 'truffleruby-[0-9.]+'`
