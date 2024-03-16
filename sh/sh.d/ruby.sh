@@ -11,6 +11,10 @@ fi
 export DISABLE_SPRING=1
 export RUBY_CONFIGURE_OPTS=--enable-shared
 
+chruby () {
+  export RBENV_VERSION="$1"
+}
+
 rbenv-gem-dir () {
   echo $(rbenv prefix)/lib/ruby/gems/*/gems/
 }
