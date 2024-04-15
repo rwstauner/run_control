@@ -68,6 +68,24 @@ _fzf_post_process () {
       # Just the name.
       awk '{ print $2 }'
       ;;
+    lf)
+      awk '{ print $9 }'
+      ;;
+    lf\ *)
+      # File name with dir (last arg that doesn't start with a dash) prepended.
+      local dir i
+      for i in "${(s: :)cmd#lf }"; {
+        if ! [[ "$i" == -* ]]; then
+          # If the arg contains a glob (foo/bar/*.txt) then likely all the
+          # entries will have the path on them already (so don't do anything).
+          if ! [[ "$i" == *\** ]]; then
+            dir="$i"
+          fi
+        fi
+      }
+      # Don't use $9 in case the filename has spaces: Instead remove the first 8 columns.
+      awk -v PREFIX="$dir${dir:+/}" '{ sub("([^[:space:]]+ +){8}", ""); print PREFIX $0 }'
+      ;;
     *)
       _fzf_post_process_custom "$cmd"
       ;;
@@ -110,7 +128,9 @@ __fzf-tmux-pane () {
 
   if [[ -n "$fzf_output" ]]; then
     eval "$(<$filter)" <<<"$fzf_output" | while read item; do
-      echo -n "${(q)item} "
+      local qitem="${(q)item}"
+      [[ "${qitem:0:2}" == "\\~" ]] && qitem="${qitem/\\/}"
+      echo -n "${qitem} "
     done
   fi
   local ret=$?
