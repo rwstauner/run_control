@@ -32,6 +32,11 @@ newest () {
 }
 
 diff-with () {
-  code="$1"; shift
-  diffgit =($code $1) =($code $2)
+  local diffargs=()
+  while [[ $# -gt 3 ]]; do
+    diffargs+=("$1")
+    shift
+  done
+  local cmd="$1"; shift
+  delta "${diffargs[@]}" =(eval $cmd $1) =(eval $cmd $2)
 }
