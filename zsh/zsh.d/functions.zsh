@@ -38,5 +38,5 @@ diff-with () {
     shift
   done
   local cmd="$1"; shift
-  delta "${diffargs[@]}" =(eval $cmd $1) =(eval $cmd $2)
+  diff -u --label "$1" =(eval "$cmd" "$1") --label "$2" =(eval "$cmd" "$2") | delta "${diffargs[@]}"
 }
