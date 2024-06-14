@@ -1,6 +1,8 @@
 #!/bin/bash
 # vim: set fdm=marker:
 
+# See `git help config` for (conditional) include directives.
+
 # Turn off xtrace that helpers turns on (too much noise for this).
 . "${0%/*}/.helpers.sh" +x
 
@@ -19,6 +21,10 @@ fi
 git_version=`git --version`
 
 # helper functions {{{
+
+have () {
+  command -v "$1" &> /dev/null
+}
 
 have_git_version () {
   version_ge "$git_version" "$1";
@@ -166,6 +172,20 @@ fi
 
 # [diff helpers]
 # use with ".gitattributes": '*.png diff=exif'
+
+# https://github.com/dandavison/delta
+if have delta; then
+  config core.pager             'delta'
+  config diff.colorMoved        'default'
+  config interactive.diffFilter 'delta --color-only --features=interactive'
+  config merge.conflictstyle    'diff3'
+  # delta "features" are a named collection of options.
+  deltafeat=rws
+  config delta.features         "$deltafeat"
+  config delta.$deltafeat.true-color       'auto' # respect COLORTERM=truecolor
+  config delta.$deltafeat.line-numbers     'true'
+  config delta.$deltafeat.navigate         'true'
+fi
 
 config diff.exif.textconv    'exiftool'; # exiv2 ?
 config diff.json.textconv    'sh -c '\''jq "${JSON_DIFF_JQ:-.}" "$@" || cat "$@"'\'' --'

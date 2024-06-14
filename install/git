@@ -6,13 +6,13 @@ load-config () {
   ~/run_control/scripts/git_config.sh
 }
 
-if is_mac && homebrew git; then
+if is_mac && homebrew git git-delta; then
   load-config
   exit
 elif have apt-get; then
   sudo apt-get install git
 elif have pacman; then
-  sudo pacman -S --needed git
+  sudo pacman -S --needed git git-delta
 fi
 
 load-config
