@@ -7,16 +7,22 @@
 . "${0%/*}/.helpers.sh" +x
 
 file="$HOME/.gitconfig"
+
+# Move original to a tempfile so we can show a diff at the end.
+orig="$(mktemp -t gitconfig.XXXXXX)"
+mv "$file" "$orig"
+
 umask 0077
 touch "$file"
 chmod 0600 "$file"
 
 # if there's no modeline put one there
-if ! grep -qE '^# vim: .+:$' "$file"; then
+# there isn't one there if we just made the file.
+#if ! grep -qE '^# vim: .+:$' "$file"; then
   # set ro to remind me not to edit the file
   [[ -s "$file" ]] || echo > "$file"
   sed -i -e $'1 i\\\n# vim: set ro ts=2:' "$file"
-fi
+#fi
 
 git_version=`git --version`
 
@@ -489,3 +495,7 @@ else
 fi
 
 chmod 0600 "$file"
+
+echo "Changes made:"
+git diff --no-index "$orig" "$file"
+rm -f "$orig"
