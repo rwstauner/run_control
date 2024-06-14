@@ -488,10 +488,10 @@ alias whatis           'show -s --pretty="tformat:%h (%s, %ad)" --date=short'
 # [url github] insteadOf
 
 lgc="$HOME/.gitconfig.local.sh"
-if [[ -f "$lgc" ]]; then
+if [[ -x "$lgc" ]]; then
   "$lgc"
 else
-  echo "No '$lgc' script found" 1>&2
+  echo "No executable '$lgc' script found" 1>&2
 fi
 
 chmod 0600 "$file"
