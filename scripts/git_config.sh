@@ -185,12 +185,20 @@ if have delta; then
   config diff.colorMoved        'default'
   config interactive.diffFilter 'delta --color-only --features=interactive'
   config merge.conflictstyle    'diff3'
+
   # delta "features" are a named collection of options.
   deltafeat=rws
   config delta.features         "$deltafeat"
   config delta.$deltafeat.true-color       'auto' # respect COLORTERM=truecolor
   config delta.$deltafeat.line-numbers     'true'
   config delta.$deltafeat.navigate         'true'
+
+  config delta.$deltafeat.file-style       'omit'
+  config delta.$deltafeat.file-decoration-style 'blue ul'
+
+  # Shrink the hunk header slightly and match file-decoration.
+  config delta.$deltafeat.hunk-header-decoration-style 'blue ul'
+  config delta.$deltafeat.hunk-header-style 'syntax file line-number'
 fi
 
 config diff.exif.textconv    'exiftool'; # exiv2 ?
