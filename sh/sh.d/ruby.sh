@@ -9,7 +9,7 @@ if [[ -d $RBENV_ROOT ]]; then
 fi
 
 export DISABLE_SPRING=1
-export RUBY_CONFIGURE_OPTS=--enable-shared
+export RUBY_CONFIGURE_OPTS=--disable-shared
 
 chruby () {
   export RBENV_VERSION="$1"
