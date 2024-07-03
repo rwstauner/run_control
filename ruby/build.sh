@@ -47,10 +47,16 @@ fi
 # export CPPFLAGS=-I/opt/homebrew/Cellar/openssl@1.1/1.1.1u/include
 # export LDFLAGS=-L/opt/homebrew/Cellar/openssl@1.1/1.1.1u/lib
 
+verbose () {
+  echo "$ $*"
+  "$@"
+}
+
 prefix="${HOME}/.rubies/$name"
-echo "$CONFIGURE_ARGS"
-./configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
-make -j
+
+verbose ./configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
+verbose make -j
+
 echo
 echo "compiled to $prefix with:"
 echo "${opts[*]} $CONFIGURE_ARGS $*"
