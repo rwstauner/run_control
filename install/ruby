@@ -18,20 +18,17 @@ $HOME/ruby/rc/rbenv.sh
 . $rc/sh/setup.sh
 . $rc/sh/sh.d/ruby.sh
 
-install-ruby () {
-  local version="$1"
-  rbenv install $version
-  rbenv global  $version
-  # The default-gems plugin will install any essentials.
-}
-
 # Find the latest version matching the pattern.
 latest () {
   # The list appears to be sorted by version, so just print the last one.
   rbenv install -l | grep -E "^[[:space:]]*$1\$" | tail -n1
 }
 
-install-ruby `latest '[0-9.]+'`
-install-ruby `latest 'truffleruby-[0-9.]+'`
+cruby="`latest '[0-9.]+'`"
+rbenv install "$cruby"
+rbenv global "$cruby"
+
+# To test things with TruffleRuby I'll probably prefer an ea build like truffleruby+graalvm-dev (or building locally).
+#rbenv install `latest 'truffleruby-[0-9.]+'`
 
 ln -s ~/ruby/rbenv/versions ~/.rubies
