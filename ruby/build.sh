@@ -52,13 +52,17 @@ verbose () {
   "$@"
 }
 
-prefix="${HOME}/.rubies/$name"
+build () {
+  prefix="${HOME}/.rubies/$name"
 
-verbose ./configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
-verbose make -j
+  verbose ./configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
+  verbose make -j
 
-echo
-echo "compiled to $prefix with:"
-echo "${opts[*]} $CONFIGURE_ARGS $*"
-echo
-echo "built $name"
+  echo
+  echo "compiled to $prefix with:"
+  echo "${opts[*]} $CONFIGURE_ARGS $*"
+  echo
+  echo "built $name"
+}
+
+build || { git clean -fdX && build; }
