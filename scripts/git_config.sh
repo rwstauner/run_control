@@ -371,7 +371,8 @@ alias ls               '-p ls-files'
 # alias lsgrep           '!git ls-files | grep --color=always "$@" | $PAGER'
 #alias lsgrep           '!pattern="$1"; shift; git ls-files "$@" | grep --color=always "$pattern" | $PAGER'
 
-alias main-branch      '!for i in develop main master; do if [ "`git config branch.$i.merge`" = "refs/heads/$i" ]; then echo $i; break; fi; done'
+# git symbolic-ref -q refs/remotes/origin/HEAD | cut -f4 -d/
+alias main-branch      '!git config user.main-branch || for i in develop main master; do if [ "`git config branch.$i.merge`" = "refs/heads/$i" ]; then echo $i; break; fi; done'
 
 alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short --numstat'
 
