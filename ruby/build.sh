@@ -65,4 +65,4 @@ build () {
   echo "built $name"
 }
 
-build || { git clean -fdX && build; }
+build "$@" || { git clean -fdX && build "$@"; }
