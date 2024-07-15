@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dest=$HOME/usr/bin/touchpad-reset
+cat > "$dest" <<'EOF'
+#!/bin/bash
+# generated
+xinput list | perl -ne 'print "xinput disable $1; xinput enable $1\n" if /Touchpad\s+id=(\d+)/' | bash
+EOF
+
+chmod 0755 $dest
