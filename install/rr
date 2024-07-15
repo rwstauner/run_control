@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if have pacman; then
+  yay -S rr
+else
+  warn 'unknown dist for rr'
+  exit 1
+fi
