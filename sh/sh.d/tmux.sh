@@ -1,3 +1,13 @@
+# Move tmate socket to separate var so we can use tmux within it.
+if [[ $TMATE = 1 ]] && [[ -n $TMUX ]]; then
+  TMATE=$TMUX
+  unset TMUX
+
+  tmate () {
+    TMUX=$TMATE command tmate "$@"
+  }
+fi
+
 if [[ -z $TMUX ]]; then
   return
 fi
