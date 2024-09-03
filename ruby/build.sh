@@ -56,6 +56,7 @@ build () {
   prefix="${HOME}/.rubies/$name"
 
   verbose ./configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
+  [[ -f TAGS ]] || verbose make tags
   verbose make -j
 
   echo
