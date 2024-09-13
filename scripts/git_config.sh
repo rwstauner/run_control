@@ -235,7 +235,7 @@ alias blamehard       'blame -w -C -C -C'
 #alias bunch           '!env FILE_LOG_LEVEL=off gitbunch'
 #alias bunch           '!gitbunch'
 
-alias branch-base     '!last=`git last-sha`; base=`git merge-base origin/HEAD "$last"`; if test -z "$base"; then main=`git main-branch`; base=`git merge-base "$main" "$last"`; fi; echo "${base:-${main:-`git main-branch`}}"'
+alias branch-base     '!last=`git sha`; base=`git merge-base origin/HEAD "$last"`; if test -z "$base"; then main=`git main-branch`; base=`git merge-base "$main" "$last"`; fi; echo "${base:-${main:-`git main-branch`}}"'
 alias branch-changed  '!git diff --name-only `git branch-base`.. | sed "s,^$GIT_PREFIX,,"'
 
 # ls-files -m doesn't show changes staged for commit (status does).
@@ -337,7 +337,6 @@ alias last             '!git lf -n 1 -U10'
 # Print added, modified, the new name of renames, not deletes, and limit to files that still exist.
 alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | gxargs -r ls -1 2> /dev/null | sed "s,^$GIT_PREFIX,,"'
 
-alias last-sha        'log --pretty=format:%H -n 1'
 alias last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-f0-9]+$//\047'
 
 alias log1       'log --oneline'
