@@ -436,7 +436,7 @@ alias remote-branch    '!b=`git symbolic-ref HEAD | sed s,^refs/heads/,,`; if r=
 #$gc alias.root            $'!pwd'
 alias root             'rev-parse --show-toplevel'
 
-alias sha              '!git show --format=%H "$@" | head -n1'
+alias sha              'rev-parse HEAD'
 # run daemon (use !git to run from repo root) then try git ls-remote
 alias serve            '!git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git'
 
