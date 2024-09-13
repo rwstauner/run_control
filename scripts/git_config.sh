@@ -268,7 +268,9 @@ alias clone-fork      '!fork=$1 upstream=$2; forkdir=${3:-${fork##*/}}; forkdir=
 
 # git rev-parse --default master --symbolic-full-name HEAD
 # git rev-parse --abbrev-ref HEAD
-alias current-branch  '!git symbolic-ref HEAD | sed s-^refs/heads/--'
+# capture in var to keep exit code
+#alias current-branch  '!ref=`git symbolic-ref HEAD` && echo $ref | sed s-^refs/heads/--'
+alias current-branch 'branch --show-current'
 
 # diff diff diff
 alias vimdiff    '!vim +Gdiff'
