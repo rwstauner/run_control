@@ -35,24 +35,25 @@ my $ua = HTTP::Tiny->new;
 # NOTE: This finds "latest" releases when it may be more desirable to get
 # latest dev releases (which requires a more interesting query/filter.
 my $query = {
-  query  => { match_all => {} },
-  filter => {
-    and  => [
-      { term => { author => $author } },
-      { term => { status => 'latest' } },
-      $opts{dists} ? () : (
-        { term => { "file.module.indexed"    => 1 } },
-        { term => { "file.module.authorized" => 1 } },
-      ),
-    ]
+  query  => {
+    bool => {
+      must => [
+        { term => { author => $author } },
+        { term => { status => 'latest' } },
+        $opts{dists} ? () : (
+          { term => { "module.indexed"    => 1 } },
+          { term => { "module.authorized" => 1 } },
+        ),
+      ],
+    },
   },
   $opts{dists}
     ? (
-        fields => [ 'archive' ],
+        _source => [ 'archive' ],
         size   => 500,
       )
     : (
-        fields => [ 'file.module.name' ],
+        _source => [ 'module.name' ],
         size   => 5000,
       )
 };
@@ -67,10 +68,10 @@ my @results = @{ decode_json($res->{content})->{hits}{hits} };
 print map { "$_\n" } sort
   $opts{dists}
     ?
-      map  { "$author/" . $_->{fields}{archive} }
+      map  { "$author/" . $_->{_source}{archive} }
         @results
     :
       # ignore installed mods
       #grep { !eval "require $_" }
-      map  { $_->{fields}{'module.name'} }
+      map  { $_->{_source}{module}[0]{name} }
         @results
