@@ -4,7 +4,7 @@
 
 [[ -d .shadowenv.d ]] && shadowenv trust
 
-branch="$(git current-branch 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9_-' _)"
+branch="$(git branch --show-current 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9_-' _)"
 sha="$(git rev-parse --short HEAD)"
 name=${NAME:-ruby-${branch:-$sha}}
 
