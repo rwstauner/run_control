@@ -50,9 +50,6 @@ alias lf='ll -aF'
 alias lh='lf -h'
 alias lft='lf --time-style=full-iso'
 
-# show child process hierarchy with indentation
-alias ps='ps -H'
-
 # Always use a pager.
 for i in dict; {
   eval "$i"' () { command '"$i"' "$@" | $PAGER; }'
