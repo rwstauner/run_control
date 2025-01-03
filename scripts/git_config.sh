@@ -504,6 +504,21 @@ else
   echo "No executable '$lgc' script found" 1>&2
 fi
 
+ssh_pub_key="$HOME/.ssh/id_ed25519.pub"
+if have gpg && [[ -f "$ssh_pub_key" ]]; then
+  config gpg.format ssh
+  config user.signingkey "$ssh_pub_key"
+  # Let the local script disable this.
+  [[ "$(config commit.gpgSign)" == "false" ]] || config commit.gpgSign true
+
+  # The "email address" column can actually be anything;
+  # it's just a signal for what address(es, comma-separated)
+  # you expect the key to be used with.
+  signers="$HOME/.ssh/allowed-signers"
+  echo "$(git config --global user.email) $(< $ssh_pub_key)" > "$signers"
+  config gpg.ssh.allowedSignersFile "$signers"
+fi
+
 chmod 0600 "$file"
 
 echo "Changes made:"
