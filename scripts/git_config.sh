@@ -517,6 +517,12 @@ if have gpg && [[ -f "$ssh_pub_key" ]]; then
   signers="$HOME/.ssh/allowed-signers"
   echo "$(git config --global user.email) $(< $ssh_pub_key)" > "$signers"
   config gpg.ssh.allowedSignersFile "$signers"
+
+  # https://developer.1password.com/docs/ssh/git-commit-signing/
+  op_cmd="/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  if [[ -x "$op_cmd" ]]; then
+    git config --global gpg.ssh.program "$op_cmd"
+  fi
 fi
 
 chmod 0600 "$file"
