@@ -47,7 +47,7 @@ _fzf_post_process () {
       ;;
     git\ st|git\ status|git\ stash\ pop*)
       # If there's a "(modified|new file):" in front of the path, strip it.
-      perl -pe 's/^\s*[^:]+:\s*(.+)/$1/'
+      GIT_PREFIX=`git prefix` perl -pe 's/^\s*[^:]+:\s*(.+)/$1/; s/^$ENV{GIT_PREFIX}//'
       ;;
     git\ diff*|git\ ix*|git\ adp|git\ log*|git\ last*)
       perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}; s{\| \d+ [+-]+}{};'
