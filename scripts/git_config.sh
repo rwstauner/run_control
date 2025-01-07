@@ -437,6 +437,7 @@ alias remote-branch    '!b=`git symbolic-ref HEAD | sed s,^refs/heads/,,`; if r=
 # Since git operates from the project root dir `pwd` also works.
 #$gc alias.root            $'!pwd'
 alias root             'rev-parse --show-toplevel'
+alias prefix           '!echo $GIT_PREFIX'
 
 alias sha              '!if [ $# -eq 0 ]; then set -- HEAD; fi; git rev-parse "$@"'
 # run daemon (use !git to run from repo root) then try git ls-remote
