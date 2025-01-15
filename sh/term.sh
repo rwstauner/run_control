@@ -23,9 +23,8 @@ if [[ "${ORIG_TERM%%-*}" != "${TERM%%-*}" ]]; then
   desired_term=${TERM%%-*color}-256color
 
   # GNU/Linux this is terminfo/s/screen
-  # but bsd/darwin is some number, so just glob the parent dir.
-  if ls /lib/terminfo/*/$desired_term${ZSH_VERSION:+(N)}      &> /dev/null ||
-    ls /usr/share/terminfo/*/$desired_term${ZSH_VERSION:+(N)} &> /dev/null ; then
+  # but bsd/darwin is some number
+  if toe | cut -f 1 | grep -qFx "$desired_term"; then
     TERM="$desired_term"
   else
     echo "terminfo for $desired_term not found!"
