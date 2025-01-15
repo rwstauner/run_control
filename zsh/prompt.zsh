@@ -86,6 +86,8 @@ _rwstauner_set_prompt () {
 
 typeset -a my_prompt
 my_prompt=(
+  $'%{\e]133;A\a%}' # indicate start of prompt
+
   # Whitespace after the reset gets swallowed so put a space before it.
   $'\e[1m🤖 \e[0m'
 
@@ -143,7 +145,9 @@ my_prompt=(
   # Put prompt character on a line by itself.
   # Zsh/zle seems much better than bash/readline about having "hidden" bytes.
   # $ › 〉❭ ❯ ❱ ⧽
-  $'\n%(!.%{%K{red}%}#%{%k%}.%{%B%F{031}%}💥%{%f%b%}) '
+  $'\n%(!.%{%K{red}%}#%{%k%}.%{%B%F{031}%}💥%{%f%b%})'
+
+  $'%{\e]133;B\a%}' # indicate end of prompt
 )
 
 if [[ -n "$NVIM_LISTEN_ADDRESS" ]]; then
