@@ -15,6 +15,8 @@ chruby () {
   export RBENV_VERSION="$1"
 }
 
+alias extract-gem=~/run_control/ruby/extract-gem
+
 rbenv-gem-dir () {
   echo $(rbenv prefix)/lib/ruby/gems/*/gems/
 }
