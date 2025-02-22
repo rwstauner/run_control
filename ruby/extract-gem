@@ -3,7 +3,7 @@
 gem="$1"
 dir="${2:-${gem%.gem}}"
 mkdir -p "$dir"
-tar -C "$dir" -xvzf "$gem"
+tar -C "$dir" -xvf "$gem"
 mkdir -p "$dir/data"
 tar -C "$dir/data" -xvzf "$dir/data.tar.gz"
 gunzip "$dir/metadata.gz"
