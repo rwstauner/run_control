@@ -382,7 +382,7 @@ alias maybe            '!if git has "$1"; then git "$@"; fi'
 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
 
-alias mine             '!git log --author=`git config user.email`'
+alias mine             '!git log --author=`git config user.email` `git config get --all user.emails | sed "s/^/--author=/"`'
 alias minest           '!git mine --stat --no-merges'
 
 # provide rebasing music (https://coderwall.com/p/at9bya)
