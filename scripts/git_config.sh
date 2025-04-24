@@ -317,7 +317,7 @@ alias format-patch-script  $'!file="$1"; shift; git log --oneline "$file" | perl
 # repo-setup: if git config remote.origin.url | grep ...; then config user.email; config gh.pr.args '-r ...'
 alias clone-x          '!git clone "$@" && (cd `git clone-dest "$@"` && git maybe repo-setup)'
 
-alias dir              '!if test -f "$1"; then cd "${1%/*}"; elif test -d "$1"; then cd "$1"; fi; dir=`git rev-parse --git-dir`; if [ "`echo "$dir" | cut -c 1`" != "/" ]; then dir="$PWD/$dir"; fi; echo "$dir"'
+alias dir              '!if test -f "$1"; then cd `dirname "$1"`; elif test -d "$1"; then cd "$1"; fi; dir=`git rev-parse --git-dir`; if [ "`echo "$dir" | cut -c 1`" != "/" ]; then dir="$PWD/$dir"; fi; echo "$dir"'
 
 # filenames at the top: --heading --break ?
 alias grep-todo       'grep -iE "to.?do|fix.?me"'
