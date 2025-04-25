@@ -202,7 +202,7 @@ if have delta; then
 fi
 
 config diff.exif.textconv    'exiftool'; # exiv2 ?
-config diff.json.textconv    'sh -c '\''jq "${JSON_DIFF_JQ:-.}" "$@" || cat "$@"'\'' --'
+config diff.json.textconv    'sh -c '\''[ -z "$GT" ] && jq "${JSON_DIFF_JQ:-.}" "$@" || cat "$@"'\'' --'
 config diff.sanctum.textconv 'sh -c '\''test -n "$GIT_DIFF_FILE" && t="${GIT_DIFF_FILE#sanctum/}" && t="${t%%/*}" && cd sanctum && sanctum view -t "$t" "${1#sanctum/}" || cat "$@"'\'' --'
 config diff.strings.textconv 'strings'
 config diff.ziplist.textconv 'unzip -l'
