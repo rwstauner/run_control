@@ -68,6 +68,10 @@ _fzf_post_process () {
       # Just the name.
       awk '{ print $2 }'
       ;;
+    kubectl*get\ pods*)
+      # Just the name.
+      awk '{ print $1 }'
+      ;;
     lf|lf\ *)
       # File name with dir (last arg that doesn't start with a dash) prepended.
       local dir i
@@ -87,6 +91,9 @@ _fzf_post_process () {
       # Strip any classification character and remove the target of sym links.
       awk -v PREFIX="${dir%/}${dir:+/}" \
         '{ sub("([^[:space:]]+ +){8}", ""); sub("([/*=%|]|@ -> .+)$", ""); print PREFIX $0 }'
+      ;;
+    coredumpctl)
+      awk '{ print $5 }'
       ;;
     *)
       _fzf_post_process_custom "$cmd"
