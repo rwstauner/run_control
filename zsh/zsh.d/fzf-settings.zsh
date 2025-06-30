@@ -68,23 +68,25 @@ _fzf_post_process () {
       # Just the name.
       awk '{ print $2 }'
       ;;
-    lf)
-      awk '{ print $9 }'
-      ;;
-    lf\ *)
+    lf|lf\ *)
       # File name with dir (last arg that doesn't start with a dash) prepended.
       local dir i
-      for i in "${(s: :)cmd#lf }"; {
-        if ! [[ "$i" == -* ]]; then
-          # If the arg contains a glob (foo/bar/*.txt) then likely all the
-          # entries will have the path on them already (so don't do anything).
-          if ! [[ "$i" == *\** ]]; then
-            dir="$i"
+      if [[ "$cmd" = lf\ * ]]; then
+        for i in "${(s: :)cmd#lf }"; {
+          if ! [[ "$i" == -* ]]; then
+            # If the arg contains a glob (foo/bar/*.txt) then likely all the
+            # entries will have the path on them already (so don't do anything).
+            if ! [[ "$i" == *\** ]]; then
+              dir="$i"
+            fi
           fi
-        fi
-      }
+        }
+      fi
+
       # Don't use $9 in case the filename has spaces: Instead remove the first 8 columns.
-      awk -v PREFIX="$dir${dir:+/}" '{ sub("([^[:space:]]+ +){8}", ""); print PREFIX $0 }'
+      # Strip any classification character and remove the target of sym links.
+      awk -v PREFIX="${dir%/}${dir:+/}" \
+        '{ sub("([^[:space:]]+ +){8}", ""); sub("([/*=%|]|@ -> .+)$", ""); print PREFIX $0 }'
       ;;
     *)
       _fzf_post_process_custom "$cmd"
