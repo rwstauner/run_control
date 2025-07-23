@@ -7,7 +7,7 @@ dl-archived-bin () {
   local slug="$1" bin="${2:-${1#*/}}" suffix="$3"
   url=$(latest-github-dl-url "$slug" "$suffix") || return 1
   archive=`download "$url"`
-  (extract "$archive" && find . -name "$bin" | xargs cp -t $PREFIX/bin)
+  (extract "$archive" && find . -name "$bin" | xargs cp -ft $PREFIX/bin)
 }
 
 if is_mac; then
@@ -22,12 +22,24 @@ else
   if have apt-get; then
     sudo apt-get install curl rlwrap clojure
   elif have pacman; then
-    sudo pacman -S --needed curl rlwrap clojure
+    sudo pacman -S --needed curl rlwrap clojure jdk21-openjdk
   fi
+
+#   version=1.10.3.986
+#   cljdir=$HOME/usr/clojure-$version
+#   if ! [[ -d "$cljdir" ]]; then
+#     curl https://download.clojure.org/install/linux-install-$version.sh | bash - -- -p "$cljdir"
+#     rm -f ~/usr/clojure
+#     ln -s "$cljdir" ~/usr/clojure
+#   fi
 
   dl-archived-bin babashka/babashka  bb        -$os-amd64.tar.gz
   dl-archived-bin clj-kondo/clj-kondo clj-kondo -$os-amd64.zip
   dl-archived-bin borkdude/jet       jet       -$os-amd64.zip
+
+  # bbin
+  #mkdir -p ~/.babashka/bbin/bin && curl -o- -L https://raw.githubusercontent.com/babashka/bbin/v0.1.2/bbin > ~/.babashka/bbin/bin/bbin && chmod +x ~/.babashka/bbin/bin/bbin
+  # echo 'export PATH="$PATH:$HOME/.babashka/bbin/bin"' >> ~/.$(basename $SHELL)rc && exec $SHELL
 fi
 
 download-bin https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein lein
