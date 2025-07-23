@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if have pacman; then
+  sudo pacman -S --needed simplescreenrecorder shotcut
+fi
