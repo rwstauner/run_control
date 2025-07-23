@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p ~/usr/bin
+ln -s /usr/bin/xargs ~/usr/bin/gxargs
