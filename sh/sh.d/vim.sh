@@ -1,3 +1,8 @@
+case "$EDITOR" in
+  *nano)
+    unset EDITOR;;
+esac
+
 if command -v nvim >/dev/null; then
   alias vim=nvim
   export EDITOR="${EDITOR:-nvim}"
