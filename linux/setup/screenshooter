@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# /commands/custom/<Primary>Print
+# /commands/custom/Print
+# /commands/custom/<Shift>Print
+
+shortcut () {
+  xfconf-query --create -t string -c xfce4-keyboard-shortcuts -p "/commands/custom/$1" -s "$2"
+}
+
+exe=$HOME/bin/save-screenshot-file
+cmd="xfce4-screenshooter -d 0"
+
+# Full screen
+shortcut 'Print'          "$cmd -o $exe -f"
+
+# Region with
+# Primary == Control
+shortcut '<Primary>Print' "$cmd -o $exe -r"
+
+# Window
+shortcut '<Alt>Print'     "$cmd -o $exe -w"
+
+# Dialog
+shortcut '<Shift>Print'   "$cmd -f"
