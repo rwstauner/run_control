@@ -11,7 +11,7 @@ if is_mac; then
 fi
 
 if have pacman; then
-  sudo pacman -S --needed docker docker-compose
+  sudo pacman -S --needed docker docker-compose docker-buildx
   if have systemctl; then
     sudo systemctl enable --now docker
   fi
