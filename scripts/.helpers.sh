@@ -84,7 +84,10 @@ latest-github-dl-url () {
   key="github-latest/$slug/$suffix"
   ! expired "$key" 86400 && cached "$key" && return
 
-  local url=$(curl -sL "$prefix/$slug/releases/latest" | \
+  # Use location header from "latest" to get release, then hit expanded_assets for urls
+  local url=$(curl -sI "$prefix/$slug/releases/latest" | tr -d $'\r' | awk '/location:/ { print $2 }')
+  local version="${url##*/}"
+  url=$(curl -sL "${url%tag/$version}/expanded_assets/$version" | \
     PREFIX="$prefix" SLUG="$slug" SUFFIX="$suffix" \
     perl -lne 'print(substr($1,0,1) eq "/" ? "$ENV{PREFIX}$1" : $1) if m{href="(.*?/\Q${ENV{SLUG}}\E/releases/download/.+?\Q${ENV{SUFFIX}}\E)"}')
 
