@@ -39,9 +39,6 @@ if have pacman; then
   have google-chrome-stable || \
     yay -S google-chrome
 
-  have skypeforlinux || \
-    yay -S skypeforlinux-stable-bin
-
   have slack || \
     yay -S slack-desktop
 else
