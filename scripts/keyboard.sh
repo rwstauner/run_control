@@ -3,6 +3,8 @@
 rc=$HOME/run_control
 kb=$rc/keyboard
 
+have () { command -v "$1" >&-; }
+
 apt () {
   dpkg -s "$1" &> /dev/null || sudo apt-get install -y "$1"
 }
@@ -19,16 +21,24 @@ perl-mod () {
     cpanm "$@" "$pm"
 }
 
+perl-mods () {
+  perl-mod X11::Keysyms -n
+}
+
 if [[ `uname` == Darwin ]]; then
 
-  perl-mod X11::Keysyms -n
+  perl-mods
   $rc/mac/setup/keyboard
 
-else
+elif have apt-get; then
 
   apt uim
   configure-im uim
-  perl-mod X11::Keysyms
+  perl-mods
+
+elif have pacman; then
+
+  perl-mods
 
 fi
 
