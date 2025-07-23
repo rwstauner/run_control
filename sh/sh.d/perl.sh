@@ -38,7 +38,7 @@ if [[ -d "$PLENV_ROOT" ]]; then
   eval "$(plenv init -)"
 fi
 
-alias dplenv='drunw --ssh -v plenv:/opt/plenv -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa -v $HOME/.pause:/root/.pause -v $HOME/.gitconfig:/root/.gitconfig --tmpfs /src/.build rwstauner/plenv'
+alias dplenv='drunw --ssh -v plenv:/opt/plenv -v $HOME/.pause:/root/.pause -v $HOME/.gitconfig:/root/.gitconfig --tmpfs /src/.build rwstauner/plenv'
 
 # dzil aliases
   dzil () {

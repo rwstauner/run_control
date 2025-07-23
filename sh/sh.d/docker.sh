@@ -98,10 +98,10 @@ drun () {
   if [[ "$1" = "--ssh"* ]]; then
     # [[ "$1" = "--ssh-agent" ]] && dssh-agent
     shift;
-    # args+=(-v ssh-agent:/ssh -e SSH_AUTH_SOCK=/ssh/auth/sock -e GIT_SSH_COMMAND="ssh -i ~/.id_rsa -o StrictHostKeyChecking=no -l $USER")
+    # args+=(-v ssh-agent:/ssh -e SSH_AUTH_SOCK=/ssh/auth/sock -e GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -l $USER")
     local sockpath=`uname | grep -q Darwin && echo /run/host-services/ssh-auth.sock || echo "$SSH_AUTH_SOCK"`
     # FIXME: this doesn't work for github.
-    args+=(-v $sockpath:$sockpath -e SSH_AUTH_SOCK=$sockpath -e GIT_SSH_COMMAND="ssh -i ~/.id_rsa -o StrictHostKeyChecking=no -l $USER")
+    args+=(-v $sockpath:$sockpath -e SSH_AUTH_SOCK=$sockpath -e GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -l $USER")
   fi
 
   case "$*" in
