@@ -118,7 +118,7 @@ expired () {
 }
 
 have () {
-  command -v "$1" &> /dev/null
+  command -v "$1" >&-
 }
 
 homebrew-ready () {
