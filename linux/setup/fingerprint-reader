@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+# https://wiki.archlinux.org/title/Fprint#Login_configuration
+
+sudo pacman -S --needed fprintd
+
+prepend-auth () {
+  local file="$1"
+  [[ -f "$file" ]] || return
+
+  line="auth      sufficient pam_fprintd.so"
+  pre="auth      sufficient pam_unix.so try_first_pass likeauth nullok"
+  if ! grep -qFx "$line" "$file"; then
+    sudo sed -i "/^auth/i $pre\n$line" "$file"
+  fi
+}
+
+
+prepend-auth /etc/pam.d/system-local-login
+prepend-auth /etc/pam.d/sudo
+prepend-auth /etc/pam.d/xfce4-screensaver
+
+polkit="/etc/pam.d/polkit-1"
+test -f "$polkit" || sudo cp /usr/lib/pam.d/polkit-1 "$polkit"
+
+prepend-auth "$polkit"
