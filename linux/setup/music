@@ -1,0 +1,16 @@
+#!/bin/bash
+
+warn () {
+  echo "$*" >&2
+}
+
+have () {
+  command -v "$@" >&-
+}
+
+if have pacman; then
+  pacman -S vlc
+else
+  warn 'not setup for this os'
+  exit 1
+fi
