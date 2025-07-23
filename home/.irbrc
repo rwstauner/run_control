@@ -1,5 +1,7 @@
 if $0 == 'irb'
 
+require "readline"
+
 ## always Always ALWAYS
 IRB.conf[:USE_READLINE] = true
 
