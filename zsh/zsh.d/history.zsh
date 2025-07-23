@@ -25,5 +25,5 @@ setopt inc_append_history
 unsetopt share_history
 
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=10000
+HISTSIZE=100000
 SAVEHIST=$HISTSIZE
