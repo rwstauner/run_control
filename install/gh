@@ -1,0 +1,13 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+if is_mac && homebrew gh; then
+  exit
+elif have pacman; then
+  sudo pacman -S github-cli
+else
+  url="$(latest-github-dl-url cli/cli _linux_amd64.tar.gz)"
+  archive=$(download "$url")
+  (extract "$archive" && cd gh_* && mv bin/gh $PREFIX/bin)
+fi
