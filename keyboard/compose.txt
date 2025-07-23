@@ -93,7 +93,8 @@
 "rofl" "🤣" # ROLLING ON THE FLOOR LAUGHING
 "scream" "😱" # FACE SCREAMING IN FEAR
 "ship" "🚢" # SHIP
-"shrug" "¯\\_(ツ)_/¯"
+"shrug" "🤷"
+"shrug2" "¯\\_(ツ)_/¯"
 "skull" "💀" # SKULL
 "smileimp" "😈" # SMILING FACE WITH HORNS
 "square" "□" # WHITE SQUARE
