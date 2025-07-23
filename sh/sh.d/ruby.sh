@@ -1,5 +1,11 @@
 RBENV_ROOT="$HOME/ruby/rbenv"
 
+export RUBIES_DIR="$RBENV_ROOT/versions"
+
+if [[ -n $ZSH ]]; then
+  rubies=$RUBIES_DIR; : ~rubies
+fi
+
 if [[ -d $RBENV_ROOT ]]; then
   export RBENV_ROOT
 
