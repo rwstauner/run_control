@@ -11,6 +11,7 @@ common=(
   git
   make
   neovim
+  rsync
   tmux
   wget
   xfce4-goodies
