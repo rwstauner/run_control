@@ -234,9 +234,13 @@ version_ge () {
 }
 
 script () {
+  local mode=0755
+  if [[ $# -eq 2 ]]; then
+    mode="$1"; shift
+  fi
   mkdir -p "`dirname "$1"`"
   cat > "$1"
-  chmod 0755 "$1"
+  chmod $mode "$1"
 }
 
 setup_runtime_dir () {
