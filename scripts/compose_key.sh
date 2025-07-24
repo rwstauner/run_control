@@ -52,7 +52,7 @@ if [[ `uname` == Darwin ]]; then
 else
 
   {
-    echo "$generated"
+    echo "# $generated"
     echo 'include "%L"'
     custom-keys
   } | generate ~/.XCompose
