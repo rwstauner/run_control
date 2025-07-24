@@ -8,8 +8,10 @@ have () {
   command -v "$@" >&-
 }
 
+${0%/*}/audio
+
 if have pacman; then
-  pacman -S vlc
+  sudo pacman -S --needed vlc vlc-plugin-ogg vorbis-tools
 else
   warn 'not setup for this os'
   exit 1

@@ -3,5 +3,6 @@
 have () { command -v "$1" >&-; }
 
 if have pacman; then
+  # TODO: pipewire?
   sudo perl -p -i -e 's/^(?=dev=)/#/; s/^((default_driver=)alsa)/#$1\n${2}pulse/;' /etc/libao.conf
 fi
