@@ -1,0 +1,24 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+# https://cloud.google.com/sdk/docs/install-sdk
+
+dir="$PREFIX/google-cloud-sdk"
+tar=google-cloud-cli-linux-x86_64.tar.gz
+
+mkdir -p "$dir"
+
+cd "${dir%/*}"
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/$tar
+
+# Remove any previous version
+rm -rf "$dir"
+
+tar -xvf "$tar"
+rm -f "$tar"
+
+"$dir"/install.sh
+# $dir/bin/gcloud init
+
+echo "source_rc_files \"$dir\"/{path,completion}.zsh.inc" | script 0644 $rc/.local/zsh.d/gcloud.zsh
