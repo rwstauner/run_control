@@ -30,7 +30,7 @@ _prompt_ () {
   # \[\033[0000m\033k\033\134\]
 
   # Vary main prompt color by hostname (use var to allow customizing).
-  PS1_MAIN_COLOR=`perl -e '$h=$ARGV[0]; print 30 + (($h =~ tr/.//) >= 2 ? (ord(substr($ARGV[0], 0, 1)) % 6) + 1 : 6)' $(hostname)`
+  PS1_MAIN_COLOR=`perl -e '$h=$ARGV[0]; print 30 + (($h =~ tr/.//) >= 2 ? (ord(substr($ARGV[0], 0, 1)) % 6) + 1 : 6)' "$HOSTNAME"`
 
   # Embed variables in single quotes to delay interpolation until
   # display time (so they update dynamically).
