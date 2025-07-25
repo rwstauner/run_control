@@ -49,3 +49,24 @@ vim_rb () {
 }
 
 alias ruby-ip='ruby -rsocket -e "puts Socket.gethostbyname(ARGV[0])[3].unpack(%(CCCC)).join(%(.))"'
+
+ruby () {
+  # Respect RBENV_VERSION even if there other rubies earlier on the PATH.
+  local ruby="${RBENV_VERSION+$HOME/ruby/rbenv/shims/}ruby"
+
+  case "$*" in
+    # When using -v arg with ruby also print path to ruby.
+    -v*|*\ -v)
+      [[ "$ruby" = ruby ]] && ruby="$(${BASH_VERSION+which}${ZSH_VERSION+${(s: :)${:-whence -p}}} ruby)"
+      [[ "$ruby" = */rbenv/shims/ruby ]] && ruby="$(rbenv which ruby)"
+      echo "$ruby" >&2
+      ;;
+  esac
+
+  (
+    if [[ -n "$RBENV_VERSION" ]]; then
+      unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION GEM_ROOT GEM_HOME GEM_PATH
+    fi
+    command "$ruby" "$@"
+  )
+}
