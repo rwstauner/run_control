@@ -1,4 +1,5 @@
 /apps/ghostty.local.conf
+/.local
 /vimrc
 
 *.pyc
