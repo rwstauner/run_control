@@ -1,4 +1,5 @@
 export GOPATH="$HOME/gopath"
 export GOBIN="$GOPATH/bin"
+test -d "$GOBIN" || mkdir -p "$GOBIN"
 export GO111MODULE="on"
 add_to_path "$GOBIN"
