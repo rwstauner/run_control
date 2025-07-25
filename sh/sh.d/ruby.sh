@@ -18,7 +18,15 @@ export DISABLE_SPRING=1
 export RUBY_CONFIGURE_OPTS=--disable-shared
 
 chruby () {
-  export RBENV_VERSION="$1"
+  if [[ $# -eq 1 ]]; then
+    export RBENV_VERSION="$1"
+  else
+    rbenv versions
+  fi
+}
+chruby_reset () {
+  unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION GEM_ROOT GEM_HOME GEM_PATH
+  unset RBENV_VERSION
 }
 
 alias extract-gem=~/run_control/ruby/extract-gem
