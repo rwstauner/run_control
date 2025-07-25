@@ -38,4 +38,6 @@ homebrew homebrew/cask-fonts/font-hack || github_font 'source-foundry/Hack'
 if have apt-get; then
   sudo apt-get install \
     ttf-mscorefonts-installer
+elif have pacman; then
+  sudo pacman -S noto-fonts-emoji
 fi
