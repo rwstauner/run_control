@@ -8,6 +8,7 @@ have () { command -v "$1" >&-; }
 
 common=(
   curl
+  ed
   git
   make
   neovim
