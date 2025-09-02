@@ -507,9 +507,18 @@ else
   echo "No executable '$lgc' script found" 1>&2
 fi
 
-ssh_pub_key="$HOME/.ssh/id_ed25519.pub"
-if have gpg && [[ -f "$ssh_pub_key" ]]; then
+use_op=false
+# https://developer.1password.com/docs/ssh/git-commit-signing/
+for op_cmd in {/Applications/1Password.app/Contents/MacOS,/opt/1Password}/op-ssh-sign; do
+  if [[ -x "$op_cmd" ]]; then
+    git config --global gpg.ssh.program "$op_cmd"
+    use_op=true
+  fi
+done
+
+if have gpg && $use_op; then
   config gpg.format ssh
+  ssh_pub_key=$(op item get "SSH Key: $(hostname -s)" --fields 'public key')
   config user.signingkey "$ssh_pub_key"
   # Let the local script disable this.
   [[ "$(config commit.gpgSign)" == "false" ]] || config commit.gpgSign true
@@ -518,14 +527,8 @@ if have gpg && [[ -f "$ssh_pub_key" ]]; then
   # it's just a signal for what address(es, comma-separated)
   # you expect the key to be used with.
   signers="$HOME/.ssh/allowed-signers"
-  echo "$(git config --global user.email) $(< $ssh_pub_key)" > "$signers"
+  echo "$(git config --global --get-all user.emails | awk '{ printf ",%s", $0 }' | cut -c 2-) $ssh_pub_key" > "$signers"
   config gpg.ssh.allowedSignersFile "$signers"
-
-  # https://developer.1password.com/docs/ssh/git-commit-signing/
-  op_cmd="/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-  if [[ -x "$op_cmd" ]]; then
-    git config --global gpg.ssh.program "$op_cmd"
-  fi
 fi
 
 chmod 0600 "$file"
