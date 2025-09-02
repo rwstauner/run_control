@@ -518,7 +518,8 @@ done
 
 if have gpg && $use_op; then
   config gpg.format ssh
-  ssh_pub_key=$(op item get "SSH Key: $(hostname -s)" --fields 'public key')
+  hostname=$(uname -n | cut -d . -f1)
+  ssh_pub_key=$(op item get "SSH Key: $hostname" --fields 'public key')
   config user.signingkey "$ssh_pub_key"
   # Let the local script disable this.
   [[ "$(config commit.gpgSign)" == "false" ]] || config commit.gpgSign true
