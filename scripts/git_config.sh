@@ -449,7 +449,7 @@ alias st              $'!if [ $# -gt 0 ]; then git status "$@"; else git status 
 alias stb              '!git st; git bv'
 alias stx              '!git stb; echo ignored:; git summarize-other'
 
-alias subup            '!test -f ${GIT_DIR:-.}/.gitmodules && git submodule update'
+alias subup            '!test -f ${GIT_DIR:-.}/.gitmodules && git submodule update --init'
 
 alias s                'status -s -b -u'
 
