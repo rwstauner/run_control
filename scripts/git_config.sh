@@ -507,6 +507,8 @@ else
   echo "No executable '$lgc' script found" 1>&2
 fi
 
+# Note: Use ssh agent forwarding on local with ssh config on remote:
+# Match host * exec "test -z $SSH_TTY"\n  IdentityAgent 1p sock
 use_op=false
 # https://developer.1password.com/docs/ssh/git-commit-signing/
 for op_cmd in {/Applications/1Password.app/Contents/MacOS,/opt/1Password}/op-ssh-sign; do
