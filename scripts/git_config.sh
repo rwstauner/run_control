@@ -513,8 +513,13 @@ use_op=false
 # https://developer.1password.com/docs/ssh/git-commit-signing/
 for op_cmd in {/Applications/1Password.app/Contents/MacOS,/opt/1Password}/op-ssh-sign; do
   if [[ -x "$op_cmd" ]]; then
-    git config --global gpg.ssh.program "$op_cmd"
-    use_op=true
+    if ! op whoami &>/dev/null; then
+      eval "$(op signin)"
+    fi
+    if op whoami; then
+      git config --global gpg.ssh.program "$op_cmd"
+      use_op=true
+    fi
   fi
 done
 
