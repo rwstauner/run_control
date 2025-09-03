@@ -208,6 +208,10 @@ git-checkout-latest-tag () {
   git checkout `git describe --tags | sed -r 's/-[0-9]+-g[0-9a-f]+$//'`
 }
 
+op () {
+  source "$rc/bin/op.shrc" "$@"
+}
+
 versioned-archive-dir () {
   local name="$1" url="$2";
   local basename="${url##*/}"

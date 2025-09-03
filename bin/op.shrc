@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Usage: source $0 args...
+
+if [[ -n "$SSH_CONNECTION" ]]; then
+  export OP_BIOMETRIC_UNLOCK_ENABLED=false
+fi
+
+if ! command op whoami &>/dev/null; then
+  eval "$(command op signin)"
+fi
+command op "$@"
