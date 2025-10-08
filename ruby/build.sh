@@ -8,21 +8,34 @@ branch="$(git branch --show-current 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9
 sha="$(git rev-parse --short HEAD)"
 name=${NAME:-ruby-${branch:-$sha}}
 
-autoreconf -i
-
 # yes stats dev dev_nodebug
-yjit=yes #dev_nodebug
+yjit=yes
+
+# yes
+zjit=yes
+
+config="${1#ruby-}"
+case "$config" in
+  yes|dev|stats|dev_nodebug)
+    shift
+    name=ruby-$config yjit=$config zjit=$config
+    ;;
+esac
+unset config
 
 opts=(
   --disable-install-doc
   --disable-shared
   --enable-compile-commands
 
+  #--enable-debug-env optflags="-O0 -fno-omit-frame-pointer"
+
   # optflags=-O0
   #cppflags=-DRUBY_DEBUG
 
   # --enable-rjit=dev
   ${yjit+--enable-yjit=}$yjit
+  ${zjit+--enable-zjit=}$zjit
 )
 
 if [[ `uname` = Darwin ]]; then
@@ -53,17 +66,29 @@ verbose () {
 }
 
 build () {
-  prefix="${HOME}/.rubies/$name"
-
-  verbose ./configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
-  [[ -f TAGS ]] || verbose make tags
-  verbose make -j
+  build_dir=build-$name
+  mkdir -p $build_dir && cd $build_dir
+  pwd
+  if ! do-make "$@"; then
+    rm -f config.cache
+    do-make "$@"
+  fi
 
   echo
-  echo "compiled to $prefix with:"
+  echo "compiled for $prefix with:"
   echo "${opts[*]} $CONFIGURE_ARGS $*"
   echo
   echo "built $name"
 }
 
-build "$@" || { git clean -fdX && build "$@"; }
+do-make () {
+  prefix="${HOME}/.rubies/$name"
+  src_dir=..
+  test -f $src_dir/configure || $src_dir/autogen.sh
+  test -f config.cache || \
+    verbose $src_dir/configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
+  verbose make tags
+  verbose make -j
+}
+
+build "$@"
