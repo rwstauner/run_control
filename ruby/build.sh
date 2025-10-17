@@ -65,8 +65,9 @@ verbose () {
   "$@"
 }
 
+src_dir=$PWD
 build () {
-  build_dir=build-$name
+  build_dir=$HOME/src/ruby/builds/${name#ruby-}
   mkdir -p $build_dir && cd $build_dir
   pwd
   if ! do-make "$@"; then
@@ -79,11 +80,11 @@ build () {
   echo "${opts[*]} $CONFIGURE_ARGS $*"
   echo
   echo "built $name"
+  pwd
 }
 
 do-make () {
   prefix="${HOME}/.rubies/$name"
-  src_dir=..
   test -f $src_dir/configure || $src_dir/autogen.sh
   test -f config.cache || \
     verbose $src_dir/configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
