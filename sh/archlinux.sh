@@ -1,5 +1,6 @@
 # Source this explicitly in ~/.zshrc.local
-# test -f /etc/arch-release
+
+test -f /etc/arch-release || return
 
 yay () {
   sudo -v

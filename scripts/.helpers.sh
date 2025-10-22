@@ -10,6 +10,7 @@ rc=$HOME/run_control #rc=`dirname $0`/..
 TAR="$(command -v gtar || echo tar)"
 
 source $rc/sh/setup.sh
+source $rc/sh/archlinux.sh
 
 iif () {
   if eval "$1"; then echo "$2"; else echo "$3"; fi
