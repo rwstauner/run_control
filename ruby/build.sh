@@ -20,6 +20,10 @@ case "$config" in
     shift
     name=ruby-$config yjit=$config zjit=$config
     ;;
+  master)
+    shift
+    name=ruby-master
+    ;;
 esac
 unset config
 
