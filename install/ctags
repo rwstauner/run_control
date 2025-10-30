@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. `dirname "$0"`/../scripts/.helpers.sh
+
+script $PREFIX/bin/ctags <<'WRAPPER'
+#!/bin/bash
+# generated
+args=()
+for i in "$@"; do
+  if [[ "$i" != "-e" ]]; then
+    args+=("$i")
+  fi
+done
+exec /usr/bin/ctags "${args[@]}"
+WRAPPER
+
+if have pacman; then
+  sudo pacman -S --needed ctags
+else
+  warn 'recipe not found'
+fi
