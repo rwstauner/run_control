@@ -90,8 +90,7 @@ build () {
 do-make () {
   prefix="${HOME}/.rubies/$name"
   test -f $src_dir/configure || $src_dir/autogen.sh
-  test -f config.cache || \
-    verbose $src_dir/configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
+  verbose $src_dir/configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
   verbose make tags
   verbose make -j
 }
