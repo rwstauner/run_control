@@ -16,6 +16,7 @@ no_path_helper () {
 }
 
 no_path_helper /etc/zshenv
+no_path_helper /etc/zprofile
 
 xcode-select --install
 
