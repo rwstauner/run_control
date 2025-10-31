@@ -1,1 +1,0 @@
-../zsh/loader.zsh

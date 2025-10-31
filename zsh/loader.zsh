@@ -20,6 +20,3 @@ source_rc_files $zshrc_dir/zsh.d/* ~/.zshrc.local
 source_rc_files $EXTRA_ZSHRC
 
 unset rc_dir zshrc_dir
-
-# Don't let naughty installers append lines and confuse me.
-return

@@ -33,3 +33,33 @@ find-files | while read file; do
 done
 
 touch ~/.tmux.conf.local
+
+generate-loader-file () {
+  local file="$1" loader="$2"
+  if ! grep -qFx "$loader" "$file"; then
+    echo " Regenerating $file"
+
+    # Remove to break symlinks, reset perms, etc.
+    rm -f "$file"
+
+    cat <<RC > "$file"
+# generated
+$loader
+
+# Don't let naughty installers append lines and confuse me.
+return
+RC
+  fi
+}
+
+setup-shell-files () {
+  local shell="$1"
+  generate-loader-file "$HOME/.${shell}rc" "source ~/run_control/$shell/loader.$shell"
+
+  local profile="$HOME/.${shell}_profile"
+  profile=${profile/zsh_/z};
+  generate-loader-file "$profile" "source ~/run_control/$shell/profile.$shell"
+}
+
+setup-shell-files bash
+setup-shell-files zsh

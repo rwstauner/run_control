@@ -1,6 +1,7 @@
 SHELL = /bin/bash
 
-all: apps links
+all: apps home
+.PHONY: home
 
 GHOSTTY_CONFIG = ~/.config/ghostty/config
 GHOSTTY_RC = $(HOME)/run_control/apps/ghostty.conf
@@ -13,5 +14,6 @@ ghostty:
 
 apps: ghostty
 
-links:
+links: home
+home:
 	scripts/home.sh
