@@ -29,6 +29,12 @@ case "$config" in
 esac
 unset config
 
+install=false
+if [[ "$1" == install ]]; then
+  install=true
+  shift
+fi
+
 opts=(
   --disable-install-doc
   --disable-shared
@@ -95,6 +101,7 @@ do-make () {
   verbose $src_dir/configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
   verbose make tags
   verbose make -j
+  $install && verbose make install
 }
 
 build "$@"
