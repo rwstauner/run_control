@@ -16,9 +16,11 @@ zjit=yes
 
 config="${1#ruby-}"
 case "$config" in
-  yes|dev|stats|dev_nodebug)
+  # [m]aster or [b]ranch
+  [mb]dev|[mb]stats)
     shift
-    name=ruby-$config yjit=$config zjit=$config
+    jit_config=${config#[mb]}
+    name=ruby-$config yjit=$jit_config zjit=$jit_config
     ;;
   [a-z]*)
     shift
