@@ -507,26 +507,15 @@ else
   echo "No executable '$lgc' script found" 1>&2
 fi
 
-# Note: Use ssh agent forwarding on local with ssh config on remote:
-# Match host * exec "test -z $SSH_TTY"\n  IdentityAgent 1p sock
-use_op=false
 # https://developer.1password.com/docs/ssh/git-commit-signing/
-for op_cmd in {/Applications/1Password.app/Contents/MacOS,/opt/1Password}/op-ssh-sign; do
-  if [[ -x "$op_cmd" ]]; then
-    if op whoami; then
-      git config --global gpg.ssh.program "$op_cmd"
-      use_op=true
-    fi
-  fi
-done
-
-if have gpg && $use_op; then
+# Let the local script disable this.
+if [[ "$(config commit.gpgSign)" != "false" ]] && have op && op whoami; then
   config gpg.format ssh
+  config gpg.ssh.program "$rc/bin/git-commit-sign-wrapper"
   hostname=$(uname -n | cut -d . -f1)
   ssh_pub_key=$(op item get "SSH Key: $hostname" --fields 'public key')
   config user.signingkey "$ssh_pub_key"
-  # Let the local script disable this.
-  [[ "$(config commit.gpgSign)" == "false" ]] || config commit.gpgSign true
+  config commit.gpgSign true
 
   # The "email address" column can actually be anything;
   # it's just a signal for what address(es, comma-separated)
