@@ -339,7 +339,7 @@ alias lf               'log --pretty=fuller --stat -p -w'
 alias last             '!git lf -n 1 -U10'
 
 # Print added, modified, the new name of renames, not deletes, and limit to files that still exist.
-alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | gxargs -r ls -1 2> /dev/null | sed "s,^$GIT_PREFIX,,"'
+alias last-changed    $'!git show --pretty= --name-only --diff-filter=ACMRT "$@" | xargs -r ls -1 2> /dev/null | sed "s,^$GIT_PREFIX,,"'
 
 alias last-tag        $'!git describe --tags --long | sed -re \047s/-[0-9]+-g[a-f0-9]+$//\047'
 
