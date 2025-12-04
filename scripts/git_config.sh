@@ -379,7 +379,7 @@ alias main-branch      '!git config user.main-branch || for i in develop main ma
 
 alias maat             '!git log --pretty=format:"[%h] %an %ad %s" --date=short --numstat'
 
-alias has              '!cmd="$1"; shift; git config "alias.$cmd" >/dev/null || command -v "git-$cmd" >/dev/null'
+alias has              '!cmd="$1"; shift; git config "alias.$cmd" >/dev/null 2>/dev/null || command -v "git-$cmd" >/dev/null'
 alias maybe            '!if git has "$1"; then git "$@"; fi'
 
 alias merge-delete     '!git merge "$1" && git branch -d "$1"'
@@ -438,7 +438,8 @@ alias remote-branch    '!b=`git symbolic-ref HEAD | sed s,^refs/heads/,,`; if r=
 
 # Since git operates from the project root dir `pwd` also works.
 #$gc alias.root            $'!pwd'
-alias root             'rev-parse --show-toplevel'
+# Something about the env puts the $1 at the end of the toplevel (so we ignore the env).
+alias root             '!f=; if test -f "$1"; then f=`dirname "$1"`; elif test -d "$1"; then f="$1"; fi; env -i git -C "${f:-.}" rev-parse --show-toplevel'
 alias prefix           '!echo $GIT_PREFIX'
 
 alias sha              '!if [ $# -eq 0 ]; then set -- HEAD; fi; git rev-parse "$@"'
@@ -477,11 +478,10 @@ alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
 alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe process-merged; git prune-branches; git bv'
 
-alias url              'url-sha'
-alias url-main         '!git url-of main-branch $GIT_PREFIX$1 $2 $3'
-alias url-branch       '!git url-of remote-branch $GIT_PREFIX$1 $2 $3'
-alias url-sha          '!git url-of sha $GIT_PREFIX$1 $2 $3'
-alias url-of           '!ref="$1" file="$GIT_PREFIX$2" l1="$3" l2="$4"; gitdir="`git dir "$file"`"; gitdir="${gitdir%/.git}"; file="${file#$gitdir/}"; ref=`git -C "$gitdir" $ref`; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git -C "$gitdir" config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
+alias url              '!git url-of sha $GIT_PREFIX$1 $2 $3'
+# alias url-main         '!git url-of main-branch $GIT_PREFIX$1 $2 $3'
+# alias url-remote       '!git url-of remote-branch $GIT_PREFIX$1 $2 $3'
+alias url-of           '!ref="$1" file="$GIT_PREFIX$2" l1="$3" l2="$4"; gitdir="`git root "$file"`"; file="${file#$gitdir/}"; cmd="rev-parse $ref"; if git has $ref; then cmd="$ref"; fi; ref=`git -C "$gitdir" $cmd`; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git -C "$gitdir" config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
