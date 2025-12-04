@@ -30,9 +30,30 @@ else
 #!/bin/sh
 # generated
 
+tmux-paste () {
+  tmux load-buffer -w -
+}
+
+osc52 () {
+  printf "\033]52;c;%s\007" "$(cat | base64 -w 0)"
+}
+
+x () {
+  # xclip -selection clipboard "$@"
+  xsel -b "$@"
+}
+
 clip () {
-  #exec xclip -selection clipboard "$@"
-  exec xsel -b "$@"
+  # Copy to system clipboard.
+  DISPLAY=${DISPLAY:-:0.0} x "$@"
+
+  # If we just copied something to the system clipboard
+  # but we are connected via SSH copy that to the terminal host.
+  if [[ "-i" == "$1" ]] && [[ -z "$DISPLAY" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+    cmd=osc52
+    [[ -n "$TMUX" ]] && cmd=tmux-paste
+    clip -o | $cmd
+  fi
 }
 
 if test -t 0; then
