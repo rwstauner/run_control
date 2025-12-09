@@ -129,10 +129,12 @@ drun () {
 }
 drunw () {
   preargs=()
-  if [[ "$1" == "--ssh" ]]; then
-    shift
-    preargs=(--ssh)
-  fi
+  case "$1" in
+    --ssh|--show-args)
+      preargs=("$1")
+      shift
+      ;;
+  esac
   drun "${preargs[@]}" -v "$PWD:/src:cached" -w /src "$@"
 }
 
