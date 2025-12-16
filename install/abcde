@@ -11,55 +11,57 @@ export PERL_LOCAL_LIB_ROOT="$locallib${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_RO
 export PERL_MB_OPT="--install_base \"$locallib\""
 export PERL_MM_OPT="INSTALL_BASE=$locallib"
 
-# abcde-musicbrainz-tool has shebang of /usr/bin/perl
-perl () {
-  /usr/bin/perl "$@"
-}
+# NOTE: Some of these deps may require perl < 5.42
 
-cpan () {
-  command /usr/bin/perl -MCPAN -e 'notest(@ARGV)' -- install "$@"
+cpanshell () {
+  perl -MCPAN -e shell <<<"$*" #< /dev/null
 }
 
 # ensure we install it into this dir for bootstrapping
-test -r $locallib/lib/perl5/local/lib.pm || cpan local::lib
+test -r $locallib/lib/perl5/local/lib.pm || cpanshell install local::lib
 
 pm-installed () {
   perl -Mlocal::lib="$locallib" -m"$1" -c -e1 2> /dev/null
 }
 
+recompile=false
 perldep () {
   pm-installed "$1" && return
-  cpan "$@"
+  cpanshell notest install "${2:-$1}" || recompile=true
 }
 
 perldeps () {
   perldep IO::Socket::SSL
   perldep MusicBrainz::DiscID
-  perldep WebService::MusicBrainz
+  perldep WebService::MusicBrainz # BFAIST/WebService-MusicBrainz-1.0.4.tar.gz
+  # $recompile && cpanshell recompile
 }
 
 perldeps
 
 # --with-{flac,lame,vorbis-tools,glyr} no longer optional
 if is_mac && homebrew abcde; then
+
   homebrew cdparanoia
-
   homebrew normalize
-
   homebrew libdiscid
 
-  # Use $PATH perl.
-  perl -0777 -p -i -e 's,^#!/usr/bin/perl,#!/usr/bin/env perl,' `brew --prefix`/bin/abcde-musicbrainz-tool
 elif have apt-get; then
 
   sudo apt-get install abcde
   sudo apt-get install libdiscid
 
 elif have pacman; then
+
   sudo pacman -S --needed libdiscid cdparanoia glyr
-  # May need to cd ~/.cache/yay/abcde/ and make install the tarball manually.
+  # NOTE: May need to cd ~/.cache/yay/abcde/ and make install the tarball manually.
   # https://abcde.einval.com/download/
   which abcde || yay -S --needed abcde
+
 fi
 
-perldeps
+# Unlock the shebang
+amt="$(command -v abcde-musicbrainz-tool)"
+if [[ -x "$amt" ]] && [[ "$(command -v perl)" != "/usr/bin/perl" ]] && head -n1 "$amt" | grep -q /usr/bin/perl; then
+  sudo perl -0777 -p -i -e 's,^#!/usr/bin/perl,#!/usr/bin/env perl,' "$amt"
+fi
