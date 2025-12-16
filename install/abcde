@@ -53,7 +53,7 @@ elif have apt-get; then
 
 elif have pacman; then
 
-  sudo pacman -S --needed libdiscid cdparanoia glyr
+  sudo pacman -S --needed libdiscid cdparanoia glyr cdrtools
   # NOTE: May need to cd ~/.cache/yay/abcde/ and make install the tarball manually.
   # https://abcde.einval.com/download/
   which abcde || yay -S --needed abcde
