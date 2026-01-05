@@ -2,9 +2,24 @@
 
 # Alternative to setting auth sock is to exec op-ssh-sign which
 # forces that (and therefore only works for local signing).
-op_sock="$HOME/.1password/agent.sock"
-if [[ -z "$SSH_CONNECTION" ]] && [[ -S "$op_sock" ]]; then
-  export SSH_AUTH_SOCK="$op_sock"
+
+# mac_op_sign=/Applications/1Password.app/Contents/MacOS/op-ssh-sign
+# if [[ -x "$mac_op_sign" ]]; then
+#   exec "$mac_op_sign" "$@"
+# fi
+
+op_socks=(
+  "$HOME/.1password/agent.sock"
+  "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+)
+
+if [[ -z "$SSH_CONNECTION" ]]; then
+  for op_sock in "${op_socks[@]}"; do
+    if [[ -S "$op_sock" ]]; then
+      export SSH_AUTH_SOCK="$op_sock"
+      break
+    fi
+  done
 fi
 
 exec ssh-keygen "$@"
