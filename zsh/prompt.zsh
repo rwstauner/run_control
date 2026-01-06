@@ -77,6 +77,12 @@ if whence git_prompt_info &> /dev/null; then
   add-zsh-hook chpwd   _rwstauner_cd_git_info
 fi
 
+
+_rwstauner_prompt_dir () {
+  # Tilde-translated directory, trailing n components, prefixed by ellipsis.
+  echo '%{%F{cyan}%}%30<…<%(4~,…,)%3~%<<%{%f%}'
+}
+
 # Some fun characters:
 # ∷ ⎇  ⬕ 🚀 😎 🔥 🔚 💥 👻 🐧 🐾 🏁 🎃 🍪 🌵 🌉 🌀 🃟 🐲 💣 ☃⛄ ⛇
 
@@ -112,8 +118,7 @@ my_prompt=(
   #'%{%F{246}%}🐾%{%f%}'
   '%{%F{216}%}🍪%{%f%} '
 
-  # Tilde-translated directory, trailing n components, prefixed by ellipsis.
-  '%{%F{cyan}%}%30<…<%(4~,…,)%3~%<<%{%f%}'
+  '$(_rwstauner_prompt_dir)'
 
   # Warn if privileged.
   '%(!:%{%F{red}%B%S%} 💀 %{%s%b%}:)'
