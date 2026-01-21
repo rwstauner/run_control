@@ -15,6 +15,7 @@
 ":'(" "😢" # CRYING FACE
 ":(" "☹" # WHITE FROWNING FACE
 ":)" "🙂" # SLIGHTLY SMILING FACE
+":/" "🫤" # FACE WITH DIAGONAL MOUTH
 ":D" "😃" # SMILING FACE WITH OPEN MOUTH
 "N`" "Ñ" # shift not needed # LATIN CAPITAL LETTER N WITH TILDE
 "anger" "💢" # ANGER SYMBOL
@@ -73,6 +74,7 @@
 "keys" "⇧" # Shift # UPWARDS WHITE ARROW
 "keyt" "⇥" # Tab # RIGHTWARDS ARROW TO BAR
 "kiss" "😘" # FACE THROWING A KISS
+"laugh" "😆" # SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES
 "mail" "📬" # OPEN MAILBOX WITH RAISED FLAG
 "mountain" "⛰" # MOUNTAIN
 "n-" "–" # EN DASH
@@ -93,7 +95,7 @@
 "rofl" "🤣" # ROLLING ON THE FLOOR LAUGHING
 "scream" "😱" # FACE SCREAMING IN FEAR
 "ship" "🚢" # SHIP
-"shrug" "🤷"
+"shrug" "🤷" # SHRUG
 "shrug2" "¯\\_(ツ)_/¯"
 "skull" "💀" # SKULL
 "smileimp" "😈" # SMILING FACE WITH HORNS
