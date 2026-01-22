@@ -20,3 +20,4 @@ with-brew-env () {
     # DYLD_FALLBACK_LIBRARY_PATH="$HOME/homebrew/lib" \
   with-compilation-dir "$HOME/homebrew" "$@"
 }
+alias with-brew-env='with-brew-env '
