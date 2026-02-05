@@ -58,7 +58,7 @@ _fzf_post_process () {
     docker\ images*)
       # image:tag
       # awk '{ if ($2 == "<none>") { print $1 } else { printf "%s:%s\n", $1, $2 } }'
-      awk '{ print $3 }'
+      awk '{ print $2 }'
       ;;
     docker\ ps*)
       # Just the container id.
