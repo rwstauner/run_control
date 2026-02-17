@@ -481,7 +481,7 @@ alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe proce
 alias url              '!git url-of sha $GIT_PREFIX$1 $2 $3'
 # alias url-main         '!git url-of main-branch $GIT_PREFIX$1 $2 $3'
 # alias url-remote       '!git url-of remote-branch $GIT_PREFIX$1 $2 $3'
-alias url-of           '!ref="$1" file="$GIT_PREFIX$2" l1="$3" l2="$4"; gitdir="`git root "$file"`"; file="${file#$gitdir/}"; cmd="rev-parse $ref"; if git has $ref; then cmd="$ref"; fi; ref=`git -C "$gitdir" $cmd`; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git -C "$gitdir" config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
+alias url-of           '!ref="$1" file="$2" l1="$3" l2="$4"; case "$file" in /*) ;; *) file="$GIT_PREFIX$file";; esac; gitdir="`git root "$file"`"; file="${file#$gitdir/}"; cmd="rev-parse $ref"; if git has $ref; then cmd="$ref"; fi; ref=`git -C "$gitdir" $cmd`; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git -C "$gitdir" config remote.origin.url | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
 
 # whois takes a name or email
 alias whois           $'log -i -1 --pretty="format:%an <%ae>\n" --author' # ="$1"'
