@@ -16,6 +16,9 @@ zjit=yes
 
 config="${1#ruby-}"
 case "$config" in
+  install)
+    # default name and config, pass through
+    ;;
   # [m]aster or [b]ranch
   [mb]dev|[mb]stats)
     shift
