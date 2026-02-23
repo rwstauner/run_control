@@ -88,7 +88,7 @@ build () {
   mkdir -p $build_dir && cd $build_dir
   pwd
   if ! do-make "$@"; then
-    rm -f config.cache
+    rm -f config.cache "$src_dir/configure"
     do-make "$@"
   fi
 
