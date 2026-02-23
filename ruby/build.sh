@@ -2,6 +2,12 @@
 
 # https://docs.ruby-lang.org/en/master/contributing/building_ruby_md.html
 
+# clean () { git clean -fdX; }
+# if [[ "$1" == --clean ]]; then
+#   shift
+#   clean
+# fi
+
 [[ -d .shadowenv.d ]] && shadowenv trust
 
 branch="$(git branch --show-current 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9_-' _)"
