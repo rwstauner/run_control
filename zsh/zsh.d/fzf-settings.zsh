@@ -55,6 +55,9 @@ _fzf_post_process () {
     git\ branch*|git\ bv*|git\ bav*)
       perl -pe 's{^[ *] (?:remotes/origin/)?(\S+)\s+.+}{$1}'
       ;;
+    git\ worktree\ list)
+      awk '{ print $1 }' # assumes no spaces in dirs
+      ;;
     docker\ images*)
       # image:tag
       # awk '{ if ($2 == "<none>") { print $1 } else { printf "%s:%s\n", $1, $2 } }'
