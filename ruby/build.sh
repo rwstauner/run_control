@@ -8,11 +8,13 @@ branch="$(git branch --show-current 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9
 sha="$(git rev-parse --short HEAD)"
 name=${NAME:-ruby-${branch:-$sha}}
 
-# yes stats dev dev_nodebug
-yjit=yes
+# We need "dev" to get tests but default to "_nodebug" so that when it isn't a surprise that it's slow.
+# zjit=dev_nodebug
+# Default to dev to get the test suite as well as assertions, etc.
+zjit=dev
 
-# yes
-zjit=yes
+# yes stats dev dev_nodebug
+yjit=$zjit
 
 config="${1#ruby-}"
 case "$config" in
