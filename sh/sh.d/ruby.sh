@@ -52,21 +52,34 @@ alias ruby-ip='ruby -rsocket -e "puts Socket.gethostbyname(ARGV[0])[3].unpack(%(
 
 ruby () {
   # Respect RBENV_VERSION even if there other rubies earlier on the PATH.
-  local ruby="${RBENV_VERSION+$HOME/ruby/rbenv/shims/}ruby"
+  local ruby="${RBENV_VERSION+$RBENV_ROOT/shims/}ruby"
+
+  [[ "$ruby" = ruby ]] && ruby="$(${BASH_VERSION+which}${ZSH_VERSION+${(s: :)${:-whence -p}}} ruby)"
+  [[ "$ruby" = */rbenv/shims/ruby ]] && ruby="$(rbenv which ruby)"
+
+  if [[ "$1" == --exe ]]; then
+    exe=$2
+    shift 2
+    set -- $(ruby -e 'puts RbConfig::CONFIG["bindir"]')/$exe "$@"
+    echo "$1" >&2
+  fi
 
   case "$*" in
     # When using -v arg with ruby also print path to ruby.
-    -v*|*\ -v)
-      [[ "$ruby" = ruby ]] && ruby="$(${BASH_VERSION+which}${ZSH_VERSION+${(s: :)${:-whence -p}}} ruby)"
-      [[ "$ruby" = */rbenv/shims/ruby ]] && ruby="$(rbenv which ruby)"
+    -v*|*\ -v*)
       echo "$ruby" >&2
       ;;
   esac
 
   (
     if [[ -n "$RBENV_VERSION" ]]; then
-      unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION GEM_ROOT GEM_HOME GEM_PATH
+      unset RUBY_ROOT RUBY_ENGINE RUBY_VERSION GEM_ROOT GEM_HOME GEM_PATH BUNDLE_APP_CONFIG
     fi
-    command "$ruby" "$@"
+    # Prepend bindir to PATH to so that "bundler exec ruby" will invoke the right executable.
+    PATH=${ruby%/*}:$PATH command "$ruby" "$@"
   )
 }
+for i in bundle gem; do
+  # Go through the above function when using bundle command.
+  alias $i="ruby --exe $i"
+done
