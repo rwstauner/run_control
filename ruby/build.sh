@@ -10,11 +10,18 @@
 
 [[ -d .shadowenv.d ]] && shadowenv trust
 
-branch="$(git branch --show-current 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9_-' _)"
-sha="$(git rev-parse --short HEAD)"
-name=${NAME:-ruby-${branch:-$sha}}
+if [[ -z "$NAME" ]]; then
+  dirname=${PWD##*/}
+  if [[ "$dirname" == "ruby" ]]; then
+    branch="$(git branch --show-current 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9_-' _)"
+    name=${NAME:-${branch:-ruby-$(git rev-parse --short HEAD)}}
+  else
+    # This is a worktree; just use the name of the dir.
+    build_dir=$PWD
+    name=$dirname
+  fi
+fi
 
-# We need "dev" to get tests but default to "_nodebug" so that when it isn't a surprise that it's slow.
 # zjit=dev_nodebug
 # Default to dev to get the test suite as well as assertions, etc.
 zjit=dev
@@ -39,6 +46,8 @@ case "$config" in
     ;;
 esac
 unset config
+
+build_dir=${build_dir-$HOME/src/ruby/builds/${name#ruby-}}
 
 install=false
 if [[ "$1" == install ]]; then
@@ -90,7 +99,6 @@ verbose () {
 
 src_dir=$PWD
 build () {
-  build_dir=$HOME/src/ruby/builds/${name#ruby-}
   mkdir -p $build_dir && cd $build_dir
   pwd
   if ! do-make "$@"; then
