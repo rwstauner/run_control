@@ -27,12 +27,10 @@ else
   fi
 
   script "$dest" <<'CLIP'
-#!/bin/sh
+#!/bin/bash
 # generated
 
-tmux-paste () {
-  tmux load-buffer -w -
-}
+have () { command -v "$@" >&-; }
 
 osc52 () {
   printf "\033]52;c;%s\007" "$(cat | base64 -w 0)"
@@ -51,15 +49,35 @@ clip () {
   # but we are connected via SSH copy that to the terminal host.
   if [[ "-i" == "$1" ]] && [[ -z "$DISPLAY" ]] && [[ -n "$SSH_CONNECTION" ]]; then
     cmd=osc52
-    [[ -n "$TMUX" ]] && cmd=tmux-paste
+    [[ -n "$TMUX" ]] && cmd=copy-with-tmux
     clip -o | $cmd
   fi
 }
 
+copy-with-x ()  { clip -i; }
+paste-with-x () { clip -o; }
+
+copy-with-tmux ()  { tmux load-buffer -w -; }
+paste-with-tmux () { tmux show-buffer; }
+
+is-x-running () { have systemctl && ! systemctl is-active --quiet graphical.target; }
+
+cmd=with-x
+if is-x-running; then
+  if [[ -n "$TMUX" ]]; then
+    cmd=with-tmux
+  else
+    echo 'no clipboard available?' >&2
+    exit 1
+  fi
+fi
+
+# If STDIN is terminal we must want "paste".
+# When piping something to this command we want "copy".
 if test -t 0; then
-  clip -o
+  paste-$cmd
 else
-  clip -i
+  copy-$cmd
 fi
 CLIP
 
