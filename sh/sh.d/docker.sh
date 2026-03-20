@@ -86,12 +86,7 @@ alias dexec='docker exec -it -e COLUMNS -e TERM'
 drun () {
   local hist=$HOME/.bash_history.docker
   [[ -f $hist ]] || touch $hist
-  # Don't try to mount what may be a symlink.
-  diff -q ~/.inputrc{,.docker} &> /dev/null || /bin/cp -f ~/.inputrc{,.docker}
   args=(
-    -v $hist:/root/.bash_history:cached # persist bash history
-    -v $hist:/root/.ash_history:cached  # also sh (alpine)
-    -v $HOME/.inputrc.docker:/root/.inputrc:cached # ctrl-arrows
     -i --rm
   )
 
@@ -104,6 +99,23 @@ drun () {
     args+=(-v $sockpath:$sockpath -e SSH_AUTH_SOCK=$sockpath -e GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -l $USER")
   fi
 
+  # Only specify -t if stdin is console (piping data to -t makes it mad).
+  test -t 0 && args+=(-t)
+
+  if [[ "$1" = "--show-args" ]]; then
+    shift
+    echo "docker run $(printf '%q ' "${args[@]}" "$@")"
+    return
+  fi
+
+  # Don't try to mount what may be a symlink.
+  diff -q ~/.inputrc{,.docker} &> /dev/null || /bin/cp -f ~/.inputrc{,.docker}
+  args+=(
+    -v $hist:/root/.bash_history:cached # persist bash history
+    -v $hist:/root/.ash_history:cached  # also sh (alpine)
+    -v $HOME/.inputrc.docker:/root/.inputrc:cached # ctrl-arrows
+  )
+
   case "$*" in
     *maven*|*gradle*|*clojure*|*lein*)
       args+=(-v $HOME/.m2:/root/.m2:cached)
@@ -114,17 +126,10 @@ drun () {
 
   # local var val
   # for var in TERM LOCALE LANG; {
-  #   if [[ -n "$ZSH_VERSION" ]]; then
-  #     val="${(P)var}"
-  #   else
-  #     val="${!var}"
-  #   fi
+  #   val="${ZSH_NAME:+${(P)var}${BASH:+${!var}}"
   #   args+=(-e "$var=$val")
   # }
 
-  # Only specify -t if stdin is console (piping data to -t makes it mad).
-  test -t 0 && args+=(-t)
-  # echo docker run "${args[@]}" "$@"
   docker run "${args[@]}" "$@"
 }
 drunw () {
