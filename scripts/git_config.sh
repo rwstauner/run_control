@@ -222,7 +222,7 @@ alias adp             'add -p'
 alias touch           'add -N'
 
 # GIT_PREFIX is only correct at the top-level (the backtick commands will see it blank) so we need to strip it here.
-alias all-changed     '!echo `git branch-changed` `git changed` | sed "s,^$GIT_PREFIX,," | xargs -n 1 | sort | uniq'
+alias all-changed     '!echo `git branch-changed` `git changed` | xargs -n 1 | sort | uniq | sed "s,^$GIT_PREFIX,,"'
 
 alias b               'branch'
 alias bv              'branch  -vv'
