@@ -20,3 +20,12 @@ export FCEDIT="$EDITOR" VISUAL="$EDITOR"
 
 alias vimXcat='ex -c w\ !\ cat -c :q'
 alias :sp='vim'
+
+function vim-qf {
+  local qf=`mktemp`
+  eval "capture-last-output >${ZSH_VERSION+!} '$qf'"
+  vim -q "$qf" -c copen
+  local ret=$?
+  /bin/rm -f "$qf"
+  return $ret
+}
