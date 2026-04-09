@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "open3"
+
+ruby_version = ARGV.first
+if ruby_version.nil? || ruby_version.empty?
+  warn "Usage: #{File.basename($PROGRAM_NAME)} RUBY_VERSION"
+  warn "Example: #{File.basename($PROGRAM_NAME)} 4.0.2"
+  exit 1
+end
+
+%w[
+  ~/src/github.com/ruby/ruby
+].each do |dir|
+  dir = File.expand_path(dir)
+  if File.directory?(dir)
+    Dir.chdir(dir)
+    break
+  end
+end
+
+normalized_version = ruby_version.delete_prefix("v")
+candidate_tags = ["v#{normalized_version}", normalized_version].uniq
+candidate_tags.unshift("v#{ruby_version.tr(".", "_")}") if ruby_version < '4'
+candidate_paths = [
+  "lib/bundler/version.rb",
+  "gems/bundler/lib/bundler/version.rb",
+]
+
+candidate_tags.each do |tag|
+  candidate_paths.each do |path|
+    content, status = Open3.capture2e("git", "show", "#{tag}:#{path}")
+    next unless status.success?
+
+    content.each_line do |line|
+      /VERSION\s*=\s*[\"'](?<bundler_version>[^\"']+)[\"']/ =~ line
+      if bundler_version
+        # STDERR.puts " #{tag} | #{path}: #{line.strip}"
+        puts bundler_version
+        exit 0
+      end
+    end
+  end
+end
+
+warn "Could not determine Bundler version for Ruby #{ruby_version.inspect}."
+warn "Tried tags: #{candidate_tags.join(", ")}"
+warn "Tried paths: #{candidate_paths.join(", ")}"
+exit 1
