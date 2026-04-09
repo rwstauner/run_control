@@ -86,6 +86,7 @@ ruby () {
   )
 }
 for i in bundle gem; do
-  # Go through the above function when using bundle command.
-  alias $i="ruby --exe $i"
+  # Go through the above function for other ruby executables, too.
+  # Use functions (rather than aliases) so that nested function calls resolve.
+  eval "$i () { ruby --exe $i \"\$@\"; }"
 done
