@@ -54,7 +54,7 @@ _fzf_post_process () {
       perl -pe 's{^(?:.* )?[ab]/(.+)}{$1}; s{\| \d+ [+-]+}{};'
       ;;
     git\ branch*|git\ bv*|git\ bav*)
-      perl -pe 's{^[ *] (?:remotes/origin/)?(\S+)\s+.+}{$1}'
+      perl -pe 's{^[ *+] (?:remotes/origin/)?(\S+)\s+.+}{$1}'
       ;;
     git\ worktree\ list)
       awk '{ print $1 }' # assumes no spaces in dirs
