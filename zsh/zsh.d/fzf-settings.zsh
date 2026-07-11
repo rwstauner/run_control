@@ -107,14 +107,14 @@ _fzf_post_process () {
 
 # FZF the contents of the current tmux pane.
 __fzf-tmux-pane () {
-  local cmd="${FZF_TMUX_PANE_CMD:-CAPTURE_PROMPT=1 $HOME/run_control/tmux/capture-from-last-prompt -e}"
+  local cmd="${FZF_TMUX_PANE_CMD:-IN_ZLE_WIDGET=1 CAPTURE_PROMPT=1 $HOME/run_control/tmux/capture-from-last-prompt -e}"
 
   # Get output before fzf switches to alternate screen.
   # (The start order of commands in a pipeline is non-deterministic.)
   local output="$(eval $cmd)"
   # Get the prompt from the first line to determine the command used
   # so we can customize the post-processor.
-  local last="$(perl -pe 's/\e\[.+?[a-z]//g; s/^\S\s+//;' <<<"${output%%$'\n'*}")"
+  local last="$(perl -pe 's/\e\[.*?[a-z]//g; s/^\S\s+//;' <<<"${output%%$'\n'*}")"
   output="${output#*$'\n'}"
 
   # Allow updating the post-process filter dynamically in fzf.

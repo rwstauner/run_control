@@ -8,7 +8,8 @@ if [[ $TMATE = 1 ]] && [[ -n $TMUX ]]; then
   }
 fi
 
-if [[ -z $TMUX ]]; then
+# Below works under tmux or zellij.
+if [[ -z $TMUX$ZELLIJ ]]; then
   return
 fi
 

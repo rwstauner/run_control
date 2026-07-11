@@ -1,10 +1,31 @@
-#!/bin/sh
+#!/bin/bash
+
+if [[ -n "$ZELLIJ" ]]; then
+  # Translate tmux args to zellij args.
+  if [[ "$1" == "-e" ]]; then
+    shift
+    set -- "--ansi"
+  fi
+  set -- zellij action dump-screen --full "$@"
+elif [[ -n "$TMUX" ]]; then
+  # "$@" may include "-e"
+  set -- tmux capture-pane -Jp -S - "$@"
+else
+  # on stderr from cli, on stdout from zle widget
+  fd=2
+  if [[ -n $IN_ZLE_WIDGET ]]; then
+    fd=1
+  fi
+
+  echo 'error: Terminal multiplexer not found' >&$fd
+  exit 1
+fi
 
 # `-S 0` visible, `-S -10` ten lines in hist, `-S -` beginning
 # -J to wrap and preserve whitespace
-tmux capture-pane -Jp -S - "$@" | \
+"$@" | \
   perl -ne '
-    $esc = qr/(?:\e\[[0-9;]+[a-z])/;
+    $esc = qr/(?:\e\[[0-9;]*[a-z])/;
     # if last line and current line combine to make multi line prompt...
     if ($o[-1] =~ /(^🤖 |$esc+🤖 $esc+)/ && /^$esc*💥$esc*/) {
       pop @o;
