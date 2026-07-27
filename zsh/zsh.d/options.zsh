@@ -38,3 +38,8 @@ setopt rematch_pcre
 
 # Print timing statistics for commands that take longer than this.
 REPORTTIME=10
+# Print commands with RSS in kb greater than this.
+REPORTMEMORY=10000000
+# Default is '%J  %U user %S system %P cpu %*E total'.
+# Appending ' max RSS %M' will show RSS.
+TIMEFMT='%J  %U user %S system %P cpu %*E total max RSS %M'
