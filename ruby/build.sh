@@ -116,7 +116,7 @@ build () {
 
   echo
   echo "compiled for $prefix with:"
-  echo "${opts[*]} $CONFIGURE_ARGS $*"
+  echo "${opts[*]} $RUBY_CONFIGURE_OPTS $*"
   echo
   echo "built $name"
   pwd
@@ -125,7 +125,7 @@ build () {
 do-make () {
   prefix="${HOME}/.rubies/$name"
   test -f $src_dir/configure || $src_dir/autogen.sh
-  verbose $src_dir/configure -C --prefix="$prefix" "${opts[@]}" $CONFIGURE_ARGS "$@"
+  verbose $src_dir/configure -C --prefix="$prefix" "${opts[@]}" $RUBY_CONFIGURE_OPTS "$@"
   verbose make tags
   verbose make -j
   $install && verbose make install
