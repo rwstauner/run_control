@@ -36,6 +36,12 @@ case "$config" in
   install)
     # default name and config, pass through
     ;;
+  asan)
+    shift
+    export cflags="-fsanitize=address -fsanitize-recover=address -fno-omit-frame-pointer -Wno-incompatible-function-pointer-types"
+    export CXXFLAGS="-fsanitize=address -fsanitize-recover=address -fno-omit-frame-pointer"
+    name=${NAME:-ruby}-asan
+    ;;
   # [m]aster or [b]ranch
   [mb]dev|[mb]stats)
     shift
