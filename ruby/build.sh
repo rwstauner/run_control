@@ -10,11 +10,13 @@
 
 [[ -d .shadowenv.d ]] && shadowenv trust
 
-if [[ -z "$NAME" ]]; then
+if [[ -n "$NAME" ]]; then
+  name="$NAME"
+else
   dirname=${PWD##*/}
   if [[ "$dirname" == "ruby" ]]; then
     branch="$(git branch --show-current 2> /dev/null | tr -d '\n' | tr -c 'a-zA-Z0-9_-' _)"
-    name=${NAME:-${branch:-ruby-$(git rev-parse --short HEAD)}}
+    name=${branch:-ruby-$(git rev-parse --short HEAD)}
   else
     # This is a worktree; just use the name of the dir.
     build_dir=$PWD
