@@ -474,7 +474,7 @@ alias tag-summary      '!git show --summary ${1:-`git last-tag`}'
 
 alias these            '!cmd="$1"; shift; for i in "$@"; do (cd "$i" && eval git "$cmd"); done'
 
-alias topic            '!git checkout -b "$1" "`git main-branch`"'
+alias topic            '!git checkout -b "$1" "${2:-`git main-branch`}"'
 
 alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
