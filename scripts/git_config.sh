@@ -480,9 +480,9 @@ alias up               'pull --all --prune --rebase --autostash'
 alias ups              '!git up; git subup'
 alias upp              '!git up; git log ORIG_HEAD..FETCH_HEAD | git maybe process-merged; git prune-branches; git bv'
 
-alias url              '!git url-of sha $GIT_PREFIX$1 $2 $3'
-# alias url-main         '!git url-of main-branch $GIT_PREFIX$1 $2 $3'
-# alias url-remote       '!git url-of remote-branch $GIT_PREFIX$1 $2 $3'
+# Usage: `git url /file/path L1 L2` or `git url-of main-branch /file/path L1 L2`
+# 1: ref or command, 2: file path (abs or rel), 3: line start, 4: line end
+alias url              '!git url-of sha "$@"'
 alias url-of           '!ref="$1" file="$2" l1="$3" l2="$4"; case "$file" in /*) ;; *) file="$GIT_PREFIX$file";; esac; gitdir="`git root "$file"`"; file="${file#$gitdir/}"; cmd="rev-parse $ref"; if git has $ref; then cmd="$ref"; fi; ref=`git -C "$gitdir" $cmd`; if [ "x$l1" = "x$l2" ]; then l2=""; fi; printf "%s/%s#%s\n" "`git -C "$gitdir" url-prefix`" "blob/$ref/$file" "L$l1${l2:+-L}$l2"'
 alias url-prefix       '!{ git config remote.github.url || git config remote.origin.url; } | sed -E "s,[^:/.]+@([^:]+):,https://\1/,; s/\.git$//"'
 
