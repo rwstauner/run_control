@@ -247,7 +247,7 @@ alias change-id       $'!git show --no-patch "$@" | awk \x27/^ {4}Change-Id: I/ 
 
 alias consolidate     '!git gc --aggressive && git repack'
 
-alias civ             'commit -v'
+alias civ             'commit -vS'
 alias amend           'commit -v -n --amend'
 
 alias co              'checkout'
@@ -518,7 +518,7 @@ if [[ "$(config commit.gpgSign)" != "false" ]] && have op && op whoami; then
   hostname=$(uname -n | cut -d . -f1)
   ssh_pub_key=$(op item get "SSH Key: $hostname" --fields 'public key')
   config user.signingkey "$ssh_pub_key"
-  config commit.gpgSign true
+  config commit.gpgSign false # False by default; the alias I use has -S.
 
   # The "email address" column can actually be anything;
   # it's just a signal for what address(es, comma-separated)
