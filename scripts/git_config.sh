@@ -248,7 +248,7 @@ alias change-id       $'!git show --no-patch "$@" | awk \x27/^ {4}Change-Id: I/ 
 alias consolidate     '!git gc --aggressive && git repack'
 
 alias civ             'commit -vS'
-alias amend           'commit -v -n --amend'
+alias amend           'commit -vS -n --amend'
 
 alias co              'checkout'
 alias cob             'checkout -b'
